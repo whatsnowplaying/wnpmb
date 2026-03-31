@@ -1,0 +1,410 @@
+{
+  "genres": [],
+  "video": false,
+  "tags": [],
+  "releases": [
+    {
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+      "artist-credit": [
+        {
+          "name": "The Beatles",
+          "artist": {
+            "disambiguation": "UK rock band, “The Fab Four”",
+            "sort-name": "Beatles, The",
+            "name": "The Beatles",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+            "genres": [
+              {
+                "id": "f1c9b874-7ef2-4e79-9419-c0bcb5f33a30",
+                "count": 1,
+                "name": "britpop",
+                "disambiguation": ""
+              },
+              {
+                "id": "93244085-20e5-4f16-9067-1d19143b3810",
+                "name": "classic rock",
+                "disambiguation": "",
+                "count": 3
+              },
+              {
+                "id": "caec8f8d-d862-4b62-9942-5622c2c18446",
+                "disambiguation": "",
+                "name": "mainstream rock",
+                "count": 1
+              },
+              {
+                "disambiguation": "",
+                "name": "merseybeat",
+                "count": 14,
+                "id": "c979d6c8-fa9e-47c3-86d6-754a7f89ea18"
+              },
+              {
+                "id": "911c7bbb-172d-4df8-9478-dbff4296e791",
+                "count": 28,
+                "name": "pop",
+                "disambiguation": ""
+              },
+              {
+                "id": "797e2e85-5ffd-495c-a757-8b4079052f0e",
+                "count": 23,
+                "name": "pop rock",
+                "disambiguation": ""
+              },
+              {
+                "id": "2aeb5340-c474-4677-b9a6-35ddac9b6a58",
+                "name": "psychedelic pop",
+                "disambiguation": "",
+                "count": 15
+              },
+              {
+                "id": "146ef761-5ad9-48b4-b0b3-483104f7da48",
+                "count": 7,
+                "name": "psychedelic rock",
+                "disambiguation": ""
+              },
+              {
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "name": "rock",
+                "disambiguation": "",
+                "count": 45
+              },
+              {
+                "disambiguation": "",
+                "name": "rock and roll",
+                "count": 2,
+                "id": "e4581b76-a842-440b-9b0f-1aa7a00a5c57"
+              }
+            ],
+            "country": "GB",
+            "tags": [
+              {
+                "name": "60s",
+                "count": 6
+              },
+              {
+                "count": 1,
+                "name": "beat"
+              },
+              {
+                "count": 22,
+                "name": "british"
+              },
+              {
+                "count": 9,
+                "name": "british invasion"
+              },
+              {
+                "name": "britpop",
+                "count": 1
+              },
+              {
+                "name": "classic rock",
+                "count": 3
+              },
+              {
+                "name": "europe",
+                "count": 1
+              },
+              {
+                "count": 1,
+                "name": "film soundtrack"
+              },
+              {
+                "name": "liverpool",
+                "count": 1
+              },
+              {
+                "name": "mainstream rock",
+                "count": 1
+              },
+              {
+                "name": "merseybeat",
+                "count": 14
+              },
+              {
+                "count": 28,
+                "name": "pop"
+              },
+              {
+                "name": "pop rock",
+                "count": 23
+              },
+              {
+                "count": 1,
+                "name": "popular music"
+              },
+              {
+                "count": 1,
+                "name": "psychedelia"
+              },
+              {
+                "name": "psychedelic pop",
+                "count": 15
+              },
+              {
+                "count": 7,
+                "name": "psychedelic rock"
+              },
+              {
+                "count": 45,
+                "name": "rock"
+              },
+              {
+                "name": "rock and roll",
+                "count": 2
+              },
+              {
+                "count": 1,
+                "name": "rock groups"
+              },
+              {
+                "name": "rock music",
+                "count": 1
+              },
+              {
+                "name": "vyrzukhisuc-artiest",
+                "count": 1
+              }
+            ],
+            "type": "Group"
+          },
+          "joinphrase": ""
+        }
+      ],
+      "id": "6f1a1c0a-3c7a-4d31-9e62-b32796043b6c",
+      "country": "US",
+      "quality": "normal",
+      "tags": [],
+      "title": "Help!",
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "date": "1965-08-06",
+      "status": "Official",
+      "disambiguation": "",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "genres": [],
+      "release-group": {
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "id": "0d44e1cb-c6e0-3453-8b68-4d2082f05421",
+        "secondary-type-ids": [],
+        "primary-type": "Album",
+        "artist-credit": [
+          {
+            "artist": {
+              "id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "type": "Group",
+              "name": "The Beatles",
+              "sort-name": "Beatles, The",
+              "country": "GB",
+              "disambiguation": "UK rock band, “The Fab Four”"
+            },
+            "joinphrase": "",
+            "name": "The Beatles"
+          }
+        ],
+        "disambiguation": "",
+        "secondary-types": [],
+        "first-release-date": "1965-08-06",
+        "releases": [],
+        "title": "Help!",
+        "tags": [],
+        "genres": []
+      },
+      "barcode": null,
+      "packaging": "None",
+      "release-events": [
+        {
+          "area": {
+            "id": "489ce91b-6658-3307-9877-795b68554c98",
+            "type-id": null,
+            "name": "United States",
+            "disambiguation": "",
+            "sort-name": "United States",
+            "type": null,
+            "iso-3166-1-codes": [
+              "US"
+            ]
+          },
+          "date": "1965-08-06"
+        }
+      ]
+    }
+  ],
+  "title": "Yesterday",
+  "disambiguation": "",
+  "first-release-date": "1965-08-06",
+  "artist-credit": [
+    {
+      "name": "The Beatles",
+      "joinphrase": "",
+      "artist": {
+        "genres": [
+          {
+            "disambiguation": "",
+            "name": "britpop",
+            "count": 1,
+            "id": "f1c9b874-7ef2-4e79-9419-c0bcb5f33a30"
+          },
+          {
+            "id": "93244085-20e5-4f16-9067-1d19143b3810",
+            "name": "classic rock",
+            "disambiguation": "",
+            "count": 3
+          },
+          {
+            "id": "caec8f8d-d862-4b62-9942-5622c2c18446",
+            "count": 1,
+            "name": "mainstream rock",
+            "disambiguation": ""
+          },
+          {
+            "count": 14,
+            "name": "merseybeat",
+            "disambiguation": "",
+            "id": "c979d6c8-fa9e-47c3-86d6-754a7f89ea18"
+          },
+          {
+            "id": "911c7bbb-172d-4df8-9478-dbff4296e791",
+            "count": 28,
+            "disambiguation": "",
+            "name": "pop"
+          },
+          {
+            "name": "pop rock",
+            "disambiguation": "",
+            "count": 23,
+            "id": "797e2e85-5ffd-495c-a757-8b4079052f0e"
+          },
+          {
+            "count": 15,
+            "disambiguation": "",
+            "name": "psychedelic pop",
+            "id": "2aeb5340-c474-4677-b9a6-35ddac9b6a58"
+          },
+          {
+            "count": 7,
+            "disambiguation": "",
+            "name": "psychedelic rock",
+            "id": "146ef761-5ad9-48b4-b0b3-483104f7da48"
+          },
+          {
+            "count": 45,
+            "disambiguation": "",
+            "name": "rock",
+            "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798"
+          },
+          {
+            "id": "e4581b76-a842-440b-9b0f-1aa7a00a5c57",
+            "count": 2,
+            "disambiguation": "",
+            "name": "rock and roll"
+          }
+        ],
+        "country": "GB",
+        "type": "Group",
+        "tags": [
+          {
+            "name": "60s",
+            "count": 6
+          },
+          {
+            "name": "beat",
+            "count": 1
+          },
+          {
+            "count": 22,
+            "name": "british"
+          },
+          {
+            "name": "british invasion",
+            "count": 9
+          },
+          {
+            "name": "britpop",
+            "count": 1
+          },
+          {
+            "name": "classic rock",
+            "count": 3
+          },
+          {
+            "count": 1,
+            "name": "europe"
+          },
+          {
+            "name": "film soundtrack",
+            "count": 1
+          },
+          {
+            "name": "liverpool",
+            "count": 1
+          },
+          {
+            "name": "mainstream rock",
+            "count": 1
+          },
+          {
+            "count": 14,
+            "name": "merseybeat"
+          },
+          {
+            "name": "pop",
+            "count": 28
+          },
+          {
+            "count": 23,
+            "name": "pop rock"
+          },
+          {
+            "name": "popular music",
+            "count": 1
+          },
+          {
+            "name": "psychedelia",
+            "count": 1
+          },
+          {
+            "name": "psychedelic pop",
+            "count": 15
+          },
+          {
+            "count": 7,
+            "name": "psychedelic rock"
+          },
+          {
+            "count": 45,
+            "name": "rock"
+          },
+          {
+            "count": 2,
+            "name": "rock and roll"
+          },
+          {
+            "count": 1,
+            "name": "rock groups"
+          },
+          {
+            "name": "rock music",
+            "count": 1
+          },
+          {
+            "name": "vyrzukhisuc-artiest",
+            "count": 1
+          }
+        ],
+        "name": "The Beatles",
+        "sort-name": "Beatles, The",
+        "disambiguation": "UK rock band, “The Fab Four”",
+        "id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+      }
+    }
+  ],
+  "length": 125667,
+  "id": "0aa1938a-ee7f-487b-b742-8b2cfa110c85",
+  "isrcs": []
+}

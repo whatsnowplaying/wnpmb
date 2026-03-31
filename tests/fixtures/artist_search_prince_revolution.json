@@ -1,0 +1,136 @@
+{
+  "artists": [
+    {
+      "id": "4c8ead39-b9df-4c56-a27c-51bc049cfd48",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 100,
+      "name": "The Revolution",
+      "sort-name": "Revolution, The",
+      "country": "US",
+      "area": {
+        "id": "489ce91b-6658-3307-9877-795b68554c98",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United States",
+        "sort-name": "United States",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "3e80aaa7-9b71-450f-8147-0ecf101d8f1a",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Minneapolis",
+        "sort-name": "Minneapolis",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "end-area": {
+        "id": "3e80aaa7-9b71-450f-8147-0ecf101d8f1a",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Minneapolis",
+        "sort-name": "Minneapolis",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "founded by Prince",
+      "isnis": [
+        "0000000108063629"
+      ],
+      "life-span": {
+        "begin": "1979",
+        "end": "1986",
+        "ended": true
+      },
+      "aliases": [
+        {
+          "sort-name": "Prince & The Revolution",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Prince & The Revolution",
+          "locale": "en",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Prince and the Revolution",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Prince and the Revolution",
+          "locale": null,
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "rock"
+        },
+        {
+          "count": 2,
+          "name": "pop"
+        },
+        {
+          "count": 0,
+          "name": "american"
+        },
+        {
+          "count": 0,
+          "name": "usa"
+        },
+        {
+          "count": 3,
+          "name": "funk"
+        },
+        {
+          "count": 1,
+          "name": "funk rock"
+        },
+        {
+          "count": 0,
+          "name": "américain"
+        },
+        {
+          "count": 1,
+          "name": "dance-pop"
+        },
+        {
+          "count": 1,
+          "name": "psychedelic pop"
+        },
+        {
+          "count": 1,
+          "name": "pop rock"
+        },
+        {
+          "count": 1,
+          "name": "neo-psychedelia"
+        },
+        {
+          "count": 1,
+          "name": "film soundtrack"
+        },
+        {
+          "count": 0,
+          "name": "rock and indie"
+        },
+        {
+          "count": 1,
+          "name": "psychedelic soul"
+        },
+        {
+          "count": 1,
+          "name": "synth funk"
+        }
+      ]
+    }
+  ]
+}

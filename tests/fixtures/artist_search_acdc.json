@@ -1,0 +1,432 @@
+{
+  "artists": [
+    {
+      "id": "66c662b6-6e2f-4930-8610-912e24c63ed1",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 100,
+      "name": "AC/DC",
+      "sort-name": "AC/DC",
+      "country": "AU",
+      "area": {
+        "id": "106e0bec-b638-3b37-b731-f53d507dc00e",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "Australia",
+        "sort-name": "Australia",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "3f179da4-83c6-4a28-a627-e46b4a8ff1ed",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Sydney",
+        "sort-name": "Sydney",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "Australian hard rock band",
+      "ipis": [
+        "00133076008"
+      ],
+      "isnis": [
+        "000000012271298X"
+      ],
+      "life-span": {
+        "begin": "1973-11",
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "AC/DC",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "AC/DC",
+          "locale": null,
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": "1973-11",
+          "end-date": null
+        },
+        {
+          "sort-name": "AC|DC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AC|DC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Akka Dakka",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "Akka Dakka",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Acca Dacca",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "Acca Dacca",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "AC.DC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AC.DC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "AC⚡︎DC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AC⚡︎DC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ACDC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "ACDC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "AC-DC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AC-DC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "AC⚡DC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AC⚡DC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "AC?DC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AC?DC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "AC\\DC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AC\\DC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "AC DC",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AC DC",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 14,
+          "name": "rock"
+        },
+        {
+          "count": -1,
+          "name": "heavy metal"
+        },
+        {
+          "count": -4,
+          "name": "metal"
+        },
+        {
+          "count": -2,
+          "name": "australian"
+        },
+        {
+          "count": -3,
+          "name": "band"
+        },
+        {
+          "count": 51,
+          "name": "hard rock"
+        },
+        {
+          "count": -1,
+          "name": "relaxed"
+        },
+        {
+          "count": 11,
+          "name": "blues rock"
+        },
+        {
+          "count": -6,
+          "name": "glam rock"
+        },
+        {
+          "count": 0,
+          "name": "classic rock"
+        },
+        {
+          "count": -2,
+          "name": "1980s"
+        },
+        {
+          "count": -2,
+          "name": "1970s"
+        },
+        {
+          "count": -4,
+          "name": "arena rock"
+        },
+        {
+          "count": 2,
+          "name": "rock and roll"
+        },
+        {
+          "count": -3,
+          "name": "english"
+        },
+        {
+          "count": -2,
+          "name": "australia"
+        },
+        {
+          "count": -3,
+          "name": "blues-rock"
+        },
+        {
+          "count": -3,
+          "name": "classic pop and rock"
+        },
+        {
+          "count": -3,
+          "name": "australie"
+        },
+        {
+          "count": -3,
+          "name": "australien"
+        },
+        {
+          "count": -3,
+          "name": "best"
+        },
+        {
+          "count": -3,
+          "name": "best rock"
+        },
+        {
+          "count": -2,
+          "name": "australian rock"
+        },
+        {
+          "count": -3,
+          "name": "capa"
+        },
+        {
+          "count": -1,
+          "name": "rock & roll"
+        },
+        {
+          "count": -3,
+          "name": "want to listen"
+        },
+        {
+          "count": -3,
+          "name": "volts"
+        },
+        {
+          "count": 0,
+          "name": "hard & heavy"
+        },
+        {
+          "count": -4,
+          "name": "+australia (sydney)"
+        },
+        {
+          "count": -1,
+          "name": "not acoustic"
+        },
+        {
+          "count": -1,
+          "name": "not sad"
+        },
+        {
+          "count": -1,
+          "name": "not electronic"
+        },
+        {
+          "count": -1,
+          "name": "not happy"
+        },
+        {
+          "count": -1,
+          "name": "not aggressive"
+        },
+        {
+          "count": -1,
+          "name": "not party"
+        }
+      ]
+    },
+    {
+      "id": "74a1057a-4e64-43c5-b882-f21debe0a323",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 67,
+      "name": "AC/DC UK",
+      "sort-name": "AC/DC UK",
+      "country": "GB",
+      "area": {
+        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United Kingdom",
+        "sort-name": "United Kingdom",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "AC/DC tribute band",
+      "life-span": {
+        "begin": "2008",
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "AcDc Uk",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "AcDc Uk",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Ac Dc Uk",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "Ac Dc Uk",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ]
+    },
+    {
+      "id": "664567ea-8526-4e81-9853-0adc79014ca4",
+      "score": 51,
+      "name": "DJ AC-DC",
+      "sort-name": "AC-DC, DJ",
+      "disambiguation": "Italian dance project",
+      "life-span": {
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "DJ ACDC",
+          "name": "DJ ACDC",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "acdc"
+        }
+      ]
+    },
+    {
+      "id": "c14c7fb1-35ba-4e2a-a754-038f7808d502",
+      "score": 50,
+      "name": "AC/DC Pauli",
+      "sort-name": "AC/DC Pauli",
+      "life-span": {
+        "ended": null
+      }
+    },
+    {
+      "id": "fe66a494-f26b-45c0-a0ce-70b42466f2ae",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 50,
+      "name": "Illegitimate AC/DC",
+      "sort-name": "Illegitimate AC/DC",
+      "area": {
+        "id": "b8474363-15ac-4943-9c73-c2665199982d",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Sonoma",
+        "sort-name": "Sonoma",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "b8474363-15ac-4943-9c73-c2665199982d",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Sonoma",
+        "sort-name": "Sonoma",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "life-span": {
+        "begin": "2017-10-17",
+        "ended": null
+      },
+      "tags": [
+        {
+          "count": 1,
+          "name": "tribute"
+        },
+        {
+          "count": 1,
+          "name": "ac/dc"
+        }
+      ]
+    }
+  ]
+}

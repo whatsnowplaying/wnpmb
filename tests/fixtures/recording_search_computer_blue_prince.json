@@ -1,0 +1,3167 @@
+{
+  "recordings": [
+    {
+      "id": "9ec591d8-3ef5-4fa2-b039-d716b4d5d517",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 274000,
+      "disambiguation": "live, 1985‐01‐04: The Omni, Atlanta, GA, USA",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "1995",
+      "releases": [
+        {
+          "id": "bb1fdafd-c7e6-45d4-8b8b-4307a7a71172",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 11,
+          "title": "City Lights",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "52ae709f-91cb-4bb4-ad73-45297343e702",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "City Lights",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation",
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "track-count": 115,
+          "media": [
+            {
+              "id": "ae06fc98-9747-4d21-8b50-9019d2319f5f",
+              "position": 8,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "0d811f41-a71d-46cd-a99c-2282c3e68dbc",
+                  "number": "12",
+                  "title": "Computer Blue",
+                  "length": 274000
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "da84d4bd-7cd0-4413-b4f1-8cb64431bf1e",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 4,
+          "title": "Purple Rush 4: The Final Seduction",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "e104820a-7d15-4c75-8948-4898921a5d88",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Purple Rush 4: The Final Seduction",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation",
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "track-count": 50,
+          "media": [
+            {
+              "id": "06d2df83-3adb-3d7d-af0c-ec24e0ab528d",
+              "position": 3,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "d590ccf0-cfec-45c6-b49d-09b0c0b33ae5",
+                  "number": "15",
+                  "title": "Computer Blue",
+                  "length": 273000
+                }
+              ],
+              "track-count": 18,
+              "track-offset": 14
+            }
+          ]
+        },
+        {
+          "id": "4d3f40e5-6b1f-45ff-ba2a-caf147f3d960",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "47a8bd78-7db7-3ef8-b19d-3bf855906860",
+          "count": 2,
+          "title": "Atlanta ’85",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "joinphrase": " and ",
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            },
+            {
+              "name": "The Revolution",
+              "artist": {
+                "id": "4c8ead39-b9df-4c56-a27c-51bc049cfd48",
+                "name": "The Revolution",
+                "sort-name": "Revolution, The",
+                "disambiguation": "founded by Prince"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "ceed2e4b-4272-3647-9f04-8bb25b6a4341",
+            "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Atlanta ’85",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "track-count": 18,
+          "media": [
+            {
+              "id": "be7342bf-26d9-30a2-b9ae-ec8394c9adc7",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "89836c9c-0d43-3ee8-814d-a8ca646ef4a1",
+                  "number": "12",
+                  "title": "Computer Blue",
+                  "length": 274306
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5ce987b6-616f-4e14-a8a1-014236b1cfbf",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 254570,
+      "disambiguation": "live, 1985‐03‐30: Carrier Dome, Syracuse, NY, USA",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "1985",
+      "releases": [
+        {
+          "id": "f46f8da8-20ec-4b99-ad1b-992bb56d6baf",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "ef5281f3-df8f-38fb-a3d8-77f706054b9a",
+          "count": 1,
+          "title": "Prince and the Revolution: Live",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "joinphrase": " & ",
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            },
+            {
+              "name": "The Revolution",
+              "artist": {
+                "id": "4c8ead39-b9df-4c56-a27c-51bc049cfd48",
+                "name": "The Revolution",
+                "sort-name": "Revolution, The",
+                "disambiguation": "founded by Prince"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "1e94d422-bb6f-335b-afb3-977bf3dab2c6",
+            "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Live",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "track-count": 20,
+          "media": [
+            {
+              "id": "71e3a376-7667-3252-b1c3-01da98305ce2",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "4d1c7be8-7396-4a76-b7b9-e251e9d046c1",
+                  "number": "14",
+                  "title": "Computer Blue",
+                  "length": 254570
+                }
+              ],
+              "track-count": 20,
+              "track-offset": 13
+            }
+          ]
+        },
+        {
+          "id": "3c4afd56-1f45-4989-9300-aabb5bf7c684",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 2,
+          "title": "Flesh for Fantasy",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "1e94d422-bb6f-335b-afb3-977bf3dab2c6",
+            "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Live",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "date": "1985",
+          "country": "IT",
+          "release-events": [
+            {
+              "date": "1985",
+              "area": {
+                "id": "c6500277-9a3d-349b-bf30-41afdbf42add",
+                "name": "Italy",
+                "sort-name": "Italy",
+                "iso-3166-1-codes": [
+                  "IT"
+                ]
+              }
+            }
+          ],
+          "track-count": 19,
+          "media": [
+            {
+              "id": "2a4d0a7e-f9d1-34aa-b477-00ddff8499e6",
+              "position": 2,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "2f72e5be-8541-40a9-89cb-72f19a28d774",
+                  "number": "1",
+                  "title": "Computer Blue",
+                  "length": 255000
+                }
+              ],
+              "track-count": 7,
+              "track-offset": 0
+            }
+          ]
+        }
+      ],
+      "isrcs": [
+        "USWB12001297"
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "pop rock"
+        }
+      ]
+    },
+    {
+      "id": "43a7d1e9-3a9a-416c-8b85-af79d9a05df8",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 277000,
+      "disambiguation": "live, 1985‐04‐07: Miami Orange Bowl, Miami, FL, USA",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2010",
+      "releases": [
+        {
+          "id": "cea4599c-81c1-4d04-a2f7-bb5eff0fdc60",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 6,
+          "title": "City Lights Remastered and Extended, Volume 4",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "8037e106-2c94-4a29-a3c4-ef0206948f31",
+            "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "City Lights Remastered and Extended, Volume 4",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "date": "2010",
+          "country": "XE",
+          "release-events": [
+            {
+              "date": "2010",
+              "area": {
+                "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                "name": "Europe",
+                "sort-name": "Europe",
+                "iso-3166-1-codes": [
+                  "XE"
+                ]
+              }
+            }
+          ],
+          "track-count": 81,
+          "media": [
+            {
+              "id": "515260b4-19b9-318f-b5a3-b2e7ae154712",
+              "position": 6,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "35078f35-997f-4689-afc6-34fa1fca0f4d",
+                  "number": "6",
+                  "title": "Computer Blue",
+                  "length": 277000
+                }
+              ],
+              "track-count": 12,
+              "track-offset": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4bac079a-8adf-46be-82cd-2ca74e6456f6",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 229000,
+      "disambiguation": "rehearsal, 1983",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002",
+      "releases": [
+        {
+          "id": "194c1c07-6b6e-418b-84cc-21245f1a5f6a",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 4,
+          "title": "Purple Rush 2: The Second Coming",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "2ab66a53-5ea2-42dd-9158-140c8686b8f0",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Purple Rush 2: The Second Coming",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "track-count": 54,
+          "media": [
+            {
+              "id": "6e67ffcb-a5e0-39fd-90ec-20610862b3e1",
+              "position": 2,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "78f3c454-0817-42b9-b2fb-f8c5c4ddac40",
+                  "number": "7",
+                  "title": "Computer Blue",
+                  "length": 229000
+                }
+              ],
+              "track-count": 13,
+              "track-offset": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "272e0216-de1d-455a-ac72-d779a4910fad",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 224000,
+      "disambiguation": "rehearsal, 1984‐10‐15",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002",
+      "releases": [
+        {
+          "id": "67adffe0-e63c-4e61-a99f-fb7e7c6f8b7a",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 4,
+          "title": "Purple Rush 3: The Third Shot",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "40bd0e79-9e44-49a8-8d68-5b4462fc3cd9",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Purple Rush 3: The Third Shot",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "track-count": 50,
+          "media": [
+            {
+              "id": "f4f715c1-4ea7-3a4a-acaa-f44818c46501",
+              "position": 3,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "bbf1728e-b13d-428e-b575-44df62370aed",
+                  "number": "10",
+                  "title": "Computer Blue",
+                  "length": 224000
+                }
+              ],
+              "track-count": 14,
+              "track-offset": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c3a69041-2532-45ca-87a5-6e51f3a7452c",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 729000,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2015",
+      "releases": [
+        {
+          "id": "a9207536-702c-4c42-b179-9dc4aa3e1d34",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 4,
+          "title": "Blast From the Past 3.0",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "fe95eacd-33ba-4fcd-9a96-e886a9eaa34d",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Blast From the Past 3.0",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2015",
+          "country": "XE",
+          "release-events": [
+            {
+              "date": "2015",
+              "area": {
+                "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                "name": "Europe",
+                "sort-name": "Europe",
+                "iso-3166-1-codes": [
+                  "XE"
+                ]
+              }
+            }
+          ],
+          "track-count": 58,
+          "media": [
+            {
+              "id": "75a94886-1379-3faf-9320-58d1f52bebba",
+              "position": 2,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "d7e0ee89-b167-4594-bb19-9bbaf7327602",
+                  "number": "1",
+                  "title": "Computer Blue",
+                  "length": 729000
+                }
+              ],
+              "track-count": 6,
+              "track-offset": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7479d599-645c-47d9-8850-fd07346c805c",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 427000,
+      "disambiguation": "live, 1983‐08‐03: First Avenue, Minneapolis, MN, USA",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2020",
+      "releases": [
+        {
+          "id": "1e24029c-3449-457c-9e83-7a91991a847f",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 1,
+          "title": "Purple Rain Debut",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "b9dd6193-4cb7-4ea0-8dd7-e92bb9109f1d",
+            "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Purple Rain Debut",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "track-count": 15,
+          "media": [
+            {
+              "id": "b6159b01-08b8-32e0-899b-c8f9eabfa41a",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "4012afe3-db46-4937-97d9-2830b19decb8",
+                  "number": "4",
+                  "title": "Computer Blue",
+                  "length": 427000
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 3
+            }
+          ]
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "rock"
+        }
+      ]
+    },
+    {
+      "id": "af3ea287-b725-49cc-8c81-aaa7cd5d063b",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 362000,
+      "disambiguation": "live, 1984‐08‐14: First Avenue, Minneapolis, MN, USA",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2008",
+      "releases": [
+        {
+          "id": "5d03009e-3d2d-455c-96b3-eac0f39ec78c",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 6,
+          "title": "Purple Rush 6: Let the Good Tapes Roll!",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "52b6c1bd-2515-4b79-b969-f116bdd52fac",
+            "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Purple Rush 6: Let the Good Tapes Roll!",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "date": "2008",
+          "country": "DE",
+          "release-events": [
+            {
+              "date": "2008",
+              "area": {
+                "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+                "name": "Germany",
+                "sort-name": "Germany",
+                "iso-3166-1-codes": [
+                  "DE"
+                ]
+              }
+            }
+          ],
+          "track-count": 82,
+          "media": [
+            {
+              "id": "56f3d746-18e8-3cb9-ae77-0b18b094582b",
+              "position": 6,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "f48b7b20-a22d-49e9-91a7-4aed4a2b210e",
+                  "number": "6",
+                  "title": "Computer Blue",
+                  "length": 362000
+                }
+              ],
+              "track-count": 13,
+              "track-offset": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fa8bf71d-e950-483f-ade7-5f0083e5bc63",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 266000,
+      "disambiguation": "live, 1985‐02‐23: The Forum, Inglewood, CA, USA",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2010",
+      "releases": [
+        {
+          "id": "cea4599c-81c1-4d04-a2f7-bb5eff0fdc60",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 6,
+          "title": "City Lights Remastered and Extended, Volume 4",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "8037e106-2c94-4a29-a3c4-ef0206948f31",
+            "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "City Lights Remastered and Extended, Volume 4",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Live"
+            ],
+            "secondary-type-ids": [
+              "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+            ]
+          },
+          "date": "2010",
+          "country": "XE",
+          "release-events": [
+            {
+              "date": "2010",
+              "area": {
+                "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                "name": "Europe",
+                "sort-name": "Europe",
+                "iso-3166-1-codes": [
+                  "XE"
+                ]
+              }
+            }
+          ],
+          "track-count": 81,
+          "media": [
+            {
+              "id": "0d104438-0569-37ac-9851-319b0fc54391",
+              "position": 3,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "60750288-6ddd-4391-b566-9feeb0a49216",
+                  "number": "18",
+                  "title": "Computer Blue",
+                  "length": 266000
+                }
+              ],
+              "track-count": 19,
+              "track-offset": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1dda04c-fe6a-4e54-a5de-f8e6df0eb4c6",
+      "score": 100,
+      "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+      "title": "Computer Blue",
+      "length": 429000,
+      "disambiguation": "rehearsal, 1983-07",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Prince",
+          "artist": {
+            "id": "070d193a-845c-479f-980e-bef15710653e",
+            "name": "Prince",
+            "sort-name": "Prince",
+            "disambiguation": "“The Artist Formerly Known as…”",
+            "aliases": [
+              {
+                "sort-name": "The Artist (Formerly Known as Prince)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist (Formerly Known as Prince)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Artist Formerly Known as Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Artist Formerly Known as Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "O(+>",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1993-06-07",
+                "end-date": "1999-12-31"
+              },
+              {
+                "sort-name": "Purple Yoda",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Purple Yoda",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Evolsidog",
+                "name": "Evolsidog",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Gemini",
+                "name": "Gemini",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol, The",
+                "name": "The Symbol",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Coco, Joey",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Joey Coco",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "1985",
+                "end-date": "1987"
+              },
+              {
+                "sort-name": "(us 1) PRINCE",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "(us 1) PRINCE",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Ƭ̵̬̊",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Ƭ̵̬̊",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "The Love Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "The Love Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Camille",
+                "name": "Camille",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Park, Paisley",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Paisley Park",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nevermind, Alexander",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Alexander Nevermind",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Nelson, Prince Rogers",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Prince Rogers Nelson",
+                "locale": "en",
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "O(+>)",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "O(+>)",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Formerly Prince",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Formerly Prince",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Symbol",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "Symbol",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "T.A.F.K.A.P.",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "T.A.F.K.A.P.",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "♀♂",
+                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                "name": "♀♂",
+                "locale": null,
+                "type": "Search hint",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jamie Starr",
+                "name": "Jamie Starr",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Prince",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Prince",
+                "locale": "en",
+                "type": "Artist name",
+                "primary": true,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002",
+      "releases": [
+        {
+          "id": "194c1c07-6b6e-418b-84cc-21245f1a5f6a",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "35c91f2c-5423-3c32-b710-18cf1b218cac",
+          "count": 4,
+          "title": "Purple Rush 2: The Second Coming",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Prince",
+              "artist": {
+                "id": "070d193a-845c-479f-980e-bef15710653e",
+                "name": "Prince",
+                "sort-name": "Prince",
+                "disambiguation": "“The Artist Formerly Known as…”"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "2ab66a53-5ea2-42dd-9158-140c8686b8f0",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Purple Rush 2: The Second Coming",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "track-count": 54,
+          "media": [
+            {
+              "id": "6ece07d5-3bee-3c61-8e6f-bf4011f3912a",
+              "position": 3,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "f2446c5d-1e60-4ac3-9c68-2113930d3a77",
+                  "number": "6",
+                  "title": "Computer Blue",
+                  "length": 429000
+                }
+              ],
+              "track-count": 12,
+              "track-offset": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

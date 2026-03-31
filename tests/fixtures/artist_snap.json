@@ -1,0 +1,67 @@
+{
+  "ipis": [],
+  "country": "DE",
+  "tags": [
+    {
+      "count": 1,
+      "name": "dance-pop"
+    },
+    {
+      "name": "electronic",
+      "count": 1
+    },
+    {
+      "count": 1,
+      "name": "euro house"
+    },
+    {
+      "name": "eurodance",
+      "count": 4
+    },
+    {
+      "name": "hip house",
+      "count": 2
+    },
+    {
+      "count": 1,
+      "name": "house"
+    }
+  ],
+  "gender-id": null,
+  "gender": null,
+  "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+  "type": "Group",
+  "end-area": null,
+  "isnis": [
+    "0000000094845979",
+    "0000000112403665"
+  ],
+  "area": {
+    "type-id": null,
+    "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+    "iso-3166-1-codes": [
+      "DE"
+    ],
+    "type": null,
+    "sort-name": "Germany",
+    "disambiguation": "",
+    "name": "Germany"
+  },
+  "begin-area": {
+    "sort-name": "Frankfurt am Main",
+    "disambiguation": "",
+    "name": "Frankfurt am Main",
+    "type": null,
+    "type-id": null,
+    "id": "16560d3e-358b-4869-8a6d-727db2ee7b69"
+  },
+  "name": "Snap!",
+  "disambiguation": "Eurodance",
+  "sort-name": "Snap!",
+  "life-span": {
+    "begin": "1989",
+    "end": null,
+    "ended": false
+  },
+  "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+}

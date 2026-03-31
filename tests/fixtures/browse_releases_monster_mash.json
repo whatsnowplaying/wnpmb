@@ -1,0 +1,105 @@
+{
+  "release-count": 1,
+  "release-offset": 0,
+  "releases": [
+    {
+      "quality": "normal",
+      "date": "1989",
+      "label-info": [
+        {
+          "label": {
+            "type": "Distributor",
+            "type-id": "53ab8dcc-9946-3b62-966e-7634d78e5034",
+            "id": "240b3f80-f3f0-49e7-a094-129f6babe2a8",
+            "disambiguation": "USA heavy metal label located in Culver City, CA. Closed its doors in 1990",
+            "label-code": null,
+            "name": "Medusa Records",
+            "sort-name": "Medusa Records"
+          },
+          "catalog-number": "7 72381-2"
+        }
+      ],
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+      "packaging": "Jewel Case",
+      "artist-credit": [
+        {
+          "artist": {
+            "type": "Other",
+            "type-id": "ac897045-5043-3294-969b-187360e45d86",
+            "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+            "disambiguation": "add compilations to this artist",
+            "country": null,
+            "name": "Various Artists",
+            "sort-name": "Various Artists"
+          },
+          "name": "Various Artists",
+          "joinphrase": ""
+        }
+      ],
+      "id": "6d8288a2-7126-41f4-92cb-4e8fcd860bd4",
+      "asin": null,
+      "cover-art-archive": {
+        "artwork": true,
+        "darkened": false,
+        "back": true,
+        "front": true,
+        "count": 8
+      },
+      "barcode": "018777238120",
+      "disambiguation": "",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "release-events": [
+        {
+          "date": "1989",
+          "area": {
+            "type-id": null,
+            "id": "489ce91b-6658-3307-9877-795b68554c98",
+            "disambiguation": "",
+            "name": "United States",
+            "sort-name": "United States",
+            "iso-3166-1-codes": [
+              "US"
+            ],
+            "type": null
+          }
+        }
+      ],
+      "country": "US",
+      "title": "Leatherface: The Texas Chainsaw Massacre III",
+      "status": "Official",
+      "release-group": {
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "first-release-date": "1989",
+        "disambiguation": "",
+        "secondary-types": [
+          "Soundtrack"
+        ],
+        "secondary-type-ids": [
+          "22a628ad-c082-3c4f-b1b6-d41665107b88"
+        ],
+        "id": "14df4a5c-5c3b-3f12-977a-a6c07ff61721",
+        "primary-type": "Album",
+        "title": "Leatherface: The Texas Chainsaw Massacre III",
+        "artist-credit": [
+          {
+            "joinphrase": "",
+            "artist": {
+              "type": "Other",
+              "country": null,
+              "disambiguation": "add compilations to this artist",
+              "name": "Various Artists",
+              "sort-name": "Various Artists",
+              "type-id": "ac897045-5043-3294-969b-187360e45d86",
+              "id": "89ad4ac3-39f7-470e-963a-56509c546377"
+            },
+            "name": "Various Artists"
+          }
+        ]
+      }
+    }
+  ]
+}

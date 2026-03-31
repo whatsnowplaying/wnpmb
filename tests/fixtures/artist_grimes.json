@@ -1,0 +1,137 @@
+{
+  "disambiguation": "Canadian singer and producer",
+  "isnis": [
+    "0000000356358936",
+    "0000000357911975"
+  ],
+  "id": "7e5a2a59-6d9f-4a17-b7c2-e1eedb7bd222",
+  "country": "CA",
+  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+  "area": {
+    "sort-name": "Canada",
+    "name": "Canada",
+    "type": null,
+    "disambiguation": "",
+    "iso-3166-1-codes": [
+      "CA"
+    ],
+    "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
+    "type-id": null
+  },
+  "begin-area": {
+    "id": "6ccc62d1-bdd8-4f08-8fae-bfaa5310e5ef",
+    "name": "Vancouver",
+    "type": null,
+    "sort-name": "Vancouver",
+    "disambiguation": "",
+    "type-id": null
+  },
+  "type": "Person",
+  "end-area": null,
+  "gender-id": "93452b5a-a947-30c8-934f-6a4056b151c2",
+  "tags": [
+    {
+      "count": 1,
+      "name": "alternative rock"
+    },
+    {
+      "name": "ambient",
+      "count": 1
+    },
+    {
+      "name": "art pop",
+      "count": 9
+    },
+    {
+      "name": "avant-garde",
+      "count": 4
+    },
+    {
+      "name": "avant-garde pop",
+      "count": 3
+    },
+    {
+      "name": "chillwave",
+      "count": 1
+    },
+    {
+      "count": 1,
+      "name": "contemporary r&b"
+    },
+    {
+      "count": 1,
+      "name": "dance"
+    },
+    {
+      "name": "dark wave",
+      "count": 1
+    },
+    {
+      "name": "dream pop",
+      "count": 2
+    },
+    {
+      "name": "electronic",
+      "count": 3
+    },
+    {
+      "name": "electronica",
+      "count": 1
+    },
+    {
+      "count": 1,
+      "name": "electropop"
+    },
+    {
+      "name": "ethereal wave",
+      "count": 2
+    },
+    {
+      "count": 1,
+      "name": "experimental"
+    },
+    {
+      "name": "idm",
+      "count": 1
+    },
+    {
+      "name": "indie pop",
+      "count": 1
+    },
+    {
+      "name": "indie rock",
+      "count": 2
+    },
+    {
+      "count": 2,
+      "name": "indietronica"
+    },
+    {
+      "name": "leftfield",
+      "count": 1
+    },
+    {
+      "count": 1,
+      "name": "pop"
+    },
+    {
+      "count": 8,
+      "name": "synth-pop"
+    },
+    {
+      "count": 1,
+      "name": "witch house"
+    }
+  ],
+  "sort-name": "Grimes",
+  "gender": "Female",
+  "name": "Grimes",
+  "ipis": [
+    "00633996999"
+  ],
+  "life-span": {
+    "ended": false,
+    "end": null,
+    "begin": "1988-03-17"
+  }
+}

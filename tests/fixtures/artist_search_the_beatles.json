@@ -1,0 +1,837 @@
+{
+  "artists": [
+    {
+      "id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 100,
+      "name": "The Beatles",
+      "sort-name": "Beatles, The",
+      "country": "GB",
+      "area": {
+        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United Kingdom",
+        "sort-name": "United Kingdom",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "c249c30e-88ab-4b2f-a745-96a25bd7afee",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Liverpool",
+        "sort-name": "Liverpool",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "UK rock band, “The Fab Four”",
+      "isnis": [
+        "0000000121707484"
+      ],
+      "life-span": {
+        "begin": "1960",
+        "end": "1970-04-10",
+        "ended": true
+      },
+      "aliases": [
+        {
+          "sort-name": "披头士乐队",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "披头士乐队",
+          "locale": "zh_Hans_CN",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "披头士乐队",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "披头士乐队",
+          "locale": "zh_Hans",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "披頭四樂團",
+          "name": "披頭四樂團",
+          "locale": "zh_Hant",
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Beatles",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Beatles",
+          "locale": "en",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Beetles",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "Beetles",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "披頭四樂隊",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "披頭四樂隊",
+          "locale": "zh_Hant",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "fab four",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "fab four",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Պիթլս",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Պիթլս",
+          "locale": "hy",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ဘီးတဲလ်အဖွဲ့",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ဘီးတဲလ်အဖွဲ့",
+          "locale": "my",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "द बिटल्स",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "द बिटल्स",
+          "locale": "ne",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ᱫᱚ ᱵᱤᱴᱞᱮᱥ",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ᱫᱚ ᱵᱤᱴᱞᱮᱥ",
+          "locale": "sat",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "די ביטלס",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "די ביטלס",
+          "locale": "yi",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Бітлз",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Бітлз",
+          "locale": "uk",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Битлз",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Битлз",
+          "locale": "ru",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "披头士",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "披头士",
+          "locale": "zh_Hans",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "披頭四",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "披頭四",
+          "locale": "zh_Hant",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Silver Beatles, The",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "The Silver Beatles",
+          "locale": "en",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Beatles, I",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "I Beatles",
+          "locale": "it",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Beatles, Die",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Die Beatles",
+          "locale": "de",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ბითლზი",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ბითლზი",
+          "locale": "ka",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "بیٹلز",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "بیٹلز",
+          "locale": "ur",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "เดอะบีเทิลส์",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "เดอะบีเทิลส์",
+          "locale": "th",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ద బీటిల్స్",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ద బీటిల్స్",
+          "locale": "te",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "பீட்டில்ஸ்",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "பீட்டில்ஸ்",
+          "locale": "ta",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ਦ ਬੀਟਲਜ਼",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ਦ ਬੀਟਲਜ਼",
+          "locale": "pa",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Битлси",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Битлси",
+          "locale": "mk",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ദി ബീറ്റിൽസ്",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ദി ബീറ്റിൽസ്",
+          "locale": "ml",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ದಿ ಬೀಟಲ್ಸ್",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ದಿ ಬೀಟಲ್ಸ್",
+          "locale": "kn",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Bítlarnir",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Bítlarnir",
+          "locale": "is",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "द बीटल्स",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "द बीटल्स",
+          "locale": "hi",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "더 비틀즈",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "더 비틀즈",
+          "locale": "ko",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "הביטלס",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "הביטלס",
+          "locale": "he",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ધ બિટલ્સ",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ધ બિટલ્સ",
+          "locale": "gu",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "بیتلز",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "بیتلز",
+          "locale": "fa",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "দ্য বিটল্‌স",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "দ্য বিটল্‌স",
+          "locale": "bn",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "البيتلز",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "البيتلز",
+          "locale": "ar",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Beatles, Los",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Los Beatles",
+          "locale": "es",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ዘ ቢተልስ",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ዘ ቢተልስ",
+          "locale": "am",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ビートルズ（ザ）",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ザ・ビートルズ",
+          "locale": "ja",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Beatles, Les",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Les Beatles",
+          "locale": "fr",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Beatles, The",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "The Beatles",
+          "locale": "en",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 45,
+          "name": "rock"
+        },
+        {
+          "count": 28,
+          "name": "pop"
+        },
+        {
+          "count": -3,
+          "name": "progressive rock"
+        },
+        {
+          "count": -3,
+          "name": "80s"
+        },
+        {
+          "count": -6,
+          "name": "heavy metal"
+        },
+        {
+          "count": -3,
+          "name": "pop-rock"
+        },
+        {
+          "count": -5,
+          "name": "orchestral"
+        },
+        {
+          "count": -3,
+          "name": "experimental"
+        },
+        {
+          "count": 22,
+          "name": "british"
+        },
+        {
+          "count": 0,
+          "name": "uk"
+        },
+        {
+          "count": 6,
+          "name": "60s"
+        },
+        {
+          "count": -3,
+          "name": "hard rock"
+        },
+        {
+          "count": -4,
+          "name": "indie rock"
+        },
+        {
+          "count": 0,
+          "name": "folk rock"
+        },
+        {
+          "count": 7,
+          "name": "psychedelic rock"
+        },
+        {
+          "count": -4,
+          "name": "psychedelic"
+        },
+        {
+          "count": -3,
+          "name": "blues rock"
+        },
+        {
+          "count": 1,
+          "name": "britpop"
+        },
+        {
+          "count": -1,
+          "name": "art rock"
+        },
+        {
+          "count": -2,
+          "name": "folk-rock"
+        },
+        {
+          "count": -1,
+          "name": "baroque pop"
+        },
+        {
+          "count": 3,
+          "name": "classic rock"
+        },
+        {
+          "count": 0,
+          "name": "1960s"
+        },
+        {
+          "count": 15,
+          "name": "psychedelic pop"
+        },
+        {
+          "count": 0,
+          "name": "experimental rock"
+        },
+        {
+          "count": 23,
+          "name": "pop rock"
+        },
+        {
+          "count": -1,
+          "name": "europop"
+        },
+        {
+          "count": 9,
+          "name": "british invasion"
+        },
+        {
+          "count": 2,
+          "name": "rock and roll"
+        },
+        {
+          "count": -4,
+          "name": "rock roll"
+        },
+        {
+          "count": 1,
+          "name": "beat"
+        },
+        {
+          "count": 0,
+          "name": "english"
+        },
+        {
+          "count": -3,
+          "name": "sunshine pop"
+        },
+        {
+          "count": -2,
+          "name": "folk pop"
+        },
+        {
+          "count": 1,
+          "name": "rock music"
+        },
+        {
+          "count": 1,
+          "name": "liverpool"
+        },
+        {
+          "count": -4,
+          "name": "parlophone"
+        },
+        {
+          "count": 0,
+          "name": "united kingdom"
+        },
+        {
+          "count": -4,
+          "name": "hair metal"
+        },
+        {
+          "count": 1,
+          "name": "europe"
+        },
+        {
+          "count": -2,
+          "name": "1"
+        },
+        {
+          "count": -1,
+          "name": "bbc"
+        },
+        {
+          "count": 1,
+          "name": "film soundtrack"
+        },
+        {
+          "count": -1,
+          "name": "classic pop and rock"
+        },
+        {
+          "count": -1,
+          "name": "singer songwriter"
+        },
+        {
+          "count": -2,
+          "name": "classical pop"
+        },
+        {
+          "count": -1,
+          "name": "instrumental pop"
+        },
+        {
+          "count": 14,
+          "name": "merseybeat"
+        },
+        {
+          "count": -1,
+          "name": "adult alternative pop rock"
+        },
+        {
+          "count": -3,
+          "name": "tribute albums"
+        },
+        {
+          "count": -1,
+          "name": "british psychedelia"
+        },
+        {
+          "count": -1,
+          "name": "orchestral pop"
+        },
+        {
+          "count": -3,
+          "name": "pop-metal"
+        },
+        {
+          "count": 1,
+          "name": "psychedelia"
+        },
+        {
+          "count": 0,
+          "name": "male vocalists"
+        },
+        {
+          "count": -4,
+          "name": "the-beatles"
+        },
+        {
+          "count": 1,
+          "name": "mainstream rock"
+        },
+        {
+          "count": 0,
+          "name": "boys band"
+        },
+        {
+          "count": 0,
+          "name": "abbey road"
+        },
+        {
+          "count": -1,
+          "name": "rock & roll"
+        },
+        {
+          "count": -1,
+          "name": "pop/rock"
+        },
+        {
+          "count": -3,
+          "name": "rhythm & blues"
+        },
+        {
+          "count": -2,
+          "name": "overrated"
+        },
+        {
+          "count": -1,
+          "name": "psychedelic/garage"
+        },
+        {
+          "count": -2,
+          "name": "art pop"
+        },
+        {
+          "count": -2,
+          "name": "one beatles"
+        },
+        {
+          "count": 1,
+          "name": "popular music"
+        },
+        {
+          "count": -4,
+          "name": "a filk artist"
+        },
+        {
+          "count": -1,
+          "name": "british rhythm & blues"
+        },
+        {
+          "count": -2,
+          "name": "beat music"
+        },
+        {
+          "count": -1,
+          "name": "get back"
+        },
+        {
+          "count": -2,
+          "name": "favoritos"
+        },
+        {
+          "count": -1,
+          "name": "the beatles - primal colours"
+        },
+        {
+          "count": 0,
+          "name": "reino unido"
+        },
+        {
+          "count": 1,
+          "name": "rock groups"
+        },
+        {
+          "count": 1,
+          "name": "vyrzukhisuc-artiest"
+        }
+      ]
+    },
+    {
+      "id": "5f3112ef-5325-437e-b875-d4c6eb6e2cbd",
+      "type": "Other",
+      "type-id": "ac897045-5043-3294-969b-187360e45d86",
+      "score": 77,
+      "name": "The Beatles",
+      "sort-name": "The Beatles",
+      "disambiguation": "Ukrainian",
+      "life-span": {
+        "ended": null
+      }
+    },
+    {
+      "id": "f540dcbe-4ae8-45c7-817b-372241202276",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 69,
+      "name": "Not The Beatles",
+      "sort-name": "Not The Beatles",
+      "life-span": {
+        "begin": "1998",
+        "ended": null
+      }
+    },
+    {
+      "id": "99b3b587-ea18-4e30-9772-a8c5c248280b",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 69,
+      "name": "The Beatles Artifact",
+      "sort-name": "The Beatles Artifact",
+      "area": {
+        "id": "10173e97-7f16-4d06-9534-8c85a994dae7",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Rouen",
+        "sort-name": "Rouen",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "10173e97-7f16-4d06-9534-8c85a994dae7",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Rouen",
+        "sort-name": "Rouen",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "Beatles Tribute Band",
+      "life-span": {
+        "begin": "1996",
+        "ended": null
+      }
+    },
+    {
+      "id": "5f9bbbf5-a50e-4d25-8d63-0518fd81454c",
+      "score": 69,
+      "name": "The Beatles Today",
+      "sort-name": "The Beatles Today",
+      "begin-area": {
+        "id": "2ea52ae1-00ee-406e-a8f1-50fb88554d24",
+        "type": "Subdivision",
+        "type-id": "fd3d44c5-80a1-3842-9745-2c4972d35afa",
+        "name": "Flanders",
+        "sort-name": "Flanders",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "Belgian tribute to The Beatles",
+      "life-span": {
+        "begin": "2026",
+        "ended": null
+      }
+    }
+  ]
+}

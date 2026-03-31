@@ -1,0 +1,514 @@
+{
+  "recordings": [
+    {
+      "id": "b3b5574d-2ea2-4779-a721-62a356e2c3ce",
+      "score": 100,
+      "artist-credit-id": "eeae64ae-e3db-358f-b7db-0afd49b1c6de",
+      "title": "Iris",
+      "length": 315000,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "TR/ST",
+          "artist": {
+            "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+            "name": "TR/ST",
+            "sort-name": "TRUST",
+            "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+            "aliases": [
+              {
+                "sort-name": "TRUST",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "TR/ST",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "2015",
+                "end-date": null
+              },
+              {
+                "sort-name": "Trust",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Trust",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": "2015"
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2019-12",
+      "releases": [
+        {
+          "id": "ff42b3df-cec3-4b9d-9dd4-7ab639929572",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 1,
+          "title": "IRP December (2019) Vol. 2",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "d51d0473-4ec0-4f57-a246-4cd625efc0d6",
+            "type-id": "4fc3be2b-de1e-396b-a933-beb8f1607a22",
+            "primary-type-id": "4fc3be2b-de1e-396b-a933-beb8f1607a22",
+            "title": "IRP December (2019) Vol. 2",
+            "primary-type": "Other",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2019-12",
+          "country": "XW",
+          "release-events": [
+            {
+              "date": "2019-12",
+              "area": {
+                "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                "name": "[Worldwide]",
+                "sort-name": "[Worldwide]",
+                "iso-3166-1-codes": [
+                  "XW"
+                ]
+              }
+            }
+          ],
+          "track-count": 40,
+          "media": [
+            {
+              "id": "8657e60d-695d-361b-95c6-79a5b7f9ec1e",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "f8c38afc-d24a-4457-93fb-10282716fe9e",
+                  "number": "25",
+                  "title": "Iris",
+                  "length": 315000
+                }
+              ],
+              "track-count": 40,
+              "track-offset": 24
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9ecf96f5-dbba-4fda-a5cf-7728837fb1b6",
+      "score": 100,
+      "artist-credit-id": "eeae64ae-e3db-358f-b7db-0afd49b1c6de",
+      "title": "Iris",
+      "length": 318000,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "TR/ST",
+          "artist": {
+            "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+            "name": "TR/ST",
+            "sort-name": "TRUST",
+            "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+            "aliases": [
+              {
+                "sort-name": "TRUST",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "TR/ST",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": "2015",
+                "end-date": null
+              },
+              {
+                "sort-name": "Trust",
+                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                "name": "Trust",
+                "locale": null,
+                "type": "Artist name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": "2015"
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2019-07-25",
+      "releases": [
+        {
+          "id": "a493ad67-14f9-4f8f-b250-4c9506de309d",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "eeae64ae-e3db-358f-b7db-0afd49b1c6de",
+          "count": 1,
+          "title": "Destroyer Vol 1 & 2",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "TR/ST",
+              "artist": {
+                "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+                "name": "TR/ST",
+                "sort-name": "TRUST",
+                "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "b7b38a7b-44c5-4e9a-8f8a-982acf5efe67",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Destroyer Vol 1 & 2",
+            "primary-type": "Album"
+          },
+          "date": "2022-07-21",
+          "country": "XW",
+          "release-events": [
+            {
+              "date": "2022-07-21",
+              "area": {
+                "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                "name": "[Worldwide]",
+                "sort-name": "[Worldwide]",
+                "iso-3166-1-codes": [
+                  "XW"
+                ]
+              }
+            }
+          ],
+          "track-count": 16,
+          "media": [
+            {
+              "id": "154e6913-87c9-329c-9cb9-234622e44e90",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "eb1f35ba-c855-4601-8308-84525f23b9cd",
+                  "number": "10",
+                  "title": "Iris",
+                  "length": 318067
+                }
+              ],
+              "track-count": 16,
+              "track-offset": 9
+            }
+          ]
+        },
+        {
+          "id": "a786cd03-bae0-4a04-966f-3e04f5f72f84",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "eeae64ae-e3db-358f-b7db-0afd49b1c6de",
+          "count": 1,
+          "title": "The Destroyer — 2",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "TR/ST",
+              "artist": {
+                "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+                "name": "TR/ST",
+                "sort-name": "TRUST",
+                "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "af08d324-4953-4bca-8964-0b085d314d1d",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Destroyer — 2",
+            "primary-type": "Album"
+          },
+          "date": "2019-11-01",
+          "country": "US",
+          "release-events": [
+            {
+              "date": "2019-11-01",
+              "area": {
+                "id": "489ce91b-6658-3307-9877-795b68554c98",
+                "name": "United States",
+                "sort-name": "United States",
+                "iso-3166-1-codes": [
+                  "US"
+                ]
+              }
+            }
+          ],
+          "track-count": 8,
+          "media": [
+            {
+              "id": "d14beebd-abf6-3be9-8859-a4a0552f298b",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "1f92119e-3eb6-4f80-a4b9-58e8b3e8e957",
+                  "number": "2",
+                  "title": "Iris",
+                  "length": 318066
+                }
+              ],
+              "track-count": 8,
+              "track-offset": 1
+            }
+          ]
+        },
+        {
+          "id": "22fc9ede-777d-484b-b7af-e03e820ba485",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "eeae64ae-e3db-358f-b7db-0afd49b1c6de",
+          "count": 1,
+          "title": "The Destroyer — 2",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "TR/ST",
+              "artist": {
+                "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+                "name": "TR/ST",
+                "sort-name": "TRUST",
+                "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "af08d324-4953-4bca-8964-0b085d314d1d",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Destroyer — 2",
+            "primary-type": "Album"
+          },
+          "date": "2019-11-01",
+          "country": "CA",
+          "release-events": [
+            {
+              "date": "2019-11-01",
+              "area": {
+                "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
+                "name": "Canada",
+                "sort-name": "Canada",
+                "iso-3166-1-codes": [
+                  "CA"
+                ]
+              }
+            }
+          ],
+          "track-count": 8,
+          "media": [
+            {
+              "id": "5a717dc6-7e4d-32f3-a7d9-9a039f9b868c",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "016932d5-d1b3-4486-a107-d19678135a8c",
+                  "number": "2",
+                  "title": "Iris",
+                  "length": 318000
+                }
+              ],
+              "track-count": 8,
+              "track-offset": 1
+            }
+          ]
+        },
+        {
+          "id": "c068d329-d238-43f7-abbd-e0ec10ea90c5",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "eeae64ae-e3db-358f-b7db-0afd49b1c6de",
+          "count": 1,
+          "title": "Iris",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "TR/ST",
+              "artist": {
+                "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+                "name": "TR/ST",
+                "sort-name": "TRUST",
+                "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "9cb8256a-2524-45c3-8277-b1287e69abd2",
+            "type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+            "primary-type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+            "title": "Iris",
+            "primary-type": "Single"
+          },
+          "date": "2019-07-25",
+          "country": "CA",
+          "release-events": [
+            {
+              "date": "2019-07-25",
+              "area": {
+                "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
+                "name": "Canada",
+                "sort-name": "Canada",
+                "iso-3166-1-codes": [
+                  "CA"
+                ]
+              }
+            }
+          ],
+          "track-count": 1,
+          "media": [
+            {
+              "id": "ed7c7cef-83ee-3f02-becc-2d1e95a32bae",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "087c9dc0-d8f1-4ee3-8ca1-10202f490440",
+                  "number": "1",
+                  "title": "Iris",
+                  "length": 318000
+                }
+              ],
+              "track-count": 1,
+              "track-offset": 0
+            }
+          ]
+        },
+        {
+          "id": "0c1000c1-3ff3-4053-92da-5da369ba6b14",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "eeae64ae-e3db-358f-b7db-0afd49b1c6de",
+          "count": 1,
+          "title": "Iris",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "TR/ST",
+              "artist": {
+                "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+                "name": "TR/ST",
+                "sort-name": "TRUST",
+                "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "9cb8256a-2524-45c3-8277-b1287e69abd2",
+            "type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+            "primary-type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+            "title": "Iris",
+            "primary-type": "Single"
+          },
+          "date": "2019-07-25",
+          "country": "XW",
+          "release-events": [
+            {
+              "date": "2019-07-25",
+              "area": {
+                "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                "name": "[Worldwide]",
+                "sort-name": "[Worldwide]",
+                "iso-3166-1-codes": [
+                  "XW"
+                ]
+              }
+            }
+          ],
+          "track-count": 1,
+          "media": [
+            {
+              "id": "7f605d05-2bd9-3129-a8da-bad421e57968",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "86d5b526-5961-430c-b653-9f6ee797ec5e",
+                  "number": "1",
+                  "title": "Iris",
+                  "length": 318000
+                }
+              ],
+              "track-count": 1,
+              "track-offset": 0
+            }
+          ]
+        },
+        {
+          "id": "03299fb4-c49d-4c44-a7a4-18f6b8308b5c",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "eeae64ae-e3db-358f-b7db-0afd49b1c6de",
+          "count": 1,
+          "title": "The Destroyer — 2",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "TR/ST",
+              "artist": {
+                "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+                "name": "TR/ST",
+                "sort-name": "TRUST",
+                "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "af08d324-4953-4bca-8964-0b085d314d1d",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Destroyer — 2",
+            "primary-type": "Album"
+          },
+          "date": "2019-11-01",
+          "country": "XW",
+          "release-events": [
+            {
+              "date": "2019-11-01",
+              "area": {
+                "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                "name": "[Worldwide]",
+                "sort-name": "[Worldwide]",
+                "iso-3166-1-codes": [
+                  "XW"
+                ]
+              }
+            }
+          ],
+          "track-count": 8,
+          "media": [
+            {
+              "id": "2a250c55-4883-35ad-a5e2-16e4dd729e5f",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "d221d55b-e1ab-464b-bfa3-6ceb7a32aa0e",
+                  "number": "2",
+                  "title": "Iris",
+                  "length": 318000
+                }
+              ],
+              "track-count": 8,
+              "track-offset": 1
+            }
+          ]
+        }
+      ],
+      "isrcs": [
+        "QM6N21956988"
+      ]
+    }
+  ]
+}

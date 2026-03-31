@@ -1,0 +1,133 @@
+{
+  "end-area": null,
+  "type": "Group",
+  "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+  "sort-name": "Beatles, The",
+  "ipis": [],
+  "name": "The Beatles",
+  "id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+  "country": "GB",
+  "life-span": {
+    "end": "1970-04-10",
+    "ended": true,
+    "begin": "1960"
+  },
+  "gender": null,
+  "isnis": [
+    "0000000121707484"
+  ],
+  "gender-id": null,
+  "begin-area": {
+    "disambiguation": "",
+    "id": "c249c30e-88ab-4b2f-a745-96a25bd7afee",
+    "name": "Liverpool",
+    "type-id": null,
+    "type": null,
+    "iso-3166-2-codes": [
+      "GB-LIV"
+    ],
+    "sort-name": "Liverpool"
+  },
+  "disambiguation": "UK rock band, “The Fab Four”",
+  "tags": [
+    {
+      "name": "60s",
+      "count": 6
+    },
+    {
+      "count": 1,
+      "name": "beat"
+    },
+    {
+      "name": "british",
+      "count": 22
+    },
+    {
+      "count": 9,
+      "name": "british invasion"
+    },
+    {
+      "name": "britpop",
+      "count": 1
+    },
+    {
+      "name": "classic rock",
+      "count": 3
+    },
+    {
+      "count": 1,
+      "name": "europe"
+    },
+    {
+      "name": "film soundtrack",
+      "count": 1
+    },
+    {
+      "name": "liverpool",
+      "count": 1
+    },
+    {
+      "count": 1,
+      "name": "mainstream rock"
+    },
+    {
+      "name": "merseybeat",
+      "count": 14
+    },
+    {
+      "count": 28,
+      "name": "pop"
+    },
+    {
+      "name": "pop rock",
+      "count": 23
+    },
+    {
+      "count": 1,
+      "name": "popular music"
+    },
+    {
+      "name": "psychedelia",
+      "count": 1
+    },
+    {
+      "count": 15,
+      "name": "psychedelic pop"
+    },
+    {
+      "count": 7,
+      "name": "psychedelic rock"
+    },
+    {
+      "name": "rock",
+      "count": 45
+    },
+    {
+      "count": 2,
+      "name": "rock and roll"
+    },
+    {
+      "count": 1,
+      "name": "rock groups"
+    },
+    {
+      "name": "rock music",
+      "count": 1
+    },
+    {
+      "name": "vyrzukhisuc-artiest",
+      "count": 1
+    }
+  ],
+  "area": {
+    "type": null,
+    "type-id": null,
+    "iso-3166-1-codes": [
+      "GB"
+    ],
+    "sort-name": "United Kingdom",
+    "disambiguation": "",
+    "name": "United Kingdom",
+    "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed"
+  }
+}

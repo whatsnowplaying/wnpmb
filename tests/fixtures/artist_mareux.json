@@ -1,0 +1,34 @@
+{
+  "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+  "gender": "Male",
+  "ipis": [],
+  "country": "US",
+  "tags": [
+    {
+      "name": "darkwave",
+      "count": 2
+    }
+  ],
+  "id": "09095919-c549-4f33-9555-70df9dd941e1",
+  "area": {
+    "type-id": null,
+    "id": "1f40c6e1-47ba-4e35-996f-fe6ee5840e62",
+    "disambiguation": "",
+    "sort-name": "Los Angeles",
+    "name": "Los Angeles",
+    "type": null
+  },
+  "begin-area": null,
+  "end-area": null,
+  "type": "Person",
+  "isnis": [],
+  "life-span": {
+    "begin": "1992-02-22",
+    "end": null,
+    "ended": false
+  },
+  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+  "name": "Mareux",
+  "disambiguation": "LA darkwave",
+  "sort-name": "Mareux"
+}

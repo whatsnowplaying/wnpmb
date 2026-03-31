@@ -1,0 +1,820 @@
+{
+  "tags": [],
+  "disambiguation": "",
+  "length": 318000,
+  "first-release-date": "2019-07-25",
+  "genres": [],
+  "releases": [
+    {
+      "title": "Iris",
+      "packaging": "None",
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "artist-credit": [
+        {
+          "artist": {
+            "type": "Group",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "sort-name": "TRUST",
+            "name": "TR/ST",
+            "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+            "country": "CA",
+            "genres": [
+              {
+                "name": "dark wave",
+                "id": "c4a72fcd-e291-43c8-a546-9ce1764ff31b",
+                "count": 2,
+                "disambiguation": ""
+              },
+              {
+                "disambiguation": "",
+                "count": 3,
+                "id": "988e91a3-3341-416d-b7f8-7dbef6848dac",
+                "name": "synth-pop"
+              }
+            ],
+            "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+            "tags": [
+              {
+                "count": 4,
+                "name": "canadian"
+              },
+              {
+                "count": 2,
+                "name": "dark wave"
+              },
+              {
+                "name": "darkwave",
+                "count": 4
+              },
+              {
+                "name": "synth-pop",
+                "count": 3
+              },
+              {
+                "name": "synthpop",
+                "count": 5
+              }
+            ]
+          },
+          "joinphrase": "",
+          "name": "TR/ST"
+        }
+      ],
+      "barcode": "194491032920",
+      "genres": [],
+      "status": "Official",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "id": "0c1000c1-3ff3-4053-92da-5da369ba6b14",
+      "country": "XW",
+      "release-events": [
+        {
+          "date": "2019-07-25",
+          "area": {
+            "disambiguation": "",
+            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+            "name": "[Worldwide]",
+            "type": null,
+            "type-id": null,
+            "iso-3166-1-codes": [
+              "XW"
+            ],
+            "sort-name": "[Worldwide]"
+          }
+        }
+      ],
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+      "quality": "normal",
+      "release-group": {
+        "primary-type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+        "releases": [],
+        "id": "9cb8256a-2524-45c3-8277-b1287e69abd2",
+        "genres": [],
+        "secondary-types": [],
+        "primary-type": "Single",
+        "title": "Iris",
+        "artist-credit": [
+          {
+            "joinphrase": "",
+            "name": "TR/ST",
+            "artist": {
+              "type": "Group",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "sort-name": "TRUST",
+              "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+              "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+              "country": "CA",
+              "name": "TR/ST"
+            }
+          }
+        ],
+        "tags": [],
+        "secondary-type-ids": [],
+        "disambiguation": "",
+        "first-release-date": "2019-07-25"
+      },
+      "tags": [],
+      "disambiguation": "",
+      "date": "2019-07-25"
+    },
+    {
+      "country": "CA",
+      "id": "c068d329-d238-43f7-abbd-e0ec10ea90c5",
+      "release-events": [
+        {
+          "date": "2019-07-25",
+          "area": {
+            "name": "Canada",
+            "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
+            "disambiguation": "",
+            "sort-name": "Canada",
+            "iso-3166-1-codes": [
+              "CA"
+            ],
+            "type-id": null,
+            "type": null
+          }
+        }
+      ],
+      "genres": [],
+      "status": "Official",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "barcode": "044003214002",
+      "artist-credit": [
+        {
+          "artist": {
+            "sort-name": "TRUST",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group",
+            "tags": [
+              {
+                "count": 4,
+                "name": "canadian"
+              },
+              {
+                "count": 2,
+                "name": "dark wave"
+              },
+              {
+                "name": "darkwave",
+                "count": 4
+              },
+              {
+                "name": "synth-pop",
+                "count": 3
+              },
+              {
+                "name": "synthpop",
+                "count": 5
+              }
+            ],
+            "country": "CA",
+            "name": "TR/ST",
+            "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+            "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+            "genres": [
+              {
+                "disambiguation": "",
+                "count": 2,
+                "name": "dark wave",
+                "id": "c4a72fcd-e291-43c8-a546-9ce1764ff31b"
+              },
+              {
+                "id": "988e91a3-3341-416d-b7f8-7dbef6848dac",
+                "name": "synth-pop",
+                "count": 3,
+                "disambiguation": ""
+              }
+            ]
+          },
+          "joinphrase": "",
+          "name": "TR/ST"
+        }
+      ],
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "packaging": "None",
+      "title": "Iris",
+      "date": "2019-07-25",
+      "disambiguation": "",
+      "tags": [],
+      "release-group": {
+        "primary-type": "Single",
+        "title": "Iris",
+        "artist-credit": [
+          {
+            "artist": {
+              "sort-name": "TRUST",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "type": "Group",
+              "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+              "country": "CA",
+              "name": "TR/ST",
+              "id": "b8e3d1ae-5983-4af1-b226-aa009b294111"
+            },
+            "joinphrase": "",
+            "name": "TR/ST"
+          }
+        ],
+        "primary-type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+        "releases": [],
+        "id": "9cb8256a-2524-45c3-8277-b1287e69abd2",
+        "genres": [],
+        "secondary-types": [],
+        "first-release-date": "2019-07-25",
+        "tags": [],
+        "secondary-type-ids": [],
+        "disambiguation": ""
+      },
+      "quality": "normal",
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b"
+    },
+    {
+      "quality": "normal",
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+      "disambiguation": "",
+      "date": "2019-11-01",
+      "release-group": {
+        "releases": [],
+        "id": "af08d324-4953-4bca-8964-0b085d314d1d",
+        "genres": [],
+        "secondary-types": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "artist-credit": [
+          {
+            "artist": {
+              "sort-name": "TRUST",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "type": "Group",
+              "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+              "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+              "country": "CA",
+              "name": "TR/ST"
+            },
+            "name": "TR/ST",
+            "joinphrase": ""
+          }
+        ],
+        "primary-type": "Album",
+        "title": "The Destroyer — 2",
+        "secondary-type-ids": [],
+        "disambiguation": "",
+        "tags": [],
+        "first-release-date": "2019-11-01"
+      },
+      "tags": [
+        {
+          "name": "synth pop",
+          "count": 1
+        },
+        {
+          "count": 1,
+          "name": "synth-pop"
+        },
+        {
+          "name": "synthpop",
+          "count": 1
+        }
+      ],
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "artist-credit": [
+        {
+          "name": "TR/ST",
+          "joinphrase": "",
+          "artist": {
+            "tags": [
+              {
+                "count": 4,
+                "name": "canadian"
+              },
+              {
+                "count": 2,
+                "name": "dark wave"
+              },
+              {
+                "name": "darkwave",
+                "count": 4
+              },
+              {
+                "name": "synth-pop",
+                "count": 3
+              },
+              {
+                "count": 5,
+                "name": "synthpop"
+              }
+            ],
+            "country": "CA",
+            "name": "TR/ST",
+            "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+            "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+            "genres": [
+              {
+                "disambiguation": "",
+                "id": "c4a72fcd-e291-43c8-a546-9ce1764ff31b",
+                "name": "dark wave",
+                "count": 2
+              },
+              {
+                "disambiguation": "",
+                "count": 3,
+                "name": "synth-pop",
+                "id": "988e91a3-3341-416d-b7f8-7dbef6848dac"
+              }
+            ],
+            "sort-name": "TRUST",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group"
+          }
+        }
+      ],
+      "title": "The Destroyer — 2",
+      "packaging": "None",
+      "status": "Official",
+      "genres": [
+        {
+          "name": "synth-pop",
+          "id": "988e91a3-3341-416d-b7f8-7dbef6848dac",
+          "count": 1,
+          "disambiguation": ""
+        }
+      ],
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "id": "03299fb4-c49d-4c44-a7a4-18f6b8308b5c",
+      "country": "XW",
+      "release-events": [
+        {
+          "date": "2019-11-01",
+          "area": {
+            "type": null,
+            "type-id": null,
+            "iso-3166-1-codes": [
+              "XW"
+            ],
+            "sort-name": "[Worldwide]",
+            "name": "[Worldwide]",
+            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+            "disambiguation": ""
+          }
+        }
+      ],
+      "barcode": "193483952789"
+    },
+    {
+      "quality": "normal",
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+      "disambiguation": "",
+      "date": "2019-11-01",
+      "release-group": {
+        "first-release-date": "2019-11-01",
+        "disambiguation": "",
+        "secondary-type-ids": [],
+        "tags": [],
+        "artist-credit": [
+          {
+            "name": "TR/ST",
+            "joinphrase": "",
+            "artist": {
+              "country": "CA",
+              "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+              "name": "TR/ST",
+              "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "type": "Group",
+              "sort-name": "TRUST"
+            }
+          }
+        ],
+        "title": "The Destroyer — 2",
+        "primary-type": "Album",
+        "secondary-types": [],
+        "genres": [],
+        "releases": [],
+        "id": "af08d324-4953-4bca-8964-0b085d314d1d",
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc"
+      },
+      "tags": [],
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "artist-credit": [
+        {
+          "artist": {
+            "tags": [
+              {
+                "count": 4,
+                "name": "canadian"
+              },
+              {
+                "count": 2,
+                "name": "dark wave"
+              },
+              {
+                "count": 4,
+                "name": "darkwave"
+              },
+              {
+                "name": "synth-pop",
+                "count": 3
+              },
+              {
+                "name": "synthpop",
+                "count": 5
+              }
+            ],
+            "genres": [
+              {
+                "disambiguation": "",
+                "count": 2,
+                "name": "dark wave",
+                "id": "c4a72fcd-e291-43c8-a546-9ce1764ff31b"
+              },
+              {
+                "id": "988e91a3-3341-416d-b7f8-7dbef6848dac",
+                "name": "synth-pop",
+                "count": 3,
+                "disambiguation": ""
+              }
+            ],
+            "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+            "country": "CA",
+            "name": "TR/ST",
+            "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+            "sort-name": "TRUST",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group"
+          },
+          "name": "TR/ST",
+          "joinphrase": ""
+        }
+      ],
+      "title": "The Destroyer — 2",
+      "packaging": "None",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "status": "Official",
+      "genres": [],
+      "release-events": [
+        {
+          "date": "2019-11-01",
+          "area": {
+            "type": null,
+            "type-id": null,
+            "iso-3166-1-codes": [
+              "CA"
+            ],
+            "sort-name": "Canada",
+            "disambiguation": "",
+            "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
+            "name": "Canada"
+          }
+        }
+      ],
+      "id": "22fc9ede-777d-484b-b7af-e03e820ba485",
+      "country": "CA",
+      "barcode": "044003213821"
+    },
+    {
+      "packaging-id": "8f931351-d2e2-310f-afc6-37b89ddba246",
+      "quality": "normal",
+      "release-group": {
+        "releases": [],
+        "id": "af08d324-4953-4bca-8964-0b085d314d1d",
+        "genres": [],
+        "secondary-types": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "artist-credit": [
+          {
+            "name": "TR/ST",
+            "joinphrase": "",
+            "artist": {
+              "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+              "name": "TR/ST",
+              "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+              "country": "CA",
+              "type": "Group",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "sort-name": "TRUST"
+            }
+          }
+        ],
+        "primary-type": "Album",
+        "title": "The Destroyer — 2",
+        "secondary-type-ids": [],
+        "disambiguation": "",
+        "tags": [],
+        "first-release-date": "2019-11-01"
+      },
+      "tags": [],
+      "disambiguation": "",
+      "date": "2019-11-01",
+      "title": "The Destroyer — 2",
+      "packaging": "Digipak",
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "artist-credit": [
+        {
+          "joinphrase": "",
+          "name": "TR/ST",
+          "artist": {
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group",
+            "sort-name": "TRUST",
+            "genres": [
+              {
+                "disambiguation": "",
+                "id": "c4a72fcd-e291-43c8-a546-9ce1764ff31b",
+                "name": "dark wave",
+                "count": 2
+              },
+              {
+                "disambiguation": "",
+                "count": 3,
+                "name": "synth-pop",
+                "id": "988e91a3-3341-416d-b7f8-7dbef6848dac"
+              }
+            ],
+            "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+            "country": "CA",
+            "name": "TR/ST",
+            "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+            "tags": [
+              {
+                "name": "canadian",
+                "count": 4
+              },
+              {
+                "name": "dark wave",
+                "count": 2
+              },
+              {
+                "name": "darkwave",
+                "count": 4
+              },
+              {
+                "count": 3,
+                "name": "synth-pop"
+              },
+              {
+                "name": "synthpop",
+                "count": 5
+              }
+            ]
+          }
+        }
+      ],
+      "barcode": "734038993712",
+      "status": "Official",
+      "genres": [],
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "id": "a786cd03-bae0-4a04-966f-3e04f5f72f84",
+      "country": "US",
+      "release-events": [
+        {
+          "area": {
+            "type": null,
+            "type-id": null,
+            "sort-name": "United States",
+            "iso-3166-1-codes": [
+              "US"
+            ],
+            "disambiguation": "",
+            "id": "489ce91b-6658-3307-9877-795b68554c98",
+            "name": "United States"
+          },
+          "date": "2019-11-01"
+        }
+      ]
+    },
+    {
+      "status": "Official",
+      "genres": [
+        {
+          "disambiguation": "",
+          "id": "e5bba957-8c91-496a-a675-c6d0c6b51c33",
+          "name": "dance",
+          "count": 1
+        },
+        {
+          "disambiguation": "",
+          "count": 1,
+          "name": "dark wave",
+          "id": "c4a72fcd-e291-43c8-a546-9ce1764ff31b"
+        },
+        {
+          "count": 1,
+          "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+          "name": "electronic",
+          "disambiguation": ""
+        },
+        {
+          "count": 1,
+          "id": "3f3388b4-e36a-4bf8-a0be-66b10d92aaa4",
+          "name": "electropop",
+          "disambiguation": ""
+        }
+      ],
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "id": "a493ad67-14f9-4f8f-b250-4c9506de309d",
+      "country": "XW",
+      "release-events": [
+        {
+          "date": "2022-07-21",
+          "area": {
+            "type-id": null,
+            "type": null,
+            "iso-3166-1-codes": [
+              "XW"
+            ],
+            "sort-name": "[Worldwide]",
+            "disambiguation": "",
+            "name": "[Worldwide]",
+            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f"
+          }
+        }
+      ],
+      "barcode": null,
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "artist-credit": [
+        {
+          "artist": {
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group",
+            "sort-name": "TRUST",
+            "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+            "country": "CA",
+            "name": "TR/ST",
+            "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+            "genres": [
+              {
+                "disambiguation": "",
+                "id": "c4a72fcd-e291-43c8-a546-9ce1764ff31b",
+                "name": "dark wave",
+                "count": 2
+              },
+              {
+                "id": "988e91a3-3341-416d-b7f8-7dbef6848dac",
+                "name": "synth-pop",
+                "count": 3,
+                "disambiguation": ""
+              }
+            ],
+            "tags": [
+              {
+                "count": 4,
+                "name": "canadian"
+              },
+              {
+                "count": 2,
+                "name": "dark wave"
+              },
+              {
+                "count": 4,
+                "name": "darkwave"
+              },
+              {
+                "name": "synth-pop",
+                "count": 3
+              },
+              {
+                "name": "synthpop",
+                "count": 5
+              }
+            ]
+          },
+          "joinphrase": "",
+          "name": "TR/ST"
+        }
+      ],
+      "title": "Destroyer Vol 1 & 2",
+      "packaging": "None",
+      "disambiguation": "",
+      "date": "2022-07-21",
+      "release-group": {
+        "id": "b7b38a7b-44c5-4e9a-8f8a-982acf5efe67",
+        "releases": [],
+        "secondary-types": [],
+        "genres": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "artist-credit": [
+          {
+            "joinphrase": "",
+            "name": "TR/ST",
+            "artist": {
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "type": "Group",
+              "sort-name": "TRUST",
+              "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+              "name": "TR/ST",
+              "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+              "country": "CA"
+            }
+          }
+        ],
+        "primary-type": "Album",
+        "title": "Destroyer Vol 1 & 2",
+        "secondary-type-ids": [],
+        "disambiguation": "",
+        "tags": [],
+        "first-release-date": "2022-07-21"
+      },
+      "tags": [
+        {
+          "count": 1,
+          "name": "dance"
+        },
+        {
+          "name": "dark wave",
+          "count": 1
+        },
+        {
+          "count": 1,
+          "name": "electronic"
+        },
+        {
+          "name": "electropop",
+          "count": 1
+        },
+        {
+          "count": 1,
+          "name": "indie"
+        },
+        {
+          "name": "synthpop",
+          "count": 1
+        }
+      ],
+      "quality": "normal",
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b"
+    }
+  ],
+  "id": "9ecf96f5-dbba-4fda-a5cf-7728837fb1b6",
+  "isrcs": [
+    "QM6N21956988"
+  ],
+  "title": "Iris",
+  "video": false,
+  "artist-credit": [
+    {
+      "name": "TR/ST",
+      "joinphrase": "",
+      "artist": {
+        "tags": [
+          {
+            "count": 4,
+            "name": "canadian"
+          },
+          {
+            "count": 2,
+            "name": "dark wave"
+          },
+          {
+            "name": "darkwave",
+            "count": 4
+          },
+          {
+            "count": 3,
+            "name": "synth-pop"
+          },
+          {
+            "name": "synthpop",
+            "count": 5
+          }
+        ],
+        "genres": [
+          {
+            "disambiguation": "",
+            "id": "c4a72fcd-e291-43c8-a546-9ce1764ff31b",
+            "name": "dark wave",
+            "count": 2
+          },
+          {
+            "disambiguation": "",
+            "count": 3,
+            "name": "synth-pop",
+            "id": "988e91a3-3341-416d-b7f8-7dbef6848dac"
+          }
+        ],
+        "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+        "country": "CA",
+        "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+        "name": "TR/ST",
+        "sort-name": "TRUST",
+        "type": "Group",
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+      }
+    }
+  ]
+}

@@ -1,0 +1,418 @@
+{
+  "artists": [
+    {
+      "id": "096d99c3-0b30-4a51-9e7b-ddda275f4216",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 100,
+      "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+      "name": "Tiny Grimes",
+      "sort-name": "Grimes, Tiny",
+      "gender": "male",
+      "country": "US",
+      "area": {
+        "id": "489ce91b-6658-3307-9877-795b68554c98",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United States",
+        "sort-name": "United States",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "3b1f4237-f431-4236-9ccb-8adb1745256c",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Newport News",
+        "sort-name": "Newport News",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "end-area": {
+        "id": "74e50e58-5deb-4b99-93a2-decbb365c07f",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "New York",
+        "sort-name": "New York",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "US jazz/R&B guitarist",
+      "isnis": [
+        "0000000114423416"
+      ],
+      "life-span": {
+        "begin": "1916-07-07",
+        "end": "1989-03-04",
+        "ended": true
+      },
+      "aliases": [
+        {
+          "sort-name": "Grimes, Tony",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Tony Grimes",
+          "locale": "en",
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Grimes, Lloyd",
+          "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+          "name": "Lloyd Grimes",
+          "locale": null,
+          "type": "Legal name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 2,
+          "name": "jazz"
+        },
+        {
+          "count": 1,
+          "name": "swing"
+        },
+        {
+          "count": 1,
+          "name": "bebop"
+        },
+        {
+          "count": 1,
+          "name": "jump blues"
+        },
+        {
+          "count": 1,
+          "name": "boogie-woogie"
+        }
+      ]
+    },
+    {
+      "id": "7e5a2a59-6d9f-4a17-b7c2-e1eedb7bd222",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 94,
+      "gender-id": "93452b5a-a947-30c8-934f-6a4056b151c2",
+      "name": "Grimes",
+      "sort-name": "Grimes",
+      "gender": "female",
+      "country": "CA",
+      "area": {
+        "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "Canada",
+        "sort-name": "Canada",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "6ccc62d1-bdd8-4f08-8fae-bfaa5310e5ef",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Vancouver",
+        "sort-name": "Vancouver",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "Canadian singer and producer",
+      "ipis": [
+        "00633996999"
+      ],
+      "isnis": [
+        "0000000356358936",
+        "0000000357911975"
+      ],
+      "life-span": {
+        "begin": "1988-03-17",
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "Boucher, Claire Elise",
+          "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+          "name": "Claire Elise Boucher",
+          "locale": null,
+          "type": "Legal name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Boucher, Claire Elise",
+          "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+          "name": "Claire Elise Boucher",
+          "locale": "en",
+          "type": "Legal name",
+          "primary": null,
+          "begin-date": "1988-03-17",
+          "end-date": null
+        },
+        {
+          "sort-name": "Boucher, c",
+          "name": "c Boucher",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": "2018",
+          "end-date": null
+        },
+        {
+          "sort-name": "c",
+          "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+          "name": "c",
+          "locale": null,
+          "type": "Search hint",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Boucher, Claire",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Claire Boucher",
+          "locale": null,
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "グライムス",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "グライムス",
+          "locale": "ja",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 3,
+          "name": "electronic"
+        },
+        {
+          "count": 1,
+          "name": "pop"
+        },
+        {
+          "count": 1,
+          "name": "alternative rock"
+        },
+        {
+          "count": 1,
+          "name": "ambient"
+        },
+        {
+          "count": 1,
+          "name": "dance"
+        },
+        {
+          "count": 1,
+          "name": "experimental"
+        },
+        {
+          "count": 1,
+          "name": "dark wave"
+        },
+        {
+          "count": 1,
+          "name": "idm"
+        },
+        {
+          "count": 2,
+          "name": "indie rock"
+        },
+        {
+          "count": 1,
+          "name": "electronica"
+        },
+        {
+          "count": 8,
+          "name": "synth-pop"
+        },
+        {
+          "count": 1,
+          "name": "electropop"
+        },
+        {
+          "count": 1,
+          "name": "indie pop"
+        },
+        {
+          "count": 1,
+          "name": "leftfield"
+        },
+        {
+          "count": 2,
+          "name": "dream pop"
+        },
+        {
+          "count": 4,
+          "name": "avant-garde"
+        },
+        {
+          "count": 2,
+          "name": "ethereal wave"
+        },
+        {
+          "count": 0,
+          "name": "english"
+        },
+        {
+          "count": 2,
+          "name": "indietronica"
+        },
+        {
+          "count": 0,
+          "name": "indie electronic"
+        },
+        {
+          "count": 1,
+          "name": "witch house"
+        },
+        {
+          "count": 1,
+          "name": "chillwave"
+        },
+        {
+          "count": 1,
+          "name": "contemporary r&b"
+        },
+        {
+          "count": 0,
+          "name": "2010s"
+        },
+        {
+          "count": 9,
+          "name": "art pop"
+        },
+        {
+          "count": 0,
+          "name": "millennial"
+        },
+        {
+          "count": 0,
+          "name": "left-field pop"
+        },
+        {
+          "count": 3,
+          "name": "avant-garde pop"
+        },
+        {
+          "count": -1,
+          "name": "lo-fi r&b"
+        }
+      ]
+    },
+    {
+      "id": "c2564540-fdb1-482b-8f36-500ce019ef67",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 93,
+      "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+      "name": "Grimes Adhesif",
+      "sort-name": "Adhesif, Grimes",
+      "gender": "male",
+      "country": "GB",
+      "area": {
+        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United Kingdom",
+        "sort-name": "United Kingdom",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "life-span": {
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "Grimes",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Grimes",
+          "locale": null,
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ]
+    },
+    {
+      "id": "94f96f3d-2171-40d2-963a-2fca2a4b16e3",
+      "type": "Person",
+      "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+      "score": 88,
+      "name": "Mike Grimes",
+      "sort-name": "Grimes, Mike",
+      "life-span": {
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "Grimes, Michael",
+          "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+          "name": "Michael Grimes",
+          "locale": "en",
+          "type": "Legal name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ]
+    },
+    {
+      "id": "720feb44-89f4-44c3-bba3-8a78f449abe8",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 87,
+      "name": "Tiny Grimes Quintet",
+      "sort-name": "Grimes, Tiny, Quintet",
+      "country": "US",
+      "area": {
+        "id": "489ce91b-6658-3307-9877-795b68554c98",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United States",
+        "sort-name": "United States",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "life-span": {
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "Tiny Grimes 5tet",
+          "name": "Tiny Grimes 5tet",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "jazz"
+        }
+      ]
+    }
+  ]
+}

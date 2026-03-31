@@ -1,0 +1,60 @@
+{
+  "type": "Group",
+  "tags": [
+    {
+      "count": 11,
+      "name": "blues rock"
+    },
+    {
+      "name": "hard rock",
+      "count": 51
+    },
+    {
+      "count": 14,
+      "name": "rock"
+    },
+    {
+      "name": "rock and roll",
+      "count": 2
+    }
+  ],
+  "name": "AC/DC",
+  "id": "66c662b6-6e2f-4930-8610-912e24c63ed1",
+  "ipis": [
+    "00133076008"
+  ],
+  "begin-area": {
+    "type": null,
+    "id": "3f179da4-83c6-4a28-a627-e46b4a8ff1ed",
+    "type-id": null,
+    "sort-name": "Sydney",
+    "name": "Sydney",
+    "disambiguation": ""
+  },
+  "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+  "sort-name": "AC/DC",
+  "isnis": [
+    "000000012271298X"
+  ],
+  "country": "AU",
+  "area": {
+    "type": null,
+    "id": "106e0bec-b638-3b37-b731-f53d507dc00e",
+    "type-id": null,
+    "iso-3166-1-codes": [
+      "AU"
+    ],
+    "sort-name": "Australia",
+    "name": "Australia",
+    "disambiguation": ""
+  },
+  "gender": null,
+  "life-span": {
+    "end": null,
+    "ended": false,
+    "begin": "1973-11"
+  },
+  "disambiguation": "Australian hard rock band",
+  "gender-id": null,
+  "end-area": null
+}
