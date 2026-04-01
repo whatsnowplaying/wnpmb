@@ -1,0 +1,88 @@
+{
+  "release-offset": 0,
+  "release-count": 1,
+  "releases": [
+    {
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+      "artist-credit": [
+        {
+          "name": "The Beatles",
+          "joinphrase": "",
+          "artist": {
+            "name": "The Beatles",
+            "country": "GB",
+            "sort-name": "Beatles, The",
+            "disambiguation": "UK rock band, “The Fab Four”",
+            "type": "Group",
+            "id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+          }
+        }
+      ],
+      "id": "6f1a1c0a-3c7a-4d31-9e62-b32796043b6c",
+      "country": "US",
+      "quality": "normal",
+      "title": "Help!",
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "date": "1965-08-06",
+      "status": "Official",
+      "disambiguation": "",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "cover-art-archive": {
+        "artwork": true,
+        "back": false,
+        "front": true,
+        "darkened": false,
+        "count": 1
+      },
+      "release-group": {
+        "title": "Help!",
+        "first-release-date": "1965-08-06",
+        "secondary-types": [],
+        "disambiguation": "",
+        "id": "0d44e1cb-c6e0-3453-8b68-4d2082f05421",
+        "secondary-type-ids": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "primary-type": "Album",
+        "artist-credit": [
+          {
+            "name": "The Beatles",
+            "artist": {
+              "id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "type": "Group",
+              "name": "The Beatles",
+              "disambiguation": "UK rock band, “The Fab Four”",
+              "country": "GB",
+              "sort-name": "Beatles, The"
+            },
+            "joinphrase": ""
+          }
+        ]
+      },
+      "label-info": [],
+      "barcode": null,
+      "asin": null,
+      "packaging": "None",
+      "release-events": [
+        {
+          "date": "1965-08-06",
+          "area": {
+            "name": "United States",
+            "disambiguation": "",
+            "sort-name": "United States",
+            "type": null,
+            "iso-3166-1-codes": [
+              "US"
+            ],
+            "id": "489ce91b-6658-3307-9877-795b68554c98",
+            "type-id": null
+          }
+        }
+      ]
+    }
+  ]
+}

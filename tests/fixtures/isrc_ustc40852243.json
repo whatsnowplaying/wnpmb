@@ -1,0 +1,28 @@
+{
+  "isrc": "USTC40852243",
+  "recordings": [
+    {
+      "video": false,
+      "first-release-date": "2008-03-02",
+      "artist-credit": [
+        {
+          "joinphrase": "",
+          "artist": {
+            "country": "US",
+            "name": "Nine Inch Nails",
+            "type": "Group",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "sort-name": "Nine Inch Nails",
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "disambiguation": ""
+          },
+          "name": "Nine Inch Nails"
+        }
+      ],
+      "disambiguation": "",
+      "length": 113000,
+      "title": "15 Ghosts II",
+      "id": "2d7f08e1-be1c-4b86-b725-6e675b7b6de0"
+    }
+  ]
+}

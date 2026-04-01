@@ -1,0 +1,1161 @@
+{
+  "recordings": [
+    {
+      "id": "efff4434-0f17-4c6f-8f8f-17ab3a41500d",
+      "score": 100,
+      "artist-credit-id": "ff1b6c7f-68d9-3568-ae8e-ed0c1e740604",
+      "title": "Green Grass Grows",
+      "length": 251173,
+      "video": null,
+      "artist-credit": [
+        {
+          "joinphrase": " vs. ",
+          "name": "Snap!",
+          "artist": {
+            "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+            "name": "Snap!",
+            "sort-name": "Snap!",
+            "disambiguation": "Eurodance",
+            "aliases": [
+              {
+                "sort-name": "Snäp",
+                "name": "Snäp",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Snap! 2003",
+                "name": "Snap! 2003",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Snap",
+                "name": "Snap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Snap Attack",
+                "name": "Snap Attack",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Snapp",
+                "name": "Snapp",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        },
+        {
+          "name": "Martin Eyerer",
+          "artist": {
+            "id": "55c59886-1b2c-43ab-b83f-af62dce35bec",
+            "name": "Martin Eyerer",
+            "sort-name": "Eyerer, Martin",
+            "aliases": [
+              {
+                "sort-name": "Eyerer",
+                "name": "Eyerer",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2003-07-22",
+      "releases": [
+        {
+          "id": "6c114da9-d60b-4c08-bbc2-88c63c924f1a",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 2,
+          "title": "The Power Of Snap! (Original Hits And Remixes)",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3de21321-4ad3-3cb0-bb2a-cb1135d56c66",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Cult of Snap! 1990>>2003",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2004",
+          "country": "US",
+          "release-events": [
+            {
+              "date": "2004",
+              "area": {
+                "id": "489ce91b-6658-3307-9877-795b68554c98",
+                "name": "United States",
+                "sort-name": "United States",
+                "iso-3166-1-codes": [
+                  "US"
+                ]
+              }
+            }
+          ],
+          "track-count": 26,
+          "media": [
+            {
+              "id": "8ba96137-1d75-3ac4-a2c4-0fdea7608d4d",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "6015a341-419e-44e1-85cf-1abc7603c48a",
+                  "number": "12",
+                  "title": "Green Grass Grows (vs. Martin Eyerer)",
+                  "length": 251000
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "11133b52-a387-4c71-9741-bf967adaa542",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 2,
+          "title": "The Cult of Snap! 1990>>2003",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3de21321-4ad3-3cb0-bb2a-cb1135d56c66",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Cult of Snap! 1990>>2003",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2003",
+          "country": "TW",
+          "release-events": [
+            {
+              "date": "2003",
+              "area": {
+                "id": "41637cec-9a4f-389c-86d2-fc6abf3357b5",
+                "name": "Taiwan",
+                "sort-name": "Taiwan",
+                "iso-3166-1-codes": [
+                  "TW"
+                ]
+              }
+            }
+          ],
+          "track-count": 28,
+          "media": [
+            {
+              "id": "fd8f8374-e9eb-3c34-88f5-d30c54565e7b",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "58acf070-683d-4770-a3a8-e086c340ff89",
+                  "number": "12",
+                  "title": "Green Grass Grows",
+                  "length": 251173
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "34dd2b1b-5362-4f19-96ab-25e770d7d8a2",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 2,
+          "title": "The Cult of Snap! 1990>>2003",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3de21321-4ad3-3cb0-bb2a-cb1135d56c66",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Cult of Snap! 1990>>2003",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2003",
+          "country": "ZA",
+          "release-events": [
+            {
+              "date": "2003",
+              "area": {
+                "id": "50cc7852-862e-30ae-aa82-385fe7135b7f",
+                "name": "South Africa",
+                "sort-name": "South Africa",
+                "iso-3166-1-codes": [
+                  "ZA"
+                ]
+              }
+            }
+          ],
+          "track-count": 26,
+          "media": [
+            {
+              "id": "00e20902-8d02-3f40-85b6-28451a585192",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "39f5aeaf-b51e-4ed2-b6e2-ddffc6ead73f",
+                  "number": "12",
+                  "title": "Green Grass Grows",
+                  "length": 251173
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "df9f653a-74ce-46bd-8b8d-1f121172e788",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 1,
+          "title": "The Cult of Snap! 1990>>2003",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3de21321-4ad3-3cb0-bb2a-cb1135d56c66",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Cult of Snap! 1990>>2003",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2018",
+          "country": "XW",
+          "release-events": [
+            {
+              "date": "2018",
+              "area": {
+                "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                "name": "[Worldwide]",
+                "sort-name": "[Worldwide]",
+                "iso-3166-1-codes": [
+                  "XW"
+                ]
+              }
+            }
+          ],
+          "track-count": 15,
+          "media": [
+            {
+              "id": "a401dcd2-5552-3b54-a677-5f63718d6551",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "ff458a07-7b67-446d-90be-69845175059f",
+                  "number": "12",
+                  "title": "Green Grass Grows",
+                  "length": 251173
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "12d77fa9-6c83-4bef-a616-dfc85959549e",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 2,
+          "title": "The Cult of Snap! 1990>>2003",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3de21321-4ad3-3cb0-bb2a-cb1135d56c66",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Cult of Snap! 1990>>2003",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2003-07-22",
+          "country": "DE",
+          "release-events": [
+            {
+              "date": "2003-07-22",
+              "area": {
+                "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+                "name": "Germany",
+                "sort-name": "Germany",
+                "iso-3166-1-codes": [
+                  "DE"
+                ]
+              }
+            }
+          ],
+          "track-count": 26,
+          "media": [
+            {
+              "id": "50c53985-5fb3-34dd-948e-12434b9dc48e",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "56a04dfb-a50e-3d8c-a95c-5753593d2189",
+                  "number": "12",
+                  "title": "Green Grass Grows",
+                  "length": 251173
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "1d68b28f-76dc-4bf6-90d5-5938b3479d90",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 2,
+          "title": "The Cult of Snap! 1990>>2003",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3de21321-4ad3-3cb0-bb2a-cb1135d56c66",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Cult of Snap! 1990>>2003",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2003",
+          "country": "AU",
+          "release-events": [
+            {
+              "date": "2003",
+              "area": {
+                "id": "106e0bec-b638-3b37-b731-f53d507dc00e",
+                "name": "Australia",
+                "sort-name": "Australia",
+                "iso-3166-1-codes": [
+                  "AU"
+                ]
+              }
+            }
+          ],
+          "track-count": 26,
+          "media": [
+            {
+              "id": "90b80b02-f5dc-3a6e-b895-1d55bf5c1b7c",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "e21d670e-eef6-4496-9bd2-340501f6f185",
+                  "number": "12",
+                  "title": "Green Grass Grows",
+                  "length": 251173
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "dfdaecb2-5fc5-41f8-9dd6-51c060183002",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 2,
+          "title": "The Cult of Snap! 1990>>2003",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3de21321-4ad3-3cb0-bb2a-cb1135d56c66",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Cult of Snap! 1990>>2003",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2003",
+          "country": "SE",
+          "release-events": [
+            {
+              "date": "2003",
+              "area": {
+                "id": "23d10872-f5ae-3f0c-bf55-332788a16ecb",
+                "name": "Sweden",
+                "sort-name": "Sweden",
+                "iso-3166-1-codes": [
+                  "SE"
+                ]
+              }
+            }
+          ],
+          "track-count": 27,
+          "media": [
+            {
+              "id": "c979b866-4ff5-3c86-b75b-e5e09cf4b3f6",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "63345fb3-ce58-36d1-ae29-c5f5cc5d9d19",
+                  "number": "12",
+                  "title": "Green Grass Grows",
+                  "length": 253160
+                }
+              ],
+              "track-count": 16,
+              "track-offset": 11
+            }
+          ]
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "trance"
+        },
+        {
+          "count": 1,
+          "name": "electronic"
+        },
+        {
+          "count": 1,
+          "name": "dance"
+        },
+        {
+          "count": 2,
+          "name": "house"
+        },
+        {
+          "count": 1,
+          "name": "hip hop"
+        },
+        {
+          "count": 1,
+          "name": "breaks"
+        },
+        {
+          "count": 1,
+          "name": "pop rap"
+        },
+        {
+          "count": 1,
+          "name": "club"
+        }
+      ]
+    },
+    {
+      "id": "90506d39-17d3-4d1a-b526-9ea2b7049902",
+      "score": 90,
+      "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+      "title": "Green Grass Grows (Earth Follows)",
+      "length": 239640,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Snap!",
+          "artist": {
+            "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+            "name": "Snap!",
+            "sort-name": "Snap!",
+            "disambiguation": "Eurodance",
+            "aliases": [
+              {
+                "sort-name": "Snäp",
+                "name": "Snäp",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Snap! 2003",
+                "name": "Snap! 2003",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Snap",
+                "name": "Snap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Snap Attack",
+                "name": "Snap Attack",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Snapp",
+                "name": "Snapp",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "1994-09-30",
+      "releases": [
+        {
+          "id": "dabae783-ae85-4113-924a-b898f3009301",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 1,
+          "title": "Welcome to Tomorrow",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3bf7d3d0-6c4a-3bdb-aae2-d06f47c3d553",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Welcome to Tomorrow",
+            "primary-type": "Album"
+          },
+          "date": "",
+          "country": "XW",
+          "release-events": [
+            {
+              "date": "",
+              "area": {
+                "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                "name": "[Worldwide]",
+                "sort-name": "[Worldwide]",
+                "iso-3166-1-codes": [
+                  "XW"
+                ]
+              }
+            }
+          ],
+          "track-count": 10,
+          "media": [
+            {
+              "id": "d8e51401-edc5-3e73-99e3-9ddfe9230a88",
+              "position": 1,
+              "format": "Digital Media",
+              "track": [
+                {
+                  "id": "644b9df5-b1df-411d-8963-6731611b07e0",
+                  "number": "1",
+                  "title": "Green Grass Grows (Earth Follows)",
+                  "length": 240859
+                }
+              ],
+              "track-count": 10,
+              "track-offset": 0
+            }
+          ]
+        },
+        {
+          "id": "640d5f2d-d93f-428e-9c21-e25e15fbdd82",
+          "status-id": "518ffc83-5cde-34df-8627-81bff5093d92",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 1,
+          "title": "Welcome to Tomorrow",
+          "status": "Promotion",
+          "disambiguation": "CD-Matrix: IFPI L028; SONOPRESS USA; 74321223842RE1; ++; 53575-03",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3bf7d3d0-6c4a-3bdb-aae2-d06f47c3d553",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Welcome to Tomorrow",
+            "primary-type": "Album"
+          },
+          "date": "1994",
+          "country": "US",
+          "release-events": [
+            {
+              "date": "1994",
+              "area": {
+                "id": "489ce91b-6658-3307-9877-795b68554c98",
+                "name": "United States",
+                "sort-name": "United States",
+                "iso-3166-1-codes": [
+                  "US"
+                ]
+              }
+            }
+          ],
+          "track-count": 10,
+          "media": [
+            {
+              "id": "c27a9fca-f41a-3a8a-a3ef-d92f46c8de7b",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "2d076a1d-4c54-41bb-a91b-1ce5d0787dbb",
+                  "number": "1",
+                  "title": "Green Grass Grows (Earth Follows)",
+                  "length": 239666
+                }
+              ],
+              "track-count": 10,
+              "track-offset": 0
+            }
+          ]
+        },
+        {
+          "id": "57bcc946-131a-4793-a86f-cd8033238c38",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 1,
+          "title": "Welcome to Tomorrow",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3bf7d3d0-6c4a-3bdb-aae2-d06f47c3d553",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Welcome to Tomorrow",
+            "primary-type": "Album"
+          },
+          "date": "1995-03-24",
+          "country": "JP",
+          "release-events": [
+            {
+              "date": "1995-03-24",
+              "area": {
+                "id": "2db42837-c832-3c27-b4a3-08198f75693c",
+                "name": "Japan",
+                "sort-name": "Japan",
+                "iso-3166-1-codes": [
+                  "JP"
+                ]
+              }
+            }
+          ],
+          "track-count": 10,
+          "media": [
+            {
+              "id": "51dc7520-45f9-3b1d-bf90-e419ffac22dd",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "9032a482-379d-4d80-a5f0-8a1bd93c7d57",
+                  "number": "1",
+                  "title": "Green Grass Grows (Earth Follows)",
+                  "length": 239640
+                }
+              ],
+              "track-count": 10,
+              "track-offset": 0
+            }
+          ]
+        },
+        {
+          "id": "73db34c4-3a2f-4ae8-b1d4-77ec1e8ace6d",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 1,
+          "title": "Welcome To Tomorrow",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3bf7d3d0-6c4a-3bdb-aae2-d06f47c3d553",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Welcome to Tomorrow",
+            "primary-type": "Album"
+          },
+          "date": "1994-09-30",
+          "country": "XE",
+          "release-events": [
+            {
+              "date": "1994-09-30",
+              "area": {
+                "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                "name": "Europe",
+                "sort-name": "Europe",
+                "iso-3166-1-codes": [
+                  "XE"
+                ]
+              }
+            }
+          ],
+          "track-count": 10,
+          "media": [
+            {
+              "id": "40f61ea6-abb4-3cb6-a21f-a456c0a429f0",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "fb3c9985-82ec-4bc0-8c59-05f89a69e2d3",
+                  "number": "1",
+                  "title": "Green Grass Grows (Earth Follows)",
+                  "length": 239640
+                }
+              ],
+              "track-count": 10,
+              "track-offset": 0
+            }
+          ]
+        },
+        {
+          "id": "c678e182-acf3-487b-abc5-9bfbf3da1580",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 1,
+          "title": "Welcome to Tomorrow",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3bf7d3d0-6c4a-3bdb-aae2-d06f47c3d553",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Welcome to Tomorrow",
+            "primary-type": "Album"
+          },
+          "date": "2003",
+          "country": "DE",
+          "release-events": [
+            {
+              "date": "2003",
+              "area": {
+                "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+                "name": "Germany",
+                "sort-name": "Germany",
+                "iso-3166-1-codes": [
+                  "DE"
+                ]
+              }
+            }
+          ],
+          "track-count": 10,
+          "media": [
+            {
+              "id": "9f3fb25f-78f2-30e8-9189-c04b2ad4c1bc",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "585aaf2c-6fa5-4189-b4e1-ddf532c44012",
+                  "number": "1",
+                  "title": "Green Grass Grows (Earth Follows)",
+                  "length": 239640
+                }
+              ],
+              "track-count": 10,
+              "track-offset": 0
+            }
+          ]
+        },
+        {
+          "id": "9a17d925-a26f-40fc-be3d-34724378f4fe",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 1,
+          "title": "Welcome to Tomorrow",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "3bf7d3d0-6c4a-3bdb-aae2-d06f47c3d553",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Welcome to Tomorrow",
+            "primary-type": "Album"
+          },
+          "date": "1994-09-30",
+          "country": "DE",
+          "release-events": [
+            {
+              "date": "1994-09-30",
+              "area": {
+                "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+                "name": "Germany",
+                "sort-name": "Germany",
+                "iso-3166-1-codes": [
+                  "DE"
+                ]
+              }
+            }
+          ],
+          "track-count": 10,
+          "media": [
+            {
+              "id": "9c77e93b-3a94-335e-ba59-376955a42297",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "3365f3b2-7df9-33f3-b78f-2cb651fafcd7",
+                  "number": "1",
+                  "title": "Green Grass Grows (Earth Follows)",
+                  "length": 239640
+                }
+              ],
+              "track-count": 10,
+              "track-offset": 0
+            }
+          ]
+        },
+        {
+          "id": "120f5fd3-63ca-483a-ad67-6e8ba6d5be37",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 2,
+          "title": "Greatest Hits",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "71982780-10c2-49d8-8ddf-d3410ae853db",
+            "title": "Greatest Hits",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2008",
+          "country": "RU",
+          "release-events": [
+            {
+              "date": "2008",
+              "area": {
+                "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+                "name": "Russia",
+                "sort-name": "Russia",
+                "iso-3166-1-codes": [
+                  "RU"
+                ]
+              }
+            }
+          ],
+          "track-count": 35,
+          "media": [
+            {
+              "id": "48a24e03-493a-3298-8397-77884198a4c1",
+              "position": 2,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "1ae6f98f-c6db-41de-87bd-5ac24aa886ed",
+                  "number": "7",
+                  "title": "Green Cross Grows",
+                  "length": 241000
+                }
+              ],
+              "track-count": 17,
+              "track-offset": 6
+            }
+          ]
+        },
+        {
+          "id": "924cecba-30ad-4f9e-8859-42a5ee6d5883",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "14020aa8-2b88-37a5-ae62-5de99999d1fc",
+          "count": 1,
+          "title": "This Is Snap!",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Snap!",
+              "artist": {
+                "id": "cd23732d-ffd2-444e-8884-53475d7ac7d9",
+                "name": "Snap!",
+                "sort-name": "Snap!",
+                "disambiguation": "Eurodance"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "89375c0e-11e6-3db5-9c57-3f722fb027d1",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "This Is Snap!",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2001-06-11",
+          "country": "DE",
+          "release-events": [
+            {
+              "date": "2001-06-11",
+              "area": {
+                "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+                "name": "Germany",
+                "sort-name": "Germany",
+                "iso-3166-1-codes": [
+                  "DE"
+                ]
+              }
+            }
+          ],
+          "track-count": 15,
+          "media": [
+            {
+              "id": "883ad2da-daa8-32a1-92dc-84ce7d9d7055",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "b88993be-e9e2-3ff6-b278-5a11c691d02f",
+                  "number": "6",
+                  "title": "Green Grass Grows (Earth Follows)",
+                  "length": 239306
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 5
+            }
+          ]
+        }
+      ],
+      "isrcs": [
+        "DET189400100",
+        "DEA819400289"
+      ],
+      "tags": [
+        {
+          "count": 2,
+          "name": "electronic"
+        },
+        {
+          "count": 1,
+          "name": "dance"
+        },
+        {
+          "count": 2,
+          "name": "house"
+        },
+        {
+          "count": 1,
+          "name": "club"
+        },
+        {
+          "count": 1,
+          "name": "hip house"
+        },
+        {
+          "count": 1,
+          "name": "euro house"
+        }
+      ]
+    }
+  ]
+}

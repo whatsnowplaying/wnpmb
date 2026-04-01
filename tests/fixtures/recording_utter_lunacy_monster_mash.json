@@ -1,0 +1,131 @@
+{
+  "video": false,
+  "isrcs": [],
+  "releases": [
+    {
+      "release-events": [
+        {
+          "date": "1989",
+          "area": {
+            "name": "United States",
+            "type": null,
+            "type-id": null,
+            "iso-3166-1-codes": [
+              "US"
+            ],
+            "sort-name": "United States",
+            "id": "489ce91b-6658-3307-9877-795b68554c98",
+            "disambiguation": ""
+          }
+        }
+      ],
+      "date": "1989",
+      "id": "6d8288a2-7126-41f4-92cb-4e8fcd860bd4",
+      "title": "Leatherface: The Texas Chainsaw Massacre III",
+      "packaging": "Jewel Case",
+      "genres": [],
+      "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+      "quality": "normal",
+      "disambiguation": "",
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "country": "US",
+      "barcode": "018777238120",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "artist-credit": [
+        {
+          "artist": {
+            "type": "Other",
+            "name": "Various Artists",
+            "country": null,
+            "type-id": "ac897045-5043-3294-969b-187360e45d86",
+            "sort-name": "Various Artists",
+            "disambiguation": "add compilations to this artist",
+            "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+            "genres": [],
+            "tags": [
+              {
+                "name": "compilation",
+                "count": 5
+              },
+              {
+                "count": 1,
+                "name": "country dreams"
+              },
+              {
+                "name": "special purpose",
+                "count": 7
+              },
+              {
+                "name": "special purpose artist",
+                "count": 64
+              }
+            ]
+          },
+          "joinphrase": "",
+          "name": "Various Artists"
+        }
+      ],
+      "status": "Official",
+      "tags": [],
+      "release-group": {
+        "id": "14df4a5c-5c3b-3f12-977a-a6c07ff61721",
+        "title": "Leatherface: The Texas Chainsaw Massacre III",
+        "genres": [],
+        "disambiguation": "",
+        "first-release-date": "1989",
+        "primary-type": "Album",
+        "tags": [],
+        "secondary-type-ids": [
+          "22a628ad-c082-3c4f-b1b6-d41665107b88"
+        ],
+        "artist-credit": [
+          {
+            "name": "Various Artists",
+            "artist": {
+              "country": null,
+              "name": "Various Artists",
+              "type": "Other",
+              "type-id": "ac897045-5043-3294-969b-187360e45d86",
+              "sort-name": "Various Artists",
+              "disambiguation": "add compilations to this artist",
+              "id": "89ad4ac3-39f7-470e-963a-56509c546377"
+            },
+            "joinphrase": ""
+          }
+        ],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "releases": [],
+        "secondary-types": [
+          "Soundtrack"
+        ]
+      }
+    }
+  ],
+  "length": 333306,
+  "tags": [],
+  "artist-credit": [
+    {
+      "artist": {
+        "type": null,
+        "name": "Utter Lunacy",
+        "country": null,
+        "type-id": null,
+        "sort-name": "Utter Lunacy",
+        "genres": [],
+        "tags": [],
+        "id": "4fc584cc-e735-467c-965b-dc2c2e9586e6",
+        "disambiguation": ""
+      },
+      "joinphrase": "",
+      "name": "Utter Lunacy"
+    }
+  ],
+  "first-release-date": "1989",
+  "disambiguation": "",
+  "genres": [],
+  "title": "Monster Mash",
+  "id": "c09d592e-13e5-4374-bc67-9d651dac6fc9"
+}

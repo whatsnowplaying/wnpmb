@@ -1,0 +1,86 @@
+{
+  "artists": [
+    {
+      "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 100,
+      "name": "TR/ST",
+      "sort-name": "TRUST",
+      "country": "CA",
+      "area": {
+        "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "Canada",
+        "sort-name": "Canada",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "74b24e62-d2fe-42d2-9d96-31f2da756c77",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Toronto",
+        "sort-name": "Toronto",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+      "life-span": {
+        "begin": "2010",
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "TRUST",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "TR/ST",
+          "locale": null,
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": "2015",
+          "end-date": null
+        },
+        {
+          "sort-name": "Trust",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Trust",
+          "locale": null,
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": "2015"
+        }
+      ],
+      "tags": [
+        {
+          "count": 5,
+          "name": "synthpop"
+        },
+        {
+          "count": 4,
+          "name": "canadian"
+        },
+        {
+          "count": 2,
+          "name": "dark wave"
+        },
+        {
+          "count": 3,
+          "name": "synth-pop"
+        },
+        {
+          "count": 4,
+          "name": "darkwave"
+        },
+        {
+          "count": 0,
+          "name": "trust"
+        }
+      ]
+    }
+  ]
+}

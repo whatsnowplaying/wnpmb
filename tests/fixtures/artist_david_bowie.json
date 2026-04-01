@@ -1,0 +1,133 @@
+{
+  "tags": [
+    {
+      "count": 3,
+      "name": "actors"
+    },
+    {
+      "name": "alternative rock",
+      "count": 12
+    },
+    {
+      "name": "arrangers",
+      "count": 1
+    },
+    {
+      "count": 7,
+      "name": "art pop"
+    },
+    {
+      "count": 22,
+      "name": "art rock"
+    },
+    {
+      "name": "british",
+      "count": 6
+    },
+    {
+      "count": 3,
+      "name": "classic rock"
+    },
+    {
+      "name": "composers",
+      "count": 1
+    },
+    {
+      "name": "glam rock",
+      "count": 22
+    },
+    {
+      "name": "glam rock music",
+      "count": 1
+    },
+    {
+      "name": "glam rock musicians",
+      "count": 1
+    },
+    {
+      "name": "new wave",
+      "count": 5
+    },
+    {
+      "name": "pop",
+      "count": 10
+    },
+    {
+      "name": "pop rock",
+      "count": 5
+    },
+    {
+      "count": 7,
+      "name": "rock"
+    },
+    {
+      "count": 1,
+      "name": "rock music"
+    },
+    {
+      "count": 1,
+      "name": "rock musicians"
+    },
+    {
+      "name": "singers",
+      "count": 1
+    },
+    {
+      "count": 1,
+      "name": "sound recording executives and producers"
+    },
+    {
+      "count": 6,
+      "name": "uk"
+    }
+  ],
+  "area": {
+    "iso-3166-2-codes": [
+      "GB-ENG"
+    ],
+    "sort-name": "England",
+    "type": null,
+    "type-id": null,
+    "disambiguation": "",
+    "id": "9d5dd675-3cf4-4296-9e39-67865ebee758",
+    "name": "England"
+  },
+  "begin-area": {
+    "sort-name": "Brixton",
+    "disambiguation": "",
+    "type-id": null,
+    "id": "61941444-5a83-43e2-ba48-4db7438e0f26",
+    "type": null,
+    "name": "Brixton"
+  },
+  "disambiguation": "English singer‐songwriter",
+  "gender": "Male",
+  "isnis": [
+    "0000000114448576",
+    "0000000458257298"
+  ],
+  "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+  "name": "David Bowie",
+  "country": "GB",
+  "id": "5441c29d-3602-4898-b1a1-b77fa23b8e50",
+  "life-span": {
+    "ended": true,
+    "end": "2016-01-10",
+    "begin": "1947-01-08"
+  },
+  "sort-name": "Bowie, David",
+  "ipis": [
+    "00003960406",
+    "00015471209"
+  ],
+  "type": "Person",
+  "end-area": {
+    "sort-name": "New York",
+    "id": "74e50e58-5deb-4b99-93a2-decbb365c07f",
+    "type": null,
+    "name": "New York",
+    "type-id": null,
+    "disambiguation": ""
+  },
+  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
+}

@@ -1,0 +1,470 @@
+{
+  "artists": [
+    {
+      "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 100,
+      "name": "Nine Inch Nails",
+      "sort-name": "Nine Inch Nails",
+      "country": "US",
+      "area": {
+        "id": "489ce91b-6658-3307-9877-795b68554c98",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United States",
+        "sort-name": "United States",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "7b2ca1e7-e7f6-4155-881d-c660a45c11e8",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Cleveland",
+        "sort-name": "Cleveland",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "isnis": [
+        "0000000121493471"
+      ],
+      "life-span": {
+        "begin": "1988",
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "NIN",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "NIN",
+          "locale": null,
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "NINEINCHNAILS",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "И1И31ИCHИ41L5",
+          "locale": null,
+          "type": "Artist name",
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Nine Inch Nails",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Nine Inch Nails",
+          "locale": "fr",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "ナイン・インチ・ネイルズ",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "ナイン・インチ・ネイルズ",
+          "locale": "ja",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Nine Inch Nails",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Nine Inch Nails",
+          "locale": "en",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Nine Inch Nails",
+          "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+          "name": "Nine Inch Nails",
+          "locale": "es",
+          "type": "Artist name",
+          "primary": true,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "N.I.N.",
+          "name": "N.I.N.",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "NineInchNails",
+          "name": "NineInchNails",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "NIИ",
+          "name": "NIИ",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Nine Inch Nails Live",
+          "name": "Nine Inch Nails Live",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ],
+      "tags": [
+        {
+          "count": 2,
+          "name": "rock"
+        },
+        {
+          "count": 13,
+          "name": "electronic"
+        },
+        {
+          "count": -1,
+          "name": "synthpop"
+        },
+        {
+          "count": 15,
+          "name": "alternative rock"
+        },
+        {
+          "count": 16,
+          "name": "industrial"
+        },
+        {
+          "count": 36,
+          "name": "industrial rock"
+        },
+        {
+          "count": -1,
+          "name": "creative commons"
+        },
+        {
+          "count": 6,
+          "name": "industrial metal"
+        },
+        {
+          "count": 0,
+          "name": "american"
+        },
+        {
+          "count": -1,
+          "name": "usa"
+        },
+        {
+          "count": 0,
+          "name": "indie rock"
+        },
+        {
+          "count": -1,
+          "name": "alternative"
+        },
+        {
+          "count": -1,
+          "name": "américain"
+        },
+        {
+          "count": -1,
+          "name": "experimental rock"
+        },
+        {
+          "count": -1,
+          "name": "alternative metal"
+        },
+        {
+          "count": 6,
+          "name": "electro-industrial"
+        },
+        {
+          "count": 2,
+          "name": "post-industrial"
+        },
+        {
+          "count": 0,
+          "name": "alternative dance"
+        },
+        {
+          "count": -2,
+          "name": "bootleg"
+        },
+        {
+          "count": -1,
+          "name": "rock and indie"
+        },
+        {
+          "count": -1,
+          "name": "n3"
+        },
+        {
+          "count": 0,
+          "name": "free culture"
+        },
+        {
+          "count": 0,
+          "name": "libre"
+        },
+        {
+          "count": -1,
+          "name": "2008 universal fire victim"
+        }
+      ]
+    },
+    {
+      "id": "93e1cea8-0e66-4bbb-bf6a-5747796ce618",
+      "score": 62,
+      "name": "Nine Inch Nails",
+      "sort-name": "Nine Inch Nails",
+      "disambiguation": "mashup artist seed9 / Atticrent Reznoss",
+      "life-span": {
+        "ended": null
+      },
+      "tags": [
+        {
+          "count": 1,
+          "name": "mashup"
+        }
+      ]
+    },
+    {
+      "id": "52474f36-5caa-45a5-89a6-ca25daa81195",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 55,
+      "name": "Not Nine Inch Nails",
+      "sort-name": "Not Nine Inch Nails",
+      "area": {
+        "id": "a2993fdb-6cc6-49da-abe6-831142053fd1",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Fort Lauderdale",
+        "sort-name": "Fort Lauderdale",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "a2993fdb-6cc6-49da-abe6-831142053fd1",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Fort Lauderdale",
+        "sort-name": "Fort Lauderdale",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "disambiguation": "Nine Inch Nails tribute band",
+      "life-span": {
+        "begin": "2024",
+        "ended": null
+      }
+    },
+    {
+      "id": "2590d7fa-c2e8-496d-b7e4-aad3eb8c40cb",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 50,
+      "name": "Nein Ist Nine Inch Nails",
+      "sort-name": "Nein Ist Nine Inch Nails",
+      "area": {
+        "id": "1f40c6e1-47ba-4e35-996f-fe6ee5840e62",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Los Angeles",
+        "sort-name": "Los Angeles",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "life-span": {
+        "ended": null
+      }
+    },
+    {
+      "id": "2b5929bc-ffbf-496b-a66f-90dae13cbfe7",
+      "type": "Group",
+      "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+      "score": 25,
+      "name": "The Section Quartet",
+      "sort-name": "Section Quartet, The",
+      "country": "US",
+      "area": {
+        "id": "489ce91b-6658-3307-9877-795b68554c98",
+        "type": "Country",
+        "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+        "name": "United States",
+        "sort-name": "United States",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "begin-area": {
+        "id": "1f40c6e1-47ba-4e35-996f-fe6ee5840e62",
+        "type": "City",
+        "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+        "name": "Los Angeles",
+        "sort-name": "Los Angeles",
+        "life-span": {
+          "ended": null
+        }
+      },
+      "isnis": [
+        "0000000120336458"
+      ],
+      "life-span": {
+        "begin": "1998",
+        "ended": null
+      },
+      "aliases": [
+        {
+          "sort-name": "The Section String Quartet",
+          "name": "The Section String Quartet",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Eric Gorfain and the Section",
+          "name": "Eric Gorfain and the Section",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The Section",
+          "name": "The Section",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Quartet Tribute to Tool",
+          "name": "The String Quartet Tribute to Tool",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Quartet Tribute to Disturbed",
+          "name": "The String Quartet Tribute to Disturbed",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Quartet Tribute to Coldplay",
+          "name": "The String Quartet Tribute to Coldplay",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Quartet Tribute to 311",
+          "name": "The String Quartet Tribute to 311",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "String Quartet",
+          "name": "String Quartet",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Tribute to TOOL",
+          "name": "The String Tribute to TOOL",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Quartet Tribute to Incubus",
+          "name": "The String Quartet Tribute to Incubus",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Quartet Tribute to Nine Inch Nails",
+          "name": "The String Quartet Tribute to Nine Inch Nails",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Tribute to System of a Down",
+          "name": "The String Tribute to System of a Down",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "The String Quartet",
+          "name": "The String Quartet",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        },
+        {
+          "sort-name": "Section Quarter, The",
+          "name": "The Section Quarter",
+          "locale": null,
+          "type": null,
+          "primary": null,
+          "begin-date": null,
+          "end-date": null
+        }
+      ]
+    }
+  ]
+}

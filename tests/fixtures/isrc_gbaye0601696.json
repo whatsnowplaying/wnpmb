@@ -1,0 +1,28 @@
+{
+  "recordings": [
+    {
+      "video": false,
+      "first-release-date": "1969-09-26",
+      "id": "440f60e8-0b25-4ec4-abb1-c6beec624ab0",
+      "title": "Here Comes the Sun",
+      "disambiguation": "original studio mix",
+      "length": 186000,
+      "artist-credit": [
+        {
+          "artist": {
+            "sort-name": "Beatles, The",
+            "id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+            "disambiguation": "UK rock band, “The Fab Four”",
+            "country": "GB",
+            "type": "Group",
+            "name": "The Beatles",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+          },
+          "joinphrase": "",
+          "name": "The Beatles"
+        }
+      ]
+    }
+  ],
+  "isrc": "GBAYE0601696"
+}

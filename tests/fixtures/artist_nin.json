@@ -1,0 +1,74 @@
+{
+  "tags": [
+    {
+      "name": "alternative rock",
+      "count": 15
+    },
+    {
+      "count": 6,
+      "name": "electro-industrial"
+    },
+    {
+      "count": 13,
+      "name": "electronic"
+    },
+    {
+      "name": "industrial",
+      "count": 16
+    },
+    {
+      "name": "industrial metal",
+      "count": 6
+    },
+    {
+      "count": 36,
+      "name": "industrial rock"
+    },
+    {
+      "count": 2,
+      "name": "post-industrial"
+    },
+    {
+      "count": 2,
+      "name": "rock"
+    }
+  ],
+  "gender-id": null,
+  "gender": null,
+  "country": "US",
+  "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+  "type": "Group",
+  "life-span": {
+    "begin": "1988",
+    "ended": false,
+    "end": null
+  },
+  "sort-name": "Nine Inch Nails",
+  "area": {
+    "type-id": null,
+    "name": "United States",
+    "disambiguation": "",
+    "id": "489ce91b-6658-3307-9877-795b68554c98",
+    "sort-name": "United States",
+    "iso-3166-1-codes": [
+      "US"
+    ],
+    "type": null
+  },
+  "end-area": null,
+  "disambiguation": "",
+  "name": "Nine Inch Nails",
+  "ipis": [],
+  "begin-area": {
+    "disambiguation": "",
+    "name": "Cleveland",
+    "type-id": null,
+    "type": null,
+    "sort-name": "Cleveland",
+    "id": "7b2ca1e7-e7f6-4155-881d-c660a45c11e8"
+  },
+  "isnis": [
+    "0000000121493471"
+  ],
+  "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+}

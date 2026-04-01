@@ -1,0 +1,60 @@
+{
+  "tags": [
+    {
+      "count": 4,
+      "name": "canadian"
+    },
+    {
+      "name": "dark wave",
+      "count": 2
+    },
+    {
+      "count": 4,
+      "name": "darkwave"
+    },
+    {
+      "name": "synth-pop",
+      "count": 3
+    },
+    {
+      "name": "synthpop",
+      "count": 5
+    }
+  ],
+  "area": {
+    "type-id": null,
+    "type": null,
+    "sort-name": "Canada",
+    "iso-3166-1-codes": [
+      "CA"
+    ],
+    "name": "Canada",
+    "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
+    "disambiguation": ""
+  },
+  "begin-area": {
+    "sort-name": "Toronto",
+    "disambiguation": "",
+    "type-id": null,
+    "type": null,
+    "name": "Toronto",
+    "id": "74b24e62-d2fe-42d2-9d96-31f2da756c77"
+  },
+  "disambiguation": "Canadian synth pop act by Robert Alfons; fka Trust",
+  "isnis": [],
+  "gender-id": null,
+  "gender": null,
+  "name": "TR/ST",
+  "id": "b8e3d1ae-5983-4af1-b226-aa009b294111",
+  "country": "CA",
+  "life-span": {
+    "begin": "2010",
+    "end": null,
+    "ended": false
+  },
+  "sort-name": "TRUST",
+  "ipis": [],
+  "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+  "type": "Group",
+  "end-area": null
+}

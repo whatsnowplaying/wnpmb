@@ -1,0 +1,1630 @@
+{
+  "recordings": [
+    {
+      "id": "cd868ce5-7de4-4d48-8bf8-ab0b84d7cdaf",
+      "score": 100,
+      "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+      "title": "My Culture",
+      "length": 218800,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002-07-22",
+      "releases": [
+        {
+          "id": "885ba9c1-edd1-3d97-907c-9fc402fda7f1",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "Now That’s What I Call Music! 52",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "00e1b9a2-fbc0-332a-9fc5-62da6221f326",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Now That’s What I Call Music! 52",
+            "disambiguation": "UK",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2002-07-22",
+          "country": "GB",
+          "release-events": [
+            {
+              "date": "2002-07-22",
+              "area": {
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "iso-3166-1-codes": [
+                  "GB"
+                ]
+              }
+            }
+          ],
+          "track-count": 42,
+          "media": [
+            {
+              "id": "a8864513-f626-33cf-bebf-e21d51ec9901",
+              "position": 2,
+              "format": "Cassette",
+              "track": [
+                {
+                  "id": "3300f108-8d75-3c86-89c3-cfa9302db3fb",
+                  "number": "B2",
+                  "title": "My Culture",
+                  "length": 218800
+                }
+              ],
+              "track-count": 20,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "a7911680-922f-40dc-9125-9660ceb6741c",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "The Best Chillout... Ever!",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "da9674b4-0ea0-357b-81ee-fa85644b6807",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Best Chillout... Ever!",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2002-11-25",
+          "country": "GB",
+          "release-events": [
+            {
+              "date": "2002-11-25",
+              "area": {
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "iso-3166-1-codes": [
+                  "GB"
+                ]
+              }
+            }
+          ],
+          "track-count": 41,
+          "media": [
+            {
+              "id": "2f21b266-6f29-3f63-bcfc-0e40609988db",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "0bd6d47a-e861-390d-b9b7-62bdcf025e58",
+                  "number": "3",
+                  "title": "My Culture",
+                  "length": 220106
+                }
+              ],
+              "track-count": 19,
+              "track-offset": 2
+            }
+          ]
+        },
+        {
+          "id": "e251b56f-c0ba-4896-be2f-bf9e3d4816cf",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "Hits 53",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "b57c9c30-5ba8-36b0-948c-c3985020eb3f",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Hits 53",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2002-07-27",
+          "country": "GB",
+          "release-events": [
+            {
+              "date": "2002-07-27",
+              "area": {
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "iso-3166-1-codes": [
+                  "GB"
+                ]
+              }
+            }
+          ],
+          "track-count": 42,
+          "media": [
+            {
+              "id": "9eeb1ac5-ddf8-3219-9493-34b0adfac3b6",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "f0a77352-a1c5-3bb7-a033-d1fe3d8b6e60",
+                  "number": "12",
+                  "title": "My Culture",
+                  "length": 218146
+                }
+              ],
+              "track-count": 22,
+              "track-offset": 11
+            }
+          ]
+        },
+        {
+          "id": "ac3381e7-0668-45d5-9aff-f629590dea30",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "Now That’s What I Call Music! 52",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "00e1b9a2-fbc0-332a-9fc5-62da6221f326",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Now That’s What I Call Music! 52",
+            "disambiguation": "UK",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2002-07-22",
+          "country": "GB",
+          "release-events": [
+            {
+              "date": "2002-07-22",
+              "area": {
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "iso-3166-1-codes": [
+                  "GB"
+                ]
+              }
+            }
+          ],
+          "track-count": 42,
+          "media": [
+            {
+              "id": "122d8dd2-095c-34f6-8d70-ba6f1f5832a3",
+              "position": 2,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "8c7c204b-0d3c-36a3-b883-9ee0fc4b499a",
+                  "number": "12",
+                  "title": "My Culture",
+                  "length": 218800
+                }
+              ],
+              "track-count": 20,
+              "track-offset": 11
+            }
+          ]
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "electronic"
+        },
+        {
+          "count": 1,
+          "name": "downtempo"
+        },
+        {
+          "count": 2,
+          "name": "pop"
+        },
+        {
+          "count": 1,
+          "name": "chillout"
+        },
+        {
+          "count": 1,
+          "name": "trip hop"
+        }
+      ]
+    },
+    {
+      "id": "6cc96dd5-da74-46de-82be-a1ef4fa03436",
+      "score": 100,
+      "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+      "title": "My Culture",
+      "length": 215253,
+      "disambiguation": "part of “MoS: The Chillout Sessions 3” DJ-mix",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002-09-30",
+      "releases": [
+        {
+          "id": "df89d413-7af9-4da4-9f37-45986dc9b6d8",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "Ministry of Sound: The Chillout Sessions 3",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "ba4f79e7-8c12-397a-b871-1e328026ef30",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Ministry of Sound: The Chillout Sessions 3",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation",
+              "DJ-mix"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+              "0d47f47a-3fe5-3d69-ac9d-d566c23968bf"
+            ]
+          },
+          "date": "2002-09-30",
+          "country": "AU",
+          "release-events": [
+            {
+              "date": "2002-09-30",
+              "area": {
+                "id": "106e0bec-b638-3b37-b731-f53d507dc00e",
+                "name": "Australia",
+                "sort-name": "Australia",
+                "iso-3166-1-codes": [
+                  "AU"
+                ]
+              }
+            }
+          ],
+          "track-count": 37,
+          "media": [
+            {
+              "id": "efc2f84a-9759-32f8-8937-399771cda6e2",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "3f0fa03b-eb28-340f-96f2-7ef4ba8d4856",
+                  "number": "1",
+                  "title": "My Culture",
+                  "length": 215253
+                }
+              ],
+              "track-count": 21,
+              "track-offset": 0
+            }
+          ]
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "electronic"
+        },
+        {
+          "count": 1,
+          "name": "downtempo"
+        },
+        {
+          "count": 1,
+          "name": "chillout"
+        },
+        {
+          "count": 1,
+          "name": "dance"
+        },
+        {
+          "count": 1,
+          "name": "house"
+        },
+        {
+          "count": 1,
+          "name": "ambient trance"
+        },
+        {
+          "count": 1,
+          "name": "trip hop"
+        }
+      ]
+    },
+    {
+      "id": "1db34604-c9bb-4d97-831b-014a0566a98f",
+      "score": 100,
+      "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+      "title": "My Culture",
+      "length": 251000,
+      "video": true,
+      "artist-credit": [
+        {
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2001-09-01",
+      "releases": [
+        {
+          "id": "23022b81-e95f-4795-a6cf-5d3258d832df",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+          "count": 1,
+          "title": "My Culture",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "1 Giant Leap",
+              "artist": {
+                "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+                "name": "1 Giant Leap",
+                "sort-name": "1 Giant Leap",
+                "disambiguation": "UK concept band and media project"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "6352eac4-1d53-34b2-8227-fb0a57558900",
+            "type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+            "primary-type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+            "title": "My Culture",
+            "primary-type": "Single"
+          },
+          "date": "2001-09-01",
+          "country": "GB",
+          "release-events": [
+            {
+              "date": "2001-09-01",
+              "area": {
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "iso-3166-1-codes": [
+                  "GB"
+                ]
+              }
+            }
+          ],
+          "track-count": 8,
+          "media": [
+            {
+              "id": "60942c6e-2665-3510-b3a0-1f2b61914638",
+              "position": 1,
+              "format": "Enhanced CD",
+              "track": [
+                {
+                  "id": "468a2358-8cb1-465c-b76b-22aa369e0aa9",
+                  "number": "4",
+                  "title": "My Culture (enhanced video)",
+                  "length": 251000
+                }
+              ],
+              "track-count": 8,
+              "track-offset": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1dbeaa52-c837-4098-b399-822d2c3ff178",
+      "score": 100,
+      "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+      "title": "My Culture",
+      "length": 325880,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2003-07-14",
+      "releases": [
+        {
+          "id": "d6dda3dc-deaa-4486-acda-dc5c9c2c716e",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 3,
+          "title": "Angel Beach: The Second Wave",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "860b9e75-eca2-3bda-88f7-3ea90e2a81ed",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Angel Beach: The Second Wave",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation",
+              "DJ-mix"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+              "0d47f47a-3fe5-3d69-ac9d-d566c23968bf"
+            ]
+          },
+          "date": "2003-07-14",
+          "country": "GB",
+          "release-events": [
+            {
+              "date": "2003-07-14",
+              "area": {
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "iso-3166-1-codes": [
+                  "GB"
+                ]
+              }
+            }
+          ],
+          "track-count": 45,
+          "media": [
+            {
+              "id": "deba1d35-b06c-3882-b41e-dc86a34fd989",
+              "position": 3,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "5e5c24af-439c-30ee-99e4-24780821c63c",
+                  "number": "1",
+                  "title": "My Culture",
+                  "length": 325880
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d096f762-ed78-4c3d-8b3c-6e339cd319f0",
+      "score": 87,
+      "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+      "title": "My Culture (album version)",
+      "length": 331400,
+      "disambiguation": "part of “Ministry of Sound: The Karma Collection: Sunrise” DJ-mix",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002-05-20",
+      "releases": [
+        {
+          "id": "067690c1-83da-4343-9515-dd7e96555345",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "The Karma Collection: Sunrise",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "f00592e9-02fd-3464-915e-efd4877980b0",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "The Karma Collection: Sunrise",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation",
+              "DJ-mix"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+              "0d47f47a-3fe5-3d69-ac9d-d566c23968bf"
+            ]
+          },
+          "date": "2002-05-20",
+          "country": "GB",
+          "release-events": [
+            {
+              "date": "2002-05-20",
+              "area": {
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "iso-3166-1-codes": [
+                  "GB"
+                ]
+              }
+            }
+          ],
+          "track-count": 35,
+          "media": [
+            {
+              "id": "216cf7f3-ddbb-3364-b0be-7a857a8f6f81",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "c40f66e1-5eec-31f2-9f40-bab136acfda1",
+                  "number": "1",
+                  "title": "My Culture (album version)",
+                  "length": 331400
+                }
+              ],
+              "track-count": 18,
+              "track-offset": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d8d3cdd2-2358-42e7-80f0-00dd946f8103",
+      "score": 87,
+      "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+      "title": "My Culture (Mutiny mix)",
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002",
+      "releases": [
+        {
+          "id": "a5e23d14-8fe6-4b35-932d-570abb08a18c",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "Leite Night Sessions",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "bc0e1152-ad49-4a9d-895f-3a80b1100fa3",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Leite Night Sessions",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation",
+              "DJ-mix"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+              "0d47f47a-3fe5-3d69-ac9d-d566c23968bf"
+            ]
+          },
+          "date": "2002",
+          "country": "PT",
+          "release-events": [
+            {
+              "date": "2002",
+              "area": {
+                "id": "781b0c54-3d54-362d-a941-8a617def4992",
+                "name": "Portugal",
+                "sort-name": "Portugal",
+                "iso-3166-1-codes": [
+                  "PT"
+                ]
+              }
+            }
+          ],
+          "track-count": 29,
+          "media": [
+            {
+              "id": "a93f301c-be7f-352a-b6a0-e350c1ad5b52",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "4eecf280-f608-4250-8a1e-94d59f3d4e9d",
+                  "number": "2",
+                  "title": "My Culture (Mutiny mix)"
+                }
+              ],
+              "track-count": 15,
+              "track-offset": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a4910a3b-0990-4a98-83d2-8ffae343652a",
+      "score": 87,
+      "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+      "title": "My Culture (radio edit)",
+      "length": 217466,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002",
+      "releases": [
+        {
+          "id": "cc97cece-91ae-4323-8b40-4c9a536c5254",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "Pepsi Chart Hits, Volume 6",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "27b3f8f3-3f08-40f9-91e7-dcd610bcccec",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Pepsi Chart Hits, Volume 6",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2002",
+          "country": "AU",
+          "release-events": [
+            {
+              "date": "2002",
+              "area": {
+                "id": "106e0bec-b638-3b37-b731-f53d507dc00e",
+                "name": "Australia",
+                "sort-name": "Australia",
+                "iso-3166-1-codes": [
+                  "AU"
+                ]
+              }
+            }
+          ],
+          "track-count": 38,
+          "media": [
+            {
+              "id": "bd74edb6-70ea-3d36-82ac-485c46e93559",
+              "position": 2,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "f6aab7c6-7ef8-4234-832d-63b3e46236aa",
+                  "number": "16",
+                  "title": "My Culture (radio edit)",
+                  "length": 217466
+                }
+              ],
+              "track-count": 19,
+              "track-offset": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2dc04f7c-5b3c-42b7-a970-f7f67532a350",
+      "score": 87,
+      "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+      "title": "My Culture (radio edit)",
+      "length": 221066,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2001-09-01",
+      "releases": [
+        {
+          "id": "23022b81-e95f-4795-a6cf-5d3258d832df",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "e063c412-d77a-3c87-9d61-1aba66b2ead0",
+          "count": 1,
+          "title": "My Culture",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "1 Giant Leap",
+              "artist": {
+                "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+                "name": "1 Giant Leap",
+                "sort-name": "1 Giant Leap",
+                "disambiguation": "UK concept band and media project"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "6352eac4-1d53-34b2-8227-fb0a57558900",
+            "type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+            "primary-type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+            "title": "My Culture",
+            "primary-type": "Single"
+          },
+          "date": "2001-09-01",
+          "country": "GB",
+          "release-events": [
+            {
+              "date": "2001-09-01",
+              "area": {
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "iso-3166-1-codes": [
+                  "GB"
+                ]
+              }
+            }
+          ],
+          "track-count": 8,
+          "media": [
+            {
+              "id": "60942c6e-2665-3510-b3a0-1f2b61914638",
+              "position": 1,
+              "format": "Enhanced CD",
+              "track": [
+                {
+                  "id": "ade181ae-4a1c-3115-ab16-192c035466d2",
+                  "number": "1",
+                  "title": "My Culture (radio edit)",
+                  "length": 221066
+                }
+              ],
+              "track-count": 8,
+              "track-offset": 0
+            }
+          ]
+        }
+      ],
+      "tags": [
+        {
+          "count": 1,
+          "name": "electronic"
+        }
+      ]
+    },
+    {
+      "id": "626e09fc-894a-4883-b612-86f3306d29a8",
+      "score": 87,
+      "artist-credit-id": "2f7527e6-b845-3ab6-8a80-6ee48d6627d4",
+      "title": "My Culture",
+      "length": 322786,
+      "video": null,
+      "artist-credit": [
+        {
+          "joinphrase": " feat. ",
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        },
+        {
+          "name": "Robbie Williams",
+          "artist": {
+            "id": "db4624cf-0e44-481e-a9dc-2142b833ec2f",
+            "name": "Robbie Williams",
+            "sort-name": "Williams, Robbie",
+            "aliases": [
+              {
+                "sort-name": "Williams",
+                "name": "Williams",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Robbie Williams.",
+                "name": "Robbie Williams.",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Robbie Wiilliams",
+                "name": "Robbie Wiilliams",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "R. Williams",
+                "name": "R. Williams",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Robert Williams",
+                "name": "Robert Williams",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Williams, Robbie",
+                "name": "Williams, Robbie",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Robbie Willams",
+                "name": "Robbie Willams",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Williams, Robert Peter",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Robert Peter Williams",
+                "locale": null,
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "first-release-date": "2002-09-23",
+      "releases": [
+        {
+          "id": "4f7faf56-02e0-4c6f-bdae-5f35b087b7cf",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 2,
+          "title": "Asia Lounge: Asian Flavoured Club Tunes: 2nd Floor",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "422a8a87-7672-3e2a-82dd-efb93b9a2f19",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Asia Lounge: Asian Flavoured Club Tunes: 2nd Floor",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ],
+            "secondary-type-ids": [
+              "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ]
+          },
+          "date": "2002-09-23",
+          "country": "DE",
+          "release-events": [
+            {
+              "date": "2002-09-23",
+              "area": {
+                "id": "85752fda-13c4-31a3-bee5-0e5cb1f51dad",
+                "name": "Germany",
+                "sort-name": "Germany",
+                "iso-3166-1-codes": [
+                  "DE"
+                ]
+              }
+            }
+          ],
+          "track-count": 24,
+          "media": [
+            {
+              "id": "6585d76f-5fb7-34fd-a78e-8c26766d23ab",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "dcbab734-734d-3f0c-b83b-92f5e227c4f3",
+                  "number": "1",
+                  "title": "My Culture",
+                  "length": 322786
+                }
+              ],
+              "track-count": 12,
+              "track-offset": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1b77dc81-66e5-4668-af4a-d5425af96003",
+      "score": 87,
+      "artist-credit-id": "fb8f4b9e-1876-3a60-8ac4-c436bb09c564",
+      "title": "My Culture",
+      "length": 339435,
+      "video": null,
+      "artist-credit": [
+        {
+          "joinphrase": " feat. ",
+          "name": "1 Giant Leap",
+          "artist": {
+            "id": "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c",
+            "name": "1 Giant Leap",
+            "sort-name": "1 Giant Leap",
+            "disambiguation": "UK concept band and media project",
+            "aliases": [
+              {
+                "sort-name": "One Giant Leap",
+                "name": "One Giant Leap",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Giant Leap",
+                "name": "Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "I Giant Leap",
+                "name": "I Giant Leap",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "One Giant",
+                "name": "One Giant",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        },
+        {
+          "name": "Maxi Jazz",
+          "artist": {
+            "id": "debd408d-72b3-4c14-a0eb-dd4fe526e240",
+            "name": "Maxi Jazz",
+            "sort-name": "Maxi Jazz",
+            "aliases": [
+              {
+                "sort-name": "Maxwell Frazer",
+                "name": "Maxwell Frazer",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Mxi Jazz",
+                "name": "Mxi Jazz",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Kool DJ Maxi Jazz",
+                "name": "Kool DJ Maxi Jazz",
+                "locale": null,
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Fraser, Maxwell",
+                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                "name": "Maxwell Fraser",
+                "locale": null,
+                "type": "Legal name",
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              },
+              {
+                "sort-name": "Jazz",
+                "name": "Jazz",
+                "locale": "en",
+                "type": null,
+                "primary": null,
+                "begin-date": null,
+                "end-date": null
+              }
+            ]
+          }
+        }
+      ],
+      "releases": [
+        {
+          "id": "1f84b810-6721-4789-bae0-04af6e0b8d9c",
+          "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+          "artist-credit-id": "26a4b4f3-b10e-4624-a3d8-a115a9fad620",
+          "count": 1,
+          "title": "U3ser Sea Lion",
+          "status": "Bootleg",
+          "artist-credit": [
+            {
+              "name": "Sean Hadaway",
+              "artist": {
+                "id": "4718e7e5-0b3f-4562-b69a-22cbebc5f0dc",
+                "name": "Sean Hadaway",
+                "sort-name": "Hadaway, Sean",
+                "disambiguation": "Mixtape Master"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "f5162642-1387-4eb5-bf86-6b459523feae",
+            "type-id": "4fc3be2b-de1e-396b-a933-beb8f1607a22",
+            "primary-type-id": "4fc3be2b-de1e-396b-a933-beb8f1607a22",
+            "title": "U3ser Sea Lion",
+            "primary-type": "Other",
+            "secondary-types": [
+              "Mixtape/Street"
+            ],
+            "secondary-type-ids": [
+              "15c1b1f5-d893-3375-a1db-e180c5ae15ed"
+            ]
+          },
+          "track-count": 20,
+          "media": [
+            {
+              "id": "910a2a61-0068-38f9-840f-a2771c2409eb",
+              "position": 1,
+              "format": "CD-R",
+              "track": [
+                {
+                  "id": "91062e79-61ed-46a9-a6d0-4ae84e7285c5",
+                  "number": "17",
+                  "title": "My Culture",
+                  "length": 339435
+                }
+              ],
+              "track-count": 20,
+              "track-offset": 16
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

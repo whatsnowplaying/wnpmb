@@ -1,0 +1,41 @@
+{
+  "id": "6f1a1c0a-3c7a-4d31-9e62-b32796043b6c",
+  "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+  "title": "Help!",
+  "text-representation": {
+    "language": "eng",
+    "script": "Latn"
+  },
+  "date": "1965-08-06",
+  "country": "US",
+  "quality": "normal",
+  "cover-art-archive": {
+    "count": 1,
+    "darkened": false,
+    "artwork": true,
+    "back": false,
+    "front": true
+  },
+  "status": "Official",
+  "disambiguation": "",
+  "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+  "asin": null,
+  "barcode": null,
+  "packaging": "None",
+  "release-events": [
+    {
+      "date": "1965-08-06",
+      "area": {
+        "type-id": null,
+        "id": "489ce91b-6658-3307-9877-795b68554c98",
+        "iso-3166-1-codes": [
+          "US"
+        ],
+        "type": null,
+        "sort-name": "United States",
+        "disambiguation": "",
+        "name": "United States"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1836 @@
+{
+  "first-release-date": "2008-03-02",
+  "disambiguation": "",
+  "title": "15 Ghosts II",
+  "id": "2d7f08e1-be1c-4b86-b725-6e675b7b6de0",
+  "genres": [
+    {
+      "disambiguation": "",
+      "id": "608b0471-7531-4854-a348-e698c69cb699",
+      "count": 1,
+      "name": "ambient"
+    },
+    {
+      "count": 1,
+      "id": "b7ef058e-6d83-4ca4-8123-9724bff4648b",
+      "disambiguation": "",
+      "name": "art rock"
+    },
+    {
+      "name": "dark ambient",
+      "disambiguation": "",
+      "count": 1,
+      "id": "01ecf8e4-7f7a-4145-ae97-504d3109633d"
+    },
+    {
+      "name": "electronic",
+      "count": 2,
+      "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+      "disambiguation": ""
+    },
+    {
+      "disambiguation": "",
+      "count": 3,
+      "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+      "name": "industrial"
+    },
+    {
+      "name": "industrial metal",
+      "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+      "count": 1,
+      "disambiguation": ""
+    },
+    {
+      "disambiguation": "",
+      "count": 1,
+      "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+      "name": "rock"
+    }
+  ],
+  "video": false,
+  "releases": [
+    {
+      "barcode": "766929908628",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "artist-credit": [
+        {
+          "name": "Nine Inch Nails",
+          "joinphrase": "",
+          "artist": {
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group",
+            "country": "US",
+            "name": "Nine Inch Nails",
+            "tags": [
+              {
+                "count": 15,
+                "name": "alternative rock"
+              },
+              {
+                "count": 6,
+                "name": "electro-industrial"
+              },
+              {
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "count": 16
+              },
+              {
+                "name": "industrial metal",
+                "count": 6
+              },
+              {
+                "count": 36,
+                "name": "industrial rock"
+              },
+              {
+                "count": 2,
+                "name": "post-industrial"
+              },
+              {
+                "count": 2,
+                "name": "rock"
+              }
+            ],
+            "genres": [
+              {
+                "name": "alternative rock",
+                "disambiguation": "",
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "count": 15
+              },
+              {
+                "count": 6,
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "disambiguation": "",
+                "name": "electro-industrial"
+              },
+              {
+                "disambiguation": "",
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "disambiguation": "",
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "count": 16
+              },
+              {
+                "name": "industrial metal",
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "count": 6,
+                "disambiguation": ""
+              },
+              {
+                "count": 36,
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "disambiguation": "",
+                "name": "industrial rock"
+              },
+              {
+                "name": "post-industrial",
+                "count": 2,
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "disambiguation": ""
+              },
+              {
+                "name": "rock",
+                "disambiguation": "",
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "count": 2
+              }
+            ],
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "disambiguation": "",
+            "sort-name": "Nine Inch Nails"
+          }
+        }
+      ],
+      "status": "Official",
+      "tags": [
+        {
+          "count": 1,
+          "name": "creative commons"
+        },
+        {
+          "name": "per-track-cover",
+          "count": 1
+        }
+      ],
+      "release-group": {
+        "first-release-date": "2008-03-02",
+        "primary-type": "Album",
+        "disambiguation": "",
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "title": "Ghosts I–IV",
+        "genres": [],
+        "releases": [],
+        "secondary-types": [],
+        "secondary-type-ids": [],
+        "tags": [],
+        "artist-credit": [
+          {
+            "name": "Nine Inch Nails",
+            "joinphrase": "",
+            "artist": {
+              "sort-name": "Nine Inch Nails",
+              "disambiguation": "",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "country": "US",
+              "type": "Group",
+              "name": "Nine Inch Nails",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+            }
+          }
+        ],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc"
+      },
+      "release-events": [
+        {
+          "area": {
+            "disambiguation": "",
+            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+            "sort-name": "[Worldwide]",
+            "iso-3166-1-codes": [
+              "XW"
+            ],
+            "type-id": null,
+            "name": "[Worldwide]",
+            "type": null
+          },
+          "date": "2008-03-02"
+        }
+      ],
+      "date": "2008-03-02",
+      "id": "3af7ec8c-3bf4-4e6d-9bb3-1885d22b2b6a",
+      "packaging": "None",
+      "title": "Ghosts I–IV",
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+      "genres": [],
+      "disambiguation": "",
+      "quality": "normal",
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "country": "XW"
+    },
+    {
+      "country": "AU",
+      "packaging": null,
+      "id": "0822f7c5-f204-3d93-b2eb-957dfa1434b1",
+      "title": "Ghosts I–IV",
+      "packaging-id": null,
+      "genres": [],
+      "disambiguation": "",
+      "quality": "normal",
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "release-events": [
+        {
+          "area": {
+            "type": null,
+            "name": "Australia",
+            "type-id": null,
+            "iso-3166-1-codes": [
+              "AU"
+            ],
+            "sort-name": "Australia",
+            "disambiguation": "",
+            "id": "106e0bec-b638-3b37-b731-f53d507dc00e"
+          },
+          "date": "2008-04-05"
+        }
+      ],
+      "date": "2008-04-05",
+      "release-group": {
+        "disambiguation": "",
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "title": "Ghosts I–IV",
+        "genres": [],
+        "first-release-date": "2008-03-02",
+        "primary-type": "Album",
+        "secondary-type-ids": [],
+        "tags": [],
+        "artist-credit": [
+          {
+            "joinphrase": "",
+            "artist": {
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "name": "Nine Inch Nails",
+              "type": "Group",
+              "country": "US",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "disambiguation": "",
+              "sort-name": "Nine Inch Nails"
+            },
+            "name": "Nine Inch Nails"
+          }
+        ],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "releases": [],
+        "secondary-types": []
+      },
+      "tags": [],
+      "barcode": "5021456154661",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "artist-credit": [
+        {
+          "artist": {
+            "tags": [
+              {
+                "name": "alternative rock",
+                "count": 15
+              },
+              {
+                "name": "electro-industrial",
+                "count": 6
+              },
+              {
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "count": 16
+              },
+              {
+                "count": 6,
+                "name": "industrial metal"
+              },
+              {
+                "name": "industrial rock",
+                "count": 36
+              },
+              {
+                "count": 2,
+                "name": "post-industrial"
+              },
+              {
+                "name": "rock",
+                "count": 2
+              }
+            ],
+            "genres": [
+              {
+                "count": 15,
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "disambiguation": "",
+                "name": "alternative rock"
+              },
+              {
+                "disambiguation": "",
+                "count": 6,
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "name": "electro-industrial"
+              },
+              {
+                "disambiguation": "",
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "disambiguation": "",
+                "count": 16,
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb"
+              },
+              {
+                "count": 6,
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "disambiguation": "",
+                "name": "industrial metal"
+              },
+              {
+                "name": "industrial rock",
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "count": 36,
+                "disambiguation": ""
+              },
+              {
+                "name": "post-industrial",
+                "disambiguation": "",
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "count": 2
+              },
+              {
+                "count": 2,
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "disambiguation": "",
+                "name": "rock"
+              }
+            ],
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "disambiguation": "",
+            "sort-name": "Nine Inch Nails",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "name": "Nine Inch Nails",
+            "type": "Group",
+            "country": "US"
+          },
+          "joinphrase": "",
+          "name": "Nine Inch Nails"
+        }
+      ],
+      "status": "Official"
+    },
+    {
+      "date": "2008-04-07",
+      "release-events": [
+        {
+          "area": {
+            "type": null,
+            "name": "United Kingdom",
+            "type-id": null,
+            "sort-name": "United Kingdom",
+            "iso-3166-1-codes": [
+              "GB"
+            ],
+            "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+            "disambiguation": ""
+          },
+          "date": "2008-04-07"
+        }
+      ],
+      "packaging-id": "8f931351-d2e2-310f-afc6-37b89ddba246",
+      "genres": [],
+      "id": "1df15da1-bcf8-4e75-a857-8843ac2a9e55",
+      "packaging": "Digipak",
+      "title": "Ghosts I–IV",
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "quality": "normal",
+      "disambiguation": "",
+      "country": "GB",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "barcode": "766929908628",
+      "status": "Official",
+      "artist-credit": [
+        {
+          "artist": {
+            "sort-name": "Nine Inch Nails",
+            "disambiguation": "",
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "genres": [
+              {
+                "disambiguation": "",
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "count": 15,
+                "name": "alternative rock"
+              },
+              {
+                "count": 6,
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "disambiguation": "",
+                "name": "electro-industrial"
+              },
+              {
+                "count": 13,
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "disambiguation": "",
+                "name": "electronic"
+              },
+              {
+                "disambiguation": "",
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "count": 16,
+                "name": "industrial"
+              },
+              {
+                "disambiguation": "",
+                "count": 6,
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "name": "industrial metal"
+              },
+              {
+                "name": "industrial rock",
+                "disambiguation": "",
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "count": 36
+              },
+              {
+                "name": "post-industrial",
+                "disambiguation": "",
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "count": 2
+              },
+              {
+                "count": 2,
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "disambiguation": "",
+                "name": "rock"
+              }
+            ],
+            "tags": [
+              {
+                "count": 15,
+                "name": "alternative rock"
+              },
+              {
+                "name": "electro-industrial",
+                "count": 6
+              },
+              {
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "count": 16
+              },
+              {
+                "name": "industrial metal",
+                "count": 6
+              },
+              {
+                "count": 36,
+                "name": "industrial rock"
+              },
+              {
+                "count": 2,
+                "name": "post-industrial"
+              },
+              {
+                "count": 2,
+                "name": "rock"
+              }
+            ],
+            "type": "Group",
+            "country": "US",
+            "name": "Nine Inch Nails",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+          },
+          "joinphrase": "",
+          "name": "Nine Inch Nails"
+        }
+      ],
+      "tags": [],
+      "release-group": {
+        "primary-type": "Album",
+        "first-release-date": "2008-03-02",
+        "genres": [],
+        "title": "Ghosts I–IV",
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "disambiguation": "",
+        "secondary-types": [],
+        "releases": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "artist-credit": [
+          {
+            "joinphrase": "",
+            "artist": {
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "name": "Nine Inch Nails",
+              "country": "US",
+              "type": "Group",
+              "disambiguation": "",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "sort-name": "Nine Inch Nails"
+            },
+            "name": "Nine Inch Nails"
+          }
+        ],
+        "tags": [],
+        "secondary-type-ids": []
+      }
+    },
+    {
+      "packaging-id": null,
+      "genres": [],
+      "id": "939a655a-baf5-4443-ac88-07bf72e19131",
+      "packaging": null,
+      "title": "Ghosts I–IV",
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "quality": "normal",
+      "disambiguation": "incl. hidden multitracks",
+      "date": "2008-04-08",
+      "release-events": [
+        {
+          "date": "2008-04-08",
+          "area": {
+            "type-id": null,
+            "type": null,
+            "name": "[Worldwide]",
+            "disambiguation": "",
+            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+            "iso-3166-1-codes": [
+              "XW"
+            ],
+            "sort-name": "[Worldwide]"
+          }
+        }
+      ],
+      "country": "XW",
+      "tags": [],
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "barcode": null,
+      "status": "Official",
+      "artist-credit": [
+        {
+          "joinphrase": "",
+          "artist": {
+            "type": "Group",
+            "country": "US",
+            "name": "Nine Inch Nails",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "sort-name": "Nine Inch Nails",
+            "disambiguation": "",
+            "tags": [
+              {
+                "count": 15,
+                "name": "alternative rock"
+              },
+              {
+                "name": "electro-industrial",
+                "count": 6
+              },
+              {
+                "name": "electronic",
+                "count": 13
+              },
+              {
+                "count": 16,
+                "name": "industrial"
+              },
+              {
+                "count": 6,
+                "name": "industrial metal"
+              },
+              {
+                "count": 36,
+                "name": "industrial rock"
+              },
+              {
+                "name": "post-industrial",
+                "count": 2
+              },
+              {
+                "count": 2,
+                "name": "rock"
+              }
+            ],
+            "genres": [
+              {
+                "name": "alternative rock",
+                "count": 15,
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "disambiguation": ""
+              },
+              {
+                "name": "electro-industrial",
+                "disambiguation": "",
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "count": 6
+              },
+              {
+                "name": "electronic",
+                "disambiguation": "",
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "count": 13
+              },
+              {
+                "disambiguation": "",
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "count": 16,
+                "name": "industrial"
+              },
+              {
+                "name": "industrial metal",
+                "count": 6,
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "disambiguation": ""
+              },
+              {
+                "name": "industrial rock",
+                "disambiguation": "",
+                "count": 36,
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9"
+              },
+              {
+                "name": "post-industrial",
+                "disambiguation": "",
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "count": 2
+              },
+              {
+                "name": "rock",
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "count": 2,
+                "disambiguation": ""
+              }
+            ],
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+          },
+          "name": "Nine Inch Nails"
+        }
+      ],
+      "release-group": {
+        "releases": [],
+        "secondary-types": [],
+        "artist-credit": [
+          {
+            "name": "Nine Inch Nails",
+            "artist": {
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "country": "US",
+              "type": "Group",
+              "name": "Nine Inch Nails",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "disambiguation": "",
+              "sort-name": "Nine Inch Nails"
+            },
+            "joinphrase": ""
+          }
+        ],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "secondary-type-ids": [],
+        "tags": [],
+        "primary-type": "Album",
+        "first-release-date": "2008-03-02",
+        "disambiguation": "",
+        "title": "Ghosts I–IV",
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "genres": []
+      }
+    },
+    {
+      "release-group": {
+        "disambiguation": "",
+        "title": "Ghosts I–IV",
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "genres": [],
+        "primary-type": "Album",
+        "first-release-date": "2008-03-02",
+        "artist-credit": [
+          {
+            "joinphrase": "",
+            "artist": {
+              "type": "Group",
+              "name": "Nine Inch Nails",
+              "country": "US",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "sort-name": "Nine Inch Nails",
+              "disambiguation": "",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+            },
+            "name": "Nine Inch Nails"
+          }
+        ],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "secondary-type-ids": [],
+        "tags": [],
+        "releases": [],
+        "secondary-types": []
+      },
+      "tags": [],
+      "artist-credit": [
+        {
+          "name": "Nine Inch Nails",
+          "artist": {
+            "genres": [
+              {
+                "name": "alternative rock",
+                "count": 15,
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "disambiguation": ""
+              },
+              {
+                "disambiguation": "",
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "count": 6,
+                "name": "electro-industrial"
+              },
+              {
+                "name": "electronic",
+                "count": 13,
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "disambiguation": ""
+              },
+              {
+                "name": "industrial",
+                "disambiguation": "",
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "count": 16
+              },
+              {
+                "disambiguation": "",
+                "count": 6,
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "name": "industrial metal"
+              },
+              {
+                "name": "industrial rock",
+                "disambiguation": "",
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "count": 36
+              },
+              {
+                "disambiguation": "",
+                "count": 2,
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "name": "post-industrial"
+              },
+              {
+                "name": "rock",
+                "disambiguation": "",
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "count": 2
+              }
+            ],
+            "tags": [
+              {
+                "name": "alternative rock",
+                "count": 15
+              },
+              {
+                "count": 6,
+                "name": "electro-industrial"
+              },
+              {
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "count": 16,
+                "name": "industrial"
+              },
+              {
+                "count": 6,
+                "name": "industrial metal"
+              },
+              {
+                "name": "industrial rock",
+                "count": 36
+              },
+              {
+                "name": "post-industrial",
+                "count": 2
+              },
+              {
+                "count": 2,
+                "name": "rock"
+              }
+            ],
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "disambiguation": "",
+            "sort-name": "Nine Inch Nails",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group",
+            "name": "Nine Inch Nails",
+            "country": "US"
+          },
+          "joinphrase": ""
+        }
+      ],
+      "status": "Official",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "barcode": null,
+      "country": "US",
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "quality": "normal",
+      "disambiguation": "",
+      "genres": [],
+      "packaging-id": "c1668fc7-8944-4a00-bc3e-46e8d861d211",
+      "title": "Ghosts I–IV",
+      "id": "94a78c1e-84fb-455c-ae9b-9ecfee51049f",
+      "packaging": "Box",
+      "date": "2008-04-08",
+      "release-events": [
+        {
+          "area": {
+            "type-id": null,
+            "type": null,
+            "name": "United States",
+            "disambiguation": "",
+            "id": "489ce91b-6658-3307-9877-795b68554c98",
+            "iso-3166-1-codes": [
+              "US"
+            ],
+            "sort-name": "United States"
+          },
+          "date": "2008-04-08"
+        }
+      ]
+    },
+    {
+      "country": "US",
+      "release-events": [
+        {
+          "date": "2008-04-08",
+          "area": {
+            "type-id": null,
+            "type": null,
+            "name": "United States",
+            "id": "489ce91b-6658-3307-9877-795b68554c98",
+            "disambiguation": "",
+            "iso-3166-1-codes": [
+              "US"
+            ],
+            "sort-name": "United States"
+          }
+        }
+      ],
+      "date": "2008-04-08",
+      "id": "32c48e56-9f70-4eb0-8f4d-219e1550231c",
+      "packaging": "Digipak",
+      "title": "Ghosts I–IV",
+      "genres": [],
+      "packaging-id": "8f931351-d2e2-310f-afc6-37b89ddba246",
+      "disambiguation": "",
+      "quality": "normal",
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "release-group": {
+        "first-release-date": "2008-03-02",
+        "primary-type": "Album",
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "title": "Ghosts I–IV",
+        "genres": [],
+        "disambiguation": "",
+        "releases": [],
+        "secondary-types": [],
+        "tags": [],
+        "secondary-type-ids": [],
+        "artist-credit": [
+          {
+            "joinphrase": "",
+            "artist": {
+              "sort-name": "Nine Inch Nails",
+              "disambiguation": "",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "country": "US",
+              "name": "Nine Inch Nails",
+              "type": "Group",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+            },
+            "name": "Nine Inch Nails"
+          }
+        ],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc"
+      },
+      "barcode": "766929908628",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "status": "Official",
+      "artist-credit": [
+        {
+          "name": "Nine Inch Nails",
+          "joinphrase": "",
+          "artist": {
+            "sort-name": "Nine Inch Nails",
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "tags": [
+              {
+                "name": "alternative rock",
+                "count": 15
+              },
+              {
+                "name": "electro-industrial",
+                "count": 6
+              },
+              {
+                "name": "electronic",
+                "count": 13
+              },
+              {
+                "count": 16,
+                "name": "industrial"
+              },
+              {
+                "count": 6,
+                "name": "industrial metal"
+              },
+              {
+                "name": "industrial rock",
+                "count": 36
+              },
+              {
+                "name": "post-industrial",
+                "count": 2
+              },
+              {
+                "count": 2,
+                "name": "rock"
+              }
+            ],
+            "genres": [
+              {
+                "name": "alternative rock",
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "count": 15,
+                "disambiguation": ""
+              },
+              {
+                "name": "electro-industrial",
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "count": 6,
+                "disambiguation": ""
+              },
+              {
+                "name": "electronic",
+                "disambiguation": "",
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "count": 13
+              },
+              {
+                "disambiguation": "",
+                "count": 16,
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "name": "industrial"
+              },
+              {
+                "name": "industrial metal",
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "count": 6,
+                "disambiguation": ""
+              },
+              {
+                "count": 36,
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "disambiguation": "",
+                "name": "industrial rock"
+              },
+              {
+                "count": 2,
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "disambiguation": "",
+                "name": "post-industrial"
+              },
+              {
+                "name": "rock",
+                "disambiguation": "",
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "count": 2
+              }
+            ],
+            "disambiguation": "",
+            "country": "US",
+            "type": "Group",
+            "name": "Nine Inch Nails",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+          }
+        }
+      ],
+      "tags": []
+    },
+    {
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "disambiguation": "",
+      "quality": "normal",
+      "packaging-id": null,
+      "genres": [],
+      "id": "a6db272a-22e6-485d-8d6b-e6d7f469a08c",
+      "title": "Ghosts I–IV",
+      "packaging": null,
+      "date": "2008-04-08",
+      "release-events": [
+        {
+          "date": "2008-04-08",
+          "area": {
+            "name": "United States",
+            "type": null,
+            "type-id": null,
+            "sort-name": "United States",
+            "iso-3166-1-codes": [
+              "US"
+            ],
+            "disambiguation": "",
+            "id": "489ce91b-6658-3307-9877-795b68554c98"
+          }
+        }
+      ],
+      "country": "US",
+      "tags": [],
+      "artist-credit": [
+        {
+          "joinphrase": "",
+          "artist": {
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group",
+            "name": "Nine Inch Nails",
+            "country": "US",
+            "disambiguation": "",
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "genres": [
+              {
+                "name": "alternative rock",
+                "disambiguation": "",
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "count": 15
+              },
+              {
+                "name": "electro-industrial",
+                "disambiguation": "",
+                "count": 6,
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf"
+              },
+              {
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "count": 13,
+                "disambiguation": "",
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "disambiguation": "",
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "count": 16
+              },
+              {
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "count": 6,
+                "disambiguation": "",
+                "name": "industrial metal"
+              },
+              {
+                "disambiguation": "",
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "count": 36,
+                "name": "industrial rock"
+              },
+              {
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "count": 2,
+                "disambiguation": "",
+                "name": "post-industrial"
+              },
+              {
+                "disambiguation": "",
+                "count": 2,
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "name": "rock"
+              }
+            ],
+            "tags": [
+              {
+                "name": "alternative rock",
+                "count": 15
+              },
+              {
+                "count": 6,
+                "name": "electro-industrial"
+              },
+              {
+                "name": "electronic",
+                "count": 13
+              },
+              {
+                "count": 16,
+                "name": "industrial"
+              },
+              {
+                "name": "industrial metal",
+                "count": 6
+              },
+              {
+                "name": "industrial rock",
+                "count": 36
+              },
+              {
+                "name": "post-industrial",
+                "count": 2
+              },
+              {
+                "count": 2,
+                "name": "rock"
+              }
+            ],
+            "sort-name": "Nine Inch Nails"
+          },
+          "name": "Nine Inch Nails"
+        }
+      ],
+      "status": "Official",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "barcode": "766929908710",
+      "release-group": {
+        "genres": [],
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "title": "Ghosts I–IV",
+        "disambiguation": "",
+        "primary-type": "Album",
+        "first-release-date": "2008-03-02",
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "artist-credit": [
+          {
+            "joinphrase": "",
+            "artist": {
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "name": "Nine Inch Nails",
+              "country": "US",
+              "type": "Group",
+              "disambiguation": "",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "sort-name": "Nine Inch Nails"
+            },
+            "name": "Nine Inch Nails"
+          }
+        ],
+        "tags": [],
+        "secondary-type-ids": [],
+        "secondary-types": [],
+        "releases": []
+      }
+    },
+    {
+      "tags": [],
+      "barcode": null,
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "status": "Official",
+      "artist-credit": [
+        {
+          "artist": {
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "type": "Group",
+            "country": "US",
+            "name": "Nine Inch Nails",
+            "disambiguation": "",
+            "genres": [
+              {
+                "name": "alternative rock",
+                "count": 15,
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "disambiguation": ""
+              },
+              {
+                "name": "electro-industrial",
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "count": 6,
+                "disambiguation": ""
+              },
+              {
+                "name": "electronic",
+                "disambiguation": "",
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "count": 13
+              },
+              {
+                "name": "industrial",
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "count": 16,
+                "disambiguation": ""
+              },
+              {
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "count": 6,
+                "disambiguation": "",
+                "name": "industrial metal"
+              },
+              {
+                "name": "industrial rock",
+                "disambiguation": "",
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "count": 36
+              },
+              {
+                "name": "post-industrial",
+                "count": 2,
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "disambiguation": ""
+              },
+              {
+                "disambiguation": "",
+                "count": 2,
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "name": "rock"
+              }
+            ],
+            "tags": [
+              {
+                "count": 15,
+                "name": "alternative rock"
+              },
+              {
+                "name": "electro-industrial",
+                "count": 6
+              },
+              {
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "count": 16
+              },
+              {
+                "count": 6,
+                "name": "industrial metal"
+              },
+              {
+                "count": 36,
+                "name": "industrial rock"
+              },
+              {
+                "name": "post-industrial",
+                "count": 2
+              },
+              {
+                "name": "rock",
+                "count": 2
+              }
+            ],
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "sort-name": "Nine Inch Nails"
+          },
+          "joinphrase": "",
+          "name": "Nine Inch Nails"
+        }
+      ],
+      "release-group": {
+        "secondary-types": [],
+        "releases": [],
+        "secondary-type-ids": [],
+        "tags": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "artist-credit": [
+          {
+            "name": "Nine Inch Nails",
+            "joinphrase": "",
+            "artist": {
+              "sort-name": "Nine Inch Nails",
+              "disambiguation": "",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "type": "Group",
+              "name": "Nine Inch Nails",
+              "country": "US",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+            }
+          }
+        ],
+        "first-release-date": "2008-03-02",
+        "primary-type": "Album",
+        "disambiguation": "",
+        "genres": [],
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "title": "Ghosts I–IV"
+      },
+      "id": "50c81050-35dd-4a15-90dc-64407acc9eef",
+      "packaging": null,
+      "title": "Ghosts I–IV",
+      "packaging-id": null,
+      "genres": [],
+      "quality": "normal",
+      "disambiguation": "",
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "release-events": [
+        {
+          "date": "2008-04-08",
+          "area": {
+            "name": "Japan",
+            "type": null,
+            "type-id": null,
+            "sort-name": "Japan",
+            "iso-3166-1-codes": [
+              "JP"
+            ],
+            "id": "2db42837-c832-3c27-b4a3-08198f75693c",
+            "disambiguation": ""
+          }
+        }
+      ],
+      "date": "2008-04-08",
+      "country": "JP"
+    },
+    {
+      "country": "XW",
+      "text-representation": {
+        "script": "Latn",
+        "language": "eng"
+      },
+      "quality": "normal",
+      "disambiguation": "",
+      "packaging-id": "c1668fc7-8944-4a00-bc3e-46e8d861d211",
+      "genres": [],
+      "title": "Ghosts I–IV",
+      "id": "1be7e6b2-281c-3c5a-94a4-d01a8db7c0c7",
+      "packaging": "Box",
+      "date": "2008-05",
+      "release-events": [
+        {
+          "date": "2008-05",
+          "area": {
+            "type": null,
+            "name": "[Worldwide]",
+            "type-id": null,
+            "sort-name": "[Worldwide]",
+            "iso-3166-1-codes": [
+              "XW"
+            ],
+            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+            "disambiguation": ""
+          }
+        }
+      ],
+      "release-group": {
+        "first-release-date": "2008-03-02",
+        "primary-type": "Album",
+        "genres": [],
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "title": "Ghosts I–IV",
+        "disambiguation": "",
+        "secondary-types": [],
+        "releases": [],
+        "tags": [],
+        "secondary-type-ids": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "artist-credit": [
+          {
+            "name": "Nine Inch Nails",
+            "artist": {
+              "country": "US",
+              "type": "Group",
+              "name": "Nine Inch Nails",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "sort-name": "Nine Inch Nails",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "disambiguation": ""
+            },
+            "joinphrase": ""
+          }
+        ]
+      },
+      "tags": [],
+      "status": "Official",
+      "artist-credit": [
+        {
+          "artist": {
+            "country": "US",
+            "type": "Group",
+            "name": "Nine Inch Nails",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "sort-name": "Nine Inch Nails",
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "tags": [
+              {
+                "count": 15,
+                "name": "alternative rock"
+              },
+              {
+                "name": "electro-industrial",
+                "count": 6
+              },
+              {
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "count": 16,
+                "name": "industrial"
+              },
+              {
+                "name": "industrial metal",
+                "count": 6
+              },
+              {
+                "count": 36,
+                "name": "industrial rock"
+              },
+              {
+                "count": 2,
+                "name": "post-industrial"
+              },
+              {
+                "count": 2,
+                "name": "rock"
+              }
+            ],
+            "genres": [
+              {
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "count": 15,
+                "disambiguation": "",
+                "name": "alternative rock"
+              },
+              {
+                "name": "electro-industrial",
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "count": 6,
+                "disambiguation": ""
+              },
+              {
+                "disambiguation": "",
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "count": 16,
+                "disambiguation": ""
+              },
+              {
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "count": 6,
+                "disambiguation": "",
+                "name": "industrial metal"
+              },
+              {
+                "count": 36,
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "disambiguation": "",
+                "name": "industrial rock"
+              },
+              {
+                "disambiguation": "",
+                "count": 2,
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "name": "post-industrial"
+              },
+              {
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "count": 2,
+                "disambiguation": "",
+                "name": "rock"
+              }
+            ],
+            "disambiguation": ""
+          },
+          "joinphrase": "",
+          "name": "Nine Inch Nails"
+        }
+      ],
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "barcode": null
+    },
+    {
+      "release-group": {
+        "primary-type": "Album",
+        "first-release-date": "2008-03-02",
+        "genres": [],
+        "title": "Ghosts I–IV",
+        "id": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
+        "disambiguation": "",
+        "secondary-types": [],
+        "releases": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "artist-credit": [
+          {
+            "name": "Nine Inch Nails",
+            "joinphrase": "",
+            "artist": {
+              "name": "Nine Inch Nails",
+              "type": "Group",
+              "country": "US",
+              "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+              "sort-name": "Nine Inch Nails",
+              "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+              "disambiguation": ""
+            }
+          }
+        ],
+        "tags": [],
+        "secondary-type-ids": []
+      },
+      "barcode": "4582214503103",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "artist-credit": [
+        {
+          "joinphrase": "",
+          "artist": {
+            "type": "Group",
+            "name": "Nine Inch Nails",
+            "country": "US",
+            "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+            "sort-name": "Nine Inch Nails",
+            "genres": [
+              {
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "count": 15,
+                "disambiguation": "",
+                "name": "alternative rock"
+              },
+              {
+                "disambiguation": "",
+                "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+                "count": 6,
+                "name": "electro-industrial"
+              },
+              {
+                "disambiguation": "",
+                "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                "count": 13,
+                "name": "electronic"
+              },
+              {
+                "name": "industrial",
+                "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+                "count": 16,
+                "disambiguation": ""
+              },
+              {
+                "name": "industrial metal",
+                "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501",
+                "count": 6,
+                "disambiguation": ""
+              },
+              {
+                "name": "industrial rock",
+                "count": 36,
+                "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+                "disambiguation": ""
+              },
+              {
+                "disambiguation": "",
+                "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29",
+                "count": 2,
+                "name": "post-industrial"
+              },
+              {
+                "count": 2,
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "disambiguation": "",
+                "name": "rock"
+              }
+            ],
+            "tags": [
+              {
+                "name": "alternative rock",
+                "count": 15
+              },
+              {
+                "name": "electro-industrial",
+                "count": 6
+              },
+              {
+                "name": "electronic",
+                "count": 13
+              },
+              {
+                "name": "industrial",
+                "count": 16
+              },
+              {
+                "name": "industrial metal",
+                "count": 6
+              },
+              {
+                "name": "industrial rock",
+                "count": 36
+              },
+              {
+                "count": 2,
+                "name": "post-industrial"
+              },
+              {
+                "name": "rock",
+                "count": 2
+              }
+            ],
+            "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+            "disambiguation": ""
+          },
+          "name": "Nine Inch Nails"
+        }
+      ],
+      "status": "Official",
+      "tags": [],
+      "country": "JP",
+      "release-events": [
+        {
+          "area": {
+            "name": "Japan",
+            "type": null,
+            "type-id": null,
+            "sort-name": "Japan",
+            "iso-3166-1-codes": [
+              "JP"
+            ],
+            "disambiguation": "",
+            "id": "2db42837-c832-3c27-b4a3-08198f75693c"
+          },
+          "date": "2008-07-09"
+        }
+      ],
+      "date": "2008-07-09",
+      "id": "b038768b-bac4-3a26-9822-7fe37e6547c1",
+      "title": "Ghosts I–IV",
+      "packaging": "Digipak",
+      "genres": [],
+      "packaging-id": "8f931351-d2e2-310f-afc6-37b89ddba246",
+      "quality": "normal",
+      "disambiguation": "",
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      }
+    }
+  ],
+  "isrcs": [
+    "USTC40852243",
+    "USTC40852244"
+  ],
+  "length": 113000,
+  "tags": [
+    {
+      "count": 1,
+      "name": "alternative pop/rock"
+    },
+    {
+      "count": 1,
+      "name": "ambient"
+    },
+    {
+      "name": "ambient industrial",
+      "count": 1
+    },
+    {
+      "name": "art rock",
+      "count": 1
+    },
+    {
+      "name": "creative commons",
+      "count": 1
+    },
+    {
+      "count": 1,
+      "name": "dark ambient"
+    },
+    {
+      "name": "electronic",
+      "count": 2
+    },
+    {
+      "name": "experimental ambient",
+      "count": 1
+    },
+    {
+      "name": "industrial",
+      "count": 3
+    },
+    {
+      "name": "industrial metal",
+      "count": 1
+    },
+    {
+      "count": 1,
+      "name": "pop/rock"
+    },
+    {
+      "name": "rock",
+      "count": 1
+    }
+  ],
+  "artist-credit": [
+    {
+      "name": "Nine Inch Nails",
+      "joinphrase": "",
+      "artist": {
+        "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+        "type": "Group",
+        "country": "US",
+        "name": "Nine Inch Nails",
+        "disambiguation": "",
+        "id": "b7ffd2af-418f-4be2-bdd1-22f8b48613da",
+        "tags": [
+          {
+            "count": 15,
+            "name": "alternative rock"
+          },
+          {
+            "name": "electro-industrial",
+            "count": 6
+          },
+          {
+            "count": 13,
+            "name": "electronic"
+          },
+          {
+            "count": 16,
+            "name": "industrial"
+          },
+          {
+            "count": 6,
+            "name": "industrial metal"
+          },
+          {
+            "name": "industrial rock",
+            "count": 36
+          },
+          {
+            "name": "post-industrial",
+            "count": 2
+          },
+          {
+            "count": 2,
+            "name": "rock"
+          }
+        ],
+        "genres": [
+          {
+            "disambiguation": "",
+            "count": 15,
+            "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+            "name": "alternative rock"
+          },
+          {
+            "name": "electro-industrial",
+            "id": "6e2e809f-8c54-4e0f-aca0-0642771ab3cf",
+            "count": 6,
+            "disambiguation": ""
+          },
+          {
+            "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+            "count": 13,
+            "disambiguation": "",
+            "name": "electronic"
+          },
+          {
+            "name": "industrial",
+            "id": "060beed7-e597-4c42-8e25-5bf8bd5dd3cb",
+            "count": 16,
+            "disambiguation": ""
+          },
+          {
+            "name": "industrial metal",
+            "disambiguation": "",
+            "count": 6,
+            "id": "d4df54b5-67b4-4fb7-8f73-79e71717a501"
+          },
+          {
+            "disambiguation": "",
+            "count": 36,
+            "id": "ffbc9907-c9be-4ace-876b-b7fd5b9d51f9",
+            "name": "industrial rock"
+          },
+          {
+            "name": "post-industrial",
+            "disambiguation": "",
+            "count": 2,
+            "id": "53ceafec-ced4-4bec-ac57-d00cbf3a0c29"
+          },
+          {
+            "name": "rock",
+            "disambiguation": "",
+            "count": 2,
+            "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798"
+          }
+        ],
+        "sort-name": "Nine Inch Nails"
+      }
+    }
+  ]
+}

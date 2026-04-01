@@ -1,0 +1,90 @@
+{
+  "recordings": [
+    {
+      "id": "c09d592e-13e5-4374-bc67-9d651dac6fc9",
+      "score": 100,
+      "artist-credit-id": "afd72a54-429b-3849-a854-03b7e96037fb",
+      "title": "Monster Mash",
+      "length": 333306,
+      "video": null,
+      "artist-credit": [
+        {
+          "name": "Utter Lunacy",
+          "artist": {
+            "id": "4fc584cc-e735-467c-965b-dc2c2e9586e6",
+            "name": "Utter Lunacy",
+            "sort-name": "Utter Lunacy"
+          }
+        }
+      ],
+      "first-release-date": "1989",
+      "releases": [
+        {
+          "id": "6d8288a2-7126-41f4-92cb-4e8fcd860bd4",
+          "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+          "artist-credit-id": "949a7fd5-fe73-3e8f-922e-01ff4ca958f7",
+          "count": 1,
+          "title": "Leatherface: The Texas Chainsaw Massacre III",
+          "status": "Official",
+          "artist-credit": [
+            {
+              "name": "Various Artists",
+              "artist": {
+                "id": "89ad4ac3-39f7-470e-963a-56509c546377",
+                "name": "Various Artists",
+                "sort-name": "Various Artists",
+                "disambiguation": "add compilations to this artist"
+              }
+            }
+          ],
+          "release-group": {
+            "id": "14df4a5c-5c3b-3f12-977a-a6c07ff61721",
+            "type-id": "22a628ad-c082-3c4f-b1b6-d41665107b88",
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "title": "Leatherface: The Texas Chainsaw Massacre III",
+            "primary-type": "Album",
+            "secondary-types": [
+              "Soundtrack"
+            ],
+            "secondary-type-ids": [
+              "22a628ad-c082-3c4f-b1b6-d41665107b88"
+            ]
+          },
+          "date": "1989",
+          "country": "US",
+          "release-events": [
+            {
+              "date": "1989",
+              "area": {
+                "id": "489ce91b-6658-3307-9877-795b68554c98",
+                "name": "United States",
+                "sort-name": "United States",
+                "iso-3166-1-codes": [
+                  "US"
+                ]
+              }
+            }
+          ],
+          "track-count": 10,
+          "media": [
+            {
+              "id": "c6f8083b-d38f-3b4b-abff-07bc89d6389f",
+              "position": 1,
+              "format": "CD",
+              "track": [
+                {
+                  "id": "6e211e35-ce87-3f26-8cd4-72c940c3d09a",
+                  "number": "7",
+                  "title": "Monster Mash",
+                  "length": 333306
+                }
+              ],
+              "track-count": 10,
+              "track-offset": 6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
