@@ -26,11 +26,11 @@ def _artist_matches(artist: str, recording: dict) -> bool:
     credited to both "Prince" and "The Revolution", but
     "Prince & The Revolution" will.
     """
-    credits = recording.get("artist-credit", [])
-    if not credits:
+    artist_credits = recording.get("artist-credit", [])
+    if not artist_credits:
         return False
 
-    dict_credits = [c for c in credits if isinstance(c, dict)]
+    dict_credits = [c for c in artist_credits if isinstance(c, dict)]
     if not dict_credits:
         return False
 
@@ -114,8 +114,8 @@ def select_recording(
                 logger.debug("skipped release %r — album mismatch with %r", release_title, album)
                 continue
 
-            credits = release.get("artist-credit", [])
-            if credits and credits[0].get("name") == "Various Artists":
+            artist_credits = release.get("artist-credit", [])
+            if artist_credits and artist_credits[0].get("name") == "Various Artists":
                 if various_artist_fallback is None:
                     various_artist_fallback = recording["id"]
                     logger.debug("saving various-artist fallback %s", various_artist_fallback)
@@ -181,21 +181,18 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
 
         seen: dict[str, tuple[str, int]] = {}  # mbid → (name, score)
         for var in generate_artist_variations(artist):
-            try:
-                candidates = await self.search_artists(var, limit=10)
-            except Exception:
-                continue
-            for a in candidates:
-                mbid = a.get("id")
-                score = a.get("score", 0)
-                name = a.get("name", "")
+            candidates = await self.search_artists(var, limit=10)
+            for candidate in candidates:
+                mbid = candidate.get("id")
+                score = candidate.get("score", 0)
+                name = candidate.get("name", "")
                 if not mbid or score < _ARID_SCORE_THRESHOLD:
                     continue
                 if mbid not in seen or score > seen[mbid][1]:
                     seen[mbid] = (name, score)
 
         result: list[str] = []
-        for mbid, (name, _) in sorted(seen.items(), key=lambda x: -x[1][1]):
+        for mbid, (name, _) in sorted(seen.items(), key=lambda entry: -entry[1][1]):
             if input_vars & set(generate_artist_variations(name)):
                 result.append(mbid)
         return result
