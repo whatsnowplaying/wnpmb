@@ -590,14 +590,14 @@ async def _resolve_via_recording_quorum(
         logger.warning("Quorum: could not fetch recording %s", best_recording_id)
         return None
 
-    credits = recording_data.get("artist-credit", [])
-    if not credits:
+    artist_credits = recording_data.get("artist-credit", [])
+    if not artist_credits:
         logger.warning("Quorum: recording %s has no artist-credit", best_recording_id)
         return None
 
     artist_ids: list[str] = []
     artist_names: list[str] = []
-    for credit in credits:
+    for credit in artist_credits:
         if isinstance(credit, dict) and "artist" in credit:
             if aid := credit["artist"].get("id"):
                 artist_ids.append(aid)

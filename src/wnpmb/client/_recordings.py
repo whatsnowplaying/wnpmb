@@ -23,6 +23,7 @@ class RecordingsMixin(MusicBrainzBase):
         limit: int = 25,
         offset: int | None = None,
         strict: bool = False,
+        year: int | None = None,
     ) -> tuple[list[dict], int]:
         """
         Search recordings by title (and optionally artist / album).
@@ -48,12 +49,16 @@ class RecordingsMixin(MusicBrainzBase):
             cache_parts.append(f"album:{album.lower()}")
         if strict:
             cache_parts.append("strict:1")
+        if year:
+            cache_parts.append(f"year:{year}")
         cache_key = "search_recording:" + ":".join(cache_parts)
 
         if cached := await self._cache_get(cache_key):
             return cached.get("recordings", []), cached.get("recording_count", 0)
 
-        query = build_recording_query(title, artist_name, artist_id, album, strict=strict)
+        query = build_recording_query(
+            title, artist_name, artist_id, album, strict=strict, year=year
+        )
         logger.debug("MB recording search: %s", query)
 
         params: dict[str, Any] = {

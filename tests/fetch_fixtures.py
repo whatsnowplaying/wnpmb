@@ -58,6 +58,10 @@ GIANT_LEAP_RECORDING_ID = "b366689f-4b81-4f1f-974b-3dff361d45a1"
 GIANT_LEAP_ARTIST_ID = "3eff5a3a-b011-4da3-81fe-bc8d4a11b28c"
 ROBBIE_WILLIAMS_ARTIST_ID = "db4624cf-0e44-481e-a9dc-2142b833ec2f"
 
+# MOЯIS BLAK – Complicate (Unicode art artist name; found via sort name arid resolution)
+MOЯIS_BLAK_ARTIST_ID = "a24a2651-ff16-400c-a88a-7224e0d09c53"
+COMPLICATE_RECORDING_ID = "31c0cba8-293e-41f5-a43d-976cc5550e5f"
+
 # Mareux – The Perfect Girl (live suffix should be stripped)
 MAREUX_ARTIST_ID = "09095919-c549-4f33-9555-70df9dd941e1"
 
@@ -158,6 +162,9 @@ async def main() -> int:
 
         # ── Recording lookups by ID ───────────────────────────────────────────
 
+        await fetch_recording(
+            mb, COMPLICATE_RECORDING_ID, "recording_complicate_moяis_blak", errors
+        )
         await fetch_recording(mb, NIN_RECORDING_ID, "recording_nin_15ghosts2", errors)
         await fetch_recording(mb, TRST_RECORDING_ID, "recording_trst_iris", errors)
         await fetch_recording(mb, COMPUTER_BLUE_RECORDING_ID, "recording_computer_blue", errors)
@@ -178,6 +185,7 @@ async def main() -> int:
         await fetch_artist(mb, SNAP_ARTIST_ID, "artist_snap", errors)
         await fetch_artist(mb, GRIMES_ARTIST_ID, "artist_grimes", errors)
         await fetch_artist(mb, UTTER_LUNACY_ARTIST_ID, "artist_utter_lunacy", errors)
+        await fetch_artist(mb, MOЯIS_BLAK_ARTIST_ID, "artist_moяis_blak", errors)
         await fetch_artist(mb, MAREUX_ARTIST_ID, "artist_mareux", errors)
         await fetch_artist(mb, ACDC_ARTIST_ID, "artist_acdc", errors)
         await fetch_artist(mb, BOWIE_ARTIST_ID, "artist_david_bowie", errors)
