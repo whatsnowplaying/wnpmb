@@ -25,18 +25,36 @@ RATE_LIMIT_INTERVAL = 1.1
 RETRY = RetrySettings(max_retries=5, wait=10.0)
 
 
-async def _resolve(title: str, artist: str, album: str | None = None) -> dict:
+async def _resolve(
+    title: str, artist: str, album: str | None = None, year: int | None = None
+) -> dict:
     """find_recording + process_recording_data → EnrichedRecordingData."""
     async with MusicBrainzClient(
         rate_limit_interval=RATE_LIMIT_INTERVAL, retry_settings=RETRY
     ) as mb:
-        recording_id = await mb.find_recording(title, artist, album=album)
+        recording_id = await mb.find_recording(title, artist, album=album, year=year)
         if not recording_id:
             return {}
         mb_data = await mb.get_recording_by_id(recording_id)
         if not mb_data:
             return {}
         return dict(await mb.process_recording_data(mb_data, recording_id))
+
+
+# ── MOЯIS BLAK ────────────────────────────────────────────────────────────────
+
+
+async def test_moяis_blak_complicate():
+    """Unicode art artist name resolved via sort name → arid search."""
+    result = await _resolve("Complicate", "MӨЯIS BLΛK feat. grabyourface")
+    assert result["musicbrainz_artist_id"] == [
+        "a24a2651-ff16-400c-a88a-7224e0d09c53",
+        "14bf891f-0923-4e21-989c-b0a3c4daffd6",
+    ]
+    assert result["musicbrainz_recording_id"] in [
+        "31c0cba8-293e-41f5-a43d-976cc5550e5f",
+        "cb38114c-d6ac-4aba-afdf-adb72574cbd6",
+    ]
 
 
 # ── NIN ───────────────────────────────────────────────────────────────────────

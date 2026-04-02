@@ -338,6 +338,7 @@ def build_recording_query(
     artist_id: str | list[str] | None = None,
     album: str | None = None,
     strict: bool = False,
+    year: int | None = None,
 ) -> str:
     """
     Build a MusicBrainz recording search query string.
@@ -348,6 +349,10 @@ def build_recording_query(
     When strict=True, excludes compilations and live releases and requires
     official status — useful when there are too many results and the top
     results are dominated by compilations.
+
+    When year is provided, restricts results to firstreleasedate within ±1
+    year of the supplied value — useful when a common title/artist combination
+    returns too many results to disambiguate by name alone.
     """
     parts = [f'"{sanitize_query_value(title)}"']
 
@@ -370,6 +375,8 @@ def build_recording_query(
                 "status:Official",
             )
         )
+    if year:
+        parts.append(f"firstreleasedate:[{year - 1} TO {year + 1}]")
     return " AND ".join(parts)
 
 

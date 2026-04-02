@@ -29,7 +29,7 @@ class ArtistsMixin(MusicBrainzBase):
             return []
 
         search_name = ARTIST_NAME_REPLACEMENTS.get(artist_name.lower(), artist_name)
-        cache_key = f"search_artist:{search_name.lower()}"
+        cache_key = f"search_artist:{search_name.lower()}:limit:{limit}"
 
         if cached := await self._cache_get(cache_key):
             return cached.get("artists", [])

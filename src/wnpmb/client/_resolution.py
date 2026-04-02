@@ -5,8 +5,12 @@ from __future__ import annotations
 import logging
 
 from ..normalization import REMIX_RE, generate_artist_variations, normalize
+from ._artists import ArtistsMixin
 from ._base import MusicBrainzBase
 from ._recordings import RecordingsMixin
+
+_ARID_SCORE_THRESHOLD: int = 70
+_ARID_COUNT_CEILING: int = 150
 
 logger = logging.getLogger(__name__)
 
@@ -131,7 +135,7 @@ def select_recording(
     return None
 
 
-class RecordingResolutionMixin(RecordingsMixin, MusicBrainzBase):
+class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
     """Higher-level recording ID resolution methods."""
 
     async def resolve_recording_by_isrc(self, isrcs: list[str]) -> str | None:
@@ -159,23 +163,88 @@ class RecordingResolutionMixin(RecordingsMixin, MusicBrainzBase):
         logger.debug("resolved ISRC %s → recording %s", isrcs, best)
         return best
 
+    async def _find_artist_ids(self, artist: str) -> list[str]:
+        """
+        Find candidate artist MBIDs via alias- and sort-name-aware search.
+
+        For each artist name variation, queries search_artists (which searches
+        the artist name, aliases, and sort name).  Candidates are accepted when
+        their score meets _ARID_SCORE_THRESHOLD AND at least one of their own
+        name variations overlaps with the input variations — this eliminates
+        superstring matches such as "Tommy Genesis" when searching for "Genesis".
+
+        Returns a deduplicated list of MBIDs in descending score order.
+        """
+        input_vars = set(generate_artist_variations(artist))
+        if not input_vars:
+            return []
+
+        seen: dict[str, tuple[str, int]] = {}  # mbid → (name, score)
+        for var in generate_artist_variations(artist):
+            try:
+                candidates = await self.search_artists(var, limit=10)
+            except Exception:
+                continue
+            for a in candidates:
+                mbid = a.get("id")
+                score = a.get("score", 0)
+                name = a.get("name", "")
+                if not mbid or score < _ARID_SCORE_THRESHOLD:
+                    continue
+                if mbid not in seen or score > seen[mbid][1]:
+                    seen[mbid] = (name, score)
+
+        result: list[str] = []
+        for mbid, (name, _) in sorted(seen.items(), key=lambda x: -x[1][1]):
+            if input_vars & set(generate_artist_variations(name)):
+                result.append(mbid)
+        return result
+
     async def find_recording_by_search(
         self,
         title: str,
         artist: str,
         album: str | None = None,
+        year: int | None = None,
     ) -> str | None:
         """
         Find a recording MBID by searching title + artist (+ optional album).
 
-        Tries each artist name variation in turn.  If album is provided, tries
-        album-constrained search first.  Falls back to allow_others=True on the
-        last pass to catch compilations and live recordings when the strict pass
-        found nothing.
+        Pass 0: resolves artist MBIDs via alias/sort-name-aware search, then
+        searches recordings by arid: list.  This handles artists whose
+        canonical MB name uses non-Latin script (e.g. MOЯIS BLAK) where
+        transliteration would otherwise miss the match.  When the arid result
+        count exceeds _ARID_COUNT_CEILING and year is provided, retries with a
+        firstreleasedate filter to disambiguate self-titled cases (Ghost/Ghost).
+
+        Passes 1–3: name-based search across artist variations, with
+        progressively relaxed constraints.
 
         Returns the recording MBID, or None if no suitable match is found.
         """
         artist_vars = generate_artist_variations(artist)
+
+        # Pass 0: arid-based search via sort-name / alias resolution.
+        # Only attempted for non-ASCII artist names where transliteration-based
+        # search may fail (e.g. Cyrillic/Greek-like characters in MOЯIS BLAK).
+        # ASCII artist names are handled adequately by Passes 1–3.
+        artist_ids: list[str] = []
+        if not artist.isascii():
+            artist_ids = await self._find_artist_ids(artist)
+        if artist_ids:
+            for search_album in [album, None] if album else [None]:
+                recs, count = await self.search_recordings(
+                    title=title, artist_id=artist_ids, album=search_album
+                )
+                if count > _ARID_COUNT_CEILING:
+                    if not year:
+                        continue
+                    recs, count = await self.search_recordings(
+                        title=title, artist_id=artist_ids, album=search_album, year=year
+                    )
+                if recs and count > 0:
+                    if mbid := select_recording(recs, artist=artist, album=search_album):
+                        return mbid
 
         async def _search_and_select(
             artist_var: str,
@@ -231,13 +300,14 @@ class RecordingResolutionMixin(RecordingsMixin, MusicBrainzBase):
         artist: str,
         album: str | None = None,
         isrcs: list[str] | None = None,
+        year: int | None = None,
     ) -> str | None:
         """
         Full recording ID resolution pipeline.
 
         Resolution order:
         1. ISRC list (if provided) — most precise identifier.
-        2. Title + artist search (with optional album hint).
+        2. Title + artist search (with optional album and year hints).
         3. Retry (2) with any remix/version suffix stripped from title
            (e.g. "Song (Radio Edit)" → "Song").
 
@@ -250,14 +320,14 @@ class RecordingResolutionMixin(RecordingsMixin, MusicBrainzBase):
             if mbid := await self.resolve_recording_by_isrc(isrcs):
                 return mbid
 
-        if mbid := await self.find_recording_by_search(title, artist, album):
+        if mbid := await self.find_recording_by_search(title, artist, album, year=year):
             return mbid
 
         if m := REMIX_RE.match(title):
             stripped = m.group(1)
             if stripped != title:
                 logger.debug("retrying with stripped title %r → %r", title, stripped)
-                if mbid := await self.find_recording_by_search(stripped, artist, album):
+                if mbid := await self.find_recording_by_search(stripped, artist, album, year=year):
                     return mbid
 
         return None
