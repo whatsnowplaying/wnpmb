@@ -49,6 +49,11 @@ class ReleasesMixin(MusicBrainzBase):
             query_parts.append(f"barcode:{barcode}")
             cache_parts.append(f"barcode:{barcode}")
 
+        if includes:
+            cache_parts.append("inc:" + "+".join(sorted(includes)))
+        cache_parts.append(f"limit:{limit}")
+        if offset is not None:
+            cache_parts.append(f"offset:{offset}")
         cache_key = "search_release:" + ":".join(cache_parts)
         if cached := await self._cache_get(cache_key):
             return cached.get("releases", [])
@@ -111,6 +116,9 @@ class ReleasesMixin(MusicBrainzBase):
             query_parts.append(f"type:{release_type.lower()}")
             cache_parts.append(f"type:{release_type.lower()}")
 
+        cache_parts.append(f"limit:{limit}")
+        if offset is not None:
+            cache_parts.append(f"offset:{offset}")
         cache_key = "search_release_group:" + ":".join(cache_parts)
         if cached := await self._cache_get(cache_key):
             return cached.get("release-groups", [])

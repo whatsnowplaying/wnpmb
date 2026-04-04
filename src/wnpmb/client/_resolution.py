@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import contextlib
 import logging
+import re
 
 from ..normalization import REMIX_RE, generate_artist_variations, normalize
 from ._artists import ArtistsMixin
@@ -11,6 +13,7 @@ from ._recordings import RecordingsMixin
 
 _ARID_SCORE_THRESHOLD: int = 70
 _ARID_COUNT_CEILING: int = 150
+_DATE_YEAR_RE: re.Pattern[str] = re.compile(r"(\d{4})")
 
 logger = logging.getLogger(__name__)
 
@@ -68,46 +71,136 @@ def _is_compilation_or_live(release: dict) -> bool:
     return "Compilation" in secondary or "Live" in secondary
 
 
+def _score_recording(
+    recording: dict,
+    album: str | None = None,
+    year: int | None = None,
+) -> int:
+    """Score a recording dict for quality ranking within select_recording.
+
+    Ported from charts' RecordingID._calculate_score(), omitting tag-based
+    factors that require a separate get_recording_by_id call.  Higher scores
+    indicate more authoritative / better-contextually-matched recordings.
+
+    Factors (in rough descending weight):
+    - first-release-date (dominant): (2100 − frd_year) × 10, giving ~800–1300
+      pts for music years 1970–2020
+    - year-hint alignment: up to +500 pts when frd_year ≈ hint year —
+      disambiguates same-named artists from different eras (Ghost/Ghost)
+    - ISRCs present (50 pts each)
+    - context match against album/year hints (up to 175 pts)
+    - release count (10 pts each)
+    - release age bonus (5–15 pts per release)
+    - metadata completeness: length (+5), artist credits (5 pts each),
+      disambiguation (+10)
+    """
+    score = 0
+
+    if isrcs := recording.get("isrcs", []):
+        score += len(isrcs) * 50
+
+    frd_year: int | None = None
+    if frd := recording.get("first-release-date"):
+        with contextlib.suppress(ValueError, IndexError):
+            parsed = int(str(frd).split("-")[0])
+            if 0 < parsed <= 2100:
+                frd_year = parsed
+                score += (2100 - frd_year) * 10
+
+    if year and frd_year:
+        diff = abs(frd_year - year)
+        if diff == 0:
+            score += 500
+        elif diff <= 1:
+            score += 300
+        elif diff <= 2:
+            score += 150
+        elif diff <= 5:
+            score += 50
+
+    releases = recording.get("releases", [])
+
+    best_context = 0
+    for release in releases:
+        ctx = 0
+        if album and release.get("title"):
+            norm_release = normalize(release["title"])
+            norm_album = normalize(album)
+            if norm_release and norm_album:
+                if norm_release == norm_album:
+                    ctx += 100
+                elif norm_album in norm_release or norm_release in norm_album:
+                    ctx += 50
+        if year and release.get("date"):
+            if m := _DATE_YEAR_RE.search(release["date"]):
+                diff = abs(int(m.group(1)) - year)
+                if diff == 0:
+                    ctx += 75
+                elif diff <= 1:
+                    ctx += 40
+                elif diff <= 5:
+                    ctx += 20
+        best_context = max(best_context, ctx)
+    score += best_context
+
+    score += len(releases) * 10
+
+    for release in releases:
+        if release.get("date") and (m := _DATE_YEAR_RE.search(release["date"])):
+            rel_year = int(m.group(1))
+            if rel_year < 2000:
+                score += 15
+            elif rel_year < 2010:
+                score += 10
+            elif rel_year < 2020:
+                score += 5
+
+    if recording.get("length"):
+        score += 5
+    if artist_credits := recording.get("artist-credit"):
+        score += len(artist_credits) * 5
+    if recording.get("disambiguation"):
+        score += 10
+
+    return score
+
+
 def select_recording(
     recordings: list[dict],
     artist: str | None = None,
     album: str | None = None,
     allow_others: bool = False,
+    year: int | None = None,
 ) -> str | None:
     """
     Pick the best recording MBID from a list of search-result recording dicts.
 
-    Applies the following logic in order:
-    1. Sort candidates by first-release-date ascending (oldest first).
-    2. Skip recordings with no releases.
-    3. If artist is provided, skip recordings where the artist name cannot be
-       verified against the artist-credit list.
-    4. For each release on a candidate:
-       - If album is provided, skip releases whose title does not match.
+    1. Hard-filter: drop recordings with no releases or mismatched artist.
+    2. Score each remaining candidate via _score_recording() and sort
+       highest-first — favours originals (first-release-date), recordings
+       with ISRCs, and those matching the supplied album/year context.
+    3. Walk sorted candidates applying release-level checks:
+       - If album is provided, only accept releases whose title matches.
        - Save Various Artists releases as a last-resort fallback.
        - Unless allow_others=True, skip compilation and live releases.
-       - Return the first recording that passes all checks.
-    5. Fall back to the saved Various Artists recording if nothing else matched.
+    4. Fall back to the saved Various Artists recording if nothing else matched.
 
     Returns the recording MBID string, or None if no suitable candidate is found.
     """
-    sorted_recordings = sorted(
-        recordings,
-        key=lambda r: r.get("first-release-date") or "9999-99-99",
-    )
+    candidates = [
+        rec
+        for rec in recordings
+        if rec.get("releases") and (not artist or _artist_matches(artist, rec))
+    ]
+    if not candidates:
+        return None
+
+    candidates.sort(key=lambda rec: _score_recording(rec, album=album, year=year), reverse=True)
 
     various_artist_fallback: str | None = None
 
-    for recording in sorted_recordings:
-        releases = recording.get("releases", [])
-        if not releases:
-            logger.debug("skipping %s — no releases", recording.get("id"))
-            continue
-
-        if artist and not _artist_matches(artist, recording):
-            continue
-
-        for release in releases:
+    for recording in candidates:
+        for release in recording.get("releases", []):
             release_title = release.get("title", "")
 
             if album and normalize(album) != normalize(release_title):
@@ -240,7 +333,7 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                         title=title, artist_id=artist_ids, album=search_album, year=year
                     )
                 if recs and count > 0:
-                    if mbid := select_recording(recs, artist=artist, album=search_album):
+                    if mbid := select_recording(recs, artist=artist, album=search_album, year=year):
                         return mbid
 
         async def _search_and_select(
@@ -252,6 +345,7 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                 title=title,
                 artist_name=artist_var,
                 album=search_album,
+                limit=100,
             )
             if count == 0:
                 logger.debug("no recordings found for %r / %r", title, artist_var)
@@ -259,17 +353,12 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             if not recordings:
                 return None
 
-            if count > 100:
-                logger.debug("too many results (%d total), tightening query", count)
-                recordings, _ = await self.search_recordings(
-                    title=title,
-                    artist_name=artist_var,
-                    limit=100,
-                    strict=True,
-                )
-
             return select_recording(
-                recordings, artist=artist, album=search_album, allow_others=allow_others
+                recordings,
+                artist=artist,
+                album=search_album,
+                allow_others=allow_others,
+                year=year,
             )
 
         # Pass 1: with album constraint (strict)
