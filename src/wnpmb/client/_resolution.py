@@ -13,7 +13,7 @@ from ._recordings import RecordingsMixin
 
 _ARID_SCORE_THRESHOLD: int = 70
 _ARID_COUNT_CEILING: int = 150
-_DATE_YEAR_RE: re.Pattern[str] = re.compile(r"(\d{4})")
+_DATE_YEAR_RE: re.Pattern[str] = re.compile(r"\b(19\d{2}|20\d{2})\b")
 
 # Scoring weights for _score_recording
 _W_ISRC: int = 50  # per ISRC present on the recording

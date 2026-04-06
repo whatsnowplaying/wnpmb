@@ -143,12 +143,20 @@ class ProcessingMixin(ArtistsMixin):
         if official_releases:
             releases = official_releases
         else:
-            all_data = await self.browse_releases(
-                recording=recording_id,
-                includes=["artist-credits", "labels", "release-groups"],
-                limit=100,
-            )
-            releases = all_data.get("releases", []) or mb_data.get("releases", [])
+            all_kwargs: dict = {
+                "recording": recording_id,
+                "includes": ["artist-credits", "labels", "release-groups"],
+                "limit": 100,
+            }
+            all_first = await self.browse_releases(**all_kwargs)
+            all_releases: list[dict] = list(all_first.get("releases", []))
+            all_total: int = all_first.get("release-count", 0)
+            all_offset = 100
+            while all_offset < all_total:
+                all_page = await self.browse_releases(**all_kwargs, offset=all_offset)
+                all_releases.extend(all_page.get("releases", []))
+                all_offset += 100
+            releases = all_releases or mb_data.get("releases", [])
 
         best_release = select_best_release(
             releases, submitted_album, submitted_year, recording_title=mb_data.get("title")

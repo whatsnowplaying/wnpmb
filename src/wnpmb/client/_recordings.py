@@ -52,6 +52,8 @@ class RecordingsMixin(MusicBrainzBase):
         if year:
             cache_parts.append(f"year:{year}")
         cache_parts.append(f"limit:{limit}")
+        if offset is not None:
+            cache_parts.append(f"offset:{offset}")
         cache_key = "search_recording:" + ":".join(cache_parts)
 
         if cached := await self._cache_get(cache_key):

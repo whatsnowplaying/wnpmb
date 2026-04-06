@@ -171,6 +171,8 @@ class ReleasesMixin(MusicBrainzBase):
         cache_key = "browse_releases:" + ":".join(cache_parts)
 
         if cached := await self._cache_get(cache_key):
+            if cached.get("not_found"):
+                return {}
             return cached.get("result", {})
 
         params: dict[str, Any] = {"recording": recording, "fmt": "json"}
@@ -192,6 +194,8 @@ class ReleasesMixin(MusicBrainzBase):
                 return result
             except Exception as exc:
                 logger.warning("Failed to parse browse_releases response: %s", exc)
+        if response is not None and response.status_code == 404:
+            await self._cache_set(cache_key, {"not_found": True}, "not_found")
         return {}
 
     async def get_release_by_id(

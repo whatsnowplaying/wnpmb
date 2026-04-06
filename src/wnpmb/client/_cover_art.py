@@ -24,10 +24,10 @@ class CoverArtMixin(MusicBrainzBase):
 
         url = f"{self.caa_base_url}/{entity_type}/{mbid}"
         response = await self._get(url)
-        if response is None or response.status_code == 404:
+        if response is not None and response.status_code == 404:
             await self._cache_set(cache_key, {"result": {}}, "not_found")
             return {}
-        if response.status_code == 200:
+        if response is not None and response.status_code == 200:
             try:
                 data: dict = response.json()
                 await self._cache_set(cache_key, {"result": data}, "cover_art", url)
