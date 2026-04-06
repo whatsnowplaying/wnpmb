@@ -128,6 +128,7 @@ class ProcessingMixin(ArtistsMixin):
             kwargs: dict = {
                 "recording": recording_id,
                 "includes": ["artist-credits", "labels", "release-groups"],
+                "limit": 100,
             }
             if status:
                 kwargs["release_status"] = status

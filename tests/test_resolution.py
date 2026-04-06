@@ -263,7 +263,7 @@ async def test_foo_fighters_all_my_life():
     result = await _resolve("All My Life", "Foo Fighters", album="Greatest Hits")
     assert result["musicbrainz_artist_id"] == ["67f66c07-6e61-4026-ade5-7e782fad3a5d"]
     assert result["musicbrainz_recording_id"] in [
-        "4850f8e7-8f21-413e-892b-fe9c56844ccc",  # canonical (25 releases, beyond rank 100 in search)
+        "4850f8e7-8f21-413e-892b-fe9c56844ccc",  # canonical (beyond rank 100 in search)
         "d0dc4e1c-20b0-4866-be6a-16e20e345f3a",  # single-release version (within top 100)
     ]
 

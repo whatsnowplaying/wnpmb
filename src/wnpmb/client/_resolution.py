@@ -15,6 +15,26 @@ _ARID_SCORE_THRESHOLD: int = 70
 _ARID_COUNT_CEILING: int = 150
 _DATE_YEAR_RE: re.Pattern[str] = re.compile(r"(\d{4})")
 
+# Scoring weights for _score_recording
+_W_ISRC: int = 50  # per ISRC present on the recording
+_W_FRD_SCALE: int = 10  # multiplied by (2100 − first_release_year)
+_W_YEAR_EXACT: int = 500  # hint year matches first-release-date exactly
+_W_YEAR_OFF1: int = 300  # hint year within 1 year
+_W_YEAR_OFF2: int = 150  # hint year within 2 years
+_W_YEAR_OFF5: int = 50  # hint year within 5 years
+_W_ALBUM_EXACT: int = 100  # release title matches album hint exactly
+_W_ALBUM_PARTIAL: int = 50  # release title partially matches album hint
+_W_DATE_EXACT: int = 75  # release date matches year hint exactly
+_W_DATE_OFF1: int = 40  # release date within 1 year of hint
+_W_DATE_OFF5: int = 20  # release date within 5 years of hint
+_W_RELEASE: int = 10  # per release on the recording
+_W_ERA_PRE2000: int = 15  # per release dated before 2000
+_W_ERA_PRE2010: int = 10  # per release dated 2000–2009
+_W_ERA_PRE2020: int = 5  # per release dated 2010–2019
+_W_HAS_LENGTH: int = 5  # recording has a duration
+_W_ARTIST_CREDIT: int = 5  # per artist-credit entry
+_W_DISAMBIGUATION: int = 10  # recording has a disambiguation comment
+
 logger = logging.getLogger(__name__)
 
 
@@ -97,7 +117,7 @@ def _score_recording(
     score = 0
 
     if isrcs := recording.get("isrcs", []):
-        score += len(isrcs) * 50
+        score += len(isrcs) * _W_ISRC
 
     frd_year: int | None = None
     if frd := recording.get("first-release-date"):
@@ -105,62 +125,62 @@ def _score_recording(
             parsed = int(str(frd).split("-")[0])
             if 0 < parsed <= 2100:
                 frd_year = parsed
-                score += (2100 - frd_year) * 10
+                score += (2100 - frd_year) * _W_FRD_SCALE
 
     if year and frd_year:
         diff = abs(frd_year - year)
         if diff == 0:
-            score += 500
+            score += _W_YEAR_EXACT
         elif diff <= 1:
-            score += 300
+            score += _W_YEAR_OFF1
         elif diff <= 2:
-            score += 150
+            score += _W_YEAR_OFF2
         elif diff <= 5:
-            score += 50
+            score += _W_YEAR_OFF5
 
     releases = recording.get("releases", [])
+    norm_album = normalize(album) if album else None
 
     best_context = 0
     for release in releases:
         ctx = 0
-        if album and release.get("title"):
+        if norm_album and release.get("title"):
             norm_release = normalize(release["title"])
-            norm_album = normalize(album)
             if norm_release and norm_album:
                 if norm_release == norm_album:
-                    ctx += 100
+                    ctx += _W_ALBUM_EXACT
                 elif norm_album in norm_release or norm_release in norm_album:
-                    ctx += 50
+                    ctx += _W_ALBUM_PARTIAL
         if year and release.get("date"):
             if m := _DATE_YEAR_RE.search(release["date"]):
                 diff = abs(int(m.group(1)) - year)
                 if diff == 0:
-                    ctx += 75
+                    ctx += _W_DATE_EXACT
                 elif diff <= 1:
-                    ctx += 40
+                    ctx += _W_DATE_OFF1
                 elif diff <= 5:
-                    ctx += 20
+                    ctx += _W_DATE_OFF5
         best_context = max(best_context, ctx)
     score += best_context
 
-    score += len(releases) * 10
+    score += len(releases) * _W_RELEASE
 
     for release in releases:
         if release.get("date") and (m := _DATE_YEAR_RE.search(release["date"])):
             rel_year = int(m.group(1))
             if rel_year < 2000:
-                score += 15
+                score += _W_ERA_PRE2000
             elif rel_year < 2010:
-                score += 10
+                score += _W_ERA_PRE2010
             elif rel_year < 2020:
-                score += 5
+                score += _W_ERA_PRE2020
 
     if recording.get("length"):
-        score += 5
+        score += _W_HAS_LENGTH
     if artist_credits := recording.get("artist-credit"):
-        score += len(artist_credits) * 5
+        score += len(artist_credits) * _W_ARTIST_CREDIT
     if recording.get("disambiguation"):
-        score += 10
+        score += _W_DISAMBIGUATION
 
     return score
 
@@ -197,13 +217,14 @@ def select_recording(
 
     candidates.sort(key=lambda rec: _score_recording(rec, album=album, year=year), reverse=True)
 
+    norm_album = normalize(album) if album else None
     various_artist_fallback: str | None = None
 
     for recording in candidates:
         for release in recording.get("releases", []):
             release_title = release.get("title", "")
 
-            if album and normalize(album) != normalize(release_title):
+            if norm_album and norm_album != normalize(release_title):
                 logger.debug("skipped release %r — album mismatch with %r", release_title, album)
                 continue
 
