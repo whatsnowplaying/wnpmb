@@ -13,6 +13,7 @@ from ._recordings import RecordingsMixin
 
 _ARID_SCORE_THRESHOLD: int = 70
 _ARID_COUNT_CEILING: int = 150
+_SEARCH_RESULTS_CAP: int = 500  # max recordings to collect across all pages
 _DATE_YEAR_RE: re.Pattern[str] = re.compile(r"\b(19\d{2}|20\d{2})\b")
 
 # Scoring weights for _score_recording
@@ -365,8 +366,12 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             if not recordings:
                 return None
 
+            # Page through remaining results up to _SEARCH_RESULTS_CAP.
+            # The per-page count is the same total as the first page for a
+            # stable MB query, so we reuse `count` and ignore it on subsequent
+            # pages rather than re-validating on every call.
             offset = 100
-            while offset < count:
+            while offset < min(count, _SEARCH_RESULTS_CAP):
                 page, _ = await self.search_recordings(
                     title=title,
                     artist_name=artist_var,
@@ -374,7 +379,11 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                     limit=100,
                     offset=offset,
                 )
+                if not page:
+                    break
                 recordings.extend(page)
+                if len(page) < 100:
+                    break
                 offset += 100
 
             return select_recording(
