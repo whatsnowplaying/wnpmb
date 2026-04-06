@@ -17,6 +17,8 @@ from ._artists import ArtistsMixin
 
 logger = logging.getLogger(__name__)
 
+_BROWSE_RESULTS_CAP: int = 1000  # max releases to collect across all pages
+
 
 class EnrichedRecordingData(TypedDict):
     """
@@ -135,9 +137,14 @@ class ProcessingMixin(ArtistsMixin):
         official_releases: list[dict] = list(first_page.get("releases", []))
         total: int = first_page.get("release-count", 0)
         offset = 100
-        while offset < total:
+        while offset < min(total, _BROWSE_RESULTS_CAP):
             page = await self.browse_releases(**browse_kwargs, offset=offset)
-            official_releases.extend(page.get("releases", []))
+            batch = page.get("releases", [])
+            if not batch:
+                break
+            official_releases.extend(batch)
+            if len(batch) < 100:
+                break
             offset += 100
 
         releases: list[dict]
@@ -153,9 +160,14 @@ class ProcessingMixin(ArtistsMixin):
             all_releases: list[dict] = list(all_first.get("releases", []))
             all_total: int = all_first.get("release-count", 0)
             all_offset = 100
-            while all_offset < all_total:
+            while all_offset < min(all_total, _BROWSE_RESULTS_CAP):
                 all_page = await self.browse_releases(**all_kwargs, offset=all_offset)
-                all_releases.extend(all_page.get("releases", []))
+                all_batch = all_page.get("releases", [])
+                if not all_batch:
+                    break
+                all_releases.extend(all_batch)
+                if len(all_batch) < 100:
+                    break
                 all_offset += 100
             releases = all_releases or mb_data.get("releases", [])
 

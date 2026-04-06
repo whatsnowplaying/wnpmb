@@ -56,9 +56,9 @@ STRIPWORDLIST: list[str] = [
 SORTED_STRIPWORDLIST: list[str] = sorted(STRIPWORDLIST, key=len, reverse=True)
 
 STRIPRELIST: list[re.Pattern[str]] = [
-    re.compile(f" \((?:{'|'.join(SORTED_STRIPWORDLIST)})\)", re.IGNORECASE),
-    re.compile(f" - (?:{'|'.join(SORTED_STRIPWORDLIST)}$)", re.IGNORECASE),
-    re.compile(f" \[(?:{'|'.join(SORTED_STRIPWORDLIST)})\]", re.IGNORECASE),
+    re.compile(rf" \((?:{'|'.join(SORTED_STRIPWORDLIST)})\)", re.IGNORECASE),
+    re.compile(rf" - (?:{'|'.join(SORTED_STRIPWORDLIST)}$)", re.IGNORECASE),
+    re.compile(rf" \[(?:{'|'.join(SORTED_STRIPWORDLIST)})\]", re.IGNORECASE),
 ]
 
 # ── Character normalization ────────────────────────────────────────────────────
