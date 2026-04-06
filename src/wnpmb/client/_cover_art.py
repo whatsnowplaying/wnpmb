@@ -18,13 +18,19 @@ class CoverArtMixin(MusicBrainzBase):
 
         Returns an empty dict when no cover art is available (404).
         """
+        cache_key = f"get_image_list:{entity_type}:{mbid}"
+        if cached := await self._cache_get(cache_key):
+            return cached.get("result", {})
+
         url = f"{self.caa_base_url}/{entity_type}/{mbid}"
         response = await self._get(url)
-        if response is None or response.status_code == 404:
+        if response is not None and response.status_code == 404:
+            await self._cache_set(cache_key, {"result": {}}, "not_found")
             return {}
-        if response.status_code == 200:
+        if response is not None and response.status_code == 200:
             try:
                 data: dict = response.json()
+                await self._cache_set(cache_key, {"result": data}, "cover_art", url)
                 return data
             except Exception as exc:
                 logger.warning("Failed to parse image list for %s: %s", mbid, exc)

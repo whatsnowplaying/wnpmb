@@ -282,11 +282,11 @@ def extract_year_from_track_data(track_data: dict[str, Any] | None) -> int | Non
     """
     Extract a 4-digit year (1900–2099) from track metadata.
 
-    Searches 'year', 'date', and 'originalyear' fields in that order.
+    Searches 'originalyear', 'year', and 'date' fields in that order.
     """
     if not track_data:
         return None
-    for field in ("year", "date", "originalyear"):
+    for field in ("originalyear", "year", "date"):
         if val := track_data.get(field):
             if m := re.search(r"\b(19|20)\d{2}\b", str(val)):
                 return int(m.group())
@@ -504,6 +504,15 @@ def extract_artist_urls(artist_data: dict) -> dict[str, str]:
         if rel_type and resource and rel_type not in urls:
             urls[rel_type] = resource
     return urls
+
+
+def is_compilation_or_live(release: dict) -> bool:
+    """Return True if the release-group is a compilation or live release."""
+    rg = release.get("release-group", {})
+    if rg.get("primary-type") == "Compilation":
+        return True
+    secondary = rg.get("secondary-types", [])
+    return "Compilation" in secondary or "Live" in secondary
 
 
 def select_best_release(

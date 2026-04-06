@@ -20,7 +20,7 @@ class RecordingsMixin(MusicBrainzBase):
         artist_name: str | None = None,
         artist_id: str | list[str] | None = None,
         album: str | None = None,
-        limit: int = 25,
+        limit: int = 100,
         offset: int | None = None,
         strict: bool = False,
         year: int | None = None,
@@ -51,6 +51,9 @@ class RecordingsMixin(MusicBrainzBase):
             cache_parts.append("strict:1")
         if year:
             cache_parts.append(f"year:{year}")
+        cache_parts.append(f"limit:{limit}")
+        if offset is not None:
+            cache_parts.append(f"offset:{offset}")
         cache_key = "search_recording:" + ":".join(cache_parts)
 
         if cached := await self._cache_get(cache_key):
