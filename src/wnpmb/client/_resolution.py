@@ -365,6 +365,18 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             if not recordings:
                 return None
 
+            offset = 100
+            while offset < count:
+                page, _ = await self.search_recordings(
+                    title=title,
+                    artist_name=artist_var,
+                    album=search_album,
+                    limit=100,
+                    offset=offset,
+                )
+                recordings.extend(page)
+                offset += 100
+
             return select_recording(
                 recordings,
                 artist=artist,
