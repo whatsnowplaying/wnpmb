@@ -36,6 +36,7 @@ class EnrichedRecordingData(TypedDict):
     isrc: NotRequired[list[str]]
     musicbrainz_artist_id: NotRequired[list[str]]
     musicbrainz_release_id: NotRequired[str]
+    musicbrainz_release_group_id: NotRequired[str]
     tags: NotRequired[list[str]]
 
 
@@ -173,6 +174,8 @@ class ProcessingMixin(ArtistsMixin):
         best_rg_id: str | None = None
         if best_release and "release-group" in best_release:
             best_rg_id = best_release["release-group"].get("id")
+            if best_rg_id:
+                result["musicbrainz_release_group_id"] = best_rg_id
 
         if genres := extract_genres(mb_data):
             result["genres"] = genres
