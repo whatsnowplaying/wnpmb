@@ -17,7 +17,7 @@ class ArtistsMixin(MusicBrainzBase):
     async def search_artists(
         self,
         artist_name: str,
-        limit: int = 25,
+        limit: int = 100,
     ) -> list[dict]:
         """
         Search artists by name.

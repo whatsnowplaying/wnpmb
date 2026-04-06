@@ -35,6 +35,7 @@ class EnrichedRecordingData(TypedDict):
     genres: NotRequired[list[str]]
     isrc: NotRequired[list[str]]
     musicbrainz_artist_id: NotRequired[list[str]]
+    musicbrainz_release_id: NotRequired[str]
     tags: NotRequired[list[str]]
 
 
@@ -121,29 +122,41 @@ class ProcessingMixin(ArtistsMixin):
         if original_track_data:
             submitted_album = original_track_data.get("album")
 
-        # Fetch the full release list via browse so we are not limited to the
-        # ~25 inline releases returned by the recording lookup endpoint.
-        releases: list[dict] = []
-        for status in (["official"], None):
-            kwargs: dict = {
-                "recording": recording_id,
-                "includes": ["artist-credits", "labels", "release-groups"],
-            }
-            if status:
-                kwargs["release_status"] = status
-            browse_data = await self.browse_releases(**kwargs)
-            releases = browse_data.get("releases", [])
-            if releases:
-                break
+        # Fetch the full official release list via paginated browse, then fall
+        # back to all releases if nothing official exists.
+        browse_kwargs: dict = {
+            "recording": recording_id,
+            "includes": ["artist-credits", "labels", "release-groups"],
+            "limit": 100,
+            "release_status": ["official"],
+        }
+        first_page = await self.browse_releases(**browse_kwargs)
+        official_releases: list[dict] = list(first_page.get("releases", []))
+        total: int = first_page.get("release-count", 0)
+        offset = 100
+        while offset < total:
+            page = await self.browse_releases(**browse_kwargs, offset=offset)
+            official_releases.extend(page.get("releases", []))
+            offset += 100
 
-        if not releases:
-            releases = mb_data.get("releases", [])
+        releases: list[dict]
+        if official_releases:
+            releases = official_releases
+        else:
+            all_data = await self.browse_releases(
+                recording=recording_id,
+                includes=["artist-credits", "labels", "release-groups"],
+                limit=100,
+            )
+            releases = all_data.get("releases", []) or mb_data.get("releases", [])
 
         best_release = select_best_release(
             releases, submitted_album, submitted_year, recording_title=mb_data.get("title")
         )
         if best_release:
             result["album"] = best_release["title"]
+            if release_id := best_release.get("id"):
+                result["musicbrainz_release_id"] = release_id
             if date := best_release.get("date"):
                 result["date"] = date
             if label := extract_label(best_release):
@@ -187,6 +200,7 @@ class ProcessingMixin(ArtistsMixin):
             kwargs: dict = {
                 "recording": recording_id,
                 "includes": ["artist-credits", "labels", "release-groups"],
+                "limit": 100,
             }
             if status:
                 kwargs["release_status"] = status

@@ -29,6 +29,11 @@ async def _resolve(
     title: str, artist: str, album: str | None = None, year: int | None = None
 ) -> dict:
     """find_recording + process_recording_data → EnrichedRecordingData."""
+    original_track_data: dict = {}
+    if album:
+        original_track_data["album"] = album
+    if year:
+        original_track_data["year"] = year
     async with MusicBrainzClient(
         rate_limit_interval=RATE_LIMIT_INTERVAL, retry_settings=RETRY
     ) as mb:
@@ -38,7 +43,11 @@ async def _resolve(
         mb_data = await mb.get_recording_by_id(recording_id)
         if not mb_data:
             return {}
-        return dict(await mb.process_recording_data(mb_data, recording_id))
+        return dict(
+            await mb.process_recording_data(
+                mb_data, recording_id, original_track_data=original_track_data or None
+            )
+        )
 
 
 # ── MOЯIS BLAK ────────────────────────────────────────────────────────────────
@@ -245,6 +254,27 @@ async def test_acdc_tnt_dots():
     """Same with dots in title."""
     result = await _resolve("T.N.T. (Freak On Remix)", "AC/DC")
     assert result["musicbrainz_artist_id"] == ["66c662b6-6e2f-4930-8610-912e24c63ed1"]
+
+
+# ── Foo Fighters ─────────────────────────────────────────────────────────────
+
+
+async def test_foo_fighters_all_my_life():
+    """Large result set; correct artist resolved despite compilation-only album hint.
+
+    Regression for strict-query tightening: Pass 1 skips all Greatest Hits
+    releases (compilations); Pass 2 gets 160+ results and must not use
+    strict=True which would exclude recordings that also appear on compilations.
+    The canonical 25-release recording (4850f8e7) appears beyond rank 100 in
+    MB search results and is unreachable via search; d0dc4e1c is the equivalent
+    single-release version and is the expected search result.
+    """
+    result = await _resolve("All My Life", "Foo Fighters", album="Greatest Hits")
+    assert result["musicbrainz_artist_id"] == ["67f66c07-6e61-4026-ade5-7e782fad3a5d"]
+    assert result["musicbrainz_recording_id"] in [
+        "4850f8e7-8f21-413e-892b-fe9c56844ccc",  # canonical (beyond rank 100 in search)
+        "d0dc4e1c-20b0-4866-be6a-16e20e345f3a",  # single-release version (within top 100)
+    ]
 
 
 # ── David Bowie ───────────────────────────────────────────────────────────────

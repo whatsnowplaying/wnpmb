@@ -21,7 +21,7 @@ class ReleasesMixin(MusicBrainzBase):
         artist_name: str | None = None,
         release_group_id: str | None = None,
         barcode: str | None = None,
-        limit: int = 25,
+        limit: int = 100,
         offset: int | None = None,
         includes: list[str] | None = None,
     ) -> list[dict]:
@@ -49,6 +49,11 @@ class ReleasesMixin(MusicBrainzBase):
             query_parts.append(f"barcode:{barcode}")
             cache_parts.append(f"barcode:{barcode}")
 
+        if includes:
+            cache_parts.append("inc:" + "+".join(sorted(includes)))
+        cache_parts.append(f"limit:{limit}")
+        if offset is not None:
+            cache_parts.append(f"offset:{offset}")
         cache_key = "search_release:" + ":".join(cache_parts)
         if cached := await self._cache_get(cache_key):
             return cached.get("releases", [])
@@ -84,7 +89,7 @@ class ReleasesMixin(MusicBrainzBase):
         artist_name: str | None = None,
         artist_id: str | None = None,
         release_type: str | None = None,
-        limit: int = 25,
+        limit: int = 100,
         offset: int | None = None,
     ) -> list[dict]:
         """
@@ -111,6 +116,9 @@ class ReleasesMixin(MusicBrainzBase):
             query_parts.append(f"type:{release_type.lower()}")
             cache_parts.append(f"type:{release_type.lower()}")
 
+        cache_parts.append(f"limit:{limit}")
+        if offset is not None:
+            cache_parts.append(f"offset:{offset}")
         cache_key = "search_release_group:" + ":".join(cache_parts)
         if cached := await self._cache_get(cache_key):
             return cached.get("release-groups", [])
@@ -151,6 +159,20 @@ class ReleasesMixin(MusicBrainzBase):
         release_status: list[str] | None = None,
     ) -> dict:
         """Browse releases associated with a recording MBID."""
+        cache_parts = [f"recording:{recording}"]
+        if includes:
+            cache_parts.append("inc:" + "+".join(sorted(includes)))
+        if limit is not None:
+            cache_parts.append(f"limit:{limit}")
+        if offset is not None:
+            cache_parts.append(f"offset:{offset}")
+        if release_status:
+            cache_parts.append("status:" + "|".join(sorted(release_status)))
+        cache_key = "browse_releases:" + ":".join(cache_parts)
+
+        if cached := await self._cache_get(cache_key):
+            return cached.get("result", {})
+
         params: dict[str, Any] = {"recording": recording, "fmt": "json"}
         if includes:
             params["inc"] = "+".join(includes)
@@ -166,6 +188,7 @@ class ReleasesMixin(MusicBrainzBase):
         if response is not None and response.status_code == 200:
             try:
                 result: dict = response.json()
+                await self._cache_set(cache_key, {"result": result}, "release", url)
                 return result
             except Exception as exc:
                 logger.warning("Failed to parse browse_releases response: %s", exc)
@@ -177,6 +200,12 @@ class ReleasesMixin(MusicBrainzBase):
         includes: list[str] | None = None,
     ) -> dict | None:
         """Get release by MBID."""
+        inc = "+".join(sorted(includes)) if includes else ""
+        cache_key = f"get_release:{release_id}:{inc}"
+
+        if cached := await self._cache_get(cache_key):
+            return cached.get("release")
+
         params: dict[str, Any] = {"fmt": "json"}
         if includes:
             params["inc"] = "+".join(includes)
@@ -185,9 +214,12 @@ class ReleasesMixin(MusicBrainzBase):
         if response is not None and response.status_code == 200:
             try:
                 data: dict = response.json()
+                await self._cache_set(cache_key, {"release": data}, "release", url)
                 return data
             except Exception as exc:
                 logger.warning("Failed to parse release response for %s: %s", release_id, exc)
+        if response is not None and response.status_code == 404:
+            await self._cache_set(cache_key, {"release": None}, "not_found")
         return None
 
     async def get_release_group_by_id(
@@ -196,6 +228,12 @@ class ReleasesMixin(MusicBrainzBase):
         includes: list[str] | None = None,
     ) -> dict | None:
         """Get release group by MBID."""
+        inc = "+".join(sorted(includes)) if includes else ""
+        cache_key = f"get_release_group:{rg_id}:{inc}"
+
+        if cached := await self._cache_get(cache_key):
+            return cached.get("release_group")
+
         params: dict[str, Any] = {"fmt": "json"}
         if includes:
             params["inc"] = "+".join(includes)
@@ -204,7 +242,10 @@ class ReleasesMixin(MusicBrainzBase):
         if response is not None and response.status_code == 200:
             try:
                 data: dict = response.json()
+                await self._cache_set(cache_key, {"release_group": data}, "release", url)
                 return data
             except Exception as exc:
                 logger.warning("Failed to parse release-group response for %s: %s", rg_id, exc)
+        if response is not None and response.status_code == 404:
+            await self._cache_set(cache_key, {"release_group": None}, "not_found")
         return None
