@@ -84,8 +84,8 @@ def _artist_matches(artist: str, recording: dict) -> bool:
         # while still allowing "Danse Society" to match "The Danse Society".
         c = dict_credits[0]
         credit_name = c.get("name") or c.get("artist", {}).get("name", "")
-        norm_credit = normalize(credit_name, nospaces=True)
-        return bool(norm_credit and _norm_no_article(artist) == _norm_no_article(credit_name))
+        norm_credit = _norm_no_article(credit_name)
+        return bool(norm_credit and norm_credit == _norm_no_article(artist))
 
     # Multi-artist: every individual credit must appear in the input artist string
     for credit in dict_credits:
