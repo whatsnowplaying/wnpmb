@@ -48,6 +48,13 @@ def _norm_no_article(s: str) -> str:
     return normalize(_ARTICLE_RE.sub("", s), nospaces=True) or ""
 
 
+def _title_matches_exactly(title: str, recording: dict) -> bool:
+    """Return True if the recording's title normalizes to the same string as title."""
+    norm_input = normalize(title, nospaces=True)
+    norm_rec = normalize(recording.get("title", ""), nospaces=True)
+    return bool(norm_input and norm_rec and norm_input == norm_rec)
+
+
 def _artist_matches(artist: str, recording: dict) -> bool:
     """Return True if the recording's artist credits match the input artist string.
 
@@ -192,6 +199,7 @@ def _score_recording(
 
 def select_recording(
     recordings: list[dict],
+    title: str | None = None,
     artist: str | None = None,
     album: str | None = None,
     allow_others: bool = False,
@@ -201,9 +209,12 @@ def select_recording(
     Pick the best recording MBID from a list of search-result recording dicts.
 
     1. Hard-filter: drop recordings with no releases or mismatched artist.
-    2. Score each remaining candidate via _score_recording() and sort
-       highest-first — favours originals (first-release-date), recordings
-       with ISRCs, and those matching the supplied album/year context.
+    2. Sort candidates: exact title matches first, then by _score_recording()
+       score descending.  Exact-title-first prevents a remix or extended version
+       (which may have more releases) ranking above the plain recording when the
+       input title has no suffix.  If the input title has no suffix and the user
+       genuinely played the extended version, we cannot know that from metadata
+       alone — the caller is expected to pass the title as-is.
     3. Walk sorted candidates applying release-level checks:
        - If album is provided, only accept releases whose title matches.
        - Save Various Artists releases as a last-resort fallback.
@@ -220,7 +231,13 @@ def select_recording(
     if not candidates:
         return None
 
-    candidates.sort(key=lambda rec: _score_recording(rec, album=album, year=year), reverse=True)
+    candidates.sort(
+        key=lambda rec: (
+            _title_matches_exactly(title, rec) if title else True,
+            _score_recording(rec, album=album, year=year),
+        ),
+        reverse=True,
+    )
 
     norm_album = normalize(album) if album else None
     various_artist_fallback: str | None = None
@@ -359,7 +376,9 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                         title=title, artist_id=artist_ids, album=search_album, year=year
                     )
                 if recs and count > 0:
-                    if mbid := select_recording(recs, artist=artist, album=search_album, year=year):
+                    if mbid := select_recording(
+                        recs, title=title, artist=artist, album=search_album, year=year
+                    ):
                         return mbid
 
         async def _search_and_select(
@@ -401,6 +420,7 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
 
             return select_recording(
                 recordings,
+                title=title,
                 artist=artist,
                 album=search_album,
                 allow_others=allow_others,
