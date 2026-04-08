@@ -5,6 +5,7 @@ from __future__ import annotations
 import contextlib
 import logging
 import re
+from datetime import date as _date
 
 from ..normalization import REMIX_RE, generate_artist_variations, is_compilation_or_live, normalize
 from ._artists import ArtistsMixin
@@ -23,6 +24,7 @@ _ARTICLE_RE: re.Pattern[str] = re.compile(r"^(?:the|a|an)\s+", re.IGNORECASE)
 # Scoring weights for _score_recording
 _W_ISRC: int = 50  # per ISRC present on the recording
 _W_FRD_SCALE: int = 10  # multiplied by (2100 − first_release_year)
+_FRD_ANCHOR: _date = _date(2100, 1, 1)  # reference point for date tiebreaker
 _W_YEAR_EXACT: int = 500  # hint year matches first-release-date exactly
 _W_YEAR_OFF1: int = 300  # hint year within 1 year
 _W_YEAR_OFF2: int = 150  # hint year within 2 years
@@ -41,6 +43,28 @@ _W_ARTIST_CREDIT: int = 5  # per artist-credit entry
 _W_DISAMBIGUATION: int = 10  # recording has a disambiguation comment
 
 logger = logging.getLogger(__name__)
+
+
+def _frd_days(recording: dict) -> int:
+    """Days from a recording's first-release-date to _FRD_ANCHOR (higher = older = better).
+
+    Parses the full date when available so that same-year recordings are
+    ordered by month and day, not just year.  Partial dates (year-only or
+    year+month) default to mid-year / mid-month to avoid artificially
+    favouring them over fully-specified dates in the same period.
+    Returns 0 when no parseable date is present.
+    """
+    frd = recording.get("first-release-date")
+    if not frd:
+        return 0
+    with contextlib.suppress(ValueError, IndexError):
+        parts = str(frd).split("-")
+        yr = int(parts[0])
+        if 0 < yr <= 2100:
+            mo = int(parts[1]) if len(parts) > 1 else 7
+            dy = int(parts[2]) if len(parts) > 2 else 15
+            return (_FRD_ANCHOR - _date(yr, min(mo, 12), min(dy, 28))).days
+    return 0
 
 
 def _norm_no_article(s: str) -> str:
@@ -232,6 +256,7 @@ def select_recording(
         key=lambda rec: (
             norm_title == normalize(rec.get("title", ""), nospaces=True),
             _score_recording(rec, album=album, year=year),
+            _frd_days(rec),
         ),
         reverse=True,
     )
