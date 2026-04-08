@@ -13,6 +13,7 @@ from ._recordings import RecordingsMixin
 
 _ARID_SCORE_THRESHOLD: int = 70
 _ARID_COUNT_CEILING: int = 150
+_PAGE_SIZE: int = 100  # MusicBrainz API max results per page
 _SEARCH_RESULTS_CAP: int = 500  # max recordings to collect across all pages
 _DATE_YEAR_RE: re.Pattern[str] = re.compile(r"\b(19\d{2}|20\d{2})\b")
 
@@ -358,7 +359,7 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                 title=title,
                 artist_name=artist_var,
                 album=search_album,
-                limit=100,
+                limit=_PAGE_SIZE,
             )
             if count == 0:
                 logger.debug("no recordings found for %r / %r", title, artist_var)
@@ -370,21 +371,21 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             # The per-page count is the same total as the first page for a
             # stable MB query, so we reuse `count` and ignore it on subsequent
             # pages rather than re-validating on every call.
-            offset = 100
+            offset = _PAGE_SIZE
             while offset < min(count, _SEARCH_RESULTS_CAP):
                 page, _ = await self.search_recordings(
                     title=title,
                     artist_name=artist_var,
                     album=search_album,
-                    limit=100,
+                    limit=_PAGE_SIZE,
                     offset=offset,
                 )
                 if not page:
                     break
                 recordings.extend(page)
-                if len(page) < 100:
+                if len(page) < _PAGE_SIZE:
                     break
-                offset += 100
+                offset += _PAGE_SIZE
 
             return select_recording(
                 recordings,
