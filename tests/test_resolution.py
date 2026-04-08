@@ -247,6 +247,21 @@ async def test_kelly_shoes_not_vance_kelly():
     assert result.get("musicbrainz_artist_id") != ["1e6a613d-2f00-4ed4-a1d8-35b262251696"]
 
 
+# ── Rebbie Jackson ────────────────────────────────────────────────────────────
+
+
+async def test_rebbie_jackson_centipede_not_extended():
+    """Plain title must not match a remix/extended recording with a suffix.
+
+    Real-world regression: 'Centipede' (no suffix) was resolved to
+    'Centipede (extended version)' because the extended version had more
+    releases and scored higher before exact-title preference was added.
+    """
+    result = await _resolve("Centipede", "Rebbie Jackson")
+    assert result.get("musicbrainz_recording_id") != "769cfcb9-331b-41a1-a3ab-eba78793b2d9"
+    assert result.get("musicbrainz_artist_id") == ["78bb7e34-0e7f-4103-b180-5274d11e50da"]
+
+
 # ── Jackie Lipson ─────────────────────────────────────────────────────────────
 
 
