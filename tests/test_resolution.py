@@ -233,6 +233,20 @@ async def test_utter_lunacy_monster_mash():
     assert result["album"] == "Leatherface: The Texas Chainsaw Massacre III"
 
 
+# ── Kelly / Shoes false-positive ─────────────────────────────────────────────
+
+
+async def test_kelly_shoes_not_vance_kelly():
+    """Single-word surname must not substring-match a longer artist name.
+
+    Real-world regression: Artist='Kelly' Title='Shoes' (a local video file)
+    was incorrectly matched to 'Vance Kelly & His Backstreet Blues Band' because
+    'kelly' is a substring of 'vancekelly' in the old nospaces comparison.
+    """
+    result = await _resolve("Shoes", "Kelly")
+    assert result.get("musicbrainz_artist_id") != ["1e6a613d-2f00-4ed4-a1d8-35b262251696"]
+
+
 # ── Jackie Lipson ─────────────────────────────────────────────────────────────
 
 
