@@ -54,11 +54,13 @@ STRIPWORDLIST: list[str] = [
 
 # Sorted longest-first so longer patterns match before their substrings do.
 SORTED_STRIPWORDLIST: list[str] = sorted(STRIPWORDLIST, key=len, reverse=True)
+# re.escape each term so that future additions with metacharacters stay safe.
+_STRIPWORD_PATTERN: str = "|".join(map(re.escape, SORTED_STRIPWORDLIST))
 
 STRIPRELIST: list[re.Pattern[str]] = [
-    re.compile(f" \((?:{'|'.join(SORTED_STRIPWORDLIST)})\)", re.IGNORECASE),
-    re.compile(f" - (?:{'|'.join(SORTED_STRIPWORDLIST)}$)", re.IGNORECASE),
-    re.compile(f" \[(?:{'|'.join(SORTED_STRIPWORDLIST)})\]", re.IGNORECASE),
+    re.compile(rf" \((?:{_STRIPWORD_PATTERN})\)", re.IGNORECASE),
+    re.compile(rf" - (?:{_STRIPWORD_PATTERN}$)", re.IGNORECASE),
+    re.compile(rf" \[(?:{_STRIPWORD_PATTERN})\]", re.IGNORECASE),
 ]
 
 # ── Character normalization ────────────────────────────────────────────────────

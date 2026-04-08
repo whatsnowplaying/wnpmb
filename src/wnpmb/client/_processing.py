@@ -17,6 +17,9 @@ from ._artists import ArtistsMixin
 
 logger = logging.getLogger(__name__)
 
+_PAGE_SIZE: int = 100  # MusicBrainz API max results per page
+_BROWSE_RESULTS_CAP: int = 1000  # max releases to collect across all pages
+
 
 class EnrichedRecordingData(TypedDict):
     """
@@ -42,6 +45,33 @@ class EnrichedRecordingData(TypedDict):
 
 class ProcessingMixin(ArtistsMixin):
     """collect_tags, process_recording_data."""
+
+    async def _collect_releases(self, browse_kwargs: dict) -> list[dict]:
+        """
+        Fetch all release pages for a browse_releases query up to _BROWSE_RESULTS_CAP.
+
+        Starts with the first page included in browse_kwargs, then paginates
+        using offset increments of _PAGE_SIZE.  Stops early when a page is
+        empty or shorter than _PAGE_SIZE (server has no more results).
+        """
+        from ._releases import ReleasesMixin  # avoid circular at module level
+
+        assert isinstance(self, ReleasesMixin)
+
+        first_page = await self.browse_releases(**browse_kwargs)
+        releases: list[dict] = list(first_page.get("releases", []))
+        total: int = first_page.get("release-count", 0)
+        offset = _PAGE_SIZE
+        while offset < min(total, _BROWSE_RESULTS_CAP):
+            page = await self.browse_releases(**browse_kwargs, offset=offset)
+            batch = page.get("releases", [])
+            if not batch:
+                break
+            releases.extend(batch)
+            if len(batch) < _PAGE_SIZE:
+                break
+            offset += _PAGE_SIZE
+        return releases
 
     async def collect_tags(
         self,
@@ -125,38 +155,27 @@ class ProcessingMixin(ArtistsMixin):
 
         # Fetch the full official release list via paginated browse, then fall
         # back to all releases if nothing official exists.
-        browse_kwargs: dict = {
-            "recording": recording_id,
-            "includes": ["artist-credits", "labels", "release-groups"],
-            "limit": 100,
-            "release_status": ["official"],
-        }
-        first_page = await self.browse_releases(**browse_kwargs)
-        official_releases: list[dict] = list(first_page.get("releases", []))
-        total: int = first_page.get("release-count", 0)
-        offset = 100
-        while offset < total:
-            page = await self.browse_releases(**browse_kwargs, offset=offset)
-            official_releases.extend(page.get("releases", []))
-            offset += 100
+        _inc = ["artist-credits", "labels", "release-groups"]
+        official_releases = await self._collect_releases(
+            {
+                "recording": recording_id,
+                "includes": _inc,
+                "limit": _PAGE_SIZE,
+                "release_status": ["official"],
+            }
+        )
 
         releases: list[dict]
         if official_releases:
             releases = official_releases
         else:
-            all_kwargs: dict = {
-                "recording": recording_id,
-                "includes": ["artist-credits", "labels", "release-groups"],
-                "limit": 100,
-            }
-            all_first = await self.browse_releases(**all_kwargs)
-            all_releases: list[dict] = list(all_first.get("releases", []))
-            all_total: int = all_first.get("release-count", 0)
-            all_offset = 100
-            while all_offset < all_total:
-                all_page = await self.browse_releases(**all_kwargs, offset=all_offset)
-                all_releases.extend(all_page.get("releases", []))
-                all_offset += 100
+            all_releases = await self._collect_releases(
+                {
+                    "recording": recording_id,
+                    "includes": _inc,
+                    "limit": _PAGE_SIZE,
+                }
+            )
             releases = all_releases or mb_data.get("releases", [])
 
         best_release = select_best_release(
