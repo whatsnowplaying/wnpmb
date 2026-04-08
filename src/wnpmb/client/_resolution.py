@@ -16,6 +16,9 @@ _ARID_COUNT_CEILING: int = 150
 _PAGE_SIZE: int = 100  # MusicBrainz API max results per page
 _SEARCH_RESULTS_CAP: int = 500  # max recordings to collect across all pages
 _DATE_YEAR_RE: re.Pattern[str] = re.compile(r"\b(19\d{2}|20\d{2})\b")
+# Strip leading articles before comparing artist names so "Danse Society"
+# matches "The Danse Society" without allowing "Kelly" to match "Vance Kelly".
+_ARTICLE_RE: re.Pattern[str] = re.compile(r"^(?:the|a|an)\s+", re.IGNORECASE)
 
 # Scoring weights for _score_recording
 _W_ISRC: int = 50  # per ISRC present on the recording
@@ -40,11 +43,18 @@ _W_DISAMBIGUATION: int = 10  # recording has a disambiguation comment
 logger = logging.getLogger(__name__)
 
 
+def _norm_no_article(s: str) -> str:
+    """Normalize s after stripping a leading article (the/a/an)."""
+    return normalize(_ARTICLE_RE.sub("", s), nospaces=True) or ""
+
+
 def _artist_matches(artist: str, recording: dict) -> bool:
     """Return True if the recording's artist credits match the input artist string.
 
-    For single-artist recordings the input artist must appear within the credit
-    name (handles "The Beatles" vs "Beatles" lookups).
+    For single-artist recordings the article-stripped, normalized input must
+    equal the article-stripped, normalized credit name.  This lets "Danse
+    Society" match "The Danse Society" while preventing a surname like "Kelly"
+    from matching "Vance Kelly".
 
     For multi-artist recordings ALL individual credit names must appear within
     the input artist string — so "Prince" alone will not match a recording
@@ -69,11 +79,13 @@ def _artist_matches(artist: str, recording: dict) -> bool:
         return True  # can't verify, allow through
 
     if len(dict_credits) == 1:
-        # Single artist: input must appear in (or equal) the credit name
+        # Single artist: article-stripped names must be equal.
+        # Equality (not substring) prevents "Kelly" matching "Vance Kelly"
+        # while still allowing "Danse Society" to match "The Danse Society".
         c = dict_credits[0]
         credit_name = c.get("name") or c.get("artist", {}).get("name", "")
-        norm_credit = normalize(credit_name, nospaces=True)
-        return bool(norm_credit and norm_artist in norm_credit)
+        norm_credit = _norm_no_article(credit_name)
+        return bool(norm_credit and norm_credit == _norm_no_article(artist))
 
     # Multi-artist: every individual credit must appear in the input artist string
     for credit in dict_credits:

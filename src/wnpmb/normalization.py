@@ -356,7 +356,7 @@ def build_recording_query(
     year of the supplied value — useful when a common title/artist combination
     returns too many results to disambiguate by name alone.
     """
-    parts = [f'"{sanitize_query_value(title)}"']
+    parts = [f'recording:"{sanitize_query_value(title)}"']
 
     if artist_id:
         if isinstance(artist_id, list):
