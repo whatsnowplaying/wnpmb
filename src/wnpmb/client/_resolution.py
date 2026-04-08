@@ -48,13 +48,6 @@ def _norm_no_article(s: str) -> str:
     return normalize(_ARTICLE_RE.sub("", s), nospaces=True) or ""
 
 
-def _title_matches_exactly(title: str, recording: dict) -> bool:
-    """Return True if the recording's title normalizes to the same string as title."""
-    norm_input = normalize(title, nospaces=True)
-    norm_rec = normalize(recording.get("title", ""), nospaces=True)
-    return bool(norm_input and norm_rec and norm_input == norm_rec)
-
-
 def _artist_matches(artist: str, recording: dict) -> bool:
     """Return True if the recording's artist credits match the input artist string.
 
@@ -231,9 +224,13 @@ def select_recording(
     if not candidates:
         return None
 
+    # Precompute normalized input title once; compare per-candidate title in
+    # the sort key so exact matches always rank above suffix variants (e.g.
+    # "Centipede" before "Centipede (extended version)"), with score as tiebreaker.
+    norm_title = normalize(title, nospaces=True) if title else ""
     candidates.sort(
         key=lambda rec: (
-            _title_matches_exactly(title, rec) if title else True,
+            norm_title == normalize(rec.get("title", ""), nospaces=True),
             _score_recording(rec, album=album, year=year),
         ),
         reverse=True,
