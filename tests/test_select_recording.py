@@ -105,6 +105,47 @@ def test_all_three_picks_earliest():
     }
 
 
+# ── Usher "Yeah!" — primary-artist feat. match ───────────────────────────────
+
+# Real-world regression: "Yeah!" by Usher is credited to
+# "Usher feat. Lil Jon & Ludacris" (3 credits).  The multi-artist all-credits
+# check requires every credit to appear in the input; "lil jon" is not in
+# "usher", so the real recording was filtered and a karaoke cover won.
+# The last-resort primary-artist+feat. branch must allow "Usher" to match.
+
+_USHER_FEAT_CREDIT = [
+    {"name": "Usher", "artist": {"name": "Usher"}, "joinphrase": " feat. "},
+    {"name": "Lil Jon", "artist": {"name": "Lil Jon"}, "joinphrase": " & "},
+    {"name": "Ludacris", "artist": {"name": "Ludacris"}, "joinphrase": ""},
+]
+_KARAOKE_CREDIT = [{"artist": {"name": "Various Karaoke Artists"}}]
+
+
+def test_usher_feat_matches_single_artist_input():
+    """Primary-artist input matches a feat. recording; karaoke cover (no ISRC) loses."""
+    real = {
+        "id": "4f595ab5-0000-0000-0000-000000000000",
+        "title": "Yeah!",
+        "first-release-date": "2004-01-01",
+        "artist-credit": _USHER_FEAT_CREDIT,
+        "isrcs": ["USRC10400241"],
+        "releases": [_release("Confessions", "2004-03-23")] * 3,
+    }
+    karaoke = {
+        "id": "237f3be8-0000-0000-0000-000000000000",
+        "title": "Yeah!",
+        "first-release-date": "2004-06-01",
+        "artist-credit": _KARAOKE_CREDIT,
+        "releases": [_release("The Smash! Hits Chart Karaoke Album!", "2004-06-01")] * 2,
+    }
+    result = select_recording(
+        [karaoke, real],
+        title="Yeah!",
+        artist="Usher",
+    )
+    assert result == "4f595ab5-0000-0000-0000-000000000000"
+
+
 def test_exact_title_beats_extended_version():
     """Exact title match is preferred over a recording with a remix suffix."""
     plain = _rec(

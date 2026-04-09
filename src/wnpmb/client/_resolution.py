@@ -20,6 +20,10 @@ _DATE_YEAR_RE: re.Pattern[str] = re.compile(r"\b(19\d{2}|20\d{2})\b")
 # Strip leading articles before comparing artist names so "Danse Society"
 # matches "The Danse Society" without allowing "Kelly" to match "Vance Kelly".
 _ARTICLE_RE: re.Pattern[str] = re.compile(r"^(?:the|a|an)\s+", re.IGNORECASE)
+# Join phrases in MB artist-credit that indicate a featured (not co-equal) artist.
+# "Prince & The Revolution" uses "&", so it is NOT matched by this pattern,
+# but "Usher feat. Lil Jon & Ludacris" has " feat. " as the first join phrase.
+_FEAT_JOIN_RE: re.Pattern[str] = re.compile(r"\bfeat(?:uring)?\.?\b", re.IGNORECASE)
 
 # Scoring weights for _score_recording
 _W_ISRC: int = 50  # per ISRC present on the recording
@@ -111,13 +115,32 @@ def _artist_matches(artist: str, recording: dict) -> bool:
         norm_credit = _norm_no_article(credit_name)
         return bool(norm_credit and norm_credit == _norm_no_article(artist))
 
-    # Multi-artist: every individual credit must appear in the input artist string
-    for credit in dict_credits:
-        credit_name = credit.get("name") or credit.get("artist", {}).get("name", "")
-        norm_credit = normalize(credit_name, nospaces=True)
-        if not norm_credit or norm_credit not in norm_artist:
-            return False
-    return True
+    # Multi-artist: every individual credit must appear in the input artist string.
+    # Try this first so "Prince & The Revolution" matches the full input correctly.
+    all_match = all(
+        (
+            norm_credit := normalize(
+                c.get("name") or c.get("artist", {}).get("name", ""), nospaces=True
+            )
+        )
+        and norm_credit in norm_artist
+        for c in dict_credits
+    )
+    if all_match:
+        return True
+
+    # Last resort: primary credit matches the input by equality and the first
+    # join phrase is a "feat." variant — the remaining credits are supplementary.
+    # This allows input "Usher" to match "Usher feat. Lil Jon & Ludacris" while
+    # still blocking "Prince" from matching "Prince & The Revolution" (join is "&").
+    first = dict_credits[0]
+    first_name = first.get("name") or first.get("artist", {}).get("name", "")
+    first_join = first.get("joinphrase", "")
+    return bool(
+        _norm_no_article(first_name)
+        and _norm_no_article(first_name) == _norm_no_article(artist)
+        and _FEAT_JOIN_RE.search(first_join)
+    )
 
 
 def _score_recording(
@@ -263,8 +286,17 @@ def select_recording(
 
     norm_album = normalize(album) if album else None
     various_artist_fallback: str | None = None
+    # ISRC + exact-title recording whose inline releases were all filtered:
+    # saved so it can be preferred over a qualifying no-ISRC recording (e.g.
+    # a karaoke cover whose release is not flagged as a compilation in MB).
+    isrc_exact_fallback: str | None = None
 
     for recording in candidates:
+        is_exact = bool(
+            norm_title and norm_title == normalize(recording.get("title", ""), nospaces=True)
+        )
+        has_isrc = bool(recording.get("isrcs"))
+
         for release in recording.get("releases", []):
             release_title = release.get("title", "")
 
@@ -283,9 +315,32 @@ def select_recording(
                 logger.debug("skipped %r — compilation/live", release_title)
                 continue
 
+            # Release qualifies.  If we already saved an ISRC+exact-title
+            # recording whose inline releases were all filtered, prefer it
+            # over a no-ISRC recording — karaoke / tribute covers typically
+            # lack ISRCs while commercially released recordings have them.
+            if isrc_exact_fallback and not has_isrc:
+                logger.debug(
+                    "preferring isrc+exact-title fallback %s over no-isrc %s",
+                    isrc_exact_fallback,
+                    recording["id"],
+                )
+                return isrc_exact_fallback
+
             logger.debug("selected recording %s via release %r", recording["id"], release_title)
             return recording["id"]
 
+        # All releases were filtered for this recording.  Save as ISRC+exact
+        # fallback if it qualifies — used when only no-ISRC recordings survive
+        # the release walk (e.g. when the real recording's inline search data
+        # shows only compilations while a karaoke cover has a plain album).
+        if is_exact and has_isrc and isrc_exact_fallback is None:
+            isrc_exact_fallback = recording["id"]
+            logger.debug("saving isrc+exact-title fallback %s", isrc_exact_fallback)
+
+    if isrc_exact_fallback:
+        logger.debug("using isrc+exact-title fallback %s", isrc_exact_fallback)
+        return isrc_exact_fallback
     if various_artist_fallback:
         logger.debug("using various-artist fallback %s", various_artist_fallback)
         return various_artist_fallback
