@@ -163,6 +163,7 @@ class MusicBrainzBase:
                 timeout=self.timeout,
                 verify=ssl_context,
                 follow_redirects=True,
+                http2=True,
             )
 
     async def close(self) -> None:
