@@ -404,9 +404,17 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                 if mbid not in seen or score > seen[mbid][1]:
                     seen[mbid] = (name, score)
 
+        norm_input = normalize(artist, nospaces=True) or ""
         result: list[str] = []
         for mbid, (name, _) in sorted(seen.items(), key=lambda entry: -entry[1][1]):
-            if input_vars & set(generate_artist_variations(name)):
+            # Accept if any variation overlaps, OR if both names normalize
+            # identically (handles punctuation-heavy names like "Run-D.M.C."
+            # where generate_artist_variations produces no overlap with "Run DMC"
+            # but normalize() strips all dots and hyphens to "rundmc" on both sides).
+            name_norm = normalize(name, nospaces=True) or ""
+            if (input_vars & set(generate_artist_variations(name))) or (
+                norm_input and norm_input == name_norm
+            ):
                 result.append(mbid)
         return result
 
@@ -519,6 +527,27 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
         for artist_var in artist_vars:
             if mbid := await _search_and_select(artist_var, None, allow_others=True):
                 return mbid
+
+        # Pass 4: arid-based fallback for ASCII artists where name-based search
+        # failed.  MB's Lucene recording index does not resolve artist aliases
+        # (e.g. "Run DMC" → "Run-D.M.C."), but the artist search does.  Only
+        # attempted after all name-based passes fail to avoid extra API calls.
+        if not artist_ids:
+            artist_ids = await self._find_artist_ids(artist)
+        if artist_ids:
+            for search_album in [album, None] if album else [None]:
+                recs, count = await self.search_recordings(
+                    title=title, artist_id=artist_ids, album=search_album
+                )
+                if count > _ARID_COUNT_CEILING and year:
+                    recs, count = await self.search_recordings(
+                        title=title, artist_id=artist_ids, album=search_album, year=year
+                    )
+                if recs and count > 0:
+                    if mbid := select_recording(
+                        recs, title=title, artist=artist, album=search_album, year=year
+                    ):
+                        return mbid
 
         logger.debug("find_recording_by_search failed for %r / %r", title, artist)
         return None

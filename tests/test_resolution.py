@@ -233,7 +233,35 @@ async def test_utter_lunacy_monster_mash():
     assert result["album"] == "Leatherface: The Texas Chainsaw Massacre III"
 
 
+# ── Run-D.M.C. ───────────────────────────────────────────────────────────────
+
+
+async def test_run_dmc_hit_it_run():
+    """Punctuation-heavy artist name resolved via normalized cross-check.
+
+    Real-world regression: 'Run DMC' failed to resolve to 'Run-D.M.C.' because
+    MB's Lucene recording index does not expand artist aliases, and the
+    generate_artist_variations cross-check produced no overlap between
+    'run dmc' and {'run d m c', 'run-d.m.c.'}.  The normalize() fallback
+    in _find_artist_ids now catches these via the 'rundmc' == 'rundmc' match.
+    """
+    result = await _resolve("Hit It Run", "Run DMC")
+    assert result["musicbrainz_artist_id"] == ["5ecc3f72-20a6-47a0-8dc5-fb0b3dadeea0"]
+    assert result["album"] == "Raising Hell"
+
+
 # ── Kelly / Shoes false-positive ─────────────────────────────────────────────
+
+
+async def test_pale_friends_not_pale_new_dream():
+    """Short artist name must not substring-match a longer artist name.
+
+    Real-world regression: Artist='Pale' Title='Friends' was incorrectly
+    matched to 'Pale New Dream' because 'pale' is a substring of
+    'palenewdream' in the old nospaces comparison.
+    """
+    result = await _resolve("Friends", "Pale")
+    assert result.get("musicbrainz_artist_id") == ["84ca087a-ce90-46a2-8db2-bf114a9ac584"]
 
 
 async def test_kelly_shoes_not_vance_kelly():
@@ -271,6 +299,21 @@ async def test_jackie_lipson_someday_not_found():
     assert not result.get("musicbrainz_artist_id")
     assert not result.get("musicbrainz_recording_id")
     assert not result.get("album")
+
+
+# ── Magazine ─────────────────────────────────────────────────────────────────
+
+
+async def test_magazine_shot_by_both_sides():
+    """Original album must win over a later compilation.
+
+    Real-world regression: 'Shot by Both Sides' was resolved to
+    'Only After Dark: Nick Rhodes & John Taylor Present...' (2006)
+    instead of the original 'Real Life' (1978) album.
+    """
+    result = await _resolve("Shot by Both Sides", "Magazine")
+    assert result["musicbrainz_artist_id"] == ["043324ca-100d-48ce-8c7c-fd015afc103b"]
+    assert result["album"] == "Real Life"
 
 
 # ── AC/DC TNT ─────────────────────────────────────────────────────────────────
