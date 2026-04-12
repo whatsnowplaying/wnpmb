@@ -411,10 +411,9 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             # identically (handles punctuation-heavy names like "Run-D.M.C."
             # where generate_artist_variations produces no overlap with "Run DMC"
             # but normalize() strips all dots and hyphens to "rundmc" on both sides).
+            name_vars = set(generate_artist_variations(name))
             name_norm = normalize(name, nospaces=True) or ""
-            if (input_vars & set(generate_artist_variations(name))) or (
-                norm_input and norm_input == name_norm
-            ):
+            if (input_vars & name_vars) or (norm_input and norm_input == name_norm):
                 result.append(mbid)
         return result
 
@@ -442,6 +441,22 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
         """
         artist_vars = generate_artist_variations(artist)
 
+        async def _arid_search_and_select(arids: list[str], search_album: str | None) -> str | None:
+            recs, count = await self.search_recordings(
+                title=title, artist_id=arids, album=search_album
+            )
+            if count > _ARID_COUNT_CEILING:
+                if not year:
+                    return None
+                recs, count = await self.search_recordings(
+                    title=title, artist_id=arids, album=search_album, year=year
+                )
+            if recs and count > 0:
+                return select_recording(
+                    recs, title=title, artist=artist, album=search_album, year=year
+                )
+            return None
+
         # Pass 0: arid-based search via sort-name / alias resolution.
         # Only attempted for non-ASCII artist names where transliteration-based
         # search may fail (e.g. Cyrillic/Greek-like characters in MOЯIS BLAK).
@@ -451,20 +466,8 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             artist_ids = await self._find_artist_ids(artist)
         if artist_ids:
             for search_album in [album, None] if album else [None]:
-                recs, count = await self.search_recordings(
-                    title=title, artist_id=artist_ids, album=search_album
-                )
-                if count > _ARID_COUNT_CEILING:
-                    if not year:
-                        continue
-                    recs, count = await self.search_recordings(
-                        title=title, artist_id=artist_ids, album=search_album, year=year
-                    )
-                if recs and count > 0:
-                    if mbid := select_recording(
-                        recs, title=title, artist=artist, album=search_album, year=year
-                    ):
-                        return mbid
+                if mbid := await _arid_search_and_select(artist_ids, search_album):
+                    return mbid
 
         async def _search_and_select(
             artist_var: str,
@@ -536,18 +539,8 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             artist_ids = await self._find_artist_ids(artist)
         if artist_ids:
             for search_album in [album, None] if album else [None]:
-                recs, count = await self.search_recordings(
-                    title=title, artist_id=artist_ids, album=search_album
-                )
-                if count > _ARID_COUNT_CEILING and year:
-                    recs, count = await self.search_recordings(
-                        title=title, artist_id=artist_ids, album=search_album, year=year
-                    )
-                if recs and count > 0:
-                    if mbid := select_recording(
-                        recs, title=title, artist=artist, album=search_album, year=year
-                    ):
-                        return mbid
+                if mbid := await _arid_search_and_select(artist_ids, search_album):
+                    return mbid
 
         logger.debug("find_recording_by_search failed for %r / %r", title, artist)
         return None
