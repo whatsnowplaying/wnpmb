@@ -528,8 +528,9 @@ async def test_context_manager_closes_session():
 
 async def test_set_useragent():
     mb = MusicBrainzClient()
-    mb.set_useragent("myapp", "1.0", "test@example.com")
-    assert mb.user_agent == "myapp/1.0 ( test@example.com )"
+    mb.set_useragent("test@example.com")
+    assert mb.user_agent.startswith("whatsnowplaying-wnpmb/")
+    assert mb.user_agent.endswith("( test@example.com )")
 
 
 # ── rate limiting ──────────────────────────────────────────────────────────────
