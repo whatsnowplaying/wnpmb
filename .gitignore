@@ -28,3 +28,4 @@ MANIFEST
 
 # OS
 .DS_Store
+src/wnpmb/_version.py
