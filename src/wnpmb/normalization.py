@@ -77,13 +77,13 @@ CUSTOM_TRANSLATE: dict[int, int] = str.maketrans(
 
 ARTIST_VARIATIONS_RE: list[re.Pattern[str]] = [
     re.compile("(?i)^the (.*)"),
-    re.compile(r"(?i)^(.*?)( feat.* .*)$"),
-    re.compile(r"(?i)^(.*?)( ft\.? .*)$"),
+    re.compile(r"(?i)^(.*?)( & .*)$"),  # least aggressive: strips last collaborator
     re.compile(r"(?i)^(.*?)( featuring .*)$"),
+    re.compile(r"(?i)^(.*?)( ft\.? .*)$"),
+    re.compile(r"(?i)^(.*?)( feat.* .*)$"),  # most aggressive: strips from first feat
     re.compile(r"(?i)^(.*?)( with .*)$"),
     re.compile(r"(?i)^(.*?)( vs\.? .*)$"),
     re.compile(r"(?i)^(.*?)( x .*)$"),
-    re.compile(r"(?i)^(.*?)( & .*)$"),
     re.compile(r"(?i)^(.*?)( presents .*)$"),
 ]
 
