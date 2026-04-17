@@ -87,6 +87,12 @@ ARTIST_VARIATIONS_RE: list[re.Pattern[str]] = [
     re.compile(r"(?i)^(.*?)( presents .*)$"),
 ]
 
+# Trailing conjunctions left behind when a pattern strips a suffix that itself
+# contained a conjunction (e.g. "feat j and featuring u" → "g feat j and").
+_TRAILING_CONJUNCTION_RE: re.Pattern[str] = re.compile(
+    r"\s+(?:and|&|or|with|feat\.?|ft\.?)\s*$", re.IGNORECASE
+)
+
 REMIX_RE: re.Pattern[str] = re.compile(r"^\s*(.*)\s+[\(\[].*[\)\]]$")
 
 # ── Text normalization ─────────────────────────────────────────────────────────
@@ -156,7 +162,9 @@ def generate_artist_variations(artist_name: str) -> list[str]:
 
     for recheck in ARTIST_VARIATIONS_RE:
         if matched := recheck.match(lowername):
-            matchstr = matched.group(1)
+            matchstr = _TRAILING_CONJUNCTION_RE.sub("", matched.group(1)).strip()
+            if not matchstr:
+                continue
             names.append(matchstr)
             names.append(matchstr.translate(CUSTOM_TRANSLATE))
             if normalized := normality.normalize(matchstr):
