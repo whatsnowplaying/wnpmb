@@ -9,8 +9,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      packages: write
-      contents: read
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -27,13 +26,12 @@ jobs:
           cache: pip
 
       - name: Install build dependencies
-        run: pip install build twine
+        run: pip install build
 
       - name: Build
         run: python -m build
 
-      - name: Publish to GitHub Packages
+      - name: Create GitHub Release
         env:
-          TWINE_USERNAME: ${{ github.actor }}
-          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-        run: twine upload --repository-url https://pypi.pkg.github.com/whatsnowplaying/ dist/*
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "${{ github.ref_name }}" dist/* --title "${{ github.ref_name }}" --generate-notes
