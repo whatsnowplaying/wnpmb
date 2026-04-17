@@ -21,6 +21,11 @@ import truststore
 
 from ..cache import MusicBrainzCache, TTLSettings
 
+try:
+    from .._version import version as _version
+except ImportError:
+    _version = "0.0.0+unknown"
+
 logger = logging.getLogger(__name__)
 
 # ── Constants ──────────────────────────────────────────────────────────────────
@@ -61,23 +66,29 @@ class RetrySettings:
     Controls retry behaviour for transient HTTP failures.
 
     Attributes:
-        max_retries: Maximum number of retry attempts after the first failure.
-                     Set to 0 to disable retries entirely.
-        wait:        Fixed seconds to sleep between retries.  For live
-                     performance contexts where latency matters, set this low
-                     (e.g. 0.5).  Default is 1.0 s.
+        max_retries:     Retry budget for 429/503 responses and ConnectError.
+                         Set to 0 to disable retries entirely.
+        wait:            Seconds to sleep between rate-limit/connect retries.
+        timeout_retries: Separate retry budget for TimeoutException.  Defaults
+                         to 0 (no timeout retries) — appropriate for live
+                         contexts where a slow server compounds the problem.
+                         Set higher for background enrichment jobs (e.g. charts).
+        timeout_wait:    Seconds to sleep between timeout retries.  Longer than
+                         ``wait`` since the server is already known to be slow.
 
-    Example — disable retries entirely::
-
-        RetrySettings(max_retries=0)
-
-    Example — fast retries for live use::
+    Example — live performance (fail fast on timeout)::
 
         RetrySettings(max_retries=2, wait=0.5)
+
+    Example — background enrichment (retry timeouts)::
+
+        RetrySettings(max_retries=3, wait=1.0, timeout_retries=2, timeout_wait=5.0)
     """
 
     max_retries: int = 3
     wait: float = 1.0
+    timeout_retries: int = 0
+    timeout_wait: float = 2.0
 
 
 # ── Base class ─────────────────────────────────────────────────────────────────
@@ -104,16 +115,16 @@ class MusicBrainzBase:
         "not_found"  — 5 min  (404 results; retry sooner)
 
     Pass ttl_settings=TTLSettings(artist=3600) to override individual fields.
-    Pass retry_settings=RetrySettings(max_retries=2, wait=0.5) to tune retries.
+    Pass retry_settings=RetrySettings(max_retries=2, wait=0.5, timeout_retries=2) to tune retries.
     """
 
-    _DEFAULT_USER_AGENT = "musicbrainz-shared-client/1.0 ( aw@effectivemachines.com )"
+    _DEFAULT_USER_AGENT = f"whatsnowplaying-wnpmb/{_version}"
 
     def __init__(
         self,
         user_agent: str = _DEFAULT_USER_AGENT,
         rate_limit_interval: float = 0.5,
-        timeout: float = 15.0,
+        timeout: float = 5.0,
         cache_service: MusicBrainzCache | None = None,
         ttl_settings: TTLSettings | None = None,
         retry_settings: RetrySettings | None = None,
@@ -136,9 +147,9 @@ class MusicBrainzBase:
 
     # ── Configuration ──────────────────────────────────────────────────────
 
-    def set_useragent(self, app_name: str, app_version: str, contact: str) -> None:
-        """Set the User-Agent header (MusicBrainz requires a contact address)."""
-        self.user_agent = f"{app_name}/{app_version} ( {contact} )"
+    def set_useragent(self, contact: str) -> None:
+        """Set the contact address in the User-Agent header (required by MusicBrainz)."""
+        self.user_agent = f"whatsnowplaying-wnpmb/{_version} ( {contact} )"
         if self._session is not None:
             self._session.headers.update({"User-Agent": self.user_agent})
 
@@ -208,9 +219,10 @@ class MusicBrainzBase:
         """
         GET with rate limiting and retry loop.
 
-        Retries on 429/503 responses and transient network errors
-        (TimeoutException, ConnectError) up to retry_settings.max_retries times,
-        sleeping retry_settings.wait seconds between attempts.
+        429/503 responses and ConnectError are retried up to
+        retry_settings.max_retries times (sleeping retry_settings.wait).
+        TimeoutException uses a separate budget (retry_settings.timeout_retries,
+        default 0) so live callers fail fast while background jobs can retry.
         All other exceptions are logged and return None.
         """
         await self._ensure_session()
@@ -219,9 +231,13 @@ class MusicBrainzBase:
         assert self._session is not None
         max_retries = self.retry_settings.max_retries
         wait = self.retry_settings.wait
+        timeout_retries = self.retry_settings.timeout_retries
+        timeout_wait = self.retry_settings.timeout_wait
+        rl_attempt = 0
+        to_attempt = 0
         last_exc: BaseException | None = None
 
-        for attempt in range(max_retries + 1):
+        while True:
             try:
                 response = await self._session.get(url, params=params)
                 self.api_call_count += 1
@@ -232,12 +248,13 @@ class MusicBrainzBase:
                     self._update_rate_limit_headers(remaining, reset_ts)
 
                 if response.status_code in (429, 503):
-                    if attempt < max_retries:
+                    if rl_attempt < max_retries:
+                        rl_attempt += 1
                         logger.debug(
                             "HTTP %d from %s — retrying (%d/%d)",
                             response.status_code,
                             url,
-                            attempt + 1,
+                            rl_attempt,
                             max_retries,
                         )
                         await asyncio.sleep(wait)
@@ -250,14 +267,29 @@ class MusicBrainzBase:
 
             except RateLimitError:
                 raise
-            except (httpx.TimeoutException, httpx.ConnectError) as exc:
+            except httpx.TimeoutException as exc:
                 last_exc = exc
-                if attempt < max_retries:
+                if to_attempt < timeout_retries:
+                    to_attempt += 1
                     logger.debug(
-                        "Network error from %s (%s) — retrying (%d/%d)",
+                        "Timeout from %s — retrying (%d/%d)",
+                        url,
+                        to_attempt,
+                        timeout_retries,
+                    )
+                    await asyncio.sleep(timeout_wait)
+                    continue
+                logger.warning("MusicBrainz timeout: url=%s", url)
+                return None
+            except httpx.ConnectError as exc:
+                last_exc = exc
+                if rl_attempt < max_retries:
+                    rl_attempt += 1
+                    logger.debug(
+                        "Connect error from %s (%s) — retrying (%d/%d)",
                         url,
                         exc,
-                        attempt + 1,
+                        rl_attempt,
                         max_retries,
                     )
                     await asyncio.sleep(wait)
@@ -266,13 +298,13 @@ class MusicBrainzBase:
                 logger.warning("MusicBrainz non-retryable error: %s", exc)
                 return None
 
-        logger.warning(
-            "MusicBrainz request failed after %d retries: %s  url=%s",
-            max_retries,
-            last_exc,
-            url,
-        )
-        return None
+            logger.warning(
+                "MusicBrainz request failed after %d retries: %s  url=%s",
+                max_retries,
+                last_exc,
+                url,
+            )
+            return None
 
     async def _get_image(self, url: str) -> bytes:
         """GET binary image data (Cover Art Archive)."""
