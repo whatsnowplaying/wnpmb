@@ -126,7 +126,7 @@ def test_generate_deduplication():
             "Grimes feat Janelle Monáe",
             ["grimes feat janelle monáe", "grimes feat janelle monae", "grimes"],
         ),
-        ("G feat J and featuring U", ["g feat j and featuring u", "g", "g feat j"]),
+        ("G feat J and featuring U", ["g feat j and featuring u", "g feat j", "g"]),
         (
             "MӨЯIS BLΛK feat. grabyourface",
             [
