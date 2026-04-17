@@ -90,7 +90,7 @@ ARTIST_VARIATIONS_RE: list[re.Pattern[str]] = [
 # Trailing conjunctions left behind when a pattern strips a suffix that itself
 # contained a conjunction (e.g. "feat j and featuring u" → "g feat j and").
 _TRAILING_CONJUNCTION_RE: re.Pattern[str] = re.compile(
-    r"\s+(and|&|or|x|with|feat\.?|ft\.?)\s*$", re.IGNORECASE
+    r"\s+(?:and|&|or|with|feat\.?|ft\.?)\s*$", re.IGNORECASE
 )
 
 REMIX_RE: re.Pattern[str] = re.compile(r"^\s*(.*)\s+[\(\[].*[\)\]]$")
