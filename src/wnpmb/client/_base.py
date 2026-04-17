@@ -148,7 +148,11 @@ class MusicBrainzBase:
     # ── Configuration ──────────────────────────────────────────────────────
 
     def set_useragent(self, contact: str) -> None:
-        """Set the contact address in the User-Agent header (required by MusicBrainz)."""
+        """Set the contact address in the User-Agent header (required by MusicBrainz).
+
+        Builds ``whatsnowplaying-wnpmb/{version} ( {contact} )``.
+        To use a fully custom User-Agent, pass ``user_agent=`` to the constructor.
+        """
         self.user_agent = f"whatsnowplaying-wnpmb/{_version} ( {contact} )"
         if self._session is not None:
             self._session.headers.update({"User-Agent": self.user_agent})
@@ -235,7 +239,6 @@ class MusicBrainzBase:
         timeout_wait = self.retry_settings.timeout_wait
         rl_attempt = 0
         to_attempt = 0
-        last_exc: BaseException | None = None
 
         while True:
             try:
@@ -267,8 +270,7 @@ class MusicBrainzBase:
 
             except RateLimitError:
                 raise
-            except httpx.TimeoutException as exc:
-                last_exc = exc
+            except httpx.TimeoutException:
                 if to_attempt < timeout_retries:
                     to_attempt += 1
                     logger.debug(
@@ -279,10 +281,13 @@ class MusicBrainzBase:
                     )
                     await asyncio.sleep(timeout_wait)
                     continue
-                logger.warning("MusicBrainz timeout: url=%s", url)
+                logger.warning(
+                    "MusicBrainz timeout after %d retries: url=%s",
+                    to_attempt,
+                    url,
+                )
                 return None
             except httpx.ConnectError as exc:
-                last_exc = exc
                 if rl_attempt < max_retries:
                     rl_attempt += 1
                     logger.debug(
@@ -294,17 +299,16 @@ class MusicBrainzBase:
                     )
                     await asyncio.sleep(wait)
                     continue
+                logger.warning(
+                    "MusicBrainz connect error after %d retries: %s  url=%s",
+                    rl_attempt,
+                    exc,
+                    url,
+                )
+                return None
             except Exception as exc:
                 logger.warning("MusicBrainz non-retryable error: %s", exc)
                 return None
-
-            logger.warning(
-                "MusicBrainz request failed after %d retries: %s  url=%s",
-                max_retries,
-                last_exc,
-                url,
-            )
-            return None
 
     async def _get_image(self, url: str) -> bytes:
         """GET binary image data (Cover Art Archive)."""
