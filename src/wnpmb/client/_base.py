@@ -14,7 +14,7 @@ import logging
 import ssl
 import time
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Self
 
 import httpx
 import truststore
@@ -163,7 +163,7 @@ class MusicBrainzBase:
 
     # ── Context manager ────────────────────────────────────────────────────
 
-    async def __aenter__(self) -> MusicBrainzBase:
+    async def __aenter__(self) -> Self:
         await self._ensure_session()
         return self
 

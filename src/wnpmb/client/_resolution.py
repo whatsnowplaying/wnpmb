@@ -275,6 +275,21 @@ def select_recording(
     # the sort key so exact matches always rank above suffix variants (e.g.
     # "Centipede" before "Centipede (extended version)"), with score as tiebreaker.
     norm_title = normalize(title, nospaces=True) if title else ""
+
+    # If the input title ends with a parenthetical/bracketed qualifier
+    # (e.g. "(FL3X & Crav3 Remix)"), require an exact title match.  Without
+    # this guard a high-scoring different variant (e.g. "(Cardinal mix)")
+    # would be returned silently when the requested remix isn't in MB.
+    if norm_title and REMIX_RE.match(title or ""):
+        if not any(
+            norm_title == normalize(rec.get("title", ""), nospaces=True)
+            for rec in candidates
+        ):
+            logger.debug(
+                "no exact title match for suffixed title %r — returning None", title
+            )
+            return None
+
     candidates.sort(
         key=lambda rec: (
             norm_title == normalize(rec.get("title", ""), nospaces=True),

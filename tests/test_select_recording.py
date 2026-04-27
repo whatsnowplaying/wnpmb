@@ -166,3 +166,25 @@ def test_exact_title_beats_extended_version():
         artist="Foo Fighters",
     )
     assert result == "d0dc4e1c-20b0-4866-be6a-16e20e345f3a"
+
+
+def test_suffixed_title_no_match_returns_none():
+    """A title with a version suffix must not fall back to a different variant.
+
+    Real-world regression: 'Wait Forever (FL3X & Crav3 Remix)' was resolved
+    to 'Wait Forever (Cardinal mix)' because no candidate matched exactly and
+    the Cardinal mix scored highest.  When the input title has a parenthetical
+    qualifier and no candidate matches it exactly, return None.
+    """
+    cardinal = _rec(
+        "81f30199-861a-48a6-9dc2-d1b260e0f279",
+        "Wait Forever (Cardinal mix)",
+        "2012-01-01",
+        [_release("Wait Forever", "2012-01-01")] * 4,
+    )
+    result = select_recording(
+        [cardinal],
+        title="Wait Forever (FL3X & Crav3 Remix)",
+        artist="Foo Fighters",
+    )
+    assert result is None
