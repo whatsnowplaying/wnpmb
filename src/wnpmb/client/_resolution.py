@@ -282,12 +282,9 @@ def select_recording(
     # would be returned silently when the requested remix isn't in MB.
     if norm_title and REMIX_RE.match(title or ""):
         if not any(
-            norm_title == normalize(rec.get("title", ""), nospaces=True)
-            for rec in candidates
+            norm_title == normalize(rec.get("title", ""), nospaces=True) for rec in candidates
         ):
-            logger.debug(
-                "no exact title match for suffixed title %r — returning None", title
-            )
+            logger.debug("no exact title match for suffixed title %r — returning None", title)
             return None
 
     candidates.sort(
