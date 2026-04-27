@@ -93,6 +93,8 @@ _TRAILING_CONJUNCTION_RE: re.Pattern[str] = re.compile(
     r"\s+(?:and|&|or|with|feat\.?|ft\.?)\s*$", re.IGNORECASE
 )
 
+# Matches titles that end with a parenthetical or bracketed qualifier, e.g.
+# "Song (Radio Edit)" or "Song [Live]".  Used to detect version suffixes.
 REMIX_RE: re.Pattern[str] = re.compile(r"^\s*(.*)\s+[\(\[].*[\)\]]$")
 
 # ── Text normalization ─────────────────────────────────────────────────────────
