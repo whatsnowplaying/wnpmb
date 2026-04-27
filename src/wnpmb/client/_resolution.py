@@ -275,8 +275,7 @@ def select_recording(
     # and isrc_exact_fallback checks to avoid repeated normalize() calls.
     norm_title = normalize(title, nospaces=True) if title else ""
     norm_titles: dict[str, str] = {
-        rec["id"]: normalize(rec.get("title", ""), nospaces=True) or ""
-        for rec in candidates
+        rec["id"]: normalize(rec.get("title", ""), nospaces=True) or "" for rec in candidates
     }
 
     # If the input title ends with a parenthetical/bracketed qualifier
