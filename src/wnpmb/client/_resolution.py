@@ -271,13 +271,26 @@ def select_recording(
     if not candidates:
         return None
 
-    # Precompute normalized input title once; compare per-candidate title in
-    # the sort key so exact matches always rank above suffix variants (e.g.
-    # "Centipede" before "Centipede (extended version)"), with score as tiebreaker.
+    # Precompute normalized titles once — reused in the suffix guard, sort key,
+    # and isrc_exact_fallback checks to avoid repeated normalize() calls.
     norm_title = normalize(title, nospaces=True) if title else ""
+    norm_titles: dict[str, str] = {
+        rec["id"]: normalize(rec.get("title", ""), nospaces=True) or "" for rec in candidates
+    }
+
+    # If the input title ends with a parenthetical/bracketed qualifier
+    # (e.g. "(FL3X & Crav3 Remix)"), require an exact title match.  REMIX_RE
+    # matches `<base> (<suffix>)` and `<base> [<suffix>]` at end-of-string.
+    # Without this guard a high-scoring different variant (e.g. "(Cardinal mix)")
+    # would be returned silently when the requested remix isn't in MB.
+    if norm_title and REMIX_RE.match(title or ""):
+        if not any(norm_title == nt for nt in norm_titles.values()):
+            logger.debug("no exact title match for suffixed title %r — returning None", title)
+            return None
+
     candidates.sort(
         key=lambda rec: (
-            norm_title == normalize(rec.get("title", ""), nospaces=True),
+            norm_title == norm_titles[rec["id"]],
             _score_recording(rec, album=album, year=year),
             _frd_days(rec),
         ),
@@ -292,9 +305,7 @@ def select_recording(
     isrc_exact_fallback: str | None = None
 
     for recording in candidates:
-        is_exact = bool(
-            norm_title and norm_title == normalize(recording.get("title", ""), nospaces=True)
-        )
+        is_exact = bool(norm_title and norm_title == norm_titles[recording["id"]])
         has_isrc = bool(recording.get("isrcs"))
 
         for release in recording.get("releases", []):
