@@ -173,6 +173,21 @@ def generate_artist_variations(artist_name: str) -> list[str]:
                 names.append(normalized)
                 names.append(normalized.translate(CUSTOM_TRANSLATE))
 
+    # Slash-separated collaborations (e.g. "GIMS/L2B"): also emit each part
+    # individually so the recording search can match "GIMS & L2B" in MB.
+    # Applies the same guard as split_artist_string: both sides >= 3 chars and
+    # the left side must not end with " w" (avoids splitting "w/" notation).
+    if "/" in lowername:
+        slash_idx = lowername.index("/")
+        left = lowername[:slash_idx].strip()
+        right = lowername[slash_idx + 1 :].strip()
+        if len(left) >= 3 and len(right) >= 3 and not left.endswith(" w") and "/" not in right:
+            for part in (left, right):
+                names.append(part)
+                names.append(part.translate(CUSTOM_TRANSLATE))
+                if part_norm := normality.normalize(part):
+                    names.append(part_norm)
+
     return list(dict.fromkeys(names))
 
 
