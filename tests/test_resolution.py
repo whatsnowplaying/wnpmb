@@ -22,7 +22,8 @@ COMPBLUERID = [
 ]
 
 RATE_LIMIT_INTERVAL = 1.1
-RETRY = RetrySettings(max_retries=5, wait=10.0)
+TIMEOUT = 30.0
+RETRY = RetrySettings(max_retries=5, wait=10.0, timeout_retries=3, timeout_wait=10.0)
 
 
 async def _resolve(
@@ -35,7 +36,7 @@ async def _resolve(
     if year:
         original_track_data["year"] = year
     async with MusicBrainzClient(
-        rate_limit_interval=RATE_LIMIT_INTERVAL, retry_settings=RETRY
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
     ) as mb:
         recording_id = await mb.find_recording(title, artist, album=album, year=year)
         if not recording_id:
@@ -71,7 +72,7 @@ async def test_moяis_blak_complicate():
 
 async def test_nin_by_recording_id():
     async with MusicBrainzClient(
-        rate_limit_interval=RATE_LIMIT_INTERVAL, retry_settings=RETRY
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
     ) as mb:
         mb_data = await mb.get_recording_by_id("2d7f08e1-be1c-4b86-b725-6e675b7b6de0")
         assert mb_data is not None
@@ -87,7 +88,7 @@ async def test_nin_by_recording_id():
 
 async def test_nin_by_isrc():
     async with MusicBrainzClient(
-        rate_limit_interval=RATE_LIMIT_INTERVAL, retry_settings=RETRY
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
     ) as mb:
         recording_id = await mb.resolve_recording_by_isrc(["USTC40852243"])
         assert recording_id == "2d7f08e1-be1c-4b86-b725-6e675b7b6de0"
@@ -316,6 +317,20 @@ async def test_magazine_shot_by_both_sides():
     assert result["album"] == "Real Life"
 
 
+# ── O.M.D. alias resolution ───────────────────────────────────────────────────
+
+
+async def test_omd_secret_alias():
+    """Dotted abbreviation artist name resolved via MB alias.
+
+    Real-world regression: 'O.M.D.' is an alias for 'Orchestral Manoeuvres in
+    the Dark'.  The canonical name never normalized-equals 'omd', so the alias
+    check in _artist_name_matches must be used to accept the match.
+    """
+    result = await _resolve("Secret", "O.M.D.")
+    assert result["musicbrainz_artist_id"] == ["6d072aa8-c851-49c5-92f9-cbca05f4bed9"]
+
+
 # ── AC/DC TNT ─────────────────────────────────────────────────────────────────
 
 
@@ -391,7 +406,7 @@ async def test_troye_sivan_kacey_musgraves_easy():
 )
 async def test_malformed_recording_id(recording_id):
     async with MusicBrainzClient(
-        rate_limit_interval=RATE_LIMIT_INTERVAL, retry_settings=RETRY
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
     ) as mb:
         result = await mb.get_recording_by_id(recording_id)
     assert result is None
@@ -410,7 +425,7 @@ async def test_malformed_recording_id(recording_id):
 )
 async def test_missing_metadata_graceful(title, artist):
     async with MusicBrainzClient(
-        rate_limit_interval=RATE_LIMIT_INTERVAL, retry_settings=RETRY
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
     ) as mb:
         result = await mb.find_recording(title, artist)
     assert result is None
