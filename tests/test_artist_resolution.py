@@ -6,7 +6,9 @@ import pytest
 
 from wnpmb.artist_resolution import (
     COLLABORATION_DELIMITERS_BY_PRIORITY,
+    _artist_name_matches,
     hierarchical_artist_resolution,
+    lookup_artist_with_recordings,
     resolve_collaboration_string,
     split_artist_string,
 )
@@ -388,6 +390,56 @@ async def test_resolve_collaboration_hierarchical_breakdown():
         assert "Pharrell Williams" in result["artists"]
         assert "Madonna" in result["artists"]
         assert result["artist"] == "Daft Punk feat Pharrell Williams & Madonna"
+
+
+# ── _artist_name_matches ───────────────────────────────────────────────────────
+
+
+def test_artist_name_matches_canonical():
+    artist = {"name": "Foo Fighters", "aliases": []}
+    assert _artist_name_matches(artist, "foo fighters", "foo fighters")
+
+
+def test_artist_name_matches_alias():
+    """O.M.D. → normalize("omd") matches alias "O.M.D." on the OMD artist."""
+    artist = {
+        "name": "Orchestral Manoeuvres in the Dark",
+        "aliases": [{"name": "O.M.D."}, {"name": "OMD"}],
+    }
+    assert _artist_name_matches(artist, "omd", "omd")
+
+
+def test_artist_name_no_match():
+    artist = {"name": "Some Other Band", "aliases": [{"name": "SOB"}]}
+    assert not _artist_name_matches(artist, "omd", "omd")
+
+
+def test_artist_name_matches_missing_aliases_key():
+    """Artist dict with no 'aliases' key is handled gracefully."""
+    artist = {"name": "Foo Fighters"}
+    assert _artist_name_matches(artist, "foo fighters", "foo fighters")
+
+
+# ── lookup_artist_with_recordings (alias match) ───────────────────────────────
+
+
+async def test_lookup_artist_alias_match():
+    """lookup_artist_with_recordings accepts a canonical name matched via alias."""
+    omd_id = "6d072aa8-c851-49c5-92f9-cbca05f4bed9"
+    omd_artist = {
+        "id": omd_id,
+        "name": "Orchestral Manoeuvres in the Dark",
+        "aliases": [{"name": "O.M.D."}, {"name": "OMD"}],
+    }
+    recording = {"id": "rec-0001", "title": "Secret"}
+
+    client = MagicMock()
+    client.search_artists = AsyncMock(return_value=[omd_artist])
+    client.search_recordings = AsyncMock(return_value=([recording], 1))
+
+    result = await lookup_artist_with_recordings("O.M.D.", "Secret", mb_client=client)
+    assert result is not None
+    assert result["artist_id"] == omd_id
 
 
 @pytest.mark.parametrize("bad_input", ["", "   ", None])

@@ -316,6 +316,20 @@ async def test_magazine_shot_by_both_sides():
     assert result["album"] == "Real Life"
 
 
+# ── O.M.D. alias resolution ───────────────────────────────────────────────────
+
+
+async def test_omd_secret_alias():
+    """Dotted abbreviation artist name resolved via MB alias.
+
+    Real-world regression: 'O.M.D.' is an alias for 'Orchestral Manoeuvres in
+    the Dark'.  The canonical name never normalized-equals 'omd', so the alias
+    check in _artist_name_matches must be used to accept the match.
+    """
+    result = await _resolve("Secret", "O.M.D.")
+    assert result["musicbrainz_artist_id"] == ["6d072aa8-c851-49c5-92f9-cbca05f4bed9"]
+
+
 # ── AC/DC TNT ─────────────────────────────────────────────────────────────────
 
 

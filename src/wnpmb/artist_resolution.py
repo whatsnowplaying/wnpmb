@@ -83,6 +83,26 @@ _DELIMITER_PATTERNS: dict[str, re.Pattern[str]] = {
 }
 
 
+# ── Artist name matching ───────────────────────────────────────────────────────
+
+
+def _artist_name_matches(artist: dict, norm_search: str, norm_variation: str) -> bool:
+    """Return True if the artist's canonical name or any alias matches the search term.
+
+    Handles dotted abbreviations (e.g. "O.M.D." → alias on "Orchestral Manoeuvres in
+    the Dark") where normalize(canonical) != normalize(search_term) but the alias
+    normalizes to the same value as the search input.
+    """
+    norm_mb = normality.normalize(artist.get("name", ""))
+    if norm_mb in (norm_search, norm_variation):
+        return True
+    for alias in artist.get("aliases", []):
+        norm_alias = normality.normalize(alias.get("name", ""))
+        if norm_alias and norm_alias in (norm_search, norm_variation):
+            return True
+    return False
+
+
 # ── Artist name variations ─────────────────────────────────────────────────────
 
 
@@ -306,38 +326,38 @@ async def lookup_artist_with_recordings(
         variations = _conservative_artist_variations(artist_name.strip())
         found_recording_ids: set[str] = set()
 
+        norm_search = normality.normalize(artist_name.strip()) or ""
+
         for variation in variations:
             artists = await mb_client.search_artists(variation)
             if not artists:
                 continue
 
-            # Prefer an exact normalized match
+            norm_variation = normality.normalize(variation) or ""
+
+            # Prefer an exact normalized match (canonical name or alias)
             for artist in artists:
                 mb_name = artist.get("name", "")
-                if normality.normalize(mb_name) in [
-                    normality.normalize(artist_name.strip()),
-                    normality.normalize(variation),
-                ]:
-                    if not (artist_id := artist.get("id")):
-                        continue
-                    result = await _validate_and_build_result(
-                        mb_client,
-                        artist_id,
-                        song_title,
-                        len(artists),
-                        found_recording_ids,
-                    )
-                    if result:
-                        logger.debug(
-                            "Artist match: %r → %r (ID: %s)", artist_name, mb_name, artist_id
-                        )
-                        return result
-                    logger.debug(
-                        "Artist %r (ID: %s) has no recordings of %r — skipping",
-                        mb_name,
-                        artist_id,
-                        song_title,
-                    )
+                if not _artist_name_matches(artist, norm_search, norm_variation):
+                    continue
+                if not (artist_id := artist.get("id")):
+                    continue
+                result = await _validate_and_build_result(
+                    mb_client,
+                    artist_id,
+                    song_title,
+                    len(artists),
+                    found_recording_ids,
+                )
+                if result:
+                    logger.debug("Artist match: %r → %r (ID: %s)", artist_name, mb_name, artist_id)
+                    return result
+                logger.debug(
+                    "Artist %r (ID: %s) has no recordings of %r — skipping",
+                    mb_name,
+                    artist_id,
+                    song_title,
+                )
 
             # Fall back to first result for this variation
             first = artists[0]
@@ -459,28 +479,29 @@ async def _lookup_artist_for_quorum(
     try:
         variations = _conservative_artist_variations(artist_name.strip())
 
+        norm_search = normality.normalize(artist_name.strip()) or ""
+
         for variation in variations:
             artists = await mb_client.search_artists(variation)
             if not artists:
                 continue
 
+            norm_variation = normality.normalize(variation) or ""
+
             for artist in artists:
-                mb_name = artist.get("name", "")
-                if normality.normalize(mb_name) in [
-                    normality.normalize(artist_name.strip()),
-                    normality.normalize(variation),
-                ]:
-                    if not (artist_id := artist.get("id")):
-                        continue
-                    recording_ids = await _validate_artist_and_get_recordings(
-                        mb_client, artist_id, song_title
-                    )
-                    if recording_ids:
-                        return {
-                            "name": artist_name,
-                            "id": artist_id,
-                            "recording_ids": recording_ids,
-                        }
+                if not _artist_name_matches(artist, norm_search, norm_variation):
+                    continue
+                if not (artist_id := artist.get("id")):
+                    continue
+                recording_ids = await _validate_artist_and_get_recordings(
+                    mb_client, artist_id, song_title
+                )
+                if recording_ids:
+                    return {
+                        "name": artist_name,
+                        "id": artist_id,
+                        "recording_ids": recording_ids,
+                    }
 
             first = artists[0]
             if not (artist_id := first.get("id")):
