@@ -417,6 +417,10 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                     seen[mbid] = (name, score, aliases)
 
         norm_input = normalize(artist, nospaces=True) or ""
+        # All normalized forms of the input variations — used for alias matching
+        # so that individual slash-split parts (e.g. "l2b" from "GIMS/L2B") can
+        # match an alias on a candidate whose canonical name differs (L2B Gang).
+        input_norms: set[str] = {normalize(v, nospaces=True) or "" for v in input_vars} - {""}
         result: list[str] = []
         for mbid, (name, _, aliases) in sorted(seen.items(), key=lambda entry: -entry[1][1]):
             # Accept if any variation overlaps, OR if both names normalize
@@ -428,12 +432,11 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             if (input_vars & name_vars) or (norm_input and norm_input == name_norm):
                 result.append(mbid)
                 continue
-            # Accept if any alias normalizes equal to the search input — handles
-            # dotted abbreviations like "O.M.D." where the canonical name is the
-            # full name "Orchestral Manoeuvres in the Dark" and neither the name
-            # nor its variations match "omd".
-            if norm_input and any(
-                (normalize(a.get("name", ""), nospaces=True) or "") == norm_input for a in aliases
+            # Accept if any alias normalizes to match any of the input variations —
+            # handles dotted abbreviations ("O.M.D." → OMD) and slash-split parts
+            # ("L2B" → L2B Gang whose credited name "L2B" is registered as an alias).
+            if any(
+                (normalize(a.get("name", ""), nospaces=True) or "") in input_norms for a in aliases
             ):
                 result.append(mbid)
         return result

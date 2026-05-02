@@ -331,6 +331,29 @@ async def test_omd_secret_alias():
     assert result["musicbrainz_artist_id"] == ["6d072aa8-c851-49c5-92f9-cbca05f4bed9"]
 
 
+# ── GIMS/L2B slash collaboration ─────────────────────────────────────────────
+
+
+async def test_gims_l2b_bloque():
+    """Slash-separated collaboration resolved correctly.
+
+    Real-world regression: 'GIMS/L2B' produces search variations 'gims/l2b'
+    and 'gims l2b', neither of which matches the MB credit 'GIMS & L2B'.
+    generate_artist_variations now also emits the individual parts 'gims' and
+    'l2b' so the recording search finds the collaboration.
+    """
+    async with MusicBrainzClient(
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
+    ) as mb:
+        recording_id = await mb.find_recording("BLOQUÉ", "GIMS/L2B")
+    assert recording_id == "28dd17da-362d-4356-904f-3bb80871dda1"
+
+    result = await _resolve("BLOQUÉ", "GIMS/L2B")
+    assert result.get("musicbrainz_artist_id") is not None
+    assert "b2fbd053-4380-412c-95d2-35c6da8f1011" in result["musicbrainz_artist_id"]  # GIMS
+    assert "fa5e4230-1c4c-439b-b55d-b068899b302e" in result["musicbrainz_artist_id"]  # L2B Gang
+
+
 # ── AC/DC TNT ─────────────────────────────────────────────────────────────────
 
 
