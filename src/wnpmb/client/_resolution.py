@@ -473,8 +473,13 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                     title=title, artist_id=arids, album=search_album, year=year
                 )
             if recs and count > 0:
+                # Pass artist=None: results are already constrained by MBID so the
+                # name-equality check in _artist_matches would produce false negatives
+                # when the input name (e.g. "O.M.D.") differs from the credited name
+                # ("Orchestral Manoeuvres in the Dark").  Various Artists recordings
+                # are still caught by the release-level check inside select_recording.
                 return select_recording(
-                    recs, title=title, artist=artist, album=search_album, year=year
+                    recs, title=title, artist=None, album=search_album, year=year
                 )
             return None
 
