@@ -97,6 +97,11 @@ _TRAILING_CONJUNCTION_RE: re.Pattern[str] = re.compile(
 # "Song (Radio Edit)" or "Song [Live]".  Used to detect version suffixes.
 REMIX_RE: re.Pattern[str] = re.compile(r"^\s*(.*)\s+[\(\[].*[\)\]]$")
 
+# Leading track-number prefix: "06-", "3. ", "12.Title", etc.
+# Only matches dash or period as delimiter — bare space is excluded to avoid
+# stripping legitimate numeric artist/title names like "808 State" or "2 Chainz".
+TRACK_NUM_PREFIX_RE: re.Pattern[str] = re.compile(r"^\d{1,4}[-.]\s*")
+
 # ── Text normalization ─────────────────────────────────────────────────────────
 
 
@@ -139,23 +144,24 @@ def normalize(text: str | None, sizecheck: int = 0, nospaces: bool = False) -> s
     return normaltext.replace(" ", "") if nospaces else normaltext
 
 
-def generate_artist_variations(artist_name: str) -> list[str]:
+def strip_track_num_prefix(text: str) -> str | None:
+    """Strip a leading track-number prefix (e.g. '06-', '3. ', '12.Title').
+
+    Only dash or period delimiters are recognised; bare-space prefixes like
+    '0713 Artist' are intentionally not matched.  Returns the stripped string,
+    or None when no prefix was found.
     """
-    Generate normalized artist name variations for fuzzy matching.
+    if m := TRACK_NUM_PREFIX_RE.match(text):
+        return text[m.end() :].strip() or None
+    return None
 
-    Produces combinations of:
-    - Original lowercased name
-    - With CUSTOM_TRANSLATE applied
-    - After normality.normalize()
-    - Each of the above after stripping common collaboration prefixes
-      (The, feat., ft., featuring, with, vs., x, &, presents)
 
-    Returns a deduplicated list (insertion-order preserved).
+def _build_name_variants(lowername: str) -> list[str]:
+    """Build raw variation list for a single pre-cleaned lowercase name.
+
+    Does not handle track-number prefix stripping or input sanitisation —
+    those are the caller's responsibility.
     """
-    if not artist_name:
-        return []
-
-    lowername = unsmartquotes(artist_name.lower())
     names: list[str] = [lowername, lowername.translate(CUSTOM_TRANSLATE)]
 
     if normalized := normality.normalize(lowername):
@@ -187,6 +193,39 @@ def generate_artist_variations(artist_name: str) -> list[str]:
                 names.append(part.translate(CUSTOM_TRANSLATE))
                 if part_norm := normality.normalize(part):
                     names.append(part_norm)
+
+    return names
+
+
+def generate_artist_variations(artist_name: str) -> list[str]:
+    """
+    Generate normalized artist name variations for fuzzy matching.
+
+    Produces combinations of:
+    - Original lowercased name
+    - With CUSTOM_TRANSLATE applied
+    - After normality.normalize()
+    - Each of the above after stripping common collaboration prefixes
+      (The, feat., ft., featuring, with, vs., x, &, presents)
+
+    Returns a deduplicated list (insertion-order preserved).
+    """
+    if not artist_name:
+        return []
+
+    lowername = unsmartquotes(artist_name.lower())
+    # Strip trailing whitespace + isolated period (e.g. "Hearts of Space    ." is
+    # a tag artifact; "Dinosaur Jr." is safe — no whitespace before its period).
+    lowername = re.sub(r"\s+\.?\s*$", "", lowername).strip()
+    if not lowername:
+        return []
+
+    names = _build_name_variants(lowername)
+
+    # Leading track-number prefix fallback (e.g. "06-Dinosaur Jr." → "Dinosaur Jr.").
+    # Appended last so the un-prefixed name takes precedence.
+    if stripped := strip_track_num_prefix(lowername):
+        names.extend(_build_name_variants(stripped))
 
     return list(dict.fromkeys(names))
 
@@ -230,10 +269,10 @@ def remove_duplicate_parentheticals(title: str | None) -> str | None:
     """Remove consecutively repeated parenthetical content, e.g. (Edit) (Edit)."""
     if not title:
         return title
-    pattern = r"\(([^)]+)\)\s*\(\1\)"
+    pattern = re.compile(r"\(([^)]+)\)\s*\(\1\)", re.IGNORECASE)
     cleaned = title
     while True:
-        new = re.sub(pattern, r"(\1)", cleaned)
+        new = pattern.sub(r"(\1)", cleaned)
         if new == cleaned:
             break
         cleaned = new

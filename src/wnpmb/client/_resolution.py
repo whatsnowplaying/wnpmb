@@ -7,7 +7,13 @@ import logging
 import re
 from datetime import date as _date
 
-from ..normalization import REMIX_RE, generate_artist_variations, is_compilation_or_live, normalize
+from ..normalization import (
+    REMIX_RE,
+    generate_artist_variations,
+    is_compilation_or_live,
+    normalize,
+    strip_track_num_prefix,
+)
 from ._artists import ArtistsMixin
 from ._base import MusicBrainzBase
 from ._recordings import RecordingsMixin
@@ -581,33 +587,46 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
         album: str | None = None,
         isrcs: list[str] | None = None,
         year: int | None = None,
-    ) -> str | None:
+    ) -> tuple[str | None, str | None]:
         """
         Full recording ID resolution pipeline.
 
         Resolution order:
         1. ISRC list (if provided) — most precise identifier.
         2. Title + artist search (with optional album and year hints).
-        3. Retry (2) with any remix/version suffix stripped from title
-           (e.g. "Song (Radio Edit)" → "Song").
+        3. Retry (2) with any generic version suffix stripped from title
+           (e.g. "Song (Radio Edit)" → "Song") when titlestripper_basic
+           confirms the suffix is a known generic term.
 
-        Returns the recording MBID, or None if nothing matched.
+        Returns (exact_mbid, fallback_mbid):
+        - exact_mbid: found with the original title — caller may use as recording ID.
+        - fallback_mbid: found only after stripping a generic suffix — caller should
+          use for artist/metadata lookup but not as the recording ID.
+        Both are None when nothing matched.
         """
         if not title or not artist:
-            return None
+            return (None, None)
+
+        # Strip leading track-number prefix from title ("06-Song", "3. Title").
+        # Artist stripping is intentionally omitted — artist inputs are handled
+        # via generate_artist_variations which appends stripped variants as
+        # low-priority fallbacks without mutating the original.
+        if title_stripped := strip_track_num_prefix(title):
+            logger.debug("stripped track-number prefix from title: %r → %r", title, title_stripped)
+            title = title_stripped
 
         if isrcs:
             if mbid := await self.resolve_recording_by_isrc(isrcs):
-                return mbid
+                return (mbid, None)
 
         if mbid := await self.find_recording_by_search(title, artist, album, year=year):
-            return mbid
+            return (mbid, None)
 
         if m := REMIX_RE.match(title):
             stripped = m.group(1)
             if stripped != title:
                 logger.debug("retrying with stripped title %r → %r", title, stripped)
                 if mbid := await self.find_recording_by_search(stripped, artist, album, year=year):
-                    return mbid
+                    return (None, mbid)
 
-        return None
+        return (None, None)

@@ -38,15 +38,16 @@ async def _resolve(
     async with MusicBrainzClient(
         rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
     ) as mb:
-        recording_id = await mb.find_recording(title, artist, album=album, year=year)
-        if not recording_id:
+        exact_id, fallback_id = await mb.find_recording(title, artist, album=album, year=year)
+        lookup_id = exact_id or fallback_id
+        if not lookup_id:
             return {}
-        mb_data = await mb.get_recording_by_id(recording_id)
+        mb_data = await mb.get_recording_by_id(lookup_id)
         if not mb_data:
             return {}
         return dict(
             await mb.process_recording_data(
-                mb_data, recording_id, original_track_data=original_track_data or None
+                mb_data, exact_id, original_track_data=original_track_data or None
             )
         )
 
@@ -345,8 +346,8 @@ async def test_gims_l2b_bloque():
     async with MusicBrainzClient(
         rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
     ) as mb:
-        recording_id = await mb.find_recording("BLOQUÉ", "GIMS/L2B")
-    assert recording_id == "28dd17da-362d-4356-904f-3bb80871dda1"
+        exact_id, _ = await mb.find_recording("BLOQUÉ", "GIMS/L2B")
+    assert exact_id == "28dd17da-362d-4356-904f-3bb80871dda1"
 
     result = await _resolve("BLOQUÉ", "GIMS/L2B")
     assert result.get("musicbrainz_artist_id") is not None
@@ -391,6 +392,22 @@ async def test_foo_fighters_all_my_life():
 
 
 # ── David Bowie ───────────────────────────────────────────────────────────────
+
+
+async def test_specific_remix_exact_not_found():
+    """Specific remix not in MB — exact_id is None, fallback contains the original.
+
+    The fallback_id (original "It's My Life") is available for artist lookup;
+    callers must not store it as the recording ID since the remix was not found.
+    """
+    async with MusicBrainzClient(
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
+    ) as mb:
+        exact_id, fallback_id = await mb.find_recording(
+            "It's My Life (Groovefunkel Remix)", "Talk Talk"
+        )
+    assert exact_id is None
+    assert fallback_id is not None
 
 
 async def test_david_bowie_golden_years_live():
@@ -450,5 +467,6 @@ async def test_missing_metadata_graceful(title, artist):
     async with MusicBrainzClient(
         rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
     ) as mb:
-        result = await mb.find_recording(title, artist)
-    assert result is None
+        exact_id, fallback_id = await mb.find_recording(title, artist)
+    assert exact_id is None
+    assert fallback_id is None

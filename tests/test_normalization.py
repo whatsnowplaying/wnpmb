@@ -12,6 +12,7 @@ from wnpmb.normalization import (
     normalize_text,
     remove_duplicate_artist_from_title,
     remove_duplicate_parentheticals,
+    strip_track_num_prefix,
     titlestripper_advanced,
     titlestripper_basic,
     unsmartquotes,
@@ -154,6 +155,40 @@ def test_artist_variations_deduplication():
     assert len(variations) > 2
 
 
+# ── strip_track_num_prefix ────────────────────────────────────────────────────
+
+
+@pytest.mark.parametrize(
+    "input_text,expected",
+    [
+        ("06-Dinosaur Jr.", "Dinosaur Jr."),
+        ("3. Song Title", "Song Title"),
+        ("12.Something", "Something"),
+        # Bare-space delimiter is intentionally not supported — avoids stripping
+        # legitimate numeric names like "808 State", "2 Chainz", "0713 Artist".
+        ("0713 Invoking the Muse", None),
+        ("12 Angry Men", None),
+        ("2 Chainz", None),
+        ("Normal Artist", None),
+        ("A123 Artist", None),
+    ],
+)
+def test_strip_track_num_prefix(input_text, expected):
+    assert strip_track_num_prefix(input_text) == expected
+
+
+def test_artist_variations_track_num_stripped():
+    variations = generate_artist_variations("06-Dinosaur Jr.")
+    assert "dinosaur jr." in variations
+    assert variations.index("06-dinosaur jr.") < variations.index("dinosaur jr.")
+
+
+def test_artist_variations_trailing_artifact():
+    variations = generate_artist_variations("Hearts of Space    .")
+    assert "hearts of space" in variations
+    assert "hearts of space    ." not in variations
+
+
 # ── titlestripper_basic ────────────────────────────────────────────────────────
 
 
@@ -196,6 +231,33 @@ def test_titlestripper_basic_none_empty():
     assert titlestripper_basic("") is None
 
 
+@pytest.mark.parametrize(
+    "title,should_strip",
+    [
+        # Generic suffixes in STRIPWORDLIST → stripped (find_recording fallback fires)
+        ("It's My Life (Radio Edit)", True),
+        ("Song (Remastered)", True),
+        ("Track (Single Version)", True),
+        # Specific remix/version names NOT in STRIPWORDLIST → unchanged (fallback blocked)
+        ("It's My Life (Groovefunkel Remix)", False),
+        ("Wait Forever (FL3X & Crav3 Remix)", False),
+        ("Song (Blaze New Jersey Jazz Mix)", False),
+    ],
+)
+def test_titlestripper_basic_remix_fallback_gate(title, should_strip):
+    """titlestripper_basic gates find_recording's REMIX_RE fallback.
+
+    Only titles with generic suffixes (in STRIPWORDLIST) should be stripped;
+    specific remix names must pass through unchanged so find_recording returns
+    None rather than silently returning the original recording.
+    """
+    result = titlestripper_basic(title)
+    if should_strip:
+        assert result != title
+    else:
+        assert result == title
+
+
 def test_titlestripper_basic_all_stripped_returns_original():
     # If stripping would leave nothing, return original
     result = titlestripper_basic("(Clean)")
@@ -231,6 +293,11 @@ def test_titlestripper_advanced():
         ("Song [Radio Edit] (Radio Edit) (Radio Edit)", "Song [Radio Edit] (Radio Edit)"),
         ("Complex (Mix 2023) (Mix 2023)", "Complex (Mix 2023)"),
         ("Title (A) (A) (B) (B)", "Title (A) (B)"),
+        (
+            "People Hold On (Blaze New Jersey Jazz Mix) (blaze new jersey jazz mix)",
+            "People Hold On (Blaze New Jersey Jazz Mix)",
+        ),
+        ("Song (Edit) (EDIT)", "Song (Edit)"),
     ],
 )
 def test_remove_duplicate_parentheticals(input_title, expected):
