@@ -38,6 +38,8 @@ from typing import TYPE_CHECKING
 
 import normality
 
+from .normalization import strip_track_num_prefix
+
 if TYPE_CHECKING:
     from .client import MusicBrainzClient
 
@@ -122,6 +124,13 @@ def _conservative_artist_variations(artist_name: str) -> list[str]:
     if cleaned.lower().startswith("the "):
         if without_the := cleaned[4:]:
             variations.append(without_the)
+
+    # Leading track-number prefix fallback — appended last (lower priority).
+    if stripped := strip_track_num_prefix(cleaned):
+        variations.append(stripped)
+        if stripped.lower().startswith("the "):
+            if without_the := stripped[4:]:
+                variations.append(without_the)
 
     seen: set[str] = set()
     result: list[str] = []

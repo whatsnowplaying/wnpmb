@@ -29,7 +29,7 @@ class EnrichedRecordingData(TypedDict):
     recording in MusicBrainz has complete metadata.
     """
 
-    musicbrainz_recording_id: str
+    musicbrainz_recording_id: str | None
     title: NotRequired[str]
     artist: NotRequired[str]
     album: NotRequired[str]
@@ -116,7 +116,7 @@ class ProcessingMixin(ArtistsMixin):
     async def process_recording_data(
         self,
         mb_data: dict,
-        recording_id: str,
+        recording_id: str | None,
         original_track_data: dict | None = None,
     ) -> EnrichedRecordingData:
         """

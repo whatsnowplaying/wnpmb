@@ -62,8 +62,9 @@ Cover art::
 Recording resolution pipeline::
 
     mb.find_recording(title, artist, album, isrcs)
-        Full pipeline: ISRCs first → search → retry with stripped remix suffix.
-        Returns MBID or None.
+        Full pipeline: ISRCs first → search → retry with stripped generic suffix.
+        Returns (exact_mbid, fallback_mbid); caller uses exact for recording ID,
+        either for artist/metadata lookup.
 
     mb.find_recording_by_search(title, artist, album)
         Search-only path with artist-variation expansion and multi-pass
