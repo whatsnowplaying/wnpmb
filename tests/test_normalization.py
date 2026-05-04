@@ -290,7 +290,7 @@ def test_titlestripper_advanced():
         ("", ""),
         (None, None),
         ("Track (Extended Mix)  (Extended Mix)", "Track (Extended Mix)"),
-        ("Song [Radio Edit] (Radio Edit) (Radio Edit)", "Song [Radio Edit] (Radio Edit)"),
+        ("Song [Radio Edit] (Radio Edit) (Radio Edit)", "Song (Radio Edit)"),
         ("Complex (Mix 2023) (Mix 2023)", "Complex (Mix 2023)"),
         ("Title (A) (A) (B) (B)", "Title (A) (B)"),
         (
@@ -298,6 +298,13 @@ def test_titlestripper_advanced():
             "People Hold On (Blaze New Jersey Jazz Mix)",
         ),
         ("Song (Edit) (EDIT)", "Song (Edit)"),
+        (
+            "after the burn [the nostalgic sound of a world without us]"
+            " (the nostalgic sound of a world without us)",
+            "after the burn (the nostalgic sound of a world without us)",
+        ),
+        ("Song [Remix] (Remix)", "Song (Remix)"),
+        ("Song (Remix) [Remix]", "Song (Remix)"),
     ],
 )
 def test_remove_duplicate_parentheticals(input_title, expected):
