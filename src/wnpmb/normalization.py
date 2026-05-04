@@ -266,10 +266,13 @@ def titlestripper_advanced(
 
 
 def remove_duplicate_parentheticals(title: str | None) -> str | None:
-    """Remove consecutively repeated parenthetical content, e.g. (Edit) (Edit)."""
+    """Remove consecutively repeated parenthetical content, e.g. (Edit) (Edit).
+
+    Handles mixed bracket/paren pairs: [X] (X) and (X) [X] are also collapsed.
+    """
     if not title:
         return title
-    pattern = re.compile(r"\(([^)]+)\)\s*\(\1\)", re.IGNORECASE)
+    pattern = re.compile(r"[\(\[]([^\)\]]+)[\)\]]\s*[\(\[]\1[\)\]]", re.IGNORECASE)
     cleaned = title
     while True:
         new = pattern.sub(r"(\1)", cleaned)
