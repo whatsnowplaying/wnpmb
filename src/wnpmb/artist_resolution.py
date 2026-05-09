@@ -230,6 +230,8 @@ def split_artist_string(artist_string: str) -> list[str]:  # pylint: disable=too
             artist_string[:first_pos].strip(),
             artist_string[first_pos + 1 :].strip(),
         ]
+        # Strip leading conjunction left by an Oxford comma ("& Kool Moe Dee" → "Kool Moe Dee").
+        parts = [re.sub(r"^(?:&|and)\s+", "", p, flags=re.IGNORECASE).strip() for p in parts]
         parts = [p for p in parts if p]
         if len(parts) > 1 and all(len(p) >= 3 for p in parts):
             return parts

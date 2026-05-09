@@ -429,6 +429,30 @@ async def test_troye_sivan_kacey_musgraves_easy():
     ]
 
 
+# ── Will Smith / Dru Hill / Kool Moe Dee ─────────────────────────────────────
+
+
+async def test_will_smith_wild_wild_west():
+    """Comma-separated multi-artist resolved via per-part AND-of-ORs arid search.
+
+    ID3 tags store collaborators as a comma-separated list; MB credits this as
+    'Will Smith featuring Dru Hill & Kool Mo Dee' (note 'Kool Mo Dee' credited-as
+    vs canonical 'Kool Moe Dee').  The AND-of-ORs arid pass finds the recording
+    without text-based artist matching.
+    """
+    result = await _resolve(
+        "Wild Wild West",
+        "Will Smith, Dru Hill, & Kool Moe Dee",
+        album="Willennium",
+    )
+    assert result["musicbrainz_recording_id"] == "663c6bae-aeac-46a1-ae79-6c72cb3473c3"
+    assert result["musicbrainz_artist_id"] == [
+        "5bae7081-64ef-4473-825a-38d310deb14c",  # Will Smith
+        "2d7d0a67-ae5d-4ac0-93aa-aa52ef3a976a",  # Dru Hill
+        "94ff7d3c-27e1-4628-9b81-477f911295cd",  # Kool Moe Dee
+    ]
+
+
 # ── Error handling ────────────────────────────────────────────────────────────
 
 
