@@ -405,6 +405,7 @@ def build_recording_query(
     title: str,
     artist_name: str | None = None,
     artist_id: str | list[str] | None = None,
+    artist_id_groups: list[list[str]] | None = None,
     album: str | None = None,
     strict: bool = False,
     year: int | None = None,
@@ -414,6 +415,13 @@ def build_recording_query(
 
     Prefers artist IDs (arid:) over artist names for precision when
     disambiguating artists with common names.
+
+    When artist_id_groups is provided, each group is a list of candidate MBIDs
+    for one artist in a collaboration.  Groups are AND'd so all collaborators
+    must be credited; within each group the IDs are OR'd so any alias or
+    duplicate MBID for that artist still matches.  This is more precise than
+    a flat OR list when looking up recordings by multiple co-credited artists.
+    artist_id_groups takes precedence over artist_id and artist_name.
 
     When strict=True, excludes compilations and live releases and requires
     official status — useful when there are too many results and the top
@@ -425,7 +433,14 @@ def build_recording_query(
     """
     parts = [f'recording:"{sanitize_query_value(title)}"']
 
-    if artist_id:
+    if artist_id_groups:
+        for group in [g for g in artist_id_groups if g]:
+            if len(group) == 1:
+                parts.append(f"arid:{sanitize_query_value(group[0])}")
+            else:
+                conditions = [f"arid:{sanitize_query_value(aid)}" for aid in group]
+                parts.append(f"({' OR '.join(conditions)})")
+    elif artist_id:
         if isinstance(artist_id, list):
             conditions = [f"arid:{sanitize_query_value(aid)}" for aid in artist_id]
             parts.append(f"({' OR '.join(conditions)})")

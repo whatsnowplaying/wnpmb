@@ -19,6 +19,7 @@ class RecordingsMixin(MusicBrainzBase):
         title: str,
         artist_name: str | None = None,
         artist_id: str | list[str] | None = None,
+        artist_id_groups: list[list[str]] | None = None,
         album: str | None = None,
         limit: int = 100,
         offset: int | None = None,
@@ -35,12 +36,18 @@ class RecordingsMixin(MusicBrainzBase):
 
         When strict=True the query excludes compilations and live releases
         and requires official status.
+
+        artist_id_groups enables AND-of-ORs arid matching: each group is one
+        collaborator's candidate IDs.  See build_recording_query for details.
         """
         if not title:
             return [], 0
 
         cache_parts = [f"title:{title.lower()}"]
-        if artist_id:
+        if artist_id_groups:
+            group_strs = ["|".join(sorted(g)) for g in artist_id_groups]
+            cache_parts.append(f"arid_groups:{';'.join(group_strs)}")
+        elif artist_id:
             ids = sorted(artist_id) if isinstance(artist_id, list) else [artist_id]
             cache_parts.append(f"arid:{','.join(ids)}")
         elif artist_name:
@@ -60,7 +67,13 @@ class RecordingsMixin(MusicBrainzBase):
             return cached.get("recordings", []), cached.get("recording_count", 0)
 
         query = build_recording_query(
-            title, artist_name, artist_id, album, strict=strict, year=year
+            title,
+            artist_name,
+            artist_id,
+            artist_id_groups=artist_id_groups,
+            album=album,
+            strict=strict,
+            year=year,
         )
         logger.debug("MB recording search: %s", query)
 

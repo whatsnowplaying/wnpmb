@@ -447,6 +447,38 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
                 result.append(mbid)
         return result
 
+    async def _find_per_part_artist_ids(self, artist: str) -> list[list[str]] | None:
+        """
+        Split a comma-separated multi-artist string and look up artist IDs for
+        each individual part.
+
+        Returns a list of ID groups (one per part), or None if the string has
+        no commas or any part fails to resolve.  Each inner list contains one
+        or more candidate MBIDs for that artist so callers can build an
+        AND-of-ORs query: all collaborators must be credited, but any candidate
+        MBID for a given collaborator is acceptable.
+        """
+        if "," not in artist:
+            return None
+
+        parts = [p.strip() for p in artist.split(",")]
+        # Strip Oxford-comma conjunction artifacts ("& Kool Moe Dee" → "Kool Moe Dee").
+        parts = [re.sub(r"^(?:&|and)\s+", "", p, flags=re.IGNORECASE).strip() for p in parts]
+        parts = [p for p in parts if p]
+
+        if len(parts) < 2:
+            return None
+
+        groups: list[list[str]] = []
+        for part in parts:
+            ids = await self._find_artist_ids(part)
+            if not ids:
+                logger.debug("_find_per_part_artist_ids: no IDs for part %r", part)
+                return None
+            groups.append(ids)
+
+        return groups
+
     async def find_recording_by_search(
         self,
         title: str,
@@ -566,7 +598,26 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             if mbid := await _search_and_select(artist_var, None, allow_others=True):
                 return mbid
 
-        # Pass 4: arid-based fallback for ASCII artists where name-based search
+        # Pass 4: AND-of-ORs arid search for comma-separated multi-artist inputs
+        # (e.g. "Will Smith, Dru Hill, & Kool Moe Dee").  ID3 tags often store
+        # collaborators as a comma-separated list while MB credits them with join
+        # phrases like " featuring ".  By resolving each part to artist IDs and
+        # querying recording:"title" AND (arid:X1 OR X2) AND (arid:Y) AND ...,
+        # we get a precise match without any text-based artist string comparison.
+        if "," in artist:
+            id_groups = await self._find_per_part_artist_ids(artist)
+            if id_groups:
+                for search_album in [album, None] if album else [None]:
+                    recs, count = await self.search_recordings(
+                        title=title, artist_id_groups=id_groups, album=search_album
+                    )
+                    if recs and count > 0:
+                        if mbid := select_recording(
+                            recs, title=title, artist=None, album=search_album, year=year
+                        ):
+                            return mbid
+
+        # Pass 5: arid-based fallback for ASCII artists where name-based search
         # failed.  MB's Lucene recording index does not resolve artist aliases
         # (e.g. "Run DMC" → "Run-D.M.C."), but the artist search does.  Only
         # attempted after all name-based passes fail to avoid extra API calls.
