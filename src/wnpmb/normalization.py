@@ -434,7 +434,7 @@ def build_recording_query(
     parts = [f'recording:"{sanitize_query_value(title)}"']
 
     if artist_id_groups:
-        for group in artist_id_groups:
+        for group in [g for g in artist_id_groups if g]:
             if len(group) == 1:
                 parts.append(f"arid:{sanitize_query_value(group[0])}")
             else:
