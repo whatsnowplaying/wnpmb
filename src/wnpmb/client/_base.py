@@ -311,15 +311,54 @@ class MusicBrainzBase:
                 return None
 
     async def _get_image(self, url: str) -> bytes:
-        """GET binary image data (Cover Art Archive)."""
+        """GET binary image data (Cover Art Archive).
+
+        CAA is a separate service with no rate limiting, so _enforce_rate_limit
+        is intentionally not called here.  503 responses are retried with the
+        same backoff as MB API calls.
+        """
         await self._ensure_session()
-        await self._enforce_rate_limit()
         assert self._session is not None
-        response = await self._session.get(url)
-        self.api_call_count += 1
-        if response.status_code == 200:
-            return response.content
-        raise ResponseError(f"HTTP {response.status_code} fetching image: {url}")
+        max_retries = self.retry_settings.max_retries
+        wait = self.retry_settings.wait
+        attempt = 0
+
+        while True:
+            try:
+                response = await self._session.get(url)
+                if response.status_code == 503:
+                    if attempt < max_retries:
+                        attempt += 1
+                        logger.debug(
+                            "CAA HTTP 503 from %s — retrying (%d/%d)",
+                            url,
+                            attempt,
+                            max_retries,
+                        )
+                        await asyncio.sleep(wait)
+                        continue
+                    raise ResponseError(f"CAA unavailable after {max_retries} retries: {url}")
+                if response.status_code == 200:
+                    return response.content
+                raise ResponseError(f"HTTP {response.status_code} fetching image: {url}")
+            except ResponseError:
+                raise
+            except httpx.TimeoutException:
+                logger.warning("CAA timeout: url=%s", url)
+                raise ResponseError(f"Timeout fetching image: {url}")
+            except httpx.ConnectError as exc:
+                if attempt < max_retries:
+                    attempt += 1
+                    logger.debug(
+                        "CAA connect error from %s (%s) — retrying (%d/%d)",
+                        url,
+                        exc,
+                        attempt,
+                        max_retries,
+                    )
+                    await asyncio.sleep(wait)
+                    continue
+                raise ResponseError(f"Connect error fetching image: {url}") from exc
 
     # ── Cache helpers ──────────────────────────────────────────────────────
 
