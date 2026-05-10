@@ -326,7 +326,6 @@ class MusicBrainzBase:
         while True:
             try:
                 response = await self._session.get(url)
-                self.api_call_count += 1
                 if response.status_code == 503:
                     if attempt < max_retries:
                         attempt += 1
@@ -338,7 +337,7 @@ class MusicBrainzBase:
                         )
                         await asyncio.sleep(wait)
                         continue
-                    raise ResponseError(f"CAA rate limited after {max_retries} retries: {url}")
+                    raise ResponseError(f"CAA unavailable after {max_retries} retries: {url}")
                 if response.status_code == 200:
                     return response.content
                 raise ResponseError(f"HTTP {response.status_code} fetching image: {url}")
