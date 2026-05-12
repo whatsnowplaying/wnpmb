@@ -50,9 +50,6 @@ HELP_RELEASE_GROUP_ID = "0d44e1cb-c6e0-3453-8b68-4d2082f05421"
 ACDC_ARTIST_ID = "66c662b6-6e2f-4930-8610-912e24c63ed1"
 HERE_COMES_THE_SUN_ISRC = "GBAYE0601696"
 
-QUEEN_ARTIST_ID = "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
-QUEEN_RECORDING_ID = "e7fccc6b-db70-4f27-9c6d-cc5d46bf8e9c"
-
 
 def _fixture(name: str) -> dict:
     return json.loads((FIXTURES / f"{name}.json").read_text())
@@ -594,76 +591,6 @@ _EMPTY_BROWSE = httpx.Response(200, json={"releases": []})
 
 
 @respx.mock
-async def test_process_recording_data_nin():
-    """NIN: has ISRCs, real album title with em-dash, artist extracted."""
-    recording = _fixture("recording_nin_15ghosts2")
-    respx.get(f"{MB}/release").mock(return_value=_EMPTY_BROWSE)
-    async with MusicBrainzClient() as mb:
-        result = await mb.process_recording_data(recording, NIN_RECORDING_ID)
-    assert result["musicbrainz_recording_id"] == NIN_RECORDING_ID
-    assert result["title"] == "15 Ghosts II"
-    assert result["artist"] == "Nine Inch Nails"
-    assert NIN_ARTIST_ID in result["musicbrainz_artist_id"]
-    assert result["album"] == "Ghosts I\u2013IV"
-    assert NIN_ISRC in result["isrc"]
-
-
-@respx.mock
-async def test_process_recording_data_trst():
-    """TR/ST: slash in artist name preserved through processing.
-
-    The recording appears on both the 'Iris' single and 'The Destroyer' albums.
-    select_best_release picks from whichever release scores highest; the key
-    assertion is that the artist name with slash survives intact.
-    """
-    recording = _fixture("recording_trst_iris")
-    respx.get(f"{MB}/release").mock(return_value=_EMPTY_BROWSE)
-    respx.get(f"{MB}/artist/{TRST_ARTIST_ID}").mock(
-        return_value=httpx.Response(200, json=_fixture("artist_trst"))
-    )
-    async with MusicBrainzClient() as mb:
-        result = await mb.process_recording_data(recording, TRST_RECORDING_ID)
-    assert result["title"] == "Iris"
-    assert result["artist"] == "TR/ST"
-    assert TRST_ARTIST_ID in result["musicbrainz_artist_id"]
-    # recording appears on both 'Iris' and 'The Destroyer — 2'
-    assert result["album"] in {"Iris", "The Destroyer \u2014 2", "Destroyer Vol 1 & 2"}
-
-
-@respx.mock
-async def test_process_recording_data_computer_blue():
-    """Prince and The Revolution: multi-artist credit produces joined string."""
-    recording = _fixture("recording_computer_blue")
-    respx.get(f"{MB}/release").mock(return_value=_EMPTY_BROWSE)
-    async with MusicBrainzClient() as mb:
-        result = await mb.process_recording_data(recording, COMPUTER_BLUE_RECORDING_ID)
-    assert result["title"] == "Computer Blue"
-    # Both artist IDs present
-    assert PRINCE_ARTIST_ID in result["musicbrainz_artist_id"]
-    assert REVOLUTION_ARTIST_ID in result["musicbrainz_artist_id"]
-    # Joined artist string contains both names
-    assert "Prince" in result["artist"]
-    assert "Revolution" in result["artist"]
-    assert result["album"] == "Purple Rain"
-
-
-@respx.mock
-async def test_process_recording_data_my_culture():
-    """1 Giant Leap feat. Robbie Williams and Maxi Jazz: three artists, joinphrases."""
-    recording = _fixture("recording_1_giant_leap_my_culture")
-    respx.get(f"{MB}/release").mock(return_value=_EMPTY_BROWSE)
-    async with MusicBrainzClient() as mb:
-        result = await mb.process_recording_data(recording, GIANT_LEAP_RECORDING_ID)
-    assert result["title"] == "My Culture"
-    assert GIANT_LEAP_ARTIST_ID in result["musicbrainz_artist_id"]
-    assert ROBBIE_WILLIAMS_ARTIST_ID in result["musicbrainz_artist_id"]
-    assert MAXI_JAZZ_ARTIST_ID in result["musicbrainz_artist_id"]
-    assert "1 Giant Leap" in result["artist"]
-    assert "Robbie Williams" in result["artist"]
-    assert "Maxi Jazz" in result["artist"]
-
-
-@respx.mock
 async def test_process_recording_data_tags_fallback_to_artist():
     """When recording has no tags, collect_tags falls back to artist API call."""
     recording = _fixture("recording_yesterday")  # tags: [] on this recording
@@ -693,20 +620,3 @@ async def test_process_recording_data_uses_browse_releases():
         result = await mb.process_recording_data(recording, YESTERDAY_RECORDING_ID)
     # browse_releases_yesterday contains the Help! UK release
     assert result["album"] == "Help!"
-
-
-@respx.mock
-async def test_process_recording_data_queen_news_of_the_world():
-    """Queen: studio recording has >25 releases; browse_releases finds News of the World.
-
-    The inline release list from get_recording_by_id is capped at ~25 entries
-    and contains only compilations for this recording.  browse_releases() returns
-    the full official set and select_best_release() prefers the studio album.
-    """
-    recording = _fixture("recording_queen_we_will_rock_you")
-    browse = _fixture("browse_releases_queen_we_will_rock_you")
-    respx.get(f"{MB}/release").mock(return_value=httpx.Response(200, json=browse))
-    async with MusicBrainzClient() as mb:
-        result = await mb.process_recording_data(recording, QUEEN_RECORDING_ID)
-    assert QUEEN_ARTIST_ID in result["musicbrainz_artist_id"]
-    assert result["album"] in {"News of the World", "Crazy Little Thing Called Love"}

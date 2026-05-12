@@ -5,37 +5,11 @@ No network calls — all recording dicts are constructed inline to exercise
 specific behaviours without relying on live MB data.
 """
 
+from _mb_dict_helpers import make_recording, make_release  # type: ignore[import-not-found]
+
 from wnpmb.client._resolution import select_recording
 
-# ── helpers ───────────────────────────────────────────────────────────────────
-
 _FF_CREDIT = [{"artist": {"name": "Foo Fighters"}}]
-
-
-def _rec(
-    mbid: str,
-    title: str,
-    frd: str,
-    releases: list[dict],
-    isrcs: list[str] | None = None,
-) -> dict:
-    r: dict = {
-        "id": mbid,
-        "title": title,
-        "first-release-date": frd,
-        "artist-credit": _FF_CREDIT,
-        "releases": releases,
-    }
-    if isrcs:
-        r["isrcs"] = isrcs
-    return r
-
-
-def _release(title: str, date: str, official: bool = True) -> dict:
-    r: dict = {"title": title, "date": date}
-    if official:
-        r["status"] = "Official"
-    return r
 
 
 # ── All My Life — date tiebreaker ─────────────────────────────────────────────
@@ -45,36 +19,39 @@ def _release(title: str, date: str, official: bool = True) -> dict:
 # the promo had slightly more inline releases, pushing its score above the
 # genuine single.  The _frd_days tiebreaker must resolve this.
 
-_AML_PROMO = _rec(
-    "367c5229-163f-4d60-97b2-0e079b6625c6",
-    "All My Life",
-    "2002-10-01",
-    [
-        _release("Alternative Times, Volume 30", "2002-10-01"),
-        _release("All My Life", "2002-10-07"),
-        _release("Promo Only: Modern Rock Radio, October 2002", "2002-10"),
-        _release("Promo Only: Modern Rock Radio, October 2002", "2002-10"),
+_AML_PROMO = make_recording(
+    mbid="367c5229-163f-4d60-97b2-0e079b6625c6",
+    title="All My Life",
+    first_release_date="2002-10-01",
+    artist_credits=_FF_CREDIT,
+    releases=[
+        make_release("Alternative Times, Volume 30", date="2002-10-01"),
+        make_release("All My Life", date="2002-10-07"),
+        make_release("Promo Only: Modern Rock Radio, October 2002", date="2002-10"),
+        make_release("Promo Only: Modern Rock Radio, October 2002", date="2002-10"),
     ],
     isrcs=["USWB10200987"],
 )
 
-_AML_SINGLE = _rec(
-    "d0dc4e1c-20b0-4866-be6a-16e20e345f3a",
-    "All My Life",
-    "2002-09-07",
-    [
-        _release("All My Life", "2002-09-07"),
-        _release("One by One", "2002-10-22"),
-        _release("One By One", "2002-10-22"),
+_AML_SINGLE = make_recording(
+    mbid="d0dc4e1c-20b0-4866-be6a-16e20e345f3a",
+    title="All My Life",
+    first_release_date="2002-09-07",
+    artist_credits=_FF_CREDIT,
+    releases=[
+        make_release("All My Life", date="2002-09-07"),
+        make_release("One by One", date="2002-10-22"),
+        make_release("One By One", date="2002-10-22"),
     ],
     isrcs=["USWB10200987"],
 )
 
-_AML_CANONICAL = _rec(
-    "4850f8e7-8f21-413e-892b-fe9c56844ccc",
-    "All My Life",
-    "2002-09-07",
-    [_release("All My Life", "2002-09-07")] * 25,
+_AML_CANONICAL = make_recording(
+    mbid="4850f8e7-8f21-413e-892b-fe9c56844ccc",
+    title="All My Life",
+    first_release_date="2002-09-07",
+    artist_credits=_FF_CREDIT,
+    releases=[make_release("All My Life", date="2002-09-07")] * 25,
     isrcs=["USWB10200987"],
 )
 
@@ -123,21 +100,21 @@ _KARAOKE_CREDIT = [{"artist": {"name": "Various Karaoke Artists"}}]
 
 def test_usher_feat_matches_single_artist_input():
     """Primary-artist input matches a feat. recording; karaoke cover (no ISRC) loses."""
-    real = {
-        "id": "4f595ab5-0000-0000-0000-000000000000",
-        "title": "Yeah!",
-        "first-release-date": "2004-01-01",
-        "artist-credit": _USHER_FEAT_CREDIT,
-        "isrcs": ["USRC10400241"],
-        "releases": [_release("Confessions", "2004-03-23")] * 3,
-    }
-    karaoke = {
-        "id": "237f3be8-0000-0000-0000-000000000000",
-        "title": "Yeah!",
-        "first-release-date": "2004-06-01",
-        "artist-credit": _KARAOKE_CREDIT,
-        "releases": [_release("The Smash! Hits Chart Karaoke Album!", "2004-06-01")] * 2,
-    }
+    real = make_recording(
+        mbid="4f595ab5-0000-0000-0000-000000000000",
+        title="Yeah!",
+        first_release_date="2004-01-01",
+        artist_credits=_USHER_FEAT_CREDIT,
+        isrcs=["USRC10400241"],
+        releases=[make_release("Confessions", date="2004-03-23")] * 3,
+    )
+    karaoke = make_recording(
+        mbid="237f3be8-0000-0000-0000-000000000000",
+        title="Yeah!",
+        first_release_date="2004-06-01",
+        artist_credits=_KARAOKE_CREDIT,
+        releases=[make_release("The Smash! Hits Chart Karaoke Album!", date="2004-06-01")] * 2,
+    )
     result = select_recording(
         [karaoke, real],
         title="Yeah!",
@@ -148,17 +125,19 @@ def test_usher_feat_matches_single_artist_input():
 
 def test_exact_title_beats_extended_version():
     """Exact title match is preferred over a recording with a remix suffix."""
-    plain = _rec(
-        "d0dc4e1c-20b0-4866-be6a-16e20e345f3a",
-        "All My Life",
-        "2002-09-07",
-        [_release("All My Life", "2002-09-07")] * 3,
+    plain = make_recording(
+        mbid="d0dc4e1c-20b0-4866-be6a-16e20e345f3a",
+        title="All My Life",
+        first_release_date="2002-09-07",
+        artist_credits=_FF_CREDIT,
+        releases=[make_release("All My Life", date="2002-09-07")] * 3,
     )
-    extended = _rec(
-        "367c5229-163f-4d60-97b2-0e079b6625c6",
-        "All My Life (extended version)",
-        "2002-09-07",
-        [_release("All My Life (extended version)", "2002-09-07")] * 5,
+    extended = make_recording(
+        mbid="367c5229-163f-4d60-97b2-0e079b6625c6",
+        title="All My Life (extended version)",
+        first_release_date="2002-09-07",
+        artist_credits=_FF_CREDIT,
+        releases=[make_release("All My Life (extended version)", date="2002-09-07")] * 5,
     )
     result = select_recording(
         [extended, plain],
@@ -166,6 +145,123 @@ def test_exact_title_beats_extended_version():
         artist="Foo Fighters",
     )
     assert result == "d0dc4e1c-20b0-4866-be6a-16e20e345f3a"
+
+
+# ── candidate-selection scenarios (ported from charts) ───────────────────────
+
+
+def test_select_original_beats_compilation():
+    """Original studio release outscores a compilation."""
+    original = make_recording(
+        mbid="original-id",
+        first_release_date="2002",
+        isrcs=["USAR10301423"],
+        releases=[make_release("8 Mile Soundtrack", date="2002-10-29")],
+    )
+    compilation = make_recording(
+        mbid="compilation-id",
+        first_release_date="2010",
+        isrcs=["USAR10301423"],
+        releases=[
+            make_release("Greatest Rap Hits 2010", date="2010-01-01", primary_type="Compilation")
+        ],
+    )
+    assert select_recording([compilation, original]) == "original-id"
+
+
+def test_select_more_releases_breaks_tie():
+    """Equal recordings: more releases = more authoritative."""
+    many = make_recording(
+        mbid="id-many",
+        first_release_date="2004",
+        releases=[
+            make_release("Album", date="2004-01-01"),
+            make_release("Deluxe Edition", date="2004-06-01"),
+            make_release("Remaster", date="2014-01-01"),
+        ],
+    )
+    few = make_recording(
+        mbid="id-few",
+        first_release_date="2004",
+        releases=[make_release("Album", date="2004-01-01")],
+    )
+    assert select_recording([few, many]) == "id-many"
+
+
+def test_select_skips_compilation_unless_allow_others():
+    """Compilations are skipped by default but accepted with allow_others=True."""
+    comp = make_recording(
+        mbid="comp-id",
+        first_release_date="2002",
+        releases=[make_release("Greatest Hits", primary_type="Compilation")],
+    )
+    assert select_recording([comp]) is None
+    assert select_recording([comp], allow_others=True) == "comp-id"
+
+
+def test_select_skips_live_unless_allow_others():
+    """Live releases are skipped by default."""
+    live = make_recording(
+        mbid="live-id",
+        first_release_date="2002",
+        releases=[make_release("Live at Wembley", secondary_types=["Live"])],
+    )
+    assert select_recording([live]) is None
+    assert select_recording([live], allow_others=True) == "live-id"
+
+
+def test_select_various_artists_used_as_fallback():
+    """Various Artists releases are saved as last-resort fallback."""
+    va = make_recording(
+        mbid="va-id",
+        first_release_date="2002",
+        releases=[make_release("Soundtrack", artist_credits=[{"name": "Various Artists"}])],
+    )
+    assert select_recording([va]) == "va-id"
+
+
+def test_select_no_releases_excluded():
+    """Recordings with no releases are excluded from candidates."""
+    no_releases = make_recording(mbid="no-rel-id", releases=[])
+    with_releases = make_recording(mbid="with-rel-id", releases=[make_release("Album")])
+    assert select_recording([no_releases, with_releases]) == "with-rel-id"
+
+
+def test_select_album_constraint_filters_mismatched_releases():
+    """When album is provided, releases with mismatched titles are skipped."""
+    wrong_album = make_recording(
+        mbid="wrong-id",
+        first_release_date="2004",
+        releases=[make_release("Greatest Hits")],
+    )
+    right_album = make_recording(
+        mbid="right-id",
+        first_release_date="2005",
+        releases=[make_release("Confessions")],
+    )
+    assert select_recording([wrong_album, right_album], album="Confessions") == "right-id"
+
+
+def test_select_returns_none_with_no_candidates():
+    assert select_recording([]) is None
+
+
+def test_select_context_album_match_can_overcome_slightly_later_date():
+    """Context match (+175 pts) easily beats a 1-year frd gap (+10 pts)."""
+    contextual = make_recording(
+        mbid="right-id",
+        first_release_date="2004",
+        releases=[make_release("Confessions", date="2004-03-01")],
+    )
+    earlier_no_context = make_recording(
+        mbid="wrong-id",
+        first_release_date="2003",
+        releases=[make_release("Some Other Album", date="2003-01-01")],
+    )
+    assert (
+        select_recording([earlier_no_context, contextual], album="Confessions", year=2004)
+        == "right-id"
+    )
 
 
 def test_suffixed_title_no_match_returns_none():
@@ -176,11 +272,12 @@ def test_suffixed_title_no_match_returns_none():
     the Cardinal mix scored highest.  When the input title has a parenthetical
     qualifier and no candidate matches it exactly, return None.
     """
-    cardinal = _rec(
-        "81f30199-861a-48a6-9dc2-d1b260e0f279",
-        "Wait Forever (Cardinal mix)",
-        "2012-01-01",
-        [_release("Wait Forever", "2012-01-01")] * 4,
+    cardinal = make_recording(
+        mbid="81f30199-861a-48a6-9dc2-d1b260e0f279",
+        title="Wait Forever (Cardinal mix)",
+        first_release_date="2012-01-01",
+        artist_credits=_FF_CREDIT,
+        releases=[make_release("Wait Forever", date="2012-01-01")] * 4,
     )
     result = select_recording(
         [cardinal],

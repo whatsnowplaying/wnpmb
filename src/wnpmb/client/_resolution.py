@@ -9,6 +9,7 @@ from datetime import date as _date
 
 from ..normalization import (
     REMIX_RE,
+    _score_release_group,
     generate_artist_variations,
     is_compilation_or_live,
     normalize,
@@ -44,13 +45,34 @@ _W_ALBUM_PARTIAL: int = 50  # release title partially matches album hint
 _W_DATE_EXACT: int = 75  # release date matches year hint exactly
 _W_DATE_OFF1: int = 40  # release date within 1 year of hint
 _W_DATE_OFF5: int = 20  # release date within 5 years of hint
-_W_RELEASE: int = 10  # per release on the recording
 _W_ERA_PRE2000: int = 15  # per release dated before 2000
 _W_ERA_PRE2010: int = 10  # per release dated 2000–2009
 _W_ERA_PRE2020: int = 5  # per release dated 2010–2019
 _W_HAS_LENGTH: int = 5  # recording has a duration
 _W_ARTIST_CREDIT: int = 5  # per artist-credit entry
-_W_DISAMBIGUATION: int = 10  # recording has a disambiguation comment
+_W_DISAMBIGUATION: int = 10  # recording has a non-variant disambiguation comment
+_W_NON_CANONICAL_DISAMBIG: int = -50  # disambig marks a live/remix/etc. variant
+
+# Markers in a recording's disambiguation that signal a non-canonical variant
+# (live performance, remix, instrumental, karaoke etc.).  When the input title
+# contains the same marker the user is asking for that variant — no penalty;
+# otherwise score the recording down so the canonical studio recording wins.
+_NON_CANONICAL_DISAMBIG_MARKERS: tuple[str, ...] = (
+    "live",
+    "remix",
+    "instrumental",
+    "karaoke",
+    "acoustic",
+    "acapella",
+    "a cappella",
+    "demo",
+    "cover",
+    "reprise",
+)
+_NON_CANONICAL_DISAMBIG_RE: re.Pattern[str] = re.compile(
+    r"\b(?:" + "|".join(re.escape(m) for m in _NON_CANONICAL_DISAMBIG_MARKERS) + r")\b",
+    re.IGNORECASE,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -149,10 +171,29 @@ def _artist_matches(artist: str, recording: dict) -> bool:
     )
 
 
+def _title_has_variant_marker(title: str | None, disambig: str) -> bool:
+    """True if title contains a non-canonical marker (live/remix/...) that also
+    appears in the recording's disambiguation, matched on word boundaries.
+
+    Used to skip the non-canonical-disambig penalty when the user is explicitly
+    asking for that variant (e.g. title "Song (Live at X)" + disambig "live").
+    Word-boundary matching keeps "olive" from being treated as the "live"
+    marker.
+    """
+    if not title:
+        return False
+    disambig_markers = {m.lower() for m in _NON_CANONICAL_DISAMBIG_RE.findall(disambig)}
+    if not disambig_markers:
+        return False
+    title_markers = {m.lower() for m in _NON_CANONICAL_DISAMBIG_RE.findall(title)}
+    return bool(disambig_markers & title_markers)
+
+
 def _score_recording(
     recording: dict,
     album: str | None = None,
     year: int | None = None,
+    title: str | None = None,
 ) -> int:
     """Score a recording dict for quality ranking within select_recording.
 
@@ -167,10 +208,20 @@ def _score_recording(
       disambiguates same-named artists from different eras (Ghost/Ghost)
     - ISRCs present (50 pts each)
     - context match against album/year hints (up to 175 pts)
-    - release count (10 pts each)
+    - releases weighted by release-group quality (0-25 each via
+      _score_release_group): Album +25, Single/EP +20, Broadcast +10, with
+      stacking penalties for Compilation/Live/Demo/Remix secondary types.
+      Replaces unconditional release-count weighting so a live recording
+      compiled onto 80 release-groups can't outrank a studio recording on
+      30 clean Album release-groups.
     - release age bonus (5–15 pts per release)
-    - metadata completeness: length (+5), artist credits (5 pts each),
-      disambiguation (+10)
+    - metadata completeness: length (+5), artist credits (5 pts each)
+    - disambiguation: +10 for a canonical disambig (e.g. "1995 remaster"),
+      −50 when the disambig contains a non-canonical marker
+      (live/remix/instrumental/karaoke/...) and the input title has no
+      matching qualifier — keeps the studio "We Will Rock You" recording
+      from losing to the 1982 Milton Keynes live cut, while still
+      allowing the live recording to win when the user asks for it.
     """
     score = 0
 
@@ -221,7 +272,10 @@ def _score_recording(
         best_context = max(best_context, ctx)
     score += best_context
 
-    score += len(releases) * _W_RELEASE
+    # Quality-weight each release by its release-group type instead of a flat
+    # +10 per release.  Stops a recording with many compilation appearances from
+    # outranking one with fewer-but-cleaner Album releases.
+    score += sum(_score_release_group(r) for r in releases)
 
     for release in releases:
         if release.get("date") and (m := _DATE_YEAR_RE.search(release["date"])):
@@ -237,8 +291,13 @@ def _score_recording(
         score += _W_HAS_LENGTH
     if artist_credits := recording.get("artist-credit"):
         score += len(artist_credits) * _W_ARTIST_CREDIT
-    if recording.get("disambiguation"):
-        score += _W_DISAMBIGUATION
+    if disambig := recording.get("disambiguation"):
+        if _NON_CANONICAL_DISAMBIG_RE.search(disambig) and not _title_has_variant_marker(
+            title, disambig
+        ):
+            score += _W_NON_CANONICAL_DISAMBIG
+        else:
+            score += _W_DISAMBIGUATION
 
     return score
 
@@ -297,7 +356,7 @@ def select_recording(
     candidates.sort(
         key=lambda rec: (
             norm_title == norm_titles[rec["id"]],
-            _score_recording(rec, album=album, year=year),
+            _score_recording(rec, album=album, year=year, title=title),
             _frd_days(rec),
         ),
         reverse=True,
