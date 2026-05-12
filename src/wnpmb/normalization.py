@@ -737,10 +737,15 @@ def select_best_release(
         score += _score_release_group(release)
 
         # Title-based compilation safety net: catches "Hits", "Volume", "Best of"
-        # etc. when MB is missing the Compilation secondary-type.  A real album
-        # with one of these words still scores positively — this is a tiebreaker
-        # nudge, not a disqualifier.
-        if release.get("title") and _COMPILATION_TITLE_RE.search(release["title"]):
+        # etc. when MB is missing the Compilation secondary-type.  Skipped when
+        # the release-group is already tagged Compilation, since _score_release_group
+        # has already applied that penalty — no double-dipping.
+        rg_secondary = (release.get("release-group") or {}).get("secondary-types") or []
+        if (
+            release.get("title")
+            and _COMPILATION_TITLE_RE.search(release["title"])
+            and "Compilation" not in rg_secondary
+        ):
             score += _W_COMP_TITLE_PENALTY
 
         # Reissue penalty: a release whose date is well after its release-group's

@@ -9,6 +9,7 @@ from datetime import date as _date
 
 from ..normalization import (
     REMIX_RE,
+    _release_year,
     _score_release_group,
     generate_artist_variations,
     is_compilation_or_live,
@@ -23,7 +24,6 @@ _ARID_SCORE_THRESHOLD: int = 70
 _ARID_COUNT_CEILING: int = 150
 _PAGE_SIZE: int = 100  # MusicBrainz API max results per page
 _SEARCH_RESULTS_CAP: int = 500  # max recordings to collect across all pages
-_DATE_YEAR_RE: re.Pattern[str] = re.compile(r"\b(19\d{2}|20\d{2})\b")
 # Strip leading articles before comparing artist names so "Danse Society"
 # matches "The Danse Society" without allowing "Kelly" to match "Vance Kelly".
 _ARTICLE_RE: re.Pattern[str] = re.compile(r"^(?:the|a|an)\s+", re.IGNORECASE)
@@ -260,15 +260,14 @@ def _score_recording(
                     ctx += _W_ALBUM_EXACT
                 elif norm_album in norm_release or norm_release in norm_album:
                     ctx += _W_ALBUM_PARTIAL
-        if year and release.get("date"):
-            if m := _DATE_YEAR_RE.search(release["date"]):
-                diff = abs(int(m.group(1)) - year)
-                if diff == 0:
-                    ctx += _W_DATE_EXACT
-                elif diff <= 1:
-                    ctx += _W_DATE_OFF1
-                elif diff <= 5:
-                    ctx += _W_DATE_OFF5
+        if year and (rel_date_year := _release_year(release.get("date"))):
+            diff = abs(rel_date_year - year)
+            if diff == 0:
+                ctx += _W_DATE_EXACT
+            elif diff <= 1:
+                ctx += _W_DATE_OFF1
+            elif diff <= 5:
+                ctx += _W_DATE_OFF5
         best_context = max(best_context, ctx)
     score += best_context
 
@@ -278,8 +277,7 @@ def _score_recording(
     score += sum(_score_release_group(r) for r in releases)
 
     for release in releases:
-        if release.get("date") and (m := _DATE_YEAR_RE.search(release["date"])):
-            rel_year = int(m.group(1))
+        if rel_year := _release_year(release.get("date")):
             if rel_year < 2000:
                 score += _W_ERA_PRE2000
             elif rel_year < 2010:

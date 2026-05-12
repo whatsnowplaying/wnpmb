@@ -6,10 +6,24 @@ No network calls — recording dicts are constructed inline so each scoring
 factor can be exercised in isolation.
 """
 
+import pytest
+
 from _mb_dict_helpers import make_recording as _recording  # type: ignore[import-not-found]
 from _mb_dict_helpers import make_release as _release  # type: ignore[import-not-found]
 
 from wnpmb.client._resolution import _score_recording
+
+_NON_CANONICAL_MARKERS = [
+    "live",
+    "remix",
+    "instrumental",
+    "karaoke",
+    "acoustic",
+    "acapella",
+    "demo",
+    "cover",
+    "reprise",
+]
 
 # ── first-release-date ────────────────────────────────────────────────────────
 
@@ -94,3 +108,62 @@ def test_score_context_args_increase_score_on_match():
     base_score = _score_recording(rec)
     context_score = _score_recording(rec, album="Confessions", year=2004)
     assert context_score > base_score
+
+
+# ── non-canonical disambiguation handling ────────────────────────────────────
+
+
+@pytest.mark.parametrize("marker", _NON_CANONICAL_MARKERS)
+def test_score_non_canonical_disambig_penalized_without_title_marker(marker):
+    """Each non-canonical marker in disambig is penalized when the title doesn't ask for it."""
+    plain = _recording(
+        title="Yeah!",
+        first_release_date="2004-01-01",
+        releases=[_release("Confessions", date="2004-03-01")],
+    )
+    variant = _recording(
+        title="Yeah!",
+        first_release_date="2004-01-01",
+        releases=[_release("Confessions", date="2004-03-01")],
+        disambiguation=f"{marker} version, somewhere 2010",
+    )
+    plain_score = _score_recording(plain, title="Yeah!")
+    variant_score = _score_recording(variant, title="Yeah!")
+    assert variant_score < plain_score
+
+
+@pytest.mark.parametrize("marker", _NON_CANONICAL_MARKERS)
+def test_score_non_canonical_disambig_not_penalized_when_title_matches(marker):
+    """Penalty is skipped when the input title carries the same marker."""
+    plain = _recording(
+        title="Yeah!",
+        first_release_date="2004-01-01",
+        releases=[_release("Confessions", date="2004-03-01")],
+    )
+    variant = _recording(
+        title="Yeah!",
+        first_release_date="2004-01-01",
+        releases=[_release("Confessions", date="2004-03-01")],
+        disambiguation=f"{marker} version, somewhere 2010",
+    )
+    requested = f"Yeah! ({marker.capitalize()})"
+    plain_score = _score_recording(plain, title=requested)
+    variant_score = _score_recording(variant, title=requested)
+    # Marker in title matches marker in disambig — variant gets the +10
+    # disambig bonus instead of the -50 penalty, so it outranks the plain.
+    assert variant_score > plain_score
+
+
+def test_score_non_canonical_disambig_word_boundary():
+    """'olive' in the title must not satisfy the 'live' marker check."""
+    live_variant = _recording(
+        title="Yeah!",
+        first_release_date="2004-01-01",
+        releases=[_release("Confessions", date="2004-03-01")],
+        disambiguation="live, 2010-07-15: Wembley Stadium",
+    )
+    # "olive" contains "live" as a substring but should not match as a word.
+    olive_title_score = _score_recording(live_variant, title="Olive Grove")
+    # Compared to a title that legitimately asks for "live":
+    real_live_title_score = _score_recording(live_variant, title="Yeah! (Live)")
+    assert olive_title_score < real_live_title_score
