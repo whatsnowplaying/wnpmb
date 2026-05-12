@@ -614,6 +614,49 @@ _RELEASE_SECONDARY_PENALTY: dict[str, int] = {
     "DJ-mix": -10,
 }
 
+# Title-based safety net for compilations that MB has not tagged with the
+# Compilation secondary-type (e.g. "ProSieben Hits, Volume 1" listed as a plain
+# Album).  Applied as a tiebreaker so a real album whose title happens to match
+# (e.g. Black Sabbath "Volume 4") loses some ground but isn't disqualified.
+_COMPILATION_TITLE_RE: re.Pattern[str] = re.compile(
+    r"\b(?:vol\.?|volume|hits|greatest\s+hits|best\s+of|essential|anthology|"
+    r"collection|classics)\b",
+    re.IGNORECASE,
+)
+
+# Year extraction shared by reissue detection and the year-bonus loops.
+_RELEASE_YEAR_RE: re.Pattern[str] = re.compile(r"\b(19|20)\d{2}\b")
+
+# Penalty values for the title safety net and reissue detection.
+_W_COMP_TITLE_PENALTY: int = -10
+_W_REISSUE_PENALTY: int = -10
+# Number of years after a release-group's first-release-date before a release
+# is treated as a reissue (1 → a 2002 release in a 2001 release-group is not
+# yet a reissue, but a 2003+ release is).
+_REISSUE_YEAR_THRESHOLD: int = 1
+
+
+def _release_year(value: str | None) -> int | None:
+    """Parse the first 4-digit year (1900–2099) from a MB date string."""
+    if not value:
+        return None
+    m = _RELEASE_YEAR_RE.search(value)
+    return int(m.group()) if m else None
+
+
+def _is_reissue(release: dict) -> bool:
+    """Return True when this release post-dates its release-group's first release.
+
+    A reissue is a release whose date is more than _REISSUE_YEAR_THRESHOLD years
+    after the release-group's first-release-date.  Returns False when either
+    date is missing.
+    """
+    rel_year = _release_year(release.get("date"))
+    rg_year = _release_year((release.get("release-group") or {}).get("first-release-date"))
+    if rel_year is None or rg_year is None:
+        return False
+    return rel_year > rg_year + _REISSUE_YEAR_THRESHOLD
+
 
 def _score_release_group(release: dict) -> int:
     """Score the release-group of a release using the primary/secondary tables.
@@ -656,7 +699,9 @@ def select_best_release(
     - Year within 5:                  +20
     - Release-group type (base + stacking secondary penalties)
       see _RELEASE_PRIMARY_SCORE and _RELEASE_SECONDARY_PENALTY
-    - Release title matches track:    +20
+    - Release title matches track:    +20 (Album only)
+    - Compilation-style title:        -10 (safety net for missing secondary-types)
+    - Release is a reissue:           -10 (date >1 year after rg first-release-date)
     - Physical album packaging:       +5
     - Digital / single:               +1
     - No other context: earlier release year strongly preferred
@@ -680,17 +725,35 @@ def select_best_release(
             elif st in rt or rt in st:
                 score += 50
 
-        if submitted_year and release.get("date"):
-            if m := re.search(r"\b(19|20)\d{2}\b", release["date"]):
-                diff = abs(int(m.group()) - submitted_year)
-                if diff == 0:
-                    score += 75
-                elif diff <= 1:
-                    score += 40
-                elif diff <= 5:
-                    score += 20
+        if submitted_year and (rel_year := _release_year(release.get("date"))):
+            diff = abs(rel_year - submitted_year)
+            if diff == 0:
+                score += 75
+            elif diff <= 1:
+                score += 40
+            elif diff <= 5:
+                score += 20
 
         score += _score_release_group(release)
+
+        # Title-based compilation safety net: catches "Hits", "Volume", "Best of"
+        # etc. when MB is missing the Compilation secondary-type.  Skipped when
+        # the release-group is already tagged Compilation, since _score_release_group
+        # has already applied that penalty — no double-dipping.
+        rg_secondary = (release.get("release-group") or {}).get("secondary-types") or []
+        if (
+            release.get("title")
+            and _COMPILATION_TITLE_RE.search(release["title"])
+            and "Compilation" not in rg_secondary
+        ):
+            score += _W_COMP_TITLE_PENALTY
+
+        # Reissue penalty: a release whose date is well after its release-group's
+        # first-release-date is a re-pressing, not the original.  For ISRC-only
+        # lookups (no album hint) this keeps reissue editions from outranking the
+        # canonical single/album of the same recording.
+        if _is_reissue(release):
+            score += _W_REISSUE_PENALTY
 
         # Prefer Album release whose title matches the recording title (e.g. "Iris"
         # track on "Iris" album).  Restricted to Album primary-type because Singles
@@ -715,9 +778,9 @@ def select_best_release(
         elif release.get("packaging") == "None":
             score += 1
 
-        if not submitted_album and not submitted_year and release.get("date"):
-            if m := re.search(r"\b(19|20)\d{2}\b", release["date"]):
-                score += (2100 - int(m.group())) / 10.0
+        if not submitted_album and not submitted_year:
+            if rel_year := _release_year(release.get("date")):
+                score += (2100 - rel_year) / 10.0
 
         scored.append((score, release))
 

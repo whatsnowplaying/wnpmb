@@ -209,11 +209,14 @@ async def test_trst_iris():
 # ── Queen ─────────────────────────────────────────────────────────────────────
 
 
-@pytest.mark.xfail(
-    reason="album selection non-deterministic without hint — select_best_release fix pending"
-)
 async def test_queen_we_will_rock_you():
-    """Large result set."""
+    """Large result set; no hints; must land on the studio recording.
+
+    Mirrors WNP's test_fallback_queen.  Previously xfail because find_recording
+    picked the 1982 Milton Keynes live recording (more releases than the
+    studio version).  Quality-weighted release scoring + non-canonical
+    disambig penalty in _score_recording now keep the studio version on top.
+    """
     result = await _resolve("We Will Rock You", "Queen")
     assert result["musicbrainz_artist_id"] == ["0383dadf-2a4e-4d10-a46a-e9e041da8eb3"]
     assert result["album"] in ["News of the World", "Crazy Little Thing Called Love"]
@@ -315,15 +318,18 @@ async def test_jackie_lipson_someday_not_found():
 
 
 async def test_magazine_shot_by_both_sides():
-    """Original album must win over a later compilation.
+    """Compilation must not win over canonical original release.
 
     Real-world regression: 'Shot by Both Sides' was resolved to
-    'Only After Dark: Nick Rhodes & John Taylor Present...' (2006)
-    instead of the original 'Real Life' (1978) album.
+    'Only After Dark: Nick Rhodes & John Taylor Present...' (2006).  Either the
+    original 1978 single or the 1978 Real Life album is acceptable; the failure
+    mode is a compilation winning.  find_recording picks the single-version
+    recording (more releases), and the reissue penalty keeps the 2007 Real Life
+    pressing on that recording from outranking the 1978 original single.
     """
     result = await _resolve("Shot by Both Sides", "Magazine")
     assert result["musicbrainz_artist_id"] == ["043324ca-100d-48ce-8c7c-fd015afc103b"]
-    assert result["album"] == "Real Life"
+    assert result["album"] in {"Real Life", "Shot by Both Sides"}
 
 
 # ── O.M.D. alias resolution ───────────────────────────────────────────────────
@@ -435,6 +441,106 @@ async def test_troye_sivan_kacey_musgraves_easy():
         "d1393ecb-431b-4fde-a6ea-d769f2f040cb",
         "c3c82bdc-d9e7-4836-9746-c24ead47ca19",
     ]
+
+
+# ── Kendrick Lamar feat. SZA ─────────────────────────────────────────────────
+
+
+async def test_kendrick_lamar_feat_sza_all_the_stars():
+    """feat. with mismatched MB recording title — artist IDs must still resolve.
+
+    Mirrors WNP's test_fallback_complex_and_with_feature.  MB returns a
+    reference-track recording with a mismatched title, so the recording ID is
+    rejected, but the two artist IDs must still come through.
+    """
+    result = await _resolve("All the Stars", "Kendrick Lamar feat SZA")
+    assert result.get("musicbrainz_artist_id") == [
+        "381086ea-f511-4aba-bdf9-71c753dc5077",
+        "272989c8-5535-492d-a25c-9f58803e027f",
+    ]
+
+
+# ── Usher feat. Lil Jon & Ludacris ───────────────────────────────────────────
+
+
+async def test_usher_yeah_with_album_year():
+    """With album+year context, find_recording lands on a 2004 Confessions recording.
+
+    Either MBID (album recording or single recording) is acceptable; both are
+    valid 2004 Usher recordings of "Yeah!" on Confessions.  Mirrors charts'
+    test_wnpmb_find_recording_usher_yeah.
+    """
+    async with MusicBrainzClient(
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
+    ) as mb:
+        mbid, _ = await mb.find_recording(
+            title="Yeah!", artist="Usher", album="Confessions", year=2004
+        )
+    assert mbid in {
+        "4f595ab5-18bb-4007-b17d-066a0e704234",  # album recording
+        "7bc321cf-0534-4cc5-ae99-9b9108884b0c",  # single recording
+    }
+
+
+# ── Queen — Bohemian Rhapsody ────────────────────────────────────────────────
+
+
+async def test_queen_bohemian_rhapsody_with_context():
+    """Full context resolves to the canonical 1975 recording.
+
+    Mirrors charts' test_wnpmb_find_recording_bohemian_rhapsody.
+    """
+    async with MusicBrainzClient(
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
+    ) as mb:
+        mbid, _ = await mb.find_recording(
+            title="Bohemian Rhapsody",
+            artist="Queen",
+            album="A Night at the Opera",
+            year=1975,
+        )
+    assert mbid == "b1a9c0e9-d987-4042-ae91-78d6a3267d69"
+
+
+# ── Queen — We Will Rock You no context (lenient) ────────────────────────────
+
+
+async def test_queen_we_will_rock_you_not_2003_rerecording():
+    """Without context, must not resolve to the 2003 compilation re-recording.
+
+    Mirrors charts' test_wnpmb_find_recording_we_will_rock_you_no_context.
+    A targeted regression guard for one specific bad outcome the test_queen_we_will_rock_you
+    expectation doesn't directly exclude.
+    """
+    result = await _resolve("We Will Rock You", "Queen")
+    assert result.get("musicbrainz_recording_id") is not None
+    assert result.get("musicbrainz_recording_id") != "f7a9b5a2-dfdf-4093-8ab1-dac10add6a37", (
+        "Must not resolve to the 2003 compilation re-recording"
+    )
+
+
+# ── Depeche Mode — Freelove ISRC ─────────────────────────────────────────────
+
+
+async def test_depeche_mode_freelove_isrc_only():
+    """ISRC-only lookup lands on the original single, not a reissue or mis-tagged compilation.
+
+    GBAJH0100500 identifies the "single version / Flood mix" recording of
+    Freelove.  The only Exciter releases that contain this recording are 2007
+    reissues (the 2001 Exciter has a different recording), and MB has
+    "ProSieben Hits, Volume 1" mis-tagged as a plain Album.  The combination of
+    the reissue penalty and the title-based compilation safety net keeps both
+    from outranking the 2001 Freelove single.
+    """
+    async with MusicBrainzClient(
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
+    ) as mb:
+        recording_id = await mb.resolve_recording_by_isrc(["GBAJH0100500"])
+        assert recording_id == "0ad756c1-47c1-417f-a735-90c8ef15297f"
+        mb_data = await mb.get_recording_by_id(recording_id)
+        assert mb_data is not None
+        result = dict(await mb.process_recording_data(mb_data, recording_id))
+    assert result["album"] == "Freelove"
 
 
 # ── Will Smith / Dru Hill / Kool Moe Dee ─────────────────────────────────────

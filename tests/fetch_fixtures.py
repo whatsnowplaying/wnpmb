@@ -72,8 +72,6 @@ ACDC_ARTIST_ID = "66c662b6-6e2f-4930-8610-912e24c63ed1"
 BOWIE_ARTIST_ID = "5441c29d-3602-4898-b1a1-b77fa23b8e50"
 
 # Queen – We Will Rock You (large result set; browse_releases needed for album)
-QUEEN_ARTIST_ID = "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
-QUEEN_RECORDING_ID = "e7fccc6b-db70-4f27-9c6d-cc5d46bf8e9c"
 
 # Here Comes the Sun ISRC (confirmed from API)
 HERE_COMES_THE_SUN_ISRC = "GBAYE0601696"
@@ -175,7 +173,6 @@ async def main() -> int:
             mb, GIANT_LEAP_RECORDING_ID, "recording_1_giant_leap_my_culture", errors
         )
         await fetch_recording(mb, YESTERDAY_RECORDING_ID, "recording_yesterday", errors)
-        await fetch_recording(mb, QUEEN_RECORDING_ID, "recording_queen_we_will_rock_you", errors)
 
         # ── Artist lookups by ID ──────────────────────────────────────────────
 
@@ -189,7 +186,6 @@ async def main() -> int:
         await fetch_artist(mb, MAREUX_ARTIST_ID, "artist_mareux", errors)
         await fetch_artist(mb, ACDC_ARTIST_ID, "artist_acdc", errors)
         await fetch_artist(mb, BOWIE_ARTIST_ID, "artist_david_bowie", errors)
-        await fetch_artist(mb, QUEEN_ARTIST_ID, "artist_queen", errors)
         await fetch_artist(mb, BEATLES_ARTIST_ID, "artist_beatles", errors)
 
         # ── Recording searches ────────────────────────────────────────────────
@@ -212,14 +208,6 @@ async def main() -> int:
         )
         await fetch_search_recordings(
             mb, "My Culture", "1 Giant Leap", "recording_search_1_giant_leap_my_culture", errors
-        )
-        await fetch_search_recordings(
-            mb,
-            "We Will Rock You",
-            "Queen",
-            "recording_search_queen_we_will_rock_you",
-            errors,
-            limit=50,
         )
         await fetch_search_recordings(
             mb, "Yesterday", "Beatles", "recording_search_yesterday_beatles", errors, limit=5
@@ -259,16 +247,6 @@ async def main() -> int:
             save("browse_releases_yesterday", browse)
         else:
             errors.append("browse_releases(Yesterday) returned nothing")
-
-        browse = await mb.browse_releases(
-            recording=QUEEN_RECORDING_ID,
-            includes=["artist-credits", "labels", "release-groups"],
-            release_status=["official"],
-        )
-        if browse:
-            save("browse_releases_queen_we_will_rock_you", browse)
-        else:
-            errors.append("browse_releases(Queen WWRY) returned nothing")
 
         browse = await mb.browse_releases(
             recording=MONSTER_MASH_RECORDING_ID,
