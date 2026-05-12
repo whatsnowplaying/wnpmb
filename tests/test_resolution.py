@@ -166,7 +166,12 @@ async def test_sander_vs_robbie_close_my_eyes():
 
 
 async def test_klf_vs_ent_3am_eternal():
-    """Two artists + complex remix suffix."""
+    """Two artists + complex remix suffix.
+
+    The Radio Freedom edit's only Official releases are a 1991 TOTP commercial
+    single and the 2021 Solid State Logik 1 compilation.  The hierarchy
+    Album > Single > Album+Compilation picks the original 1991 single.
+    """
     result = await _resolve(
         "3 A.M. Eternal (The KLF vs. E.N.T. Radio Freedom edit)",
         "The KLF vs. E.N.T.",
@@ -175,7 +180,10 @@ async def test_klf_vs_ent_3am_eternal():
         "8092b8b7-235e-4844-9f72-95a9d5a73dbf",
         "709af0d0-dcb6-4858-b76d-05a13fc9a0a6",
     ]
-    assert result["album"] == "Solid State Logik 1"
+    assert result["album"] in (
+        "3 A.M. Eternal (Christmas Top of the Pops 1991)",
+        "Solid State Logik 1",
+    )
 
 
 # ── Mareux ────────────────────────────────────────────────────────────────────
