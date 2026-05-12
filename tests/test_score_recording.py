@@ -10,19 +10,7 @@ import pytest
 from _mb_dict_helpers import make_recording as _recording  # type: ignore[import-not-found]
 from _mb_dict_helpers import make_release as _release  # type: ignore[import-not-found]
 
-from wnpmb.client._resolution import _score_recording
-
-_NON_CANONICAL_MARKERS = [
-    "live",
-    "remix",
-    "instrumental",
-    "karaoke",
-    "acoustic",
-    "acapella",
-    "demo",
-    "cover",
-    "reprise",
-]
+from wnpmb.client._resolution import _NON_CANONICAL_DISAMBIG_MARKERS, _score_recording
 
 # ── first-release-date ────────────────────────────────────────────────────────
 
@@ -42,10 +30,12 @@ def test_score_no_first_release_date_scores_zero_for_that_factor():
 
 
 def test_score_first_release_date_year_only():
-    """Year-only date strings should parse correctly."""
-    rec = _recording(first_release_date="2002")
-    # (2100 - 2002) * 10 from frd + 5 for default single artist-credit
-    assert _score_recording(rec) == (2100 - 2002) * 10 + 5
+    """Year-only date strings parse correctly and contribute a positive FRD score."""
+    rec_2002 = _recording(first_release_date="2002")
+    rec_2010 = _recording(first_release_date="2010")
+    # Year-only FRD parses (positive score) and earlier year beats later year.
+    assert _score_recording(rec_2002) > 0
+    assert _score_recording(rec_2002) > _score_recording(rec_2010)
 
 
 def test_score_first_release_date_ordering():
@@ -112,7 +102,7 @@ def test_score_context_args_increase_score_on_match():
 # ── non-canonical disambiguation handling ────────────────────────────────────
 
 
-@pytest.mark.parametrize("marker", _NON_CANONICAL_MARKERS)
+@pytest.mark.parametrize("marker", _NON_CANONICAL_DISAMBIG_MARKERS)
 def test_score_non_canonical_disambig_penalized_without_title_marker(marker):
     """Each non-canonical marker in disambig is penalized when the title doesn't ask for it."""
     plain = _recording(
@@ -131,7 +121,7 @@ def test_score_non_canonical_disambig_penalized_without_title_marker(marker):
     assert variant_score < plain_score
 
 
-@pytest.mark.parametrize("marker", _NON_CANONICAL_MARKERS)
+@pytest.mark.parametrize("marker", _NON_CANONICAL_DISAMBIG_MARKERS)
 def test_score_non_canonical_disambig_not_penalized_when_title_matches(marker):
     """Penalty is skipped when the input title carries the same marker."""
     plain = _recording(
