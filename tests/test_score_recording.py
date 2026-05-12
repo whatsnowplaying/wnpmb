@@ -7,7 +7,6 @@ factor can be exercised in isolation.
 """
 
 import pytest
-
 from _mb_dict_helpers import make_recording as _recording  # type: ignore[import-not-found]
 from _mb_dict_helpers import make_release as _release  # type: ignore[import-not-found]
 
