@@ -615,6 +615,18 @@ _RELEASE_SECONDARY_PENALTY: dict[str, int] = {
 }
 
 
+def _score_release_group(release: dict) -> int:
+    """Score the release-group of a release using the primary/secondary tables.
+
+    Returns 0 when the release has no release-group, or when the combined
+    primary score plus secondary penalties would be negative.
+    """
+    rg = release.get("release-group") or {}
+    base = _RELEASE_PRIMARY_SCORE.get(rg.get("primary-type", ""), 0)
+    penalty = sum(_RELEASE_SECONDARY_PENALTY.get(s, 0) for s in rg.get("secondary-types", []))
+    return max(0, base + penalty)
+
+
 def is_compilation_or_live(release: dict) -> bool:
     """Return True if the release-group is a compilation or live release."""
     rg = release.get("release-group", {})
@@ -678,13 +690,7 @@ def select_best_release(
                 elif diff <= 5:
                     score += 20
 
-        if rg := release.get("release-group", {}):
-            primary_type = rg.get("primary-type", "")
-            base = _RELEASE_PRIMARY_SCORE.get(primary_type, 0)
-            penalty = sum(
-                _RELEASE_SECONDARY_PENALTY.get(s, 0) for s in rg.get("secondary-types", [])
-            )
-            score += max(0, base + penalty)
+        score += _score_release_group(release)
 
         # Prefer Album release whose title matches the recording title (e.g. "Iris"
         # track on "Iris" album).  Restricted to Album primary-type because Singles
