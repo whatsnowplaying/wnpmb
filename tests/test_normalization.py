@@ -12,6 +12,7 @@ from wnpmb.normalization import (
     normalize_text,
     remove_duplicate_artist_from_title,
     remove_duplicate_parentheticals,
+    select_best_release,
     strip_track_num_prefix,
     titlestripper_advanced,
     titlestripper_basic,
@@ -354,3 +355,56 @@ def test_extract_featured_artists_no_feature():
 def test_remove_duplicate_artist_basic():
     result = remove_duplicate_artist_from_title("Artist - Song", "Artist")
     assert result != "Artist - Song" or result is not None
+
+
+# ── select_best_release title-match normalization ────────────────────────────
+
+
+def _release(
+    title: str,
+    date: str,
+    primary_type: str = "Album",
+    secondary_types: list[str] | None = None,
+) -> dict:
+    return {
+        "title": title,
+        "date": date,
+        "status": "Official",
+        "release-group": {
+            "primary-type": primary_type,
+            "secondary-types": secondary_types or [],
+        },
+    }
+
+
+@pytest.mark.parametrize(
+    "submitted,canonical",
+    [
+        ("Youth And Young Manhood", "Youth & Young Manhood"),
+        ("Youth & Young Manhood", "Youth and Young Manhood"),
+        ("Salt-N-Pepa feat. En Vogue", "Salt-N-Pepa featuring En Vogue"),
+        ("Jay-Z ft. Alicia Keys", "Jay-Z feat. Alicia Keys"),
+        ("X feat Y", "X featuring Y"),
+    ],
+)
+def test_select_best_release_title_match_normalises_amp_and_feat(submitted, canonical):
+    """Caller-supplied album hints in alternate punctuation still trigger +100 match.
+
+    Real-world regression: Shazam emits "Youth And Young Manhood" while MB has
+    "Youth & Young Manhood".  Without normalising "&" ↔ "and" (and feat. variants)
+    the album hint is silently discarded and an unrelated same-year EP wins.
+    """
+    album = _release(canonical, "2003-08-19")
+    ep = _release("Holy Roller Novocaine", "2003-02-24", primary_type="EP")
+    picked = select_best_release([ep, album], submitted_album=submitted, submitted_year=2003)
+    assert picked is not None
+    assert picked["title"] == canonical
+
+
+def test_select_best_release_no_hint_returns_something():
+    """Sanity: with no hint and only an EP + Album, the Album wins on type score."""
+    album = _release("Youth & Young Manhood", "2003-08-19")
+    ep = _release("Holy Roller Novocaine", "2003-02-24", primary_type="EP")
+    picked = select_best_release([ep, album])
+    assert picked is not None
+    assert picked["title"] == "Youth & Young Manhood"

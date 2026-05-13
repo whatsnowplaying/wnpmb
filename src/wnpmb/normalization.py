@@ -627,6 +627,27 @@ _COMPILATION_TITLE_RE: re.Pattern[str] = re.compile(
 # Year extraction shared by reissue detection and the year-bonus loops.
 _RELEASE_YEAR_RE: re.Pattern[str] = re.compile(r"\b(19|20)\d{2}\b")
 
+# Title-match canonicalisation: callers often render "&" as "and" (Shazam) and
+# spell "feat." in various ways.  Folding these before comparison lets the
+# submitted album hint match the MB-canonical release title.
+_AMPERSAND_RE: re.Pattern[str] = re.compile(r"\s*&\s*")
+_FEAT_RE: re.Pattern[str] = re.compile(r"\b(?:feat(?:uring)?\.?|ft\.?)\b", re.IGNORECASE)
+_WHITESPACE_RE: re.Pattern[str] = re.compile(r"\s+")
+
+
+def _normalize_title_for_match(text: str) -> str:
+    """Canonicalise a release/album title for fuzzy equality and substring checks.
+
+    Lowercases, replaces ``&`` with ``and``, normalises feat./ft./featuring to
+    ``feat``, and collapses whitespace.  Lets a caller-supplied "Youth And Young
+    Manhood" hint match MB's canonical "Youth & Young Manhood" release title.
+    """
+    s = text.lower().strip()
+    s = _AMPERSAND_RE.sub(" and ", s)
+    s = _FEAT_RE.sub("feat", s)
+    return _WHITESPACE_RE.sub(" ", s).strip()
+
+
 # Penalty values for the title safety net and reissue detection.
 _W_COMP_TITLE_PENALTY: int = -10
 _W_REISSUE_PENALTY: int = -10
@@ -718,8 +739,8 @@ def select_best_release(
         score: float = 0.0
 
         if submitted_album and release.get("title"):
-            rt = release["title"].lower().strip()
-            st = submitted_album.lower().strip()
+            rt = _normalize_title_for_match(release["title"])
+            st = _normalize_title_for_match(submitted_album)
             if rt == st:
                 score += 100
             elif st in rt or rt in st:

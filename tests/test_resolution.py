@@ -443,6 +443,35 @@ async def test_troye_sivan_kacey_musgraves_easy():
     ]
 
 
+# ── Kings of Leon — ISRC + "And" vs "&" album hint ───────────────────────────
+
+
+async def test_kings_of_leon_holy_roller_isrc_with_and_album_hint():
+    """ISRC + caller hint with 'And' (Shazam-style) lands on the '&' album.
+
+    Real-world regression: Shazam emits "Youth And Young Manhood" while MB
+    canonicalises the release title as "Youth & Young Manhood".  Without
+    normalising "&" ↔ "and" in select_best_release the album hint is silently
+    discarded and the Holy Roller Novocaine EP (same year) outranks the album
+    on the date tiebreaker.
+    """
+    async with MusicBrainzClient(
+        rate_limit_interval=RATE_LIMIT_INTERVAL, timeout=TIMEOUT, retry_settings=RETRY
+    ) as mb:
+        recording_id = await mb.resolve_recording_by_isrc(["USRC10200830"])
+        assert recording_id is not None
+        mb_data = await mb.get_recording_by_id(recording_id)
+        assert mb_data is not None
+        result = dict(
+            await mb.process_recording_data(
+                mb_data,
+                recording_id,
+                original_track_data={"album": "Youth And Young Manhood", "year": "2003"},
+            )
+        )
+    assert result["album"] == "Youth & Young Manhood"
+
+
 # ── Kendrick Lamar feat. SZA ─────────────────────────────────────────────────
 
 
