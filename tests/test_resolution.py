@@ -209,13 +209,22 @@ async def test_trst_iris():
 # ── Queen ─────────────────────────────────────────────────────────────────────
 
 
+@pytest.mark.xfail(
+    reason=(
+        "MB's recording search is non-deterministic for this query (356 candidates, "
+        "varying inclusion across replicas).  When the 1977 studio recording isn't in "
+        "the paginated result window, find_recording falls back to the 1982 live "
+        "recording (real Queen content, but resolves to 'Queen on Fire' instead of "
+        "'News of the World').  Re-tightened from previously un-xfailed state — a "
+        "single passing run on 3.12 was MB-replica luck, not a real fix.  Fixing this "
+        "requires bypassing MB relevance ranking entirely (e.g. browse Queen's "
+        "release-groups deterministically) which is out of scope here."
+    )
+)
 async def test_queen_we_will_rock_you():
     """Large result set; no hints; must land on the studio recording.
 
-    Mirrors WNP's test_fallback_queen.  Previously xfail because find_recording
-    picked the 1982 Milton Keynes live recording (more releases than the
-    studio version).  Quality-weighted release scoring + non-canonical
-    disambig penalty in _score_recording now keep the studio version on top.
+    Mirrors WNP's test_fallback_queen.
     """
     result = await _resolve("We Will Rock You", "Queen")
     assert result["musicbrainz_artist_id"] == ["0383dadf-2a4e-4d10-a46a-e9e041da8eb3"]
