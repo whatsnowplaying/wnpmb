@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import logging
 
+import orjson
+
 from ._base import MusicBrainzBase
 
 logger = logging.getLogger(__name__)
@@ -29,7 +31,7 @@ class CoverArtMixin(MusicBrainzBase):
             return {}
         if response is not None and response.status_code == 200:
             try:
-                data: dict = response.json()
+                data: dict = orjson.loads(response.content)
                 await self._cache_set(cache_key, {"result": data}, "cover_art", url)
                 return data
             except Exception as exc:

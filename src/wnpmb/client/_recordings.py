@@ -5,6 +5,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+import orjson
+
 from ..normalization import build_recording_query
 from ._base import MusicBrainzBase
 
@@ -91,7 +93,7 @@ class RecordingsMixin(MusicBrainzBase):
 
         if response is not None and response.status_code == 200:
             try:
-                body: dict = response.json()
+                body: dict = orjson.loads(response.content)
                 recordings: list[dict] = body.get("recordings", [])
                 count: int = body.get("count", 0)
                 logger.debug(
@@ -144,7 +146,7 @@ class RecordingsMixin(MusicBrainzBase):
 
         if response is not None and response.status_code == 200:
             try:
-                data: dict = response.json()
+                data: dict = orjson.loads(response.content)
                 await self._cache_set(cache_key, {"recording": data}, "recording", url)
                 return data
             except Exception as exc:
@@ -172,7 +174,7 @@ class RecordingsMixin(MusicBrainzBase):
 
         if response is not None and response.status_code == 200:
             try:
-                data: dict = response.json()
+                data: dict = orjson.loads(response.content)
                 await self._cache_set(cache_key, {"recording": data}, "recording", url)
                 return data
             except Exception as exc:

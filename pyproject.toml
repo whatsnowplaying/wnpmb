@@ -12,6 +12,7 @@ requires-python = ">=3.11"
 dependencies = [
     "httpx[http2]",
     "normality",
+    "orjson",
     "truststore",
     # normality requires PyICU; see requirements.txt for install notes
 ]
