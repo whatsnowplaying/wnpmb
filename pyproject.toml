@@ -10,18 +10,19 @@ license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.11"
 dependencies = [
-    "httpx[http2]",
+    "httpx2[http2]",
     "normality",
     "orjson",
-    "truststore",
     # normality requires PyICU; see requirements.txt for install notes
+    # truststore is pulled in transitively via httpx2 and used automatically
+    # for its default SSL context — no direct dep needed.
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest",
     "pytest-asyncio",
-    "respx",
+    "pytest-httpx2",
     "ruff",
     "setuptools-scm>=8",
 ]

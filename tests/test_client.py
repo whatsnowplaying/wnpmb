@@ -11,7 +11,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-import httpx
 import respx
 
 from wnpmb.client import MusicBrainzClient
@@ -81,11 +80,10 @@ class _MemoryCache:
 # ── search_recordings ──────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_search_recordings_nin():
+async def test_search_recordings_nin(httpx2_mock: respx.Router):
     """Standard artist+title search returns real NIN fixture."""
     body = _fixture("recording_search_nin_15ghosts2")
-    respx.get(f"{MB}/recording").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/recording").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result, count = await mb.search_recordings("15 Ghosts II", artist_name="Nine Inch Nails")
     assert result == body["recordings"]
@@ -93,11 +91,10 @@ async def test_search_recordings_nin():
     assert result[0]["title"] == "15 Ghosts II"
 
 
-@respx.mock
-async def test_search_recordings_trst():
+async def test_search_recordings_trst(httpx2_mock: respx.Router):
     """Artist name with forward slash (TR/ST) survives query encoding."""
     body = _fixture("recording_search_trst_iris")
-    route = respx.get(f"{MB}/recording").mock(return_value=httpx.Response(200, json=body))
+    route = httpx2_mock.get(f"{MB}/recording").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result, _ = await mb.search_recordings("Iris", artist_name="TR/ST")
     assert len(result) > 0
@@ -107,46 +104,40 @@ async def test_search_recordings_trst():
     assert "TR" in sent_query
 
 
-@respx.mock
-async def test_search_recordings_empty_title():
+async def test_search_recordings_empty_title(httpx2_mock: respx.Router):
     async with MusicBrainzClient() as mb:
         result, count = await mb.search_recordings("")
     assert result == []
     assert count == 0
 
 
-@respx.mock
-async def test_search_recordings_http_error():
-    respx.get(f"{MB}/recording").mock(return_value=httpx.Response(500))
+async def test_search_recordings_http_error(httpx2_mock: respx.Router):
+    httpx2_mock.get(f"{MB}/recording").respond(500)
     async with MusicBrainzClient() as mb:
         result, count = await mb.search_recordings("Unknown Song")
     assert result == []
     assert count == 0
 
 
-@respx.mock
-async def test_search_recordings_cache_hit():
+async def test_search_recordings_cache_hit(httpx2_mock: respx.Router):
     cache = _MemoryCache()
     body = _fixture("recording_search_nin_15ghosts2")
-    respx.get(f"{MB}/recording").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/recording").respond(200, json=body)
     async with MusicBrainzClient(cache_service=cache) as mb:
         first, _ = await mb.search_recordings("15 Ghosts II", artist_name="Nine Inch Nails")
         second, _ = await mb.search_recordings("15 Ghosts II", artist_name="Nine Inch Nails")
     assert first == body["recordings"]
     assert second == first
-    assert respx.calls.call_count == 1  # second hit cache
+    assert httpx2_mock.calls.call_count == 1  # second hit cache
 
 
 # ── get_recording_by_id ────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_get_recording_by_id_nin():
+async def test_get_recording_by_id_nin(httpx2_mock: respx.Router):
     """Standard recording: has ISRCs, releases, artist-credit."""
     body = _fixture("recording_nin_15ghosts2")
-    respx.get(f"{MB}/recording/{NIN_RECORDING_ID}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    httpx2_mock.get(f"{MB}/recording/{NIN_RECORDING_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_id(NIN_RECORDING_ID)
     assert result["id"] == NIN_RECORDING_ID
@@ -156,13 +147,10 @@ async def test_get_recording_by_id_nin():
     assert result["releases"][0]["title"] == "Ghosts I\u2013IV"
 
 
-@respx.mock
-async def test_get_recording_by_id_trst():
+async def test_get_recording_by_id_trst(httpx2_mock: respx.Router):
     """TR/ST: forward slash in artist name is preserved in response."""
     body = _fixture("recording_trst_iris")
-    respx.get(f"{MB}/recording/{TRST_RECORDING_ID}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    httpx2_mock.get(f"{MB}/recording/{TRST_RECORDING_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_id(TRST_RECORDING_ID)
     assert result["id"] == TRST_RECORDING_ID
@@ -171,13 +159,10 @@ async def test_get_recording_by_id_trst():
     assert result["artist-credit"][0]["artist"]["id"] == TRST_ARTIST_ID
 
 
-@respx.mock
-async def test_get_recording_by_id_computer_blue():
+async def test_get_recording_by_id_computer_blue(httpx2_mock: respx.Router):
     """Computer Blue: multi-artist credit (Prince and The Revolution)."""
     body = _fixture("recording_computer_blue")
-    respx.get(f"{MB}/recording/{COMPUTER_BLUE_RECORDING_ID}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    httpx2_mock.get(f"{MB}/recording/{COMPUTER_BLUE_RECORDING_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_id(COMPUTER_BLUE_RECORDING_ID)
     artist_ids = [
@@ -188,13 +173,10 @@ async def test_get_recording_by_id_computer_blue():
     assert result["releases"][0]["title"] == "Purple Rain"
 
 
-@respx.mock
-async def test_get_recording_by_id_my_culture():
+async def test_get_recording_by_id_my_culture(httpx2_mock: respx.Router):
     """1 Giant Leap feat. Robbie Williams and Maxi Jazz: three-artist credit with joinphrases."""
     body = _fixture("recording_1_giant_leap_my_culture")
-    respx.get(f"{MB}/recording/{GIANT_LEAP_RECORDING_ID}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    httpx2_mock.get(f"{MB}/recording/{GIANT_LEAP_RECORDING_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_id(GIANT_LEAP_RECORDING_ID)
     credits = [c for c in result["artist-credit"] if isinstance(c, dict) and "artist" in c]
@@ -206,13 +188,10 @@ async def test_get_recording_by_id_my_culture():
     assert credits[0]["joinphrase"] == " feat. "
 
 
-@respx.mock
-async def test_get_recording_by_id_monster_mash():
+async def test_get_recording_by_id_monster_mash(httpx2_mock: respx.Router):
     """Utter Lunacy: obscure artist on a soundtrack compilation."""
     body = _fixture("recording_utter_lunacy_monster_mash")
-    respx.get(f"{MB}/recording/{MONSTER_MASH_RECORDING_ID}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    httpx2_mock.get(f"{MB}/recording/{MONSTER_MASH_RECORDING_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_id(MONSTER_MASH_RECORDING_ID)
     assert result["id"] == MONSTER_MASH_RECORDING_ID
@@ -221,9 +200,8 @@ async def test_get_recording_by_id_monster_mash():
     assert result["releases"][0]["title"] == "Leatherface: The Texas Chainsaw Massacre III"
 
 
-@respx.mock
-async def test_get_recording_by_id_not_found():
-    respx.get(f"{MB}/recording/bad-id").mock(return_value=httpx.Response(404))
+async def test_get_recording_by_id_not_found(httpx2_mock: respx.Router):
+    httpx2_mock.get(f"{MB}/recording/bad-id").respond(404)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_id("bad-id")
     assert result is None
@@ -232,11 +210,10 @@ async def test_get_recording_by_id_not_found():
 # ── get_recording_by_isrc ──────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_get_recording_by_isrc_nin():
+async def test_get_recording_by_isrc_nin(httpx2_mock: respx.Router):
     """NIN ISRC returns the correct recording."""
     body = _fixture("isrc_ustc40852243")
-    respx.get(f"{MB}/isrc/{NIN_ISRC}").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/isrc/{NIN_ISRC}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_isrc(NIN_ISRC)
     assert result["isrc"] == NIN_ISRC
@@ -244,13 +221,10 @@ async def test_get_recording_by_isrc_nin():
     assert result["recordings"][0]["title"] == "15 Ghosts II"
 
 
-@respx.mock
-async def test_get_recording_by_isrc_here_comes_the_sun():
+async def test_get_recording_by_isrc_here_comes_the_sun(httpx2_mock: respx.Router):
     """A different ISRC to confirm multiple ISRCs can be tested."""
     body = _fixture("isrc_gbaye0601696")
-    respx.get(f"{MB}/isrc/{HERE_COMES_THE_SUN_ISRC}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    httpx2_mock.get(f"{MB}/isrc/{HERE_COMES_THE_SUN_ISRC}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_isrc(HERE_COMES_THE_SUN_ISRC)
     assert result["isrc"] == HERE_COMES_THE_SUN_ISRC
@@ -258,10 +232,9 @@ async def test_get_recording_by_isrc_here_comes_the_sun():
     assert result["recordings"][0]["artist-credit"][0]["artist"]["id"] == BEATLES_ARTIST_ID
 
 
-@respx.mock
-async def test_get_recording_by_isrc_normalises_case():
+async def test_get_recording_by_isrc_normalises_case(httpx2_mock: respx.Router):
     body = _fixture("isrc_ustc40852243")
-    respx.get(f"{MB}/isrc/{NIN_ISRC}").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/isrc/{NIN_ISRC}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_isrc(NIN_ISRC.lower())
     assert result["isrc"] == NIN_ISRC
@@ -270,20 +243,18 @@ async def test_get_recording_by_isrc_normalises_case():
 # ── search_artists ─────────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_search_artists_nin():
+async def test_search_artists_nin(httpx2_mock: respx.Router):
     body = _fixture("artist_search_nin")
-    respx.get(f"{MB}/artist").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/artist").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.search_artists("Nine Inch Nails")
     assert any(a["id"] == NIN_ARTIST_ID for a in result)
 
 
-@respx.mock
-async def test_search_artists_trst():
+async def test_search_artists_trst(httpx2_mock: respx.Router):
     """TR/ST: single result with exact MBID."""
     body = _fixture("artist_search_trst")
-    respx.get(f"{MB}/artist").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/artist").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.search_artists("TR/ST")
     assert len(result) == 1
@@ -291,29 +262,26 @@ async def test_search_artists_trst():
     assert result[0]["name"] == "TR/ST"
 
 
-@respx.mock
-async def test_search_artists_acdc():
+async def test_search_artists_acdc(httpx2_mock: respx.Router):
     """AC/DC: slash in name, top result is the real band."""
     body = _fixture("artist_search_acdc")
-    respx.get(f"{MB}/artist").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/artist").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.search_artists("AC/DC")
     assert result[0]["id"] == ACDC_ARTIST_ID
     assert result[0]["name"] == "AC/DC"
 
 
-@respx.mock
-async def test_search_artists_empty_name():
+async def test_search_artists_empty_name(httpx2_mock: respx.Router):
     async with MusicBrainzClient() as mb:
         result = await mb.search_artists("")
     assert result == []
 
 
-@respx.mock
-async def test_search_artists_name_replacement():
+async def test_search_artists_name_replacement(httpx2_mock: respx.Router):
     """ARTIST_NAME_REPLACEMENTS fires before the query is built."""
     body = _fixture("artist_search_nin")
-    route = respx.get(f"{MB}/artist").mock(return_value=httpx.Response(200, json=body))
+    route = httpx2_mock.get(f"{MB}/artist").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         await mb.search_artists('Lil B "the based god"')
     sent_query = route.calls[0].request.url.params["query"]
@@ -324,52 +292,43 @@ async def test_search_artists_name_replacement():
 # ── get_artist_by_id ───────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_get_artist_by_id_nin():
+async def test_get_artist_by_id_nin(httpx2_mock: respx.Router):
     body = _fixture("artist_nin")
-    respx.get(f"{MB}/artist/{NIN_ARTIST_ID}").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/artist/{NIN_ARTIST_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_artist_by_id(NIN_ARTIST_ID)
     assert result["id"] == NIN_ARTIST_ID
     assert result["name"] == "Nine Inch Nails"
 
 
-@respx.mock
-async def test_get_artist_by_id_trst():
+async def test_get_artist_by_id_trst(httpx2_mock: respx.Router):
     """TR/ST: slash preserved in stored artist name."""
     body = _fixture("artist_trst")
-    respx.get(f"{MB}/artist/{TRST_ARTIST_ID}").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/artist/{TRST_ARTIST_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_artist_by_id(TRST_ARTIST_ID)
     assert result["id"] == TRST_ARTIST_ID
     assert result["name"] == "TR/ST"
 
 
-@respx.mock
-async def test_get_artist_by_id_not_found():
-    respx.get(f"{MB}/artist/bad-id").mock(return_value=httpx.Response(404))
+async def test_get_artist_by_id_not_found(httpx2_mock: respx.Router):
+    httpx2_mock.get(f"{MB}/artist/bad-id").respond(404)
     async with MusicBrainzClient() as mb:
         result = await mb.get_artist_by_id("bad-id")
     assert result is None
 
 
-@respx.mock
-async def test_get_artist_by_id_default_includes_tags():
+async def test_get_artist_by_id_default_includes_tags(httpx2_mock: respx.Router):
     body = _fixture("artist_nin")
-    route = respx.get(f"{MB}/artist/{NIN_ARTIST_ID}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    route = httpx2_mock.get(f"{MB}/artist/{NIN_ARTIST_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         await mb.get_artist_by_id(NIN_ARTIST_ID)
     assert route.calls[0].request.url.params.get("inc") == "tags"
 
 
-@respx.mock
-async def test_get_artist_by_id_no_includes():
+async def test_get_artist_by_id_no_includes(httpx2_mock: respx.Router):
     body = _fixture("artist_nin")
-    route = respx.get(f"{MB}/artist/{NIN_ARTIST_ID}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    route = httpx2_mock.get(f"{MB}/artist/{NIN_ARTIST_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         await mb.get_artist_by_id(NIN_ARTIST_ID, includes=[])
     assert "inc" not in route.calls[0].request.url.params
@@ -378,27 +337,24 @@ async def test_get_artist_by_id_no_includes():
 # ── search_releases ────────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_search_releases_success():
+async def test_search_releases_success(httpx2_mock: respx.Router):
     body = _fixture("release_search_help_beatles")
-    respx.get(f"{MB}/release").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/release").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.search_releases(title="Help!", artist_name="Beatles")
     assert result == body["releases"]
     assert len(result) > 0
 
 
-@respx.mock
-async def test_search_releases_no_params():
+async def test_search_releases_no_params(httpx2_mock: respx.Router):
     async with MusicBrainzClient() as mb:
         result = await mb.search_releases()
     assert result == []
 
 
-@respx.mock
-async def test_search_releases_by_barcode():
+async def test_search_releases_by_barcode(httpx2_mock: respx.Router):
     body = _fixture("release_search_help_beatles")
-    respx.get(f"{MB}/release").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/release").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.search_releases(barcode="5021456163700")
     assert result == body["releases"]
@@ -407,27 +363,24 @@ async def test_search_releases_by_barcode():
 # ── search_release_groups ──────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_search_release_groups_success():
+async def test_search_release_groups_success(httpx2_mock: respx.Router):
     body = _fixture("release_group_search_help_beatles")
-    respx.get(f"{MB}/release-group").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/release-group").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.search_release_groups(title="Help!", artist_name="Beatles")
     assert result == body["release-groups"]
     assert len(result) > 0
 
 
-@respx.mock
-async def test_search_release_groups_no_params():
+async def test_search_release_groups_no_params(httpx2_mock: respx.Router):
     async with MusicBrainzClient() as mb:
         result = await mb.search_release_groups()
     assert result == []
 
 
-@respx.mock
-async def test_search_release_groups_by_type():
+async def test_search_release_groups_by_type(httpx2_mock: respx.Router):
     body = _fixture("release_group_search_help_beatles")
-    route = respx.get(f"{MB}/release-group").mock(return_value=httpx.Response(200, json=body))
+    route = httpx2_mock.get(f"{MB}/release-group").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         await mb.search_release_groups(artist_name="Beatles", release_type="album")
     assert "type:album" in route.calls[0].request.url.params["query"]
@@ -436,10 +389,9 @@ async def test_search_release_groups_by_type():
 # ── browse_releases ────────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_browse_releases_success():
+async def test_browse_releases_success(httpx2_mock: respx.Router):
     body = _fixture("browse_releases_yesterday")
-    respx.get(f"{MB}/release").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/release").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.browse_releases(YESTERDAY_RECORDING_ID)
     assert result == body
@@ -447,9 +399,8 @@ async def test_browse_releases_success():
     assert result["releases"][0]["id"] == HELP_RELEASE_ID
 
 
-@respx.mock
-async def test_browse_releases_error():
-    respx.get(f"{MB}/release").mock(return_value=httpx.Response(500))
+async def test_browse_releases_error(httpx2_mock: respx.Router):
+    httpx2_mock.get(f"{MB}/release").respond(500)
     async with MusicBrainzClient() as mb:
         result = await mb.browse_releases(YESTERDAY_RECORDING_ID)
     assert result == {}
@@ -458,19 +409,17 @@ async def test_browse_releases_error():
 # ── get_release_by_id ──────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_get_release_by_id_success():
+async def test_get_release_by_id_success(httpx2_mock: respx.Router):
     body = _fixture("release_help_uk")
-    respx.get(f"{MB}/release/{HELP_RELEASE_ID}").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/release/{HELP_RELEASE_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_release_by_id(HELP_RELEASE_ID)
     assert result["id"] == HELP_RELEASE_ID
     assert result["title"] == "Help!"
 
 
-@respx.mock
-async def test_get_release_by_id_not_found():
-    respx.get(f"{MB}/release/bad-id").mock(return_value=httpx.Response(404))
+async def test_get_release_by_id_not_found(httpx2_mock: respx.Router):
+    httpx2_mock.get(f"{MB}/release/bad-id").respond(404)
     async with MusicBrainzClient() as mb:
         result = await mb.get_release_by_id("bad-id")
     assert result is None
@@ -479,12 +428,9 @@ async def test_get_release_by_id_not_found():
 # ── get_release_group_by_id ────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_get_release_group_by_id_success():
+async def test_get_release_group_by_id_success(httpx2_mock: respx.Router):
     body = _fixture("release_group_help")
-    respx.get(f"{MB}/release-group/{HELP_RELEASE_GROUP_ID}").mock(
-        return_value=httpx.Response(200, json=body)
-    )
+    httpx2_mock.get(f"{MB}/release-group/{HELP_RELEASE_GROUP_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_release_group_by_id(HELP_RELEASE_GROUP_ID)
     assert result["id"] == HELP_RELEASE_GROUP_ID
@@ -494,10 +440,9 @@ async def test_get_release_group_by_id_success():
 # ── get_image_list ─────────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_get_image_list_success():
+async def test_get_image_list_success(httpx2_mock: respx.Router):
     body = _fixture("caa_release_image_list")
-    respx.get(f"{CAA}/release/{HELP_RELEASE_ID}").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{CAA}/release/{HELP_RELEASE_ID}").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         result = await mb.get_image_list(HELP_RELEASE_ID)
     assert result == body
@@ -505,9 +450,8 @@ async def test_get_image_list_success():
     assert any(img["front"] for img in result["images"])
 
 
-@respx.mock
-async def test_get_image_list_not_found():
-    respx.get(f"{CAA}/release/{HELP_RELEASE_ID}").mock(return_value=httpx.Response(404))
+async def test_get_image_list_not_found(httpx2_mock: respx.Router):
+    httpx2_mock.get(f"{CAA}/release/{HELP_RELEASE_ID}").respond(404)
     async with MusicBrainzClient() as mb:
         result = await mb.get_image_list(HELP_RELEASE_ID)
     assert result == {}
@@ -533,26 +477,24 @@ async def test_set_useragent():
 # ── rate limiting ──────────────────────────────────────────────────────────────
 
 
-@respx.mock
-async def test_rate_limit_headers_stored():
+async def test_rate_limit_headers_stored(httpx2_mock: respx.Router):
     """X-RateLimit-Remaining and X-RateLimit-Reset are parsed from responses."""
     body = _fixture("recording_search_nin_15ghosts2")
     headers = {
         "X-RateLimit-Remaining": "500",
         "X-RateLimit-Reset": "9999999999",
     }
-    respx.get(f"{MB}/recording").mock(return_value=httpx.Response(200, json=body, headers=headers))
+    httpx2_mock.get(f"{MB}/recording").respond(200, json=body, headers=headers)
     async with MusicBrainzClient() as mb:
         await mb.search_recordings("15 Ghosts II", artist_name="Nine Inch Nails")
     assert mb._rl_remaining == 500
     assert mb._rl_reset_ts == 9999999999
 
 
-@respx.mock
-async def test_rate_limit_headers_missing_ignored():
+async def test_rate_limit_headers_missing_ignored(httpx2_mock: respx.Router):
     """Responses without rate-limit headers leave state unchanged."""
     body = _fixture("recording_search_nin_15ghosts2")
-    respx.get(f"{MB}/recording").mock(return_value=httpx.Response(200, json=body))
+    httpx2_mock.get(f"{MB}/recording").respond(200, json=body)
     async with MusicBrainzClient() as mb:
         await mb.search_recordings("15 Ghosts II", artist_name="Nine Inch Nails")
     assert mb._rl_remaining is None
@@ -587,19 +529,13 @@ def test_adaptive_interval_exhausted():
 # ── process_recording_data ─────────────────────────────────────────────────────
 
 
-_EMPTY_BROWSE = httpx.Response(200, json={"releases": []})
-
-
-@respx.mock
-async def test_process_recording_data_tags_fallback_to_artist():
+async def test_process_recording_data_tags_fallback_to_artist(httpx2_mock: respx.Router):
     """When recording has no tags, collect_tags falls back to artist API call."""
     recording = _fixture("recording_yesterday")  # tags: [] on this recording
     artist = _fixture("artist_beatles")
-    respx.get(f"{MB}/release").mock(return_value=_EMPTY_BROWSE)
+    httpx2_mock.get(f"{MB}/release").respond(200, json={"releases": []})
     # collect_tags will call get_artist_by_id for the first artist ID
-    respx.get(f"{MB}/artist/{BEATLES_ARTIST_ID}").mock(
-        return_value=httpx.Response(200, json=artist)
-    )
+    httpx2_mock.get(f"{MB}/artist/{BEATLES_ARTIST_ID}").respond(200, json=artist)
     async with MusicBrainzClient() as mb:
         result = await mb.process_recording_data(recording, YESTERDAY_RECORDING_ID)
     # artist_beatles has tags — should bubble up
@@ -607,14 +543,13 @@ async def test_process_recording_data_tags_fallback_to_artist():
     assert len(result["tags"]) > 0
 
 
-@respx.mock
-async def test_process_recording_data_uses_browse_releases():
+async def test_process_recording_data_uses_browse_releases(httpx2_mock: respx.Router):
     """browse_releases() result is preferred over the inline release list."""
     recording = _fixture("recording_yesterday")
     browse = _fixture("browse_releases_yesterday")
-    respx.get(f"{MB}/release").mock(return_value=httpx.Response(200, json=browse))
-    respx.get(f"{MB}/artist/{BEATLES_ARTIST_ID}").mock(
-        return_value=httpx.Response(200, json=_fixture("artist_beatles"))
+    httpx2_mock.get(f"{MB}/release").respond(200, json=browse)
+    httpx2_mock.get(f"{MB}/artist/{BEATLES_ARTIST_ID}").respond(
+        200, json=_fixture("artist_beatles")
     )
     async with MusicBrainzClient() as mb:
         result = await mb.process_recording_data(recording, YESTERDAY_RECORDING_ID)
