@@ -2,7 +2,6 @@
 HTTP transport base for MusicBrainzClient.
 
 Handles session lifecycle, rate limiting, retry logic, and cache helpers.
-Uses the system trust store (truststore) for SSL certificate verification.
 All API-method mixins inherit from MusicBrainzBase.
 """
 
