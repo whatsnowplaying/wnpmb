@@ -11,13 +11,11 @@ from __future__ import annotations
 import asyncio
 import contextlib
 import logging
-import ssl
 import time
 from dataclasses import dataclass
 from typing import Any, Self
 
 import httpx2
-import truststore
 
 from ..cache import MusicBrainzCache, TTLSettings
 
@@ -172,11 +170,9 @@ class MusicBrainzBase:
 
     async def _ensure_session(self) -> None:
         if self._session is None:
-            ssl_context = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
             self._session = httpx2.AsyncClient(
                 headers={"User-Agent": self.user_agent},
                 timeout=self.timeout,
-                verify=ssl_context,
                 follow_redirects=True,
                 http2=True,
             )
