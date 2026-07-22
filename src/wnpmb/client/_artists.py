@@ -5,6 +5,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+import orjson
+
 from ..normalization import build_artist_query
 from ._base import ARTIST_NAME_REPLACEMENTS, MusicBrainzBase
 
@@ -46,7 +48,7 @@ class ArtistsMixin(MusicBrainzBase):
 
         if response is not None and response.status_code == 200:
             try:
-                body: dict = response.json()
+                body: dict = orjson.loads(response.content)
                 artists: list[dict] = body.get("artists", [])
                 if not artists:
                     logger.debug("No artists found for %r", artist_name)
@@ -97,7 +99,7 @@ class ArtistsMixin(MusicBrainzBase):
 
         if response is not None and response.status_code == 200:
             try:
-                data: dict = response.json()
+                data: dict = orjson.loads(response.content)
                 await self._cache_set(cache_key, {"artist": data}, "artist", url)
                 return data
             except Exception as exc:

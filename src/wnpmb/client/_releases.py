@@ -5,6 +5,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+import orjson
+
 from ..normalization import sanitize_query_value
 from ._base import MusicBrainzBase
 
@@ -73,7 +75,7 @@ class ReleasesMixin(MusicBrainzBase):
 
         if response is not None and response.status_code == 200:
             try:
-                body: dict = response.json()
+                body: dict = orjson.loads(response.content)
                 releases: list[dict] = body.get("releases", [])
                 logger.debug("Found %d releases for query %r", len(releases), params["query"])
                 await self._cache_set(cache_key, {"releases": releases}, "release", url)
@@ -136,7 +138,7 @@ class ReleasesMixin(MusicBrainzBase):
 
         if response is not None and response.status_code == 200:
             try:
-                body: dict = response.json()
+                body: dict = orjson.loads(response.content)
                 release_groups: list[dict] = body.get("release-groups", [])
                 logger.debug(
                     "Found %d release groups for query %r",
@@ -189,7 +191,7 @@ class ReleasesMixin(MusicBrainzBase):
         response = await self._get(url, params)
         if response is not None and response.status_code == 200:
             try:
-                result: dict = response.json()
+                result: dict = orjson.loads(response.content)
                 await self._cache_set(cache_key, {"result": result}, "release", url)
                 return result
             except Exception as exc:
@@ -217,7 +219,7 @@ class ReleasesMixin(MusicBrainzBase):
         response = await self._get(url, params)
         if response is not None and response.status_code == 200:
             try:
-                data: dict = response.json()
+                data: dict = orjson.loads(response.content)
                 await self._cache_set(cache_key, {"release": data}, "release", url)
                 return data
             except Exception as exc:
@@ -245,7 +247,7 @@ class ReleasesMixin(MusicBrainzBase):
         response = await self._get(url, params)
         if response is not None and response.status_code == 200:
             try:
-                data: dict = response.json()
+                data: dict = orjson.loads(response.content)
                 await self._cache_set(cache_key, {"release_group": data}, "release", url)
                 return data
             except Exception as exc:
