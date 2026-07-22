@@ -16,7 +16,7 @@ import time
 from dataclasses import dataclass
 from typing import Any, Self
 
-import httpx
+import httpx2
 import truststore
 
 from ..cache import MusicBrainzCache, TTLSettings
@@ -139,7 +139,7 @@ class MusicBrainzBase:
         self.retry_settings: RetrySettings = retry_settings or RetrySettings()
         self.api_call_count: int = 0
 
-        self._session: httpx.AsyncClient | None = None
+        self._session: httpx2.AsyncClient | None = None
         self._rate_limit_lock: asyncio.Lock = asyncio.Lock()
         self._last_request_time: float = 0.0
         self._rl_remaining: int | None = None
@@ -173,7 +173,7 @@ class MusicBrainzBase:
     async def _ensure_session(self) -> None:
         if self._session is None:
             ssl_context = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-            self._session = httpx.AsyncClient(
+            self._session = httpx2.AsyncClient(
                 headers={"User-Agent": self.user_agent},
                 timeout=self.timeout,
                 verify=ssl_context,
@@ -219,7 +219,7 @@ class MusicBrainzBase:
 
     # ── HTTP transport ─────────────────────────────────────────────────────
 
-    async def _get(self, url: str, params: dict[str, Any] | None = None) -> httpx.Response | None:
+    async def _get(self, url: str, params: dict[str, Any] | None = None) -> httpx2.Response | None:
         """
         GET with rate limiting and retry loop.
 
@@ -270,7 +270,7 @@ class MusicBrainzBase:
 
             except RateLimitError:
                 raise
-            except httpx.TimeoutException:
+            except httpx2.TimeoutException:
                 if to_attempt < timeout_retries:
                     to_attempt += 1
                     logger.debug(
@@ -287,7 +287,7 @@ class MusicBrainzBase:
                     url,
                 )
                 return None
-            except httpx.ConnectError as exc:
+            except httpx2.ConnectError as exc:
                 if rl_attempt < max_retries:
                     rl_attempt += 1
                     logger.debug(
@@ -343,10 +343,10 @@ class MusicBrainzBase:
                 raise ResponseError(f"HTTP {response.status_code} fetching image: {url}")
             except ResponseError:
                 raise
-            except httpx.TimeoutException:
+            except httpx2.TimeoutException:
                 logger.warning("CAA timeout: url=%s", url)
                 raise ResponseError(f"Timeout fetching image: {url}")
-            except httpx.ConnectError as exc:
+            except httpx2.ConnectError as exc:
                 if attempt < max_retries:
                     attempt += 1
                     logger.debug(

@@ -1,7 +1,7 @@
 """
 Async MusicBrainz API client.
 
-HTTP library    : httpx (async)
+HTTP library    : httpx2 (async)
 Response format : MusicBrainz JSON (fmt=json)
 Rate limiting   : fixed minimum interval (asyncio lock) + configurable retry
                   loop on 429 / 503 and transient network errors (RetrySettings)
