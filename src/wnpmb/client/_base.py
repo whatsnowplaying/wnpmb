@@ -113,6 +113,11 @@ class MusicBrainzBase:
 
     Pass ttl_settings=TTLSettings(artist=3600) to override individual fields.
     Pass retry_settings=RetrySettings(max_retries=2, wait=0.5, timeout_retries=2) to tune retries.
+
+    Pass ca_bundle="/path/to/cacert.pem" to override the default trust store
+    (httpx2's default resolves to truststore against the OS cert store).
+    Useful on older machines whose system CA bundle is stale — callers can
+    pass ``certifi.where()`` to fall back to the bundled Mozilla CAs.
     """
 
     _DEFAULT_USER_AGENT = f"whatsnowplaying-wnpmb/{_version}"
@@ -125,6 +130,7 @@ class MusicBrainzBase:
         cache_service: MusicBrainzCache | None = None,
         ttl_settings: TTLSettings | None = None,
         retry_settings: RetrySettings | None = None,
+        ca_bundle: str | None = None,
     ) -> None:
         self.base_url = MUSICBRAINZ_BASE_URL
         self.caa_base_url = CAA_BASE_URL
@@ -134,6 +140,7 @@ class MusicBrainzBase:
         self.cache_service = cache_service
         self.ttl_settings: TTLSettings = ttl_settings or TTLSettings()
         self.retry_settings: RetrySettings = retry_settings or RetrySettings()
+        self.ca_bundle = ca_bundle
         self.api_call_count: int = 0
 
         self._session: httpx2.AsyncClient | None = None
@@ -172,6 +179,7 @@ class MusicBrainzBase:
             self._session = httpx2.AsyncClient(
                 headers={"User-Agent": self.user_agent},
                 timeout=self.timeout,
+                verify=self.ca_bundle if self.ca_bundle is not None else True,
                 follow_redirects=True,
                 http2=True,
             )
