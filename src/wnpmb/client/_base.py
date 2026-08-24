@@ -423,13 +423,10 @@ class MusicBrainzBase:
         try:
             data = orjson.loads(response.content)
         except orjson.JSONDecodeError as exc:
-            raise ResponseError(
-                f"Failed to parse response from {context}", status_code=200, url=context
-            ) from exc
+            raise ResponseError(f"Failed to parse response from {context}", url=context) from exc
         if not isinstance(data, dict):
             raise ResponseError(
                 f"Expected JSON object from {context}, got {type(data).__name__}",
-                status_code=200,
                 url=context,
             )
         return data
@@ -451,7 +448,10 @@ class MusicBrainzBase:
         assert self._session is not None
         max_retries = self.retry_settings.max_retries
         wait = self.retry_settings.wait
+        timeout_retries = self.retry_settings.timeout_retries
+        timeout_wait = self.retry_settings.timeout_wait
         attempt = 0
+        to_attempt = 0
 
         while True:
             try:
@@ -482,8 +482,19 @@ class MusicBrainzBase:
             except (ResponseError, ServerBusyError):
                 raise
             except httpx2.TimeoutException as exc:
-                logger.warning("CAA timeout: url=%s", url)
-                raise NetworkError(f"Timeout fetching image: {url}", url=url) from exc
+                if to_attempt < timeout_retries:
+                    to_attempt += 1
+                    logger.debug(
+                        "CAA timeout from %s — retrying (%d/%d)",
+                        url,
+                        to_attempt,
+                        timeout_retries,
+                    )
+                    await asyncio.sleep(timeout_wait)
+                    continue
+                raise NetworkError(
+                    f"Timeout after {to_attempt} retries fetching image: {url}", url=url
+                ) from exc
             except httpx2.ConnectError as exc:
                 if attempt < max_retries:
                     attempt += 1

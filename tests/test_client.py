@@ -559,6 +559,38 @@ async def test_server_busy_error_carries_specific_5xx(httpx2_mock: respx.Router)
     assert info.value.url == url
 
 
+async def test_parse_failure_status_code_is_none(httpx2_mock: respx.Router):
+    """A body-parse error on 200 must set status_code=None per contract.
+
+    status_code=200 on a parse failure would tell a caller "the server said
+    OK" — misleading, since the useful signal is "we couldn't understand the
+    response body," not the HTTP status.
+    """
+    httpx2_mock.get(f"{MB}/recording").respond(
+        200, content=b"not json", headers={"content-type": "application/json"}
+    )
+    async with MusicBrainzClient() as mb:
+        with pytest.raises(ResponseError) as info:
+            await mb.search_recordings("anything")
+    assert info.value.status_code is None
+    assert info.value.url == f"{MB}/recording"
+
+
+async def test_image_timeout_honors_timeout_retries(httpx2_mock: respx.Router):
+    """_get_image must consume timeout_retries before raising NetworkError."""
+    from wnpmb.client import RetrySettings
+
+    url = f"{CAA}/release/{HELP_RELEASE_ID}/front-500"
+    route = httpx2_mock.get(url).mock(side_effect=httpx2.TimeoutException("simulated"))
+    async with MusicBrainzClient(
+        retry_settings=RetrySettings(max_retries=0, wait=0, timeout_retries=2, timeout_wait=0)
+    ) as mb:
+        with pytest.raises(NetworkError):
+            await mb.get_image_front(HELP_RELEASE_ID)
+    # Original attempt plus 2 retries = 3 total requests.
+    assert route.call_count == 3
+
+
 async def test_caa_timeout_is_network_error_not_response(httpx2_mock: respx.Router):
     """WNP's reported failure case: a CAA timeout must not look like a 404.
 
