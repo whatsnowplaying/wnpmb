@@ -58,6 +58,13 @@ class ProcessingMixin(ArtistsMixin):
 
         assert isinstance(self, ReleasesMixin)
 
+        # process_recording_data may pass recording_id=None when find_recording
+        # returned only a fallback ID.  Sending recording=None to MB produces a
+        # 400 that would raise ResponseError under the new contract; short-
+        # circuit here so the caller falls through to mb_data's inline releases.
+        if not browse_kwargs.get("recording"):
+            return []
+
         first_page = await self.browse_releases(**browse_kwargs)
         releases: list[dict] = list(first_page.get("releases", []))
         total: int = first_page.get("release-count", 0)

@@ -237,6 +237,14 @@ async def test_get_recording_by_id_not_found(httpx2_mock: respx.Router):
     assert result is None
 
 
+async def test_get_recording_by_id_malformed_returns_none(httpx2_mock: respx.Router):
+    """MB returns 400 for a syntactically-invalid MBID; treat like 404."""
+    httpx2_mock.get(f"{MB}/recording/not-a-uuid").respond(400)
+    async with MusicBrainzClient() as mb:
+        result = await mb.get_recording_by_id("not-a-uuid")
+    assert result is None
+
+
 # ── get_recording_by_isrc ──────────────────────────────────────────────────────
 
 
