@@ -11,6 +11,7 @@ import asyncio
 import contextlib
 import logging
 import time
+import uuid
 from dataclasses import dataclass
 from typing import Any, Self
 
@@ -342,6 +343,24 @@ class MusicBrainzBase:
                 raise NetworkError(f"Connect error after {rl_attempt} retries: {url}") from exc
             except Exception as exc:
                 raise TransportError(f"Non-retryable error: {url}") from exc
+
+    # ── Input validation ───────────────────────────────────────────────────
+
+    @staticmethod
+    def _is_valid_mbid(mbid: str | None) -> bool:
+        """Return True when mbid parses as a UUID.
+
+        MBIDs are always UUIDs; validating client-side keeps 400 free to
+        mean "wnpmb built a bad request" (which is a caller-side bug we
+        want to surface) rather than "the caller passed garbage."
+        """
+        if not mbid:
+            return False
+        try:
+            uuid.UUID(mbid)
+        except ValueError:
+            return False
+        return True
 
     # ── Response parsing ───────────────────────────────────────────────────
 

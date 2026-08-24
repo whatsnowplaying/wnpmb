@@ -16,15 +16,18 @@ class CoverArtMixin(MusicBrainzBase):
         """
         Get cover art image list for a release or release group.
 
-        Returns an empty dict when no cover art is available (404).
+        Returns an empty dict when no cover art is available (404) or when
+        mbid isn't a valid MBID (rejected client-side, no network call).
         """
+        if not self._is_valid_mbid(mbid):
+            return {}
         cache_key = f"get_image_list:{entity_type}:{mbid}"
         if cached := await self._cache_get(cache_key):
             return cached.get("result", {})
 
         url = f"{self.caa_base_url}/{entity_type}/{mbid}"
         response = await self._get(url)
-        if response.status_code in (400, 404):
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"result": {}}, "not_found")
             return {}
         data: dict = self._parse_json_response(response, url)

@@ -62,9 +62,12 @@ class ArtistsMixin(MusicBrainzBase):
         Default include: tags. Pass includes=["url-rels"] to add artist
         website links, or includes=[] to fetch bare artist data.
 
-        Returns None on MB-confirmed absence (400/404).  See get_recording_by_id
+        Returns None on MB-confirmed 404 or when artist_id isn't a valid
+        MBID (rejected client-side, no network call).  See get_recording_by_id
         for the full failure contract.
         """
+        if not self._is_valid_mbid(artist_id):
+            return None
         normalized = artist_id.strip().lower()
         if includes is None:
             inc = "tags"
@@ -85,7 +88,7 @@ class ArtistsMixin(MusicBrainzBase):
         url = f"{self.base_url}/artist/{normalized}"
         response = await self._get(url, params)
 
-        if response.status_code in (400, 404):
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"artist": None}, "not_found")
             return None
         data: dict = self._parse_json_response(response, url)

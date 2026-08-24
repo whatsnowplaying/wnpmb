@@ -187,9 +187,12 @@ class ReleasesMixin(MusicBrainzBase):
     ) -> dict | None:
         """Get release by MBID.
 
-        Returns None on MB-confirmed absence (400/404).  See get_recording_by_id
+        Returns None on MB-confirmed 404 or when release_id isn't a valid
+        MBID (rejected client-side, no network call).  See get_recording_by_id
         for the full failure contract.
         """
+        if not self._is_valid_mbid(release_id):
+            return None
         inc = "+".join(sorted(includes)) if includes else ""
         cache_key = f"get_release:{release_id}:{inc}"
 
@@ -201,7 +204,7 @@ class ReleasesMixin(MusicBrainzBase):
             params["inc"] = "+".join(includes)
         url = f"{self.base_url}/release/{release_id}"
         response = await self._get(url, params)
-        if response.status_code in (400, 404):
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"release": None}, "not_found")
             return None
         data: dict = self._parse_json_response(response, url)
@@ -215,9 +218,12 @@ class ReleasesMixin(MusicBrainzBase):
     ) -> dict | None:
         """Get release group by MBID.
 
-        Returns None on MB-confirmed absence (400/404).  See get_recording_by_id
+        Returns None on MB-confirmed 404 or when rg_id isn't a valid MBID
+        (rejected client-side, no network call).  See get_recording_by_id
         for the full failure contract.
         """
+        if not self._is_valid_mbid(rg_id):
+            return None
         inc = "+".join(sorted(includes)) if includes else ""
         cache_key = f"get_release_group:{rg_id}:{inc}"
 
@@ -229,7 +235,7 @@ class ReleasesMixin(MusicBrainzBase):
             params["inc"] = "+".join(includes)
         url = f"{self.base_url}/release-group/{rg_id}"
         response = await self._get(url, params)
-        if response.status_code in (400, 404):
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"release_group": None}, "not_found")
             return None
         data: dict = self._parse_json_response(response, url)

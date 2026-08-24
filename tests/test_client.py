@@ -231,18 +231,18 @@ async def test_get_recording_by_id_monster_mash(httpx2_mock: respx.Router):
 
 
 async def test_get_recording_by_id_not_found(httpx2_mock: respx.Router):
-    httpx2_mock.get(f"{MB}/recording/bad-id").respond(404)
+    httpx2_mock.get(f"{MB}/recording/00000000-0000-0000-0000-000000000000").respond(404)
     async with MusicBrainzClient() as mb:
-        result = await mb.get_recording_by_id("bad-id")
+        result = await mb.get_recording_by_id("00000000-0000-0000-0000-000000000000")
     assert result is None
 
 
 async def test_get_recording_by_id_malformed_returns_none(httpx2_mock: respx.Router):
-    """MB returns 400 for a syntactically-invalid MBID; treat like 404."""
-    httpx2_mock.get(f"{MB}/recording/not-a-uuid").respond(400)
+    """Malformed MBID is rejected client-side — no HTTP call, no cache write."""
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_id("not-a-uuid")
     assert result is None
+    assert httpx2_mock.calls.call_count == 0
 
 
 # ── get_recording_by_isrc ──────────────────────────────────────────────────────
@@ -363,9 +363,9 @@ async def test_get_artist_by_id_trst(httpx2_mock: respx.Router):
 
 
 async def test_get_artist_by_id_not_found(httpx2_mock: respx.Router):
-    httpx2_mock.get(f"{MB}/artist/bad-id").respond(404)
+    httpx2_mock.get(f"{MB}/artist/00000000-0000-0000-0000-000000000000").respond(404)
     async with MusicBrainzClient() as mb:
-        result = await mb.get_artist_by_id("bad-id")
+        result = await mb.get_artist_by_id("00000000-0000-0000-0000-000000000000")
     assert result is None
 
 
@@ -471,9 +471,9 @@ async def test_get_release_by_id_success(httpx2_mock: respx.Router):
 
 
 async def test_get_release_by_id_not_found(httpx2_mock: respx.Router):
-    httpx2_mock.get(f"{MB}/release/bad-id").respond(404)
+    httpx2_mock.get(f"{MB}/release/00000000-0000-0000-0000-000000000000").respond(404)
     async with MusicBrainzClient() as mb:
-        result = await mb.get_release_by_id("bad-id")
+        result = await mb.get_release_by_id("00000000-0000-0000-0000-000000000000")
     assert result is None
 
 
