@@ -57,6 +57,8 @@ from .client import (
     RateLimitError,
     ResponseError,
     RetrySettings,
+    ServerBusyError,
+    TransportError,
     select_recording,
 )
 
@@ -111,6 +113,8 @@ __all__ = [
     "ResponseError",
     "RateLimitError",
     "RetrySettings",
+    "ServerBusyError",
+    "TransportError",
     "select_recording",
     "ARTIST_NAME_REPLACEMENTS",
     "MUSICBRAINZ_BASE_URL",

@@ -84,6 +84,8 @@ from ._base import (
     RateLimitError,
     ResponseError,
     RetrySettings,
+    ServerBusyError,
+    TransportError,
 )
 from ._cover_art import CoverArtMixin
 from ._processing import EnrichedRecordingData, ProcessingMixin
@@ -114,6 +116,8 @@ __all__ = [
     "ResponseError",
     "RateLimitError",
     "RetrySettings",
+    "ServerBusyError",
+    "TransportError",
     "ARTIST_NAME_REPLACEMENTS",
     "MUSICBRAINZ_BASE_URL",
     "CAA_BASE_URL",

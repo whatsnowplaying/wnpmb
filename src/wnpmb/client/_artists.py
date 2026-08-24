@@ -5,8 +5,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import orjson
-
 from ..normalization import build_artist_query
 from ._base import ARTIST_NAME_REPLACEMENTS, MusicBrainzBase
 
@@ -46,25 +44,12 @@ class ArtistsMixin(MusicBrainzBase):
             },
         )
 
-        if response is not None and response.status_code == 200:
-            try:
-                body: dict = orjson.loads(response.content)
-                artists: list[dict] = body.get("artists", [])
-                if not artists:
-                    logger.debug("No artists found for %r", artist_name)
-                await self._cache_set(cache_key, {"artists": artists}, "artist", url)
-                return artists
-            except Exception as exc:
-                logger.warning(
-                    "Failed to parse artist search response for %r: %s",
-                    artist_name,
-                    exc,
-                )
-        else:
-            status = response.status_code if response is not None else "no response"
-            logger.warning("Artist search failed for %r: status=%s", artist_name, status)
-
-        return []
+        body: dict = self._parse_json_response(response, url)
+        artists: list[dict] = body.get("artists", [])
+        if not artists:
+            logger.debug("No artists found for %r", artist_name)
+        await self._cache_set(cache_key, {"artists": artists}, "artist", url)
+        return artists
 
     async def get_artist_by_id(
         self,
@@ -76,7 +61,13 @@ class ArtistsMixin(MusicBrainzBase):
 
         Default include: tags. Pass includes=["url-rels"] to add artist
         website links, or includes=[] to fetch bare artist data.
+
+        Returns None on MB-confirmed 404 or when artist_id isn't a valid
+        MBID (rejected client-side, no network call).  See get_recording_by_id
+        for the full failure contract.
         """
+        if not self._is_valid_mbid(artist_id):
+            return None
         normalized = artist_id.strip().lower()
         if includes is None:
             inc = "tags"
@@ -97,14 +88,9 @@ class ArtistsMixin(MusicBrainzBase):
         url = f"{self.base_url}/artist/{normalized}"
         response = await self._get(url, params)
 
-        if response is not None and response.status_code == 200:
-            try:
-                data: dict = orjson.loads(response.content)
-                await self._cache_set(cache_key, {"artist": data}, "artist", url)
-                return data
-            except Exception as exc:
-                logger.warning("Failed to parse artist response for %s: %s", artist_id, exc)
-        elif response is not None and response.status_code == 404:
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"artist": None}, "not_found")
-
-        return None
+            return None
+        data: dict = self._parse_json_response(response, url)
+        await self._cache_set(cache_key, {"artist": data}, "artist", url)
+        return data

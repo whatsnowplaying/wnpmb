@@ -38,6 +38,7 @@ from typing import TYPE_CHECKING
 
 import normality
 
+from .client._base import MusicBrainzError
 from .normalization import strip_track_num_prefix
 
 if TYPE_CHECKING:
@@ -617,7 +618,11 @@ async def _resolve_via_recording_quorum(
         recording_counts[best_recording_id],
     )
 
-    recording_data = await mb_client.get_recording_by_id(best_recording_id)
+    try:
+        recording_data = await mb_client.get_recording_by_id(best_recording_id)
+    except MusicBrainzError as exc:
+        logger.warning("Quorum: fetching recording %s failed (%s)", best_recording_id, exc)
+        return None
     if not recording_data:
         logger.warning("Quorum: could not fetch recording %s", best_recording_id)
         return None

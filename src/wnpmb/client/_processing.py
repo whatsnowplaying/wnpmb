@@ -58,6 +58,13 @@ class ProcessingMixin(ArtistsMixin):
 
         assert isinstance(self, ReleasesMixin)
 
+        # process_recording_data may pass recording_id=None when find_recording
+        # returned only a fallback ID.  Sending recording=None to MB produces a
+        # 400 that would raise ResponseError under the new contract; short-
+        # circuit here so the caller falls through to mb_data's inline releases.
+        if not browse_kwargs.get("recording"):
+            return []
+
         first_page = await self.browse_releases(**browse_kwargs)
         releases: list[dict] = list(first_page.get("releases", []))
         total: int = first_page.get("release-count", 0)
@@ -217,7 +224,10 @@ class ProcessingMixin(ArtistsMixin):
 
         Makes a separate API call to browse official releases for the recording,
         then falls back to all releases if none are official.  Returns the first
-        qualifying label name found, or None.
+        qualifying label name found, or None when MB has releases but none
+        carry a qualifying label.  Transport failures propagate from the
+        underlying browse_releases call — see get_recording_by_id for the
+        failure contract.
 
         Use this when label data is needed but was not included in the original
         get_recording_by_id response.

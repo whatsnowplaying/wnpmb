@@ -5,8 +5,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import orjson
-
 from ..normalization import build_recording_query
 from ._base import MusicBrainzBase
 
@@ -90,33 +88,17 @@ class RecordingsMixin(MusicBrainzBase):
 
         url = f"{self.base_url}/recording"
         response = await self._get(url, params)
-
-        if response is not None and response.status_code == 200:
-            try:
-                body: dict = orjson.loads(response.content)
-                recordings: list[dict] = body.get("recordings", [])
-                count: int = body.get("count", 0)
-                logger.debug(
-                    "Found %d recordings (%d total) for %r",
-                    len(recordings),
-                    count,
-                    title,
-                )
-                await self._cache_set(
-                    cache_key,
-                    {"recordings": recordings, "recording_count": count},
-                    "recording",
-                    url,
-                )
-                return recordings, count
-            except Exception as exc:
-                logger.warning(
-                    "Failed to parse recording search response for %r: %s",
-                    title,
-                    exc,
-                )
-
-        return [], 0
+        body: dict = self._parse_json_response(response, url)
+        recordings: list[dict] = body.get("recordings", [])
+        count: int = body.get("count", 0)
+        logger.debug("Found %d recordings (%d total) for %r", len(recordings), count, title)
+        await self._cache_set(
+            cache_key,
+            {"recordings": recordings, "recording_count": count},
+            "recording",
+            url,
+        )
+        return recordings, count
 
     async def get_recording_by_id(
         self,
@@ -128,8 +110,15 @@ class RecordingsMixin(MusicBrainzBase):
 
         Default includes: artists, releases, release-groups, tags, ISRCs.
         Pass a custom list to override.
+
+        Returns None when MB confirms the ID does not exist (HTTP 404) or
+        when the input isn't a valid MBID (rejected client-side, no network
+        call).  Transport failures raise NetworkError / TransportError /
+        RateLimitError / ServerBusyError, and malformed or unexpected
+        responses raise ResponseError so callers can safely cache None as
+        absent.
         """
-        if not recording_id:
+        if not self._is_valid_mbid(recording_id):
             return None
         normalized = recording_id.strip().lower()
         inc = (
@@ -144,25 +133,23 @@ class RecordingsMixin(MusicBrainzBase):
         url = f"{self.base_url}/recording/{normalized}"
         response = await self._get(url, {"fmt": "json", "inc": inc})
 
-        if response is not None and response.status_code == 200:
-            try:
-                data: dict = orjson.loads(response.content)
-                await self._cache_set(cache_key, {"recording": data}, "recording", url)
-                return data
-            except Exception as exc:
-                logger.warning(
-                    "Failed to parse recording response for %s: %s",
-                    recording_id,
-                    exc,
-                )
-
-        if response is not None and response.status_code == 404:
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"recording": None}, "not_found")
-
-        return None
+            return None
+        data: dict = self._parse_json_response(response, url)
+        await self._cache_set(cache_key, {"recording": data}, "recording", url)
+        return data
 
     async def get_recording_by_isrc(self, isrc: str) -> dict | None:
-        """Look up a recording by ISRC code."""
+        """Look up a recording by ISRC code.
+
+        Returns None on MB-confirmed 404.  A malformed ISRC that MB rejects
+        with 400 surfaces as ResponseError — the ISRC standard's compact
+        form is not fully stable (extension proposals exist), so we defer
+        the format check to MB rather than encode a client-side regex
+        that may lag reality.  See get_recording_by_id for the full
+        failure contract.
+        """
         normalized = isrc.strip().upper()
         cache_key = f"get_recording_by_isrc:{normalized}"
 
@@ -172,15 +159,9 @@ class RecordingsMixin(MusicBrainzBase):
         url = f"{self.base_url}/isrc/{normalized}"
         response = await self._get(url, {"fmt": "json", "inc": "artists+releases"})
 
-        if response is not None and response.status_code == 200:
-            try:
-                data: dict = orjson.loads(response.content)
-                await self._cache_set(cache_key, {"recording": data}, "recording", url)
-                return data
-            except Exception as exc:
-                logger.warning("Failed to parse ISRC response for %s: %s", isrc, exc)
-
-        if response is not None and response.status_code == 404:
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"recording": None}, "not_found")
-
-        return None
+            return None
+        data: dict = self._parse_json_response(response, url)
+        await self._cache_set(cache_key, {"recording": data}, "recording", url)
+        return data

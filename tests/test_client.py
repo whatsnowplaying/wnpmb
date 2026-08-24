@@ -11,9 +11,10 @@ import json
 from pathlib import Path
 from typing import Any
 
+import pytest
 import respx
 
-from wnpmb.client import MusicBrainzClient
+from wnpmb.client import MusicBrainzClient, RateLimitError, ResponseError, ServerBusyError
 from wnpmb.client._base import CAA_BASE_URL, MUSICBRAINZ_BASE_URL
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -112,11 +113,40 @@ async def test_search_recordings_empty_title(httpx2_mock: respx.Router):
 
 
 async def test_search_recordings_http_error(httpx2_mock: respx.Router):
+    """HTTP 500 raises ResponseError — 500 isn't in the retry set (ambiguous)."""
     httpx2_mock.get(f"{MB}/recording").respond(500)
     async with MusicBrainzClient() as mb:
-        result, count = await mb.search_recordings("Unknown Song")
-    assert result == []
-    assert count == 0
+        with pytest.raises(ResponseError, match="HTTP 500"):
+            await mb.search_recordings("Unknown Song")
+
+
+async def test_transient_5xx_retried_then_raises_server_busy(httpx2_mock: respx.Router):
+    """502/503/504 exhaust retries into ServerBusyError, distinct from RateLimitError."""
+    httpx2_mock.get(f"{MB}/recording").respond(503)
+    # RetrySettings(max_retries=1, wait=0) keeps the test fast.
+    from wnpmb.client import RetrySettings
+
+    async with MusicBrainzClient(retry_settings=RetrySettings(max_retries=1, wait=0)) as mb:
+        with pytest.raises(ServerBusyError, match="HTTP 503"):
+            await mb.search_recordings("Unknown Song")
+
+
+async def test_rate_limit_429_raises_rate_limit_error(httpx2_mock: respx.Router):
+    """429 exhaustion stays as RateLimitError so callers can distinguish quota."""
+    httpx2_mock.get(f"{MB}/recording").respond(429)
+    from wnpmb.client import RetrySettings
+
+    async with MusicBrainzClient(retry_settings=RetrySettings(max_retries=1, wait=0)) as mb:
+        with pytest.raises(RateLimitError, match="HTTP 429"):
+            await mb.search_recordings("Unknown Song")
+
+
+async def test_non_dict_body_raises_response_error(httpx2_mock: respx.Router):
+    """A 200 whose body is valid JSON but not an object must raise, not AttributeError."""
+    httpx2_mock.get(f"{MB}/recording").respond(200, json=[])
+    async with MusicBrainzClient() as mb:
+        with pytest.raises(ResponseError, match="Expected JSON object"):
+            await mb.search_recordings("Unknown Song")
 
 
 async def test_search_recordings_cache_hit(httpx2_mock: respx.Router):
@@ -201,10 +231,18 @@ async def test_get_recording_by_id_monster_mash(httpx2_mock: respx.Router):
 
 
 async def test_get_recording_by_id_not_found(httpx2_mock: respx.Router):
-    httpx2_mock.get(f"{MB}/recording/bad-id").respond(404)
+    httpx2_mock.get(f"{MB}/recording/00000000-0000-0000-0000-000000000000").respond(404)
     async with MusicBrainzClient() as mb:
-        result = await mb.get_recording_by_id("bad-id")
+        result = await mb.get_recording_by_id("00000000-0000-0000-0000-000000000000")
     assert result is None
+
+
+async def test_get_recording_by_id_malformed_returns_none(httpx2_mock: respx.Router):
+    """Malformed MBID is rejected client-side — no HTTP call, no cache write."""
+    async with MusicBrainzClient() as mb:
+        result = await mb.get_recording_by_id("not-a-uuid")
+    assert result is None
+    assert httpx2_mock.calls.call_count == 0
 
 
 # ── get_recording_by_isrc ──────────────────────────────────────────────────────
@@ -238,6 +276,19 @@ async def test_get_recording_by_isrc_normalises_case(httpx2_mock: respx.Router):
     async with MusicBrainzClient() as mb:
         result = await mb.get_recording_by_isrc(NIN_ISRC.lower())
     assert result["isrc"] == NIN_ISRC
+
+
+async def test_resolve_recording_by_isrc_skips_transient_failure(httpx2_mock: respx.Router):
+    """A single flaky ISRC lookup must not abort the whole batch."""
+    # First ISRC 500s (transient outage), second returns a valid recording.
+    bad_isrc = "USTC40852243"
+    good_isrc = "GBAYE0601696"
+    good_body = _fixture("isrc_gbaye0601696")
+    httpx2_mock.get(f"{MB}/isrc/{bad_isrc}").respond(500)
+    httpx2_mock.get(f"{MB}/isrc/{good_isrc}").respond(200, json=good_body)
+    async with MusicBrainzClient() as mb:
+        result = await mb.resolve_recording_by_isrc([bad_isrc, good_isrc])
+    assert result == good_body["recordings"][0]["id"]
 
 
 # ── search_artists ─────────────────────────────────────────────────────────────
@@ -312,9 +363,9 @@ async def test_get_artist_by_id_trst(httpx2_mock: respx.Router):
 
 
 async def test_get_artist_by_id_not_found(httpx2_mock: respx.Router):
-    httpx2_mock.get(f"{MB}/artist/bad-id").respond(404)
+    httpx2_mock.get(f"{MB}/artist/00000000-0000-0000-0000-000000000000").respond(404)
     async with MusicBrainzClient() as mb:
-        result = await mb.get_artist_by_id("bad-id")
+        result = await mb.get_artist_by_id("00000000-0000-0000-0000-000000000000")
     assert result is None
 
 
@@ -400,10 +451,11 @@ async def test_browse_releases_success(httpx2_mock: respx.Router):
 
 
 async def test_browse_releases_error(httpx2_mock: respx.Router):
+    """HTTP 500 raises ResponseError; empty {} return is reserved for MB-confirmed 404."""
     httpx2_mock.get(f"{MB}/release").respond(500)
     async with MusicBrainzClient() as mb:
-        result = await mb.browse_releases(YESTERDAY_RECORDING_ID)
-    assert result == {}
+        with pytest.raises(ResponseError, match="HTTP 500"):
+            await mb.browse_releases(YESTERDAY_RECORDING_ID)
 
 
 # ── get_release_by_id ──────────────────────────────────────────────────────────
@@ -419,9 +471,9 @@ async def test_get_release_by_id_success(httpx2_mock: respx.Router):
 
 
 async def test_get_release_by_id_not_found(httpx2_mock: respx.Router):
-    httpx2_mock.get(f"{MB}/release/bad-id").respond(404)
+    httpx2_mock.get(f"{MB}/release/00000000-0000-0000-0000-000000000000").respond(404)
     async with MusicBrainzClient() as mb:
-        result = await mb.get_release_by_id("bad-id")
+        result = await mb.get_release_by_id("00000000-0000-0000-0000-000000000000")
     assert result is None
 
 

@@ -5,8 +5,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import orjson
-
 from ..normalization import sanitize_query_value
 from ._base import MusicBrainzBase
 
@@ -72,18 +70,11 @@ class ReleasesMixin(MusicBrainzBase):
 
         url = f"{self.base_url}/release"
         response = await self._get(url, params)
-
-        if response is not None and response.status_code == 200:
-            try:
-                body: dict = orjson.loads(response.content)
-                releases: list[dict] = body.get("releases", [])
-                logger.debug("Found %d releases for query %r", len(releases), params["query"])
-                await self._cache_set(cache_key, {"releases": releases}, "release", url)
-                return releases
-            except Exception as exc:
-                logger.warning("Failed to parse release search response: %s", exc)
-
-        return []
+        body: dict = self._parse_json_response(response, url)
+        releases: list[dict] = body.get("releases", [])
+        logger.debug("Found %d releases for query %r", len(releases), params["query"])
+        await self._cache_set(cache_key, {"releases": releases}, "release", url)
+        return releases
 
     async def search_release_groups(
         self,
@@ -135,22 +126,15 @@ class ReleasesMixin(MusicBrainzBase):
 
         url = f"{self.base_url}/release-group"
         response = await self._get(url, params)
-
-        if response is not None and response.status_code == 200:
-            try:
-                body: dict = orjson.loads(response.content)
-                release_groups: list[dict] = body.get("release-groups", [])
-                logger.debug(
-                    "Found %d release groups for query %r",
-                    len(release_groups),
-                    params["query"],
-                )
-                await self._cache_set(cache_key, {"release-groups": release_groups}, "release", url)
-                return release_groups
-            except Exception as exc:
-                logger.warning("Failed to parse release-group search response: %s", exc)
-
-        return []
+        body: dict = self._parse_json_response(response, url)
+        release_groups: list[dict] = body.get("release-groups", [])
+        logger.debug(
+            "Found %d release groups for query %r",
+            len(release_groups),
+            params["query"],
+        )
+        await self._cache_set(cache_key, {"release-groups": release_groups}, "release", url)
+        return release_groups
 
     async def browse_releases(
         self,
@@ -189,23 +173,26 @@ class ReleasesMixin(MusicBrainzBase):
 
         url = f"{self.base_url}/release"
         response = await self._get(url, params)
-        if response is not None and response.status_code == 200:
-            try:
-                result: dict = orjson.loads(response.content)
-                await self._cache_set(cache_key, {"result": result}, "release", url)
-                return result
-            except Exception as exc:
-                logger.warning("Failed to parse browse_releases response: %s", exc)
-        if response is not None and response.status_code == 404:
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"not_found": True}, "not_found")
-        return {}
+            return {}
+        result: dict = self._parse_json_response(response, url)
+        await self._cache_set(cache_key, {"result": result}, "release", url)
+        return result
 
     async def get_release_by_id(
         self,
         release_id: str,
         includes: list[str] | None = None,
     ) -> dict | None:
-        """Get release by MBID."""
+        """Get release by MBID.
+
+        Returns None on MB-confirmed 404 or when release_id isn't a valid
+        MBID (rejected client-side, no network call).  See get_recording_by_id
+        for the full failure contract.
+        """
+        if not self._is_valid_mbid(release_id):
+            return None
         inc = "+".join(sorted(includes)) if includes else ""
         cache_key = f"get_release:{release_id}:{inc}"
 
@@ -217,23 +204,26 @@ class ReleasesMixin(MusicBrainzBase):
             params["inc"] = "+".join(includes)
         url = f"{self.base_url}/release/{release_id}"
         response = await self._get(url, params)
-        if response is not None and response.status_code == 200:
-            try:
-                data: dict = orjson.loads(response.content)
-                await self._cache_set(cache_key, {"release": data}, "release", url)
-                return data
-            except Exception as exc:
-                logger.warning("Failed to parse release response for %s: %s", release_id, exc)
-        if response is not None and response.status_code == 404:
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"release": None}, "not_found")
-        return None
+            return None
+        data: dict = self._parse_json_response(response, url)
+        await self._cache_set(cache_key, {"release": data}, "release", url)
+        return data
 
     async def get_release_group_by_id(
         self,
         rg_id: str,
         includes: list[str] | None = None,
     ) -> dict | None:
-        """Get release group by MBID."""
+        """Get release group by MBID.
+
+        Returns None on MB-confirmed 404 or when rg_id isn't a valid MBID
+        (rejected client-side, no network call).  See get_recording_by_id
+        for the full failure contract.
+        """
+        if not self._is_valid_mbid(rg_id):
+            return None
         inc = "+".join(sorted(includes)) if includes else ""
         cache_key = f"get_release_group:{rg_id}:{inc}"
 
@@ -245,13 +235,9 @@ class ReleasesMixin(MusicBrainzBase):
             params["inc"] = "+".join(includes)
         url = f"{self.base_url}/release-group/{rg_id}"
         response = await self._get(url, params)
-        if response is not None and response.status_code == 200:
-            try:
-                data: dict = orjson.loads(response.content)
-                await self._cache_set(cache_key, {"release_group": data}, "release", url)
-                return data
-            except Exception as exc:
-                logger.warning("Failed to parse release-group response for %s: %s", rg_id, exc)
-        if response is not None and response.status_code == 404:
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"release_group": None}, "not_found")
-        return None
+            return None
+        data: dict = self._parse_json_response(response, url)
+        await self._cache_set(cache_key, {"release_group": data}, "release", url)
+        return data
