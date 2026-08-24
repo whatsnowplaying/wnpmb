@@ -358,7 +358,7 @@ class MusicBrainzBase:
             return False
         try:
             uuid.UUID(mbid)
-        except ValueError:
+        except (ValueError, TypeError):
             return False
         return True
 
