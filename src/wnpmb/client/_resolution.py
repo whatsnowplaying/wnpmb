@@ -17,7 +17,7 @@ from ..normalization import (
     strip_track_num_prefix,
 )
 from ._artists import ArtistsMixin
-from ._base import MusicBrainzBase
+from ._base import MusicBrainzBase, MusicBrainzError
 from ._recordings import RecordingsMixin
 
 _ARID_SCORE_THRESHOLD: int = 70
@@ -431,12 +431,20 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
 
         Tries official releases first, then all releases.  Picks the recording
         with the most releases (highest release-count) as the canonical version.
-        Returns the MBID string, or None if no match is found.
+        Returns the MBID string, or None when MB confirms no ISRC in the list
+        maps to a recording.  Individual per-ISRC transport failures are
+        logged and skipped so the caller-supplied fallback list keeps its
+        graceful-degradation semantics — one flaky lookup does not kill the
+        batch.
         """
         candidates: list[dict] = []
 
         for isrc in isrcs:
-            data = await self.get_recording_by_isrc(isrc)
+            try:
+                data = await self.get_recording_by_isrc(isrc)
+            except MusicBrainzError as exc:
+                logger.debug("resolve_recording_by_isrc: %s failed (%s)", isrc, exc)
+                continue
             if not data:
                 continue
             candidates.extend(
@@ -468,7 +476,11 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
 
         seen: dict[str, tuple[str, int, list[dict]]] = {}  # mbid → (name, score, aliases)
         for var in generate_artist_variations(artist):
-            candidates = await self.search_artists(var, limit=10)
+            try:
+                candidates = await self.search_artists(var, limit=10)
+            except MusicBrainzError as exc:
+                logger.debug("_find_artist_ids: search_artists(%r) failed (%s)", var, exc)
+                continue
             for candidate in candidates:
                 mbid = candidate.get("id")
                 score = candidate.get("score", 0)
@@ -556,20 +568,27 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
         Passes 1–3: name-based search across artist variations, with
         progressively relaxed constraints.
 
-        Returns the recording MBID, or None if no suitable match is found.
+        Returns the recording MBID, or None when every pass completes without
+        a match against MB's returned data.  Transport failures propagate
+        from the underlying search_recordings / search_artists calls — see
+        get_recording_by_id for the failure contract.
         """
         artist_vars = generate_artist_variations(artist)
 
         async def _arid_search_and_select(arids: list[str], search_album: str | None) -> str | None:
-            recs, count = await self.search_recordings(
-                title=title, artist_id=arids, album=search_album
-            )
-            if count > _ARID_COUNT_CEILING:
-                if not year:
-                    return None
+            try:
                 recs, count = await self.search_recordings(
-                    title=title, artist_id=arids, album=search_album, year=year
+                    title=title, artist_id=arids, album=search_album
                 )
+                if count > _ARID_COUNT_CEILING:
+                    if not year:
+                        return None
+                    recs, count = await self.search_recordings(
+                        title=title, artist_id=arids, album=search_album, year=year
+                    )
+            except MusicBrainzError as exc:
+                logger.debug("_arid_search_and_select failed for %r: %s", title, exc)
+                return None
             if recs and count > 0:
                 # Pass artist=None: results are already constrained by MBID so the
                 # name-equality check in _artist_matches would produce false negatives
@@ -598,12 +617,16 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             search_album: str | None,
             allow_others: bool,
         ) -> str | None:
-            recordings, count = await self.search_recordings(
-                title=title,
-                artist_name=artist_var,
-                album=search_album,
-                limit=_PAGE_SIZE,
-            )
+            try:
+                recordings, count = await self.search_recordings(
+                    title=title,
+                    artist_name=artist_var,
+                    album=search_album,
+                    limit=_PAGE_SIZE,
+                )
+            except MusicBrainzError as exc:
+                logger.debug("_search_and_select failed for %r/%r: %s", title, artist_var, exc)
+                return None
             if count == 0:
                 logger.debug("no recordings found for %r / %r", title, artist_var)
                 return None
@@ -613,16 +636,22 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             # Page through remaining results up to _SEARCH_RESULTS_CAP.
             # The per-page count is the same total as the first page for a
             # stable MB query, so we reuse `count` and ignore it on subsequent
-            # pages rather than re-validating on every call.
+            # pages rather than re-validating on every call.  Pagination
+            # failures partway through fall back to the results collected so
+            # far rather than discarding the whole batch.
             offset = _PAGE_SIZE
             while offset < min(count, _SEARCH_RESULTS_CAP):
-                page, _ = await self.search_recordings(
-                    title=title,
-                    artist_name=artist_var,
-                    album=search_album,
-                    limit=_PAGE_SIZE,
-                    offset=offset,
-                )
+                try:
+                    page, _ = await self.search_recordings(
+                        title=title,
+                        artist_name=artist_var,
+                        album=search_album,
+                        limit=_PAGE_SIZE,
+                        offset=offset,
+                    )
+                except MusicBrainzError as exc:
+                    logger.debug("pagination failed at offset %d: %s", offset, exc)
+                    break
                 if not page:
                     break
                 recordings.extend(page)
@@ -665,9 +694,13 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
             id_groups = await self._find_per_part_artist_ids(artist)
             if id_groups:
                 for search_album in [album, None] if album else [None]:
-                    recs, count = await self.search_recordings(
-                        title=title, artist_id_groups=id_groups, album=search_album
-                    )
+                    try:
+                        recs, count = await self.search_recordings(
+                            title=title, artist_id_groups=id_groups, album=search_album
+                        )
+                    except MusicBrainzError as exc:
+                        logger.debug("pass 4 search failed for %r: %s", title, exc)
+                        continue
                     if recs and count > 0:
                         if mbid := select_recording(
                             recs, title=title, artist=None, album=search_album, year=year

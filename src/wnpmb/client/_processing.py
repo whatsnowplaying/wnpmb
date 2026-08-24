@@ -217,7 +217,10 @@ class ProcessingMixin(ArtistsMixin):
 
         Makes a separate API call to browse official releases for the recording,
         then falls back to all releases if none are official.  Returns the first
-        qualifying label name found, or None.
+        qualifying label name found, or None when MB has releases but none
+        carry a qualifying label.  Transport failures propagate from the
+        underlying browse_releases call — see get_recording_by_id for the
+        failure contract.
 
         Use this when label data is needed but was not included in the original
         get_recording_by_id response.

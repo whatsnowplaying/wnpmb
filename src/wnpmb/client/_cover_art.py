@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import logging
 
-import orjson
-
 from ._base import MusicBrainzBase
 
 logger = logging.getLogger(__name__)
@@ -26,17 +24,12 @@ class CoverArtMixin(MusicBrainzBase):
 
         url = f"{self.caa_base_url}/{entity_type}/{mbid}"
         response = await self._get(url)
-        if response is not None and response.status_code == 404:
+        if response.status_code == 404:
             await self._cache_set(cache_key, {"result": {}}, "not_found")
             return {}
-        if response is not None and response.status_code == 200:
-            try:
-                data: dict = orjson.loads(response.content)
-                await self._cache_set(cache_key, {"result": data}, "cover_art", url)
-                return data
-            except Exception as exc:
-                logger.warning("Failed to parse image list for %s: %s", mbid, exc)
-        return {}
+        data: dict = self._parse_json_response(response, url)
+        await self._cache_set(cache_key, {"result": data}, "cover_art", url)
+        return data
 
     async def get_image_front(
         self,

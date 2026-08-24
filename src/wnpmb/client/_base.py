@@ -15,6 +15,7 @@ from dataclasses import dataclass
 from typing import Any, Self
 
 import httpx2
+import orjson
 
 from ..cache import MusicBrainzCache, TTLSettings
 
@@ -51,7 +52,31 @@ class ResponseError(MusicBrainzError):
 
 
 class RateLimitError(MusicBrainzError):
-    """Raised when rate-limit retries are exhausted."""
+    """Raised when 429-response retries are exhausted.
+
+    Distinct from ServerBusyError so callers can key off the actual rate-limit
+    signal — e.g. back off longer, throttle other requests, or surface a
+    "you're over quota" message — rather than the generic "MB is unhappy."
+    """
+
+
+class ServerBusyError(MusicBrainzError):
+    """Raised when 5xx-response retries are exhausted (502, 503, 504).
+
+    Covers the transient-upstream failure modes MB emits under load.  Distinct
+    from RateLimitError because the caller may want a different action:
+    ServerBusy typically clears on its own without touching client behaviour,
+    whereas rate-limit exhaustion is caller-driven.
+    """
+
+
+class TransportError(MusicBrainzError):
+    """Raised for non-retryable transport errors that aren't a network fault.
+
+    Distinguishes 'the request did not complete for an unclassified reason'
+    from clean network faults (NetworkError) and protocol-level failures
+    (ResponseError), so callers can decide whether a retry is meaningful.
+    """
 
 
 # ── Retry settings ─────────────────────────────────────────────────────────────
@@ -63,8 +88,9 @@ class RetrySettings:
     Controls retry behaviour for transient HTTP failures.
 
     Attributes:
-        max_retries:     Retry budget for 429/503 responses and ConnectError.
-                         Set to 0 to disable retries entirely.
+        max_retries:     Retry budget for 429 + transient 5xx (502/503/504)
+                         responses and ConnectError.  Set to 0 to disable
+                         retries entirely.
         wait:            Seconds to sleep between rate-limit/connect retries.
         timeout_retries: Separate retry budget for TimeoutException.  Defaults
                          to 0 (no timeout retries) — appropriate for live
@@ -99,8 +125,9 @@ class MusicBrainzBase:
 
     1. A fixed minimum interval between requests (asyncio lock) prevents
        bursts when many coroutines issue requests concurrently.
-    2. A configurable retry loop on 429/503 and transient network errors
-       lets the client recover from short overload periods.
+    2. A configurable retry loop on 429, transient 5xx (502/503/504), and
+       transient network errors lets the client recover from short overload
+       periods.
 
     Caching is optional. Pass a MusicBrainzCache-compatible object to avoid
     redundant API calls. TTLs are keyed by MusicBrainz data type:
@@ -222,15 +249,28 @@ class MusicBrainzBase:
 
     # ── HTTP transport ─────────────────────────────────────────────────────
 
-    async def _get(self, url: str, params: dict[str, Any] | None = None) -> httpx2.Response | None:
+    async def _get(self, url: str, params: dict[str, Any] | None = None) -> httpx2.Response:
         """
         GET with rate limiting and retry loop.
 
-        429/503 responses and ConnectError are retried up to
-        retry_settings.max_retries times (sleeping retry_settings.wait).
-        TimeoutException uses a separate budget (retry_settings.timeout_retries,
-        default 0) so live callers fail fast while background jobs can retry.
-        All other exceptions are logged and return None.
+        429 and the transient-upstream 5xx codes (502, 503, 504) plus
+        ConnectError are retried up to retry_settings.max_retries times
+        (sleeping retry_settings.wait).  500 is intentionally excluded — it
+        can be either MB overload or a persistent server bug, so we let it
+        surface immediately as ResponseError rather than burning retry
+        budget on ambiguous errors.  TimeoutException uses a separate budget
+        (retry_settings.timeout_retries, default 0) so live callers fail
+        fast while background jobs can retry.
+
+        Raises rather than returning None so callers can distinguish transport
+        failure from "MB has no such entity":
+
+        * RateLimitError   — 429 after retries exhausted
+        * ServerBusyError  — 502/503/504 after retries exhausted
+        * NetworkError     — timeout or connect error after retries exhausted
+        * TransportError   — any other non-retryable exception
+
+        The 200/404/other status classification is left to the caller.
         """
         await self._ensure_session()
         await self._enforce_rate_limit()
@@ -253,7 +293,7 @@ class MusicBrainzBase:
                     reset_ts = int(response.headers["X-RateLimit-Reset"])
                     self._update_rate_limit_headers(remaining, reset_ts)
 
-                if response.status_code in (429, 503):
+                if response.status_code in (429, 502, 503, 504):
                     if rl_attempt < max_retries:
                         rl_attempt += 1
                         logger.debug(
@@ -265,15 +305,17 @@ class MusicBrainzBase:
                         )
                         await asyncio.sleep(wait)
                         continue
-                    raise RateLimitError(
-                        f"Rate limited after {max_retries} retries: HTTP {response.status_code}"
+                    if response.status_code == 429:
+                        raise RateLimitError(f"Rate limited after {max_retries} retries: HTTP 429")
+                    raise ServerBusyError(
+                        f"Server busy after {max_retries} retries: HTTP {response.status_code}"
                     )
 
                 return response
 
-            except RateLimitError:
+            except (RateLimitError, ServerBusyError):
                 raise
-            except httpx2.TimeoutException:
+            except httpx2.TimeoutException as exc:
                 if to_attempt < timeout_retries:
                     to_attempt += 1
                     logger.debug(
@@ -284,12 +326,7 @@ class MusicBrainzBase:
                     )
                     await asyncio.sleep(timeout_wait)
                     continue
-                logger.warning(
-                    "MusicBrainz timeout after %d retries: url=%s",
-                    to_attempt,
-                    url,
-                )
-                return None
+                raise NetworkError(f"Timeout after {to_attempt} retries: {url}") from exc
             except httpx2.ConnectError as exc:
                 if rl_attempt < max_retries:
                     rl_attempt += 1
@@ -302,16 +339,31 @@ class MusicBrainzBase:
                     )
                     await asyncio.sleep(wait)
                     continue
-                logger.warning(
-                    "MusicBrainz connect error after %d retries: %s  url=%s",
-                    rl_attempt,
-                    exc,
-                    url,
-                )
-                return None
+                raise NetworkError(f"Connect error after {rl_attempt} retries: {url}") from exc
             except Exception as exc:
-                logger.warning("MusicBrainz non-retryable error: %s", exc)
-                return None
+                raise TransportError(f"Non-retryable error: {url}") from exc
+
+    # ── Response parsing ───────────────────────────────────────────────────
+
+    @staticmethod
+    def _parse_json_response(response: httpx2.Response, context: str) -> Any:
+        """Return parsed JSON for a 200 response, or raise ResponseError.
+
+        Any non-200 status becomes ResponseError so callers can distinguish
+        transport failure from MB-confirmed absence.  Callers that want to
+        treat 404 as a cacheable negative must branch on the status code
+        *before* invoking this helper — 404 is not special here.
+
+        ``context`` should identify the request (URL is the usual choice);
+        it appears in the error message so failures are traceable without
+        needing to reconstruct which endpoint raised.
+        """
+        if response.status_code != 200:
+            raise ResponseError(f"HTTP {response.status_code} on {context}")
+        try:
+            return orjson.loads(response.content)
+        except orjson.JSONDecodeError as exc:
+            raise ResponseError(f"Failed to parse response from {context}") from exc
 
     async def _get_image(self, url: str) -> bytes:
         """GET binary image data (Cover Art Archive).
