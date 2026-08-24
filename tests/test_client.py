@@ -11,10 +11,17 @@ import json
 from pathlib import Path
 from typing import Any
 
+import httpx2
 import pytest
 import respx
 
-from wnpmb.client import MusicBrainzClient, RateLimitError, ResponseError, ServerBusyError
+from wnpmb.client import (
+    MusicBrainzClient,
+    NetworkError,
+    RateLimitError,
+    ResponseError,
+    ServerBusyError,
+)
 from wnpmb.client._base import CAA_BASE_URL, MUSICBRAINZ_BASE_URL
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -507,6 +514,67 @@ async def test_get_image_list_not_found(httpx2_mock: respx.Router):
     async with MusicBrainzClient() as mb:
         result = await mb.get_image_list(HELP_RELEASE_ID)
     assert result == {}
+
+
+# ── structured exception fields ────────────────────────────────────────────────
+
+
+async def test_response_error_carries_status_and_url(httpx2_mock: respx.Router):
+    """Callers must be able to branch on err.status_code without str-matching."""
+    url = f"{MB}/recording"
+    httpx2_mock.get(url).respond(500)
+    async with MusicBrainzClient() as mb:
+        try:
+            await mb.search_recordings("anything")
+        except ResponseError as err:
+            assert err.status_code == 500
+            assert err.url == url
+        else:
+            raise AssertionError("expected ResponseError")
+
+
+async def test_rate_limit_error_carries_status_and_url(httpx2_mock: respx.Router):
+    """429 exhaustion carries status_code=429 for callers that back off on quota."""
+    from wnpmb.client import RetrySettings
+
+    url = f"{MB}/recording"
+    httpx2_mock.get(url).respond(429)
+    async with MusicBrainzClient(retry_settings=RetrySettings(max_retries=1, wait=0)) as mb:
+        with pytest.raises(RateLimitError) as info:
+            await mb.search_recordings("anything")
+    assert info.value.status_code == 429
+    assert info.value.url == url
+
+
+async def test_server_busy_error_carries_specific_5xx(httpx2_mock: respx.Router):
+    """504 exhaustion carries status_code=504, not a bare label — lets callers log it."""
+    from wnpmb.client import RetrySettings
+
+    url = f"{MB}/recording"
+    httpx2_mock.get(url).respond(504)
+    async with MusicBrainzClient(retry_settings=RetrySettings(max_retries=1, wait=0)) as mb:
+        with pytest.raises(ServerBusyError) as info:
+            await mb.search_recordings("anything")
+    assert info.value.status_code == 504
+    assert info.value.url == url
+
+
+async def test_caa_timeout_is_network_error_not_response(httpx2_mock: respx.Router):
+    """WNP's reported failure case: a CAA timeout must not look like a 404.
+
+    Pre-0.6.0 both raised ResponseError with the URL in the message; if the
+    URL happened to contain '404' (about 0.71% of MBIDs, since they're hex),
+    a caller string-matching for '404' would cache the timeout as a stable
+    negative.  NetworkError vs ResponseError makes the distinction structural.
+    """
+    url = f"{CAA}/release/{HELP_RELEASE_ID}/front-500"
+    httpx2_mock.get(url).mock(side_effect=httpx2.TimeoutException("simulated"))
+    async with MusicBrainzClient() as mb:
+        with pytest.raises(NetworkError) as info:
+            await mb.get_image_front(HELP_RELEASE_ID)
+    assert info.value.status_code is None  # no response was received
+    assert info.value.url == url
+    assert not isinstance(info.value, ResponseError)
 
 
 # ── session lifecycle ──────────────────────────────────────────────────────────

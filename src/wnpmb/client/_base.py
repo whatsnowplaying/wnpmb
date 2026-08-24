@@ -41,15 +41,39 @@ ARTIST_NAME_REPLACEMENTS: dict[str, str] = {
 
 
 class MusicBrainzError(Exception):
-    """Base exception for all MusicBrainz client errors."""
+    """Base exception for all MusicBrainz client errors.
+
+    Carries optional structured fields so callers can dispatch on
+    ``err.status_code`` and ``err.url`` rather than string-matching the
+    message.  ``status_code`` is None when no response was received
+    (timeouts, connect errors); ``url`` is the request URL when applicable.
+    """
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        status_code: int | None = None,
+        url: str | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.status_code = status_code
+        self.url = url
 
 
 class NetworkError(MusicBrainzError):
-    """Raised for timeouts and connection failures."""
+    """Raised for timeouts and connection failures.
+
+    ``status_code`` is always None — no response was received.
+    """
 
 
 class ResponseError(MusicBrainzError):
-    """Raised for unexpected HTTP responses."""
+    """Raised for unexpected HTTP responses.
+
+    ``status_code`` is the HTTP status (or None when the failure is
+    body-parse related on a 200 response).
+    """
 
 
 class RateLimitError(MusicBrainzError):
@@ -307,9 +331,15 @@ class MusicBrainzBase:
                         await asyncio.sleep(wait)
                         continue
                     if response.status_code == 429:
-                        raise RateLimitError(f"Rate limited after {max_retries} retries: HTTP 429")
+                        raise RateLimitError(
+                            f"Rate limited after {max_retries} retries: HTTP 429",
+                            status_code=429,
+                            url=url,
+                        )
                     raise ServerBusyError(
-                        f"Server busy after {max_retries} retries: HTTP {response.status_code}"
+                        f"Server busy after {max_retries} retries: HTTP {response.status_code}",
+                        status_code=response.status_code,
+                        url=url,
                     )
 
                 return response
@@ -327,7 +357,7 @@ class MusicBrainzBase:
                     )
                     await asyncio.sleep(timeout_wait)
                     continue
-                raise NetworkError(f"Timeout after {to_attempt} retries: {url}") from exc
+                raise NetworkError(f"Timeout after {to_attempt} retries: {url}", url=url) from exc
             except httpx2.ConnectError as exc:
                 if rl_attempt < max_retries:
                     rl_attempt += 1
@@ -340,9 +370,11 @@ class MusicBrainzBase:
                     )
                     await asyncio.sleep(wait)
                     continue
-                raise NetworkError(f"Connect error after {rl_attempt} retries: {url}") from exc
+                raise NetworkError(
+                    f"Connect error after {rl_attempt} retries: {url}", url=url
+                ) from exc
             except Exception as exc:
-                raise TransportError(f"Non-retryable error: {url}") from exc
+                raise TransportError(f"Non-retryable error: {url}", url=url) from exc
 
     # ── Input validation ───────────────────────────────────────────────────
 
@@ -383,13 +415,23 @@ class MusicBrainzBase:
         needing to reconstruct which endpoint raised.
         """
         if response.status_code != 200:
-            raise ResponseError(f"HTTP {response.status_code} on {context}")
+            raise ResponseError(
+                f"HTTP {response.status_code} on {context}",
+                status_code=response.status_code,
+                url=context,
+            )
         try:
             data = orjson.loads(response.content)
         except orjson.JSONDecodeError as exc:
-            raise ResponseError(f"Failed to parse response from {context}") from exc
+            raise ResponseError(
+                f"Failed to parse response from {context}", status_code=200, url=context
+            ) from exc
         if not isinstance(data, dict):
-            raise ResponseError(f"Expected JSON object from {context}, got {type(data).__name__}")
+            raise ResponseError(
+                f"Expected JSON object from {context}, got {type(data).__name__}",
+                status_code=200,
+                url=context,
+            )
         return data
 
     async def _get_image(self, url: str) -> bytes:
@@ -398,6 +440,12 @@ class MusicBrainzBase:
         CAA is a separate service with no rate limiting, so _enforce_rate_limit
         is intentionally not called here.  503 responses are retried with the
         same backoff as MB API calls.
+
+        Raises match _get's contract so callers can dispatch structurally:
+
+        * ServerBusyError — 503 after retries exhausted
+        * NetworkError    — timeout or connect error after retries exhausted
+        * ResponseError   — any other non-200 status (carries status_code/url)
         """
         await self._ensure_session()
         assert self._session is not None
@@ -419,15 +467,23 @@ class MusicBrainzBase:
                         )
                         await asyncio.sleep(wait)
                         continue
-                    raise ResponseError(f"CAA unavailable after {max_retries} retries: {url}")
+                    raise ServerBusyError(
+                        f"CAA unavailable after {max_retries} retries: {url}",
+                        status_code=503,
+                        url=url,
+                    )
                 if response.status_code == 200:
                     return response.content
-                raise ResponseError(f"HTTP {response.status_code} fetching image: {url}")
-            except ResponseError:
+                raise ResponseError(
+                    f"HTTP {response.status_code} fetching image: {url}",
+                    status_code=response.status_code,
+                    url=url,
+                )
+            except (ResponseError, ServerBusyError):
                 raise
-            except httpx2.TimeoutException:
+            except httpx2.TimeoutException as exc:
                 logger.warning("CAA timeout: url=%s", url)
-                raise ResponseError(f"Timeout fetching image: {url}")
+                raise NetworkError(f"Timeout fetching image: {url}", url=url) from exc
             except httpx2.ConnectError as exc:
                 if attempt < max_retries:
                     attempt += 1
@@ -440,7 +496,7 @@ class MusicBrainzBase:
                     )
                     await asyncio.sleep(wait)
                     continue
-                raise ResponseError(f"Connect error fetching image: {url}") from exc
+                raise NetworkError(f"Connect error fetching image: {url}", url=url) from exc
 
     # ── Cache helpers ──────────────────────────────────────────────────────
 
