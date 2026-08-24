@@ -141,6 +141,14 @@ async def test_rate_limit_429_raises_rate_limit_error(httpx2_mock: respx.Router)
             await mb.search_recordings("Unknown Song")
 
 
+async def test_non_dict_body_raises_response_error(httpx2_mock: respx.Router):
+    """A 200 whose body is valid JSON but not an object must raise, not AttributeError."""
+    httpx2_mock.get(f"{MB}/recording").respond(200, json=[])
+    async with MusicBrainzClient() as mb:
+        with pytest.raises(ResponseError, match="Expected JSON object"):
+            await mb.search_recordings("Unknown Song")
+
+
 async def test_search_recordings_cache_hit(httpx2_mock: respx.Router):
     cache = _MemoryCache()
     body = _fixture("recording_search_nin_15ghosts2")

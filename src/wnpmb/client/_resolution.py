@@ -568,10 +568,14 @@ class RecordingResolutionMixin(RecordingsMixin, ArtistsMixin, MusicBrainzBase):
         Passes 1–3: name-based search across artist variations, with
         progressively relaxed constraints.
 
-        Returns the recording MBID, or None when every pass completes without
-        a match against MB's returned data.  Transport failures propagate
-        from the underlying search_recordings / search_artists calls — see
-        get_recording_by_id for the failure contract.
+        Returns the recording MBID, or None if no pass produced a match.
+        Individual passes swallow MusicBrainzError (logged at debug) so one
+        transient MB failure does not abort the multi-pass fallback; the
+        tradeoff is that "MB was unreachable across every attempt" is
+        currently indistinguishable from "MB was fine and there was no
+        match."  If a caller needs that distinction, use the lower-level
+        get_recording_by_id / search_recordings paths whose failure
+        contract is exception-based.
         """
         artist_vars = generate_artist_variations(artist)
 

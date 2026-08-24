@@ -346,13 +346,18 @@ class MusicBrainzBase:
     # ── Response parsing ───────────────────────────────────────────────────
 
     @staticmethod
-    def _parse_json_response(response: httpx2.Response, context: str) -> Any:
+    def _parse_json_response(response: httpx2.Response, context: str) -> dict:
         """Return parsed JSON for a 200 response, or raise ResponseError.
 
         Any non-200 status becomes ResponseError so callers can distinguish
         transport failure from MB-confirmed absence.  Callers that want to
         treat 404 as a cacheable negative must branch on the status code
         *before* invoking this helper — 404 is not special here.
+
+        The parsed body must be a JSON object; a syntactically valid
+        response that decodes to a list, null, or scalar also raises
+        ResponseError, so callers can safely do ``body.get(...)`` without
+        an AttributeError leak.
 
         ``context`` should identify the request (URL is the usual choice);
         it appears in the error message so failures are traceable without
@@ -361,9 +366,12 @@ class MusicBrainzBase:
         if response.status_code != 200:
             raise ResponseError(f"HTTP {response.status_code} on {context}")
         try:
-            return orjson.loads(response.content)
+            data = orjson.loads(response.content)
         except orjson.JSONDecodeError as exc:
             raise ResponseError(f"Failed to parse response from {context}") from exc
+        if not isinstance(data, dict):
+            raise ResponseError(f"Expected JSON object from {context}, got {type(data).__name__}")
+        return data
 
     async def _get_image(self, url: str) -> bytes:
         """GET binary image data (Cover Art Archive).
