@@ -678,6 +678,30 @@ def test_adaptive_interval_exhausted():
     assert mb._rl_reset_ts == future_ts
 
 
+async def test_rate_limit_wait_is_capped():
+    """A far-future X-RateLimit-Reset must not cause an unbounded sleep."""
+    import asyncio
+    import time
+
+    mb = MusicBrainzClient(rate_limit_interval=0.0, max_rate_limit_wait=0.05)
+    mb._update_rate_limit_headers(0, int(time.time()) + 3600)
+    # elapsed defaults to process uptime; anchor so the sleep branch fires.
+    mb._last_request_time = time.monotonic()
+    await asyncio.wait_for(mb._enforce_rate_limit(), timeout=0.5)
+
+
+async def test_rate_limit_wait_uncapped_when_none():
+    """max_rate_limit_wait=None restores the unbounded behaviour."""
+    import asyncio
+    import time
+
+    mb = MusicBrainzClient(rate_limit_interval=0.0, max_rate_limit_wait=None)
+    mb._update_rate_limit_headers(0, int(time.time()) + 3600)
+    mb._last_request_time = time.monotonic()
+    with pytest.raises(TimeoutError):
+        await asyncio.wait_for(mb._enforce_rate_limit(), timeout=0.2)
+
+
 # ── process_recording_data ─────────────────────────────────────────────────────
 
 

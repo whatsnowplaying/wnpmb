@@ -146,12 +146,8 @@ def _artist_matches(artist: str, recording: dict) -> bool:
     # Multi-artist: every individual credit must appear in the input artist string.
     # Try this first so "Prince & The Revolution" matches the full input correctly.
     all_match = all(
-        (
-            norm_credit := normalize(
-                c.get("name") or c.get("artist", {}).get("name", ""), nospaces=True
-            )
-        )
-        and norm_credit in norm_artist
+        (nc := normalize(c.get("name") or c.get("artist", {}).get("name", ""), nospaces=True))
+        and nc in norm_artist
         for c in dict_credits
     )
     if all_match:

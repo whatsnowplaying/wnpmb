@@ -170,6 +170,10 @@ class MusicBrainzBase:
     (httpx2's default resolves to truststore against the OS cert store).
     Useful on older machines whose system CA bundle is stale — callers can
     pass ``certifi.where()`` to fall back to the bundled Mozilla CAs.
+
+    Pass max_rate_limit_wait=<seconds> (default 60.0, None to disable) to
+    cap the adaptive pre-request sleep so a large X-RateLimit-Reset window
+    can't stall the client silently.
     """
 
     _DEFAULT_USER_AGENT = f"whatsnowplaying-wnpmb/{_version}"
@@ -183,6 +187,7 @@ class MusicBrainzBase:
         ttl_settings: TTLSettings | None = None,
         retry_settings: RetrySettings | None = None,
         ca_bundle: str | None = None,
+        max_rate_limit_wait: float | None = 60.0,
     ) -> None:
         self.base_url = MUSICBRAINZ_BASE_URL
         self.caa_base_url = CAA_BASE_URL
@@ -193,6 +198,7 @@ class MusicBrainzBase:
         self.ttl_settings: TTLSettings = ttl_settings or TTLSettings()
         self.retry_settings: RetrySettings = retry_settings or RetrySettings()
         self.ca_bundle = ca_bundle
+        self.max_rate_limit_wait = max_rate_limit_wait
         self.api_call_count: int = 0
 
         self._session: httpx2.AsyncClient | None = None
@@ -252,10 +258,9 @@ class MusicBrainzBase:
     async def _enforce_rate_limit(self) -> None:
         """Block until the minimum interval since the last request has elapsed.
 
-        When the server has reported rate-limit headers, the interval is
-        adaptive: max(configured_minimum, time_until_reset / remaining).
-        This spreads the remaining quota evenly across the window while
-        never dropping below the configured floor.
+        Interval is max(configured_minimum, time_until_reset / remaining)
+        when rate-limit headers are known, clamped to max_rate_limit_wait
+        (None disables the cap).  On cap the request goes out anyway.
         """
         async with self._rate_limit_lock:
             interval = self.rate_limit_interval
@@ -265,6 +270,15 @@ class MusicBrainzBase:
                     interval = max(self.rate_limit_interval, secs_until_reset / self._rl_remaining)
                 elif secs_until_reset > 0:
                     interval = secs_until_reset
+
+            if self.max_rate_limit_wait is not None and interval > self.max_rate_limit_wait:
+                logger.warning(
+                    "Rate-limit sleep %.3gs exceeded cap of %.3gs; sleeping cap and "
+                    "issuing request anyway (MB may respond 429)",
+                    interval,
+                    self.max_rate_limit_wait,
+                )
+                interval = self.max_rate_limit_wait
 
             now = time.monotonic()
             elapsed = now - self._last_request_time
