@@ -287,17 +287,21 @@ class MusicBrainzBase:
                     server_wait = secs_until_reset
 
                 if self.max_rate_limit_wait is not None and server_wait > self.max_rate_limit_wait:
-                    if self._rl_reset_ts != self._last_warned_reset_ts:
+                    # Warn / raise against the effective wait — the floor may
+                    # absorb a short window on its own, in which case nothing
+                    # is actually being trimmed and neither signal fires.
+                    effective_wait = max(self.max_rate_limit_wait, self.rate_limit_interval)
+                    if (
+                        server_wait > effective_wait
+                        and self._rl_reset_ts != self._last_warned_reset_ts
+                    ):
                         logger.warning(
-                            "Rate-limit sleep %.3gs exceeded cap of %.3gs (reset window)",
+                            "Rate-limit sleep %.3gs exceeded effective wait of %.3gs "
+                            "(reset window)",
                             server_wait,
-                            self.max_rate_limit_wait,
+                            effective_wait,
                         )
                         self._last_warned_reset_ts = self._rl_reset_ts
-                    # Only raise when even the floor won't carry us past reset.
-                    # A caller with rate_limit_interval > max_rate_limit_wait
-                    # will sleep the floor and see the window refresh anyway.
-                    effective_wait = max(self.max_rate_limit_wait, self.rate_limit_interval)
                     if self._rl_remaining == 0 and secs_until_reset > effective_wait:
                         raise RateLimitError(
                             f"Rate limit exhausted; reset in {secs_until_reset:.0f}s "
@@ -333,9 +337,9 @@ class MusicBrainzBase:
         failure from "MB has no such entity":
 
         * RateLimitError   — 429 after retries exhausted, or refused before
-          any request when quota is known spent and the reset window exceeds
-          max_rate_limit_wait (status_code is 429 by analogy; nothing was sent,
-          so url is unset)
+          any request when quota is known spent and the reset window
+          exceeds max(max_rate_limit_wait, rate_limit_interval)
+          (status_code is 429 by analogy; nothing was sent, so url is unset)
         * ServerBusyError  — 502/503/504 after retries exhausted
         * NetworkError     — timeout or connect error after retries exhausted
         * TransportError   — any other non-retryable exception

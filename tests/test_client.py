@@ -712,7 +712,7 @@ async def test_rate_limit_wait_is_capped(caplog):
     # elapsed defaults to process uptime; anchor so the sleep branch fires.
     mb._last_request_time = time.monotonic()
     await asyncio.wait_for(mb._enforce_rate_limit(), timeout=0.5)
-    assert any("exceeded cap" in r.getMessage() for r in caplog.records)
+    assert any("exceeded effective wait" in r.getMessage() for r in caplog.records)
 
 
 async def test_rate_limit_cap_raises_when_quota_exhausted():
@@ -725,8 +725,9 @@ async def test_rate_limit_cap_raises_when_quota_exhausted():
     assert info.value.status_code == 429
 
 
-async def test_rate_limit_cap_does_not_raise_when_floor_absorbs_reset():
-    """remaining==0 with cap<reset<floor: sleep the floor, don't raise a doomed request."""
+async def test_rate_limit_cap_does_not_raise_when_floor_absorbs_reset(caplog):
+    """remaining==0 with cap<reset<floor: sleep the floor, don't raise, don't warn."""
+    caplog.set_level(logging.WARNING, logger="wnpmb.client._base")
     mb = MusicBrainzClient(rate_limit_interval=120.0, max_rate_limit_wait=60.0)
     # 90s reset < 120s floor: the natural sleep already carries us past
     # the window, so raising would fail a request that would have succeeded.
@@ -743,6 +744,8 @@ async def test_rate_limit_cap_does_not_raise_when_floor_absorbs_reset():
 
     # Sleep should be near the 120s floor, well past the 60s cap.
     assert slept and slept[0] > 60.0, f"expected floor-length sleep, got {slept[:1]}"
+    # Nothing was actually trimmed — the warning would be spurious.
+    assert not any("exceeded" in r.getMessage() for r in caplog.records)
 
 
 async def test_rate_limit_cap_warning_logged_once(caplog):
@@ -755,7 +758,7 @@ async def test_rate_limit_cap_warning_logged_once(caplog):
     for _ in range(3):
         await asyncio.wait_for(mb._enforce_rate_limit(), timeout=0.5)
         mb._last_request_time = time.monotonic()
-    warnings = [r for r in caplog.records if "exceeded cap" in r.getMessage()]
+    warnings = [r for r in caplog.records if "exceeded effective wait" in r.getMessage()]
     assert len(warnings) == 1
 
 
