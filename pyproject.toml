@@ -34,6 +34,9 @@ testpaths = ["tests"]
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+wnpmb = ["py.typed"]
+
 [tool.setuptools_scm]
 # Writes _version.py into the package on build; importable as wnpmb.__version__
 write_to = "src/wnpmb/_version.py"

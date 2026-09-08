@@ -145,13 +145,14 @@ def _artist_matches(artist: str, recording: dict) -> bool:
 
     # Multi-artist: every individual credit must appear in the input artist string.
     # Try this first so "Prince & The Revolution" matches the full input correctly.
+    # `credit` and `norm_credit` are taken above; walrus binds function-wide.
     all_match = all(
         (
-            norm_credit := normalize(
+            credit_norm := normalize(
                 c.get("name") or c.get("artist", {}).get("name", ""), nospaces=True
             )
         )
-        and norm_credit in norm_artist
+        and credit_norm in norm_artist
         for c in dict_credits
     )
     if all_match:
