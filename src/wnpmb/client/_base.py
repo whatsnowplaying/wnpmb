@@ -77,7 +77,10 @@ class ResponseError(MusicBrainzError):
 
 
 class RateLimitError(MusicBrainzError):
-    """Raised when 429-response retries are exhausted.
+    """Raised on rate-limit exhaustion — either 429 responses after retries,
+    or pre-request when the client sees remaining==0 and the reset window
+    exceeds max(max_rate_limit_wait, rate_limit_interval) so no wait would
+    carry us past the window.
 
     Distinct from ServerBusyError so callers can key off the actual rate-limit
     signal — e.g. back off longer, throttle other requests, or surface a
@@ -266,10 +269,12 @@ class MusicBrainzBase:
         trims a large adaptive value.  The sleep is a real await point, so
         a caller-imposed asyncio.wait_for can cancel it.
 
-        When quota is exhausted (remaining==0) and the reset window
-        exceeds the cap, no request is issued — RateLimitError is raised
-        directly since firing would 429 and then re-consume MB's
-        rapid-repeat quota through the retry loop.
+        When quota is exhausted (remaining==0) and the reset window exceeds
+        max(max_rate_limit_wait, rate_limit_interval) — the effective wait,
+        so a caller-configured floor above the cap can still absorb short
+        windows — no request is issued.  RateLimitError is raised directly
+        since firing would 429 and then re-consume MB's rapid-repeat quota
+        through the retry loop.
         """
         async with self._rate_limit_lock:
             server_wait = 0.0
