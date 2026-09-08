@@ -7,7 +7,11 @@ This ensures the client is tested against the actual API response format,
 not hand-crafted approximations.
 """
 
+import asyncio
 import json
+import logging
+import time
+import unittest.mock
 from pathlib import Path
 from typing import Any
 
@@ -676,6 +680,92 @@ def test_adaptive_interval_exhausted():
     mb._update_rate_limit_headers(0, future_ts)
     assert mb._rl_remaining == 0
     assert mb._rl_reset_ts == future_ts
+
+
+async def test_cap_does_not_clamp_a_configured_interval():
+    """The cap governs the server-driven wait, not the configured floor."""
+    mb = MusicBrainzClient(rate_limit_interval=120.0, max_rate_limit_wait=60.0)
+    # Steady state after a response: adaptive server_wait = 60/10 = 6s,
+    # well below the 60s cap; interval must still honour the 120s floor.
+    mb._update_rate_limit_headers(10, int(time.time()) + 60)
+    mb._last_request_time = time.monotonic()
+
+    slept: list[float] = []
+
+    async def _record(duration):
+        slept.append(duration)
+
+    with unittest.mock.patch("asyncio.sleep", new=_record):
+        await mb._enforce_rate_limit()
+
+    assert slept, "no wait was requested at all"
+    assert slept[0] > 60.0, f"configured 120s floor was clamped to {slept[0]:.1f}s"
+
+
+async def test_rate_limit_wait_is_capped(caplog):
+    """Cap trims a large adaptive interval and logs the trim once."""
+    caplog.set_level(logging.WARNING, logger="wnpmb.client._base")
+    mb = MusicBrainzClient(rate_limit_interval=0.0, max_rate_limit_wait=0.05)
+    # remaining=1 so the adaptive interval is 3600s (>cap) but the code
+    # doesn't take the exhausted-quota raise path.
+    mb._update_rate_limit_headers(1, int(time.time()) + 3600)
+    # elapsed defaults to process uptime; anchor so the sleep branch fires.
+    mb._last_request_time = time.monotonic()
+    await asyncio.wait_for(mb._enforce_rate_limit(), timeout=0.5)
+    assert any("exceeded cap" in r.getMessage() for r in caplog.records)
+
+
+async def test_rate_limit_cap_raises_when_quota_exhausted():
+    """remaining==0 with reset beyond cap raises rather than firing a doomed request."""
+    mb = MusicBrainzClient(rate_limit_interval=0.0, max_rate_limit_wait=0.05)
+    mb._update_rate_limit_headers(0, int(time.time()) + 3600)
+    mb._last_request_time = time.monotonic()
+    with pytest.raises(RateLimitError) as info:
+        await mb._enforce_rate_limit()
+    assert info.value.status_code == 429
+
+
+async def test_rate_limit_cap_does_not_raise_when_floor_absorbs_reset():
+    """remaining==0 with cap<reset<floor: sleep the floor, don't raise a doomed request."""
+    mb = MusicBrainzClient(rate_limit_interval=120.0, max_rate_limit_wait=60.0)
+    # 90s reset < 120s floor: the natural sleep already carries us past
+    # the window, so raising would fail a request that would have succeeded.
+    mb._update_rate_limit_headers(0, int(time.time()) + 90)
+    mb._last_request_time = time.monotonic()
+
+    slept: list[float] = []
+
+    async def _record(duration):
+        slept.append(duration)
+
+    with unittest.mock.patch("asyncio.sleep", new=_record):
+        await mb._enforce_rate_limit()
+
+    # Sleep should be near the 120s floor, well past the 60s cap.
+    assert slept and slept[0] > 60.0, f"expected floor-length sleep, got {slept[:1]}"
+
+
+async def test_rate_limit_cap_warning_logged_once(caplog):
+    """The cap-exceeded warning fires once per reset window, not per call."""
+    caplog.set_level(logging.WARNING, logger="wnpmb.client._base")
+    mb = MusicBrainzClient(rate_limit_interval=0.0, max_rate_limit_wait=0.05)
+    reset_ts = int(time.time()) + 3600
+    mb._update_rate_limit_headers(1, reset_ts)
+    mb._last_request_time = time.monotonic()
+    for _ in range(3):
+        await asyncio.wait_for(mb._enforce_rate_limit(), timeout=0.5)
+        mb._last_request_time = time.monotonic()
+    warnings = [r for r in caplog.records if "exceeded cap" in r.getMessage()]
+    assert len(warnings) == 1
+
+
+async def test_rate_limit_wait_uncapped_when_none():
+    """max_rate_limit_wait=None restores the unbounded behaviour."""
+    mb = MusicBrainzClient(rate_limit_interval=0.0, max_rate_limit_wait=None)
+    mb._update_rate_limit_headers(0, int(time.time()) + 3600)
+    mb._last_request_time = time.monotonic()
+    with pytest.raises(TimeoutError):
+        await asyncio.wait_for(mb._enforce_rate_limit(), timeout=0.2)
 
 
 # ── process_recording_data ─────────────────────────────────────────────────────

@@ -170,6 +170,10 @@ class MusicBrainzBase:
     (httpx2's default resolves to truststore against the OS cert store).
     Useful on older machines whose system CA bundle is stale — callers can
     pass ``certifi.where()`` to fall back to the bundled Mozilla CAs.
+
+    Pass max_rate_limit_wait=<seconds> (default 60.0, None to disable) to
+    cap the adaptive pre-request sleep so a large X-RateLimit-Reset window
+    can't stall the client silently.
     """
 
     _DEFAULT_USER_AGENT = f"whatsnowplaying-wnpmb/{_version}"
@@ -183,6 +187,7 @@ class MusicBrainzBase:
         ttl_settings: TTLSettings | None = None,
         retry_settings: RetrySettings | None = None,
         ca_bundle: str | None = None,
+        max_rate_limit_wait: float | None = 60.0,
     ) -> None:
         self.base_url = MUSICBRAINZ_BASE_URL
         self.caa_base_url = CAA_BASE_URL
@@ -193,6 +198,7 @@ class MusicBrainzBase:
         self.ttl_settings: TTLSettings = ttl_settings or TTLSettings()
         self.retry_settings: RetrySettings = retry_settings or RetrySettings()
         self.ca_bundle = ca_bundle
+        self.max_rate_limit_wait = max_rate_limit_wait
         self.api_call_count: int = 0
 
         self._session: httpx2.AsyncClient | None = None
@@ -200,6 +206,7 @@ class MusicBrainzBase:
         self._last_request_time: float = 0.0
         self._rl_remaining: int | None = None
         self._rl_reset_ts: int | None = None
+        self._last_warned_reset_ts: int | None = None
 
     # ── Configuration ──────────────────────────────────────────────────────
 
@@ -252,19 +259,49 @@ class MusicBrainzBase:
     async def _enforce_rate_limit(self) -> None:
         """Block until the minimum interval since the last request has elapsed.
 
-        When the server has reported rate-limit headers, the interval is
-        adaptive: max(configured_minimum, time_until_reset / remaining).
-        This spreads the remaining quota evenly across the window while
-        never dropping below the configured floor.
+        The server-driven wait is time_until_reset / remaining (or the full
+        window when remaining==0), clamped to max_rate_limit_wait (None
+        disables the cap).  Then interval = max(rate_limit_interval,
+        server_wait) so the caller's floor is honoured even when the cap
+        trims a large adaptive value.  The sleep is a real await point, so
+        a caller-imposed asyncio.wait_for can cancel it.
+
+        When quota is exhausted (remaining==0) and the reset window
+        exceeds the cap, no request is issued — RateLimitError is raised
+        directly since firing would 429 and then re-consume MB's
+        rapid-repeat quota through the retry loop.
         """
         async with self._rate_limit_lock:
-            interval = self.rate_limit_interval
+            server_wait = 0.0
+            secs_until_reset = 0.0
             if self._rl_remaining is not None and self._rl_reset_ts is not None:
                 secs_until_reset = max(0.0, self._rl_reset_ts - time.time())
                 if self._rl_remaining > 0:
-                    interval = max(self.rate_limit_interval, secs_until_reset / self._rl_remaining)
-                elif secs_until_reset > 0:
-                    interval = secs_until_reset
+                    server_wait = secs_until_reset / self._rl_remaining
+                else:
+                    server_wait = secs_until_reset
+
+                if self.max_rate_limit_wait is not None and server_wait > self.max_rate_limit_wait:
+                    if self._rl_reset_ts != self._last_warned_reset_ts:
+                        logger.warning(
+                            "Rate-limit sleep %.3gs exceeded cap of %.3gs (reset window)",
+                            server_wait,
+                            self.max_rate_limit_wait,
+                        )
+                        self._last_warned_reset_ts = self._rl_reset_ts
+                    # Only raise when even the floor won't carry us past reset.
+                    # A caller with rate_limit_interval > max_rate_limit_wait
+                    # will sleep the floor and see the window refresh anyway.
+                    effective_wait = max(self.max_rate_limit_wait, self.rate_limit_interval)
+                    if self._rl_remaining == 0 and secs_until_reset > effective_wait:
+                        raise RateLimitError(
+                            f"Rate limit exhausted; reset in {secs_until_reset:.0f}s "
+                            f"exceeds effective wait of {effective_wait:.0f}s",
+                            status_code=429,
+                        )
+                    server_wait = self.max_rate_limit_wait
+
+            interval = max(self.rate_limit_interval, server_wait)
 
             now = time.monotonic()
             elapsed = now - self._last_request_time
@@ -290,7 +327,10 @@ class MusicBrainzBase:
         Raises rather than returning None so callers can distinguish transport
         failure from "MB has no such entity":
 
-        * RateLimitError   — 429 after retries exhausted
+        * RateLimitError   — 429 after retries exhausted, or refused before
+          any request when quota is known spent and the reset window exceeds
+          max_rate_limit_wait (status_code is 429 by analogy; nothing was sent,
+          so url is unset)
         * ServerBusyError  — 502/503/504 after retries exhausted
         * NetworkError     — timeout or connect error after retries exhausted
         * TransportError   — any other non-retryable exception

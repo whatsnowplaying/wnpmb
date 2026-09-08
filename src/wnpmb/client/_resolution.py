@@ -146,12 +146,15 @@ def _artist_matches(artist: str, recording: dict) -> bool:
     # Multi-artist: every individual credit must appear in the input artist string.
     # Try this first so "Prince & The Revolution" matches the full input correctly.
     all_match = all(
+        # A comprehension walrus binds in the enclosing function scope, so this
+        # name has to be unused in the whole function, not just here: `credit`
+        # is the loop variable above and `norm_credit` the single-artist local.
         (
-            norm_credit := normalize(
+            credit_norm := normalize(
                 c.get("name") or c.get("artist", {}).get("name", ""), nospaces=True
             )
         )
-        and norm_credit in norm_artist
+        and credit_norm in norm_artist
         for c in dict_credits
     )
     if all_match:
