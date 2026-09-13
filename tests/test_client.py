@@ -623,6 +623,23 @@ async def test_context_manager_closes_session():
     assert mb._session is None
 
 
+async def test_timeout_accepts_httpx2_timeout_object():
+    """WNP needs per-category timeout control, not just a scalar."""
+    t = httpx2.Timeout(connect=2.0, read=10.0, write=5.0, pool=None)
+    async with MusicBrainzClient(timeout=t) as mb:
+        assert mb._session is not None
+        # httpx2 stores the resolved Timeout on the client; equality
+        # verifies each field survived unchanged.
+        assert mb._session.timeout == t
+
+
+async def test_timeout_accepts_tuple():
+    """4-tuple (connect, read, write, pool) also flows through."""
+    async with MusicBrainzClient(timeout=(2.0, 10.0, 5.0, None)) as mb:
+        assert mb._session is not None
+        assert mb._session.timeout == httpx2.Timeout(connect=2.0, read=10.0, write=5.0, pool=None)
+
+
 async def test_set_useragent():
     mb = MusicBrainzClient()
     mb.set_useragent("test@example.com")

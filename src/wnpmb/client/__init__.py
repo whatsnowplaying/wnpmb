@@ -85,6 +85,7 @@ from ._base import (
     ResponseError,
     RetrySettings,
     ServerBusyError,
+    TimeoutSpec,
     TransportError,
 )
 from ._cover_art import CoverArtMixin
@@ -117,6 +118,7 @@ __all__ = [
     "RateLimitError",
     "RetrySettings",
     "ServerBusyError",
+    "TimeoutSpec",
     "TransportError",
     "ARTIST_NAME_REPLACEMENTS",
     "MUSICBRAINZ_BASE_URL",
