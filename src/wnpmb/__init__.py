@@ -58,6 +58,7 @@ from .client import (
     ResponseError,
     RetrySettings,
     ServerBusyError,
+    TimeoutSpec,
     TransportError,
     select_recording,
 )
@@ -114,6 +115,7 @@ __all__ = [
     "RateLimitError",
     "RetrySettings",
     "ServerBusyError",
+    "TimeoutSpec",
     "TransportError",
     "select_recording",
     "ARTIST_NAME_REPLACEMENTS",

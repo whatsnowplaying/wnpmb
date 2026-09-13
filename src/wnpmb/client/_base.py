@@ -32,6 +32,13 @@ logger = logging.getLogger(__name__)
 MUSICBRAINZ_BASE_URL = "https://musicbrainz.org/ws/2"
 CAA_BASE_URL = "https://coverartarchive.org"
 
+# httpx2 accepts a scalar, a 4-tuple of (connect, read, write, pool), an
+# httpx2.Timeout instance, or None.  Exposed as an alias so callers who want
+# per-category control can annotate their own configs against the same type.
+TimeoutSpec = (
+    httpx2.Timeout | float | tuple[float | None, float | None, float | None, float | None] | None
+)
+
 ARTIST_NAME_REPLACEMENTS: dict[str, str] = {
     'lil b "the based god"': "Lil B",
     'lil b "the basedgod"': "Lil B",
@@ -185,7 +192,7 @@ class MusicBrainzBase:
         self,
         user_agent: str = _DEFAULT_USER_AGENT,
         rate_limit_interval: float = 0.5,
-        timeout: float = 5.0,
+        timeout: TimeoutSpec = 5.0,
         cache_service: MusicBrainzCache | None = None,
         ttl_settings: TTLSettings | None = None,
         retry_settings: RetrySettings | None = None,
@@ -196,7 +203,7 @@ class MusicBrainzBase:
         self.caa_base_url = CAA_BASE_URL
         self.user_agent = user_agent
         self.rate_limit_interval = rate_limit_interval
-        self.timeout = timeout
+        self.timeout: TimeoutSpec = timeout
         self.cache_service = cache_service
         self.ttl_settings: TTLSettings = ttl_settings or TTLSettings()
         self.retry_settings: RetrySettings = retry_settings or RetrySettings()
